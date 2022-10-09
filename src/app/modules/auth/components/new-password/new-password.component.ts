@@ -1,3 +1,4 @@
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
@@ -20,7 +21,6 @@ export class NewPasswordComponent implements OnInit {
   showeye: boolean = false;
   showeye2: boolean = false;
   currentLanguage: any;
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
 
   constructor(
     public fb: FormBuilder,
@@ -32,7 +32,7 @@ export class NewPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLanguage = window.localStorage.getItem(keys.language);
 
   }
 

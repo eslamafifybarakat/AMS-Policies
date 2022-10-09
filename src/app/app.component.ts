@@ -18,7 +18,6 @@ import { filter, map } from 'rxjs';
 export class AppComponent {
   title = 'structure';
   languages = ["en", "ar"];
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
   browserLang: any;
   currenttheme: any;
   favIcon: HTMLLinkElement | any = document.querySelector("#appIcon") || 'assets/image/policy/logo.png';
@@ -37,13 +36,13 @@ export class AppComponent {
 
     this.translate.addLangs(this.languages);
     const currentLang = localStorage.getItem(
-      this.LOCALIZATION_LOCAL_STORAGE_KEY
+      keys.language
     );
     if (currentLang !== null && currentLang !== undefined) {
       this.translate.use(currentLang);
 
       let direction =
-        localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY) === "ar"
+        localStorage.getItem(keys.language) === "ar"
           ? "rtl"
           : "ltr";
       document.documentElement.dir = direction;
@@ -55,7 +54,7 @@ export class AppComponent {
     } else {
       this.browserLang = this.translate.getBrowserLang();
       localStorage.setItem(
-        this.LOCALIZATION_LOCAL_STORAGE_KEY,
+        keys.language,
         this.browserLang
       );
       this.translate.use(this.browserLang);

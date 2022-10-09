@@ -1,3 +1,4 @@
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { Router } from '@angular/router';
 import { VerfiyPasswordComponent } from './../verfiy-password/verfiy-password.component';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
@@ -26,7 +27,6 @@ export class ForgrtPasswordComponent implements OnInit {
   ];
 
   currentLanguage: any;
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
 
   constructor(
     public fb: FormBuilder,
@@ -37,7 +37,7 @@ export class ForgrtPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLanguage = window.localStorage.getItem(keys.language);
   }
 
   forgetPassword = this.fb.group({

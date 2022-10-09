@@ -34,7 +34,7 @@ export class httpInterceptor implements HttpInterceptor {
     } else {
       this.browserLang = this.translate.getBrowserLang();
       localStorage.setItem(
-        this.LOCALIZATION_LOCAL_STORAGE_KEY,
+        keys.language,
         this.browserLang
       );
     }

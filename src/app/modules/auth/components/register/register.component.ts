@@ -1,3 +1,4 @@
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
 import { Router } from '@angular/router';
@@ -15,7 +16,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
   isloadingBtn: boolean = false;
   showeye: boolean = false;
   showeye2: boolean = false;
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLanguage = window.localStorage.getItem(keys.language);
   }
 
   registerform = this.fb.group(
