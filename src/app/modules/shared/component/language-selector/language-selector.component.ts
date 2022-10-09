@@ -1,3 +1,4 @@
+import { keys } from './../../TS Files/localstorage-key';
 import { TranslationService } from './../../services/i18n/translation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageSelectorComponent implements OnInit {
   currentLanguage: any;
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
 
   constructor(
     public tanslationService: TranslationService,
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLanguage = window.localStorage.getItem(keys.language);
   }
 
 }

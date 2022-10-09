@@ -1,3 +1,4 @@
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +23,6 @@ export class LogInComponent implements OnInit {
 
   showeye: boolean = false;
   currentLanguage: any;
-  LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
 
   loginData: any;
   separateDialCode = false;
@@ -49,7 +49,7 @@ export class LogInComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(this.LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLanguage = window.localStorage.getItem(keys.language);
     this.loginform.patchValue(
       {
         phone: userInfo.phone,
