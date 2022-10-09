@@ -1,0 +1,58 @@
+<div class="user-info position-relative general-dropdown"
+  (clickOutside)="collapse == true ? collapse = false : collapse = false">
+  <div class="dropdown">
+    <button class="btn dropdown-toggle p-0" type="button" [class.show]="collapse">
+      <div (click)="collapse=!collapse" class="user-img-parent">
+        <img [src]='userdata?.photo' onerror="src='assets/image/person.webp'"
+          class="user-img rounded-circle w-100 h-100">
+      </div>
+    </button>
+    <ul class="dropdown-menu border-0 shadow p-3 user-info-menu" aria-labelledby="dropdownMenuButton1"
+      [class.show]="collapse">
+      <div class="d-flex align-items-center">
+        <div>
+          <img [src]='userdata?.photo' onerror="src='assets/image/person.webp'" class="user-img user-img-menu rounded">
+        </div>
+        <div class="px-3">
+          <h1 class="fw-bold text-dir fs-4">{{userdata.name.en}}</h1>
+          <a class="text-secondary lh-base fs-p">{{userdata.email}}</a>
+        </div>
+      </div>
+      <hr class="text-secondary-color mt-3" />
+      <ul>
+        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['profile']" (click)="collapse = false">
+          {{'user_info.profile'|translate}}
+        </li>
+        <li class="py-3 color-grey-700 p-2 text-dir position-relative" (click)="collapse = false">
+          {{'user_info.project'|translate}}
+          <span class="text-main-color bg-second fw-bold rounded-circle position-absolute pro-num">3</span>
+        </li>
+        <div class="dropdown">
+          <li class="py-3 color-grey-700 p-2 text-dir position-relative dropdown-toggle" data-bs-toggle="dropdown">
+            {{'user_info.subscribe'|translate}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-bar-down position-absolute" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
+            </svg>
+          </li>
+          <ul class="dropdown-menu border-0 shadow  px-3 sub-menu lg-left">
+            <li class=" py-3 px-2 text-dir">{{'user_info.sub1'|translate}}</li>
+            <li class=" py-3 px-2 text-dir">{{'user_info.sub2'|translate}}</li>
+            <div class="form-check form-switch py-3 text-dir d-flex align-items-center">
+              <input class="form-check-input me-2" type="checkbox" id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">{{'user_info.sub3'|translate}}</label>
+            </div>
+          </ul>
+        </div>
+        <hr class="text-secondary-color mt-3" />
+        <li class="py-3 color-grey-700 p-2 text-dir" (click)="collapse = false">
+          {{'user_info.setting'|translate}}
+        </li>
+        <li class="py-3 text-danger p-2 text-dir" (click)="signOut()" (click)="collapse = false">
+          {{'user_info.signout'|translate}}
+        </li>
+      </ul>
+    </ul>
+  </div>
+</div>

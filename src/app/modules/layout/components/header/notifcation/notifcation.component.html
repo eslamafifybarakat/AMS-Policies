@@ -1,0 +1,89 @@
+<div class="notifcation general-dropdown" (clickOutside)="collapse == true ? collapse = false : collapse = false">
+  <div class="dropdown">
+    <button class="btn dropdown-toggle position-relative p-0" type="button" aria-expanded="false"
+      [class.show]="collapse" (click)="toggleCollapse()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+        class="bi bi-bell custom-fas fa-color" viewBox="0 0 16 16">
+        <path
+          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+      </svg>
+
+    </button>
+    <ul class="dropdown-menu p-0 shadow border-0 rounded-25" aria-labelledby="dropdownMenuButton1"
+      [class.show]="collapse">
+      <div class="notifcation-header px-4 bg ">
+        <h1 class="fs-4 text-white py-3 text-dir">{{'notifcation.not-title'|translate }}<span
+            class="gray-light fs-6 mx-1">{{'notifcation.not-report'|translate }}</span></h1>
+        <ul class="nav" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="btn gray-light active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+              type="button" role="tab" aria-controls="home" aria-selected="true">{{'notifcation.alerts'|translate
+              }}</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="btn gray-light" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+              role="tab" aria-controls="profile" aria-selected="false">{{'notifcation.updates'|translate }}</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="btn gray-light" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+              role="tab" aria-controls="contact" aria-selected="false">{{'notifcation.logos'|translate }}</button>
+          </li>
+        </ul>
+      </div>
+      <div class="content px-3">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="alerts-content my-3 pe-2">
+              <div class="d-flex justify-content-between align-items-center py-3" *ngFor="let alert of alerts">
+                <div class="d-flex">
+                  <div class="rounded-3" [style]="alert.style"><img [src]="alert.icon" class="alert-img"></div>
+                  <div class="px-3 text-dir">
+                    <h1 class="fw-bold mb-2">{{alert.title |translate}}</h1>
+                    <p class="color-grey-100 fs-p">{{alert.subtitle|translate}}</p>
+                  </div>
+                </div>
+                <span class="bg-second alert-time">{{alert.time | timeago}}</span>
+              </div>
+            </div>
+            <div class="view text-center py-3 text-capitalize text-secondary">
+              {{'notifcation.view'|translate }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+              </svg>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="updates p-3 d-flex flex-column align-items-center ">
+              <h1>Get Pro Access</h1>
+              <p class="text-secondary my-3 lh-base text-center">Outlines keep you honest. They stoping you from amazing
+                poorly about drive</p>
+              <button class="btn btn-solid-main">updates</button>
+              <img src="assets/image/notifcation-updates.png" class="w-50 h-50">
+            </div>
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="logs-content">
+              <div class="d-flex justify-content-between align-items-center py-3" *ngFor="let log of logs">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-3" [style]="log.style"><span>{{log.title}}</span></div>
+                  <h1 class="px-2">{{log.subtitle}}</h1>
+                </div>
+                <span class="bg-second alert-time m-2">{{log.time}}</span>
+              </div>
+            </div>
+            <div class="view text-center py-3 text-capitalize text-secondary">
+              {{'notifcation.view'|translate }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>

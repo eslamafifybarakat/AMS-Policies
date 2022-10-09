@@ -1,0 +1,40 @@
+.personal {
+
+  .form-control,
+  .mat-datepicker-toggle,
+  .mat-datepicker-content .mat-calendar-next-button,
+  .mat-datepicker-content .mat-calendar-previous-button {
+    background-color: var(--bg-form-control-profile) !important;
+  }
+
+  .border-red {
+    border: 1px solid #dc3545 !important;
+  }
+
+  .border- {
+    border: 1px solid #198754 !important;
+  }
+
+  .setup-btn {
+    background: #E1F0FF;
+    color: #398cdf;
+    transition: all .3s ease-in-out;
+  }
+
+  .setup-btn:hover {
+    background-color: #398cdf;
+    color: white;
+  }
+
+  .deactive-btn {
+    background: #f64e602e;
+    color: #e92a40;
+    transition: all .3s ease-in-out;
+  }
+
+  .deactive-btn:hover {
+    background: #F64E60;
+    color: white;
+  }
+
+}

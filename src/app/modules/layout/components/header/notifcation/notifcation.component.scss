@@ -1,0 +1,40 @@
+.notifcation {
+  .dropdown-menu {
+    width: 28rem;
+    top: 3.2rem;
+    max-height: 70vh;
+    overflow: hidden;
+  }
+
+  .alert-img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .alert-time {
+    padding: 4px;
+  }
+
+  .view {
+    border-top: 1px solid var(--gray-light);
+  }
+
+  .nav-item .active {
+    color: var(--text-white-color) !important;
+    border-bottom: 1px solid var(--text-white-color);
+  }
+
+  .nav-item button:hover {
+    color: var(--gray-light);
+  }
+
+  .alerts-content,
+  .logs-content {
+    overflow-y: scroll;
+    max-height: calc(70vh - 170px) !important;
+  }
+
+  .notifcation-header {
+    background-image: linear-gradient(45deg, var(--bg-main-color), var(--bg-second-color));
+  }
+}

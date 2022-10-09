@@ -1,0 +1,112 @@
+.profile {
+  min-height: 100vh;
+
+  .user {
+    border: 1px solid var(--text-white-color);
+    background: var(--bg-white-color);
+    border-radius: 10px;
+  }
+
+  .user-img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .user-img::before {
+    content: "";
+    position: absolute;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: green;
+    right: -0.1rem;
+    top: -0.2rem;
+    border: 2px solid white;
+  }
+
+  .userdata-list li {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .user-data svg {
+    color: var(--bg-secondary-color);
+    ;
+    transition: all .2s ease-in-out;
+  }
+
+  .userdata-list li:hover,
+  .active {
+    color: var(--text-main-color) !important;
+    background: var(--bg-second-color);
+    border-radius: 10px;
+  }
+
+  .userdata-list li:hover svg,
+  .active svg {
+    color: var(--text-main-color) !important;
+  }
+
+  .userdata-list li:focus-visible {
+    outline: none;
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+
+  .user-btn {
+    padding: 0.5rem 1rem;
+  }
+
+  .new-data {
+    color: var(--text-secondary-color);
+    background: #E1F0FF;
+    padding: 0.3rem 0.4rem;
+    font-size: 12px;
+  }
+
+  .img-user {
+    width: 9rem;
+    height: 9rem;
+    border: 3px solid var(--text-main-color);
+    object-fit: cover;
+  }
+
+  .btn-img {
+    width: 9rem;
+  }
+
+  .LyStyle--mf-1-n {
+    margin: 0 !important;
+    width: 100%;
+    height: auto;
+  }
+
+  .LyButton-animations-g:hover,
+  .LyButton-animations-g:hover::before,
+  .LyButton-animations-g:focus,
+  .LyButton-animations-g:focus-visible,
+  .LyButton-animations-g:focus::before {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .drop {
+    width: 340px;
+  }
+
+  .card {
+    overflow: inherit !important;
+  }
+
+  .logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .logout-box {
+    border-radius: 0 0 9px 9px;
+  }
+}

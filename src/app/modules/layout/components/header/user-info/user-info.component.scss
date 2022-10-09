@@ -1,0 +1,48 @@
+.user-info {
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    bottom: 3px;
+    left: 0px;
+    background: #3bdd06;
+  }
+
+  .user-img-parent {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .user-img-menu {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 0.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .user-img {
+    object-fit: cover;
+  }
+
+  .user-info-menu {
+    width: 20rem;
+    top: 3.6rem;
+  }
+
+  li {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background: var(--bg-second-color);
+    color: var(--text-main-color) !important;
+    border-radius: 10px;
+  }
+
+  .sub-menu {
+    max-width: 17rem;
+  }
+}

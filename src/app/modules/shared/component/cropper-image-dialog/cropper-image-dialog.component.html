@@ -1,0 +1,27 @@
+<div ly-dialog-content [lyPx]="0">
+
+  <div *ngIf="ready">
+  </div>
+
+  <ly-img-cropper [config]="myConfig" [(scale)]="scale" (ready)="ready = true" (cleaned)="ready = false"
+    (minScale)="minScale = $event" (cropped)="onCropped($event)" (loaded)="onLoaded($event)" (error)="onError($event)">
+    <span>{{'drag_drop_img' | translate}}</span>
+  </ly-img-cropper>
+
+  <div *ngIf="ready" [className]="classes?.sliderContainer">
+    <div [class]="classes?.slider">
+      <ly-slider [thumbVisible]="false" [min]="minScale" [max]="1" [(ngModel)]="scale" (input)="scale = $event?.value"
+        [step]="0.000001"></ly-slider>
+    </div>
+  </div>
+
+</div>
+
+<div class="gap-2 py-3" container *ngIf="ready" [lyJustifyContent]="'flex-end'" ly-dialog-actions>
+  <button class="btn btn-solid-main user-btn px-4" (click)="dialogRef?.close()">
+    {{'general.cancel' | translate}}
+  </button>
+  <button class="btn btn-outline-secondary user-btn" (click)="dialogRef?.close(cropper.crop())">
+    {{'general.ok' | translate}}
+  </button>
+</div>

@@ -1,0 +1,124 @@
+<div class="emailsetting p-4">
+  <div class="d-flex align-items-center justify-content-between flex-column flex-lg-row">
+    <div>
+      <h1 class="fw-bold fs-5 text-center-small">Email Settings</h1>
+      <p class="color-muted my-2">Change your email settings</p>
+    </div>
+    <div class="d-flex  align-items-center my-3 my-lg-0">
+      <button class="btn btn-solid-main me-2" type="submit">Save Changes</button>
+      <button class="btn btn-solid-second me-2">Cancel</button>
+    </div>
+  </div>
+  <hr class="color-muted">
+  <div class="set-email">
+    <h1 class="text-begin my-3 ">Setup Email Notification:</h1>
+    <div class="d-flex my-3">
+      <label class="form-label ">Email Notification</label>
+      <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle>
+    </div>
+    <div class="d-flex my-3">
+      <label class="form-label">Send Copy To Personal Email</label>
+      <mat-slide-toggle></mat-slide-toggle>
+    </div>
+
+  </div>
+
+  <hr class="color-muted">
+  <div class="R-emails">
+    <h1 class="text-begin my-3">Activity Related Emails:</h1>
+    <div class="d-flex my-5 flex-column flex-lg-row">
+      <label class="form-label mb-4 mb-lg-0">When To Email</label>
+      <div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="noti" checked>
+          <label class="form-check-label" for="noti">
+            You have new notifications
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="message">
+          <label class="form-check-label" for="message">
+            You're sent a direct message
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="connection" checked>
+          <label class="form-check-label" for="connection">
+            Someone adds you as a connection
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-lg-row">
+      <label class="form-label mb-4 mb-lg-0">When To Escalate Emails</label>
+      <div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="order">
+          <label class="form-check-label" for="order">
+            Upon new order
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="approval" checked>
+          <label class="form-check-label" for="approval">
+            New membership approval
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="register">
+          <label class="form-check-label" for="register">
+            Member registration
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="color-muted">
+
+  <div class="updates">
+    <h1 class="text-begin my-3">Updates From Keenthemes:</h1>
+    <div class="d-flex flex-column flex-lg-row">
+      <label class="form-label mb-4 mb-lg-0">Email You With</label>
+      <div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="noti">
+          <label class="form-check-label lh-base" for="noti">
+            News about Keenthemes products and feature updates
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="message">
+          <label class="form-check-label lh-base" for="message">
+            Tips on getting more out of Keen
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="connection" checked>
+          <label class="form-check-label lh-base" for="connection">
+            Things you missed since you last logged into Keen
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="connection">
+          <label class="form-check-label lh-base" for="connection">
+            News about Metronic on partner products and other services
+          </label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" value="" id="connection" checked>
+          <label class="form-check-label lh-base" for="connection">
+            Tips on Metronic business products
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

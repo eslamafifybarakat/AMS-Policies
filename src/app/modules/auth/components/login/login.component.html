@@ -1,0 +1,149 @@
+<ng-container *ngIf="isloadingBtn">
+  <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
+    <div class="spinner-grow" role="status">
+    </div>
+  </div>
+</ng-container>
+
+<div class="login overflow-hidden bg-white-color">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-6 d-medium-none h-100">
+      <div class="h-100 d-flex justify-content-center align-items-center">
+        <img class="login-img img-fluid fit-object-cover" src="assets/image/policy/online-policy.jpg" alt="login-omg">
+      </div>
+    </div>
+
+    <div class="col-xl-5 col-md-6 col-sm-8 col-12 h-100">
+      <div class="d-flex flex-column justify-content-center align-items-center min-vh-100 mx-5 mx-small-1">
+        <div class="d-flex justify-content-between align-items-center select-language w-100 mt-3">
+          <img *ngIf="currentLanguage=='ar'" src="assets/image/eg.svg" class="fit-contain lang"
+            (click)="tanslationService?.changeLang('en')">
+          <img *ngIf="currentLanguage=='en'" src="assets/image/us.svg" class="fit-contain lang"
+            (click)="tanslationService?.changeLang('ar')">
+          <i class="fa fa-arrow-left scaleX-rtl" style="font-size: 1.5rem" (click)="back()"></i>
+        </div>
+
+        <h2 class="text-black-color mt-3 fs-3">
+          {{'form.login' | translate}}
+        </h2>
+
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <form [formGroup]="loginform" (ngSubmit)="submit()" class="form-content py-5 w-100">
+
+            <div class="mb-5">
+              <div>
+                <label class="form-label">
+                  {{'form.email'|translate}}
+                </label>
+                <input type="email" class="form-control" formControlName="email"
+                  [class.is-invalid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.invalid"
+                  [class.is-valid]="formControls.email.dirty&&formControls.email.valid">
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.email?.touched || formControls?.email?.dirty) && formControls?.email?.invalid">
+                  <div *ngIf="formControls?.email?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div *ngIf="formControls?.email?.errors?.['email']">
+                    <span class="text-danger fs-6">
+                      {{'validations.not_valid'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="mb-3">
+              <div>
+                <label for="exampleInputEmail1" class="form-label">
+                  {{'form.phone'|translate}}
+                </label>
+                <ngx-intl-tel-input
+              class="form-control"
+              [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+              [enableAutoCountrySelect]="false"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.Egypt"
+              [maxLength]="15"
+              [phoneValidation]="true"
+              name="phone"
+              formControlName="phone"
+              [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
+              [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid"
+              >
+              </ngx-intl-tel-input>
+              </div>
+              <div class="mt-2">
+                <div *ngIf="(formControls?.phone?.touched || formControls?.phone?.dirty) && formControls?.phone?.invalid">
+                  <div *ngIf="formControls?.phone?.errors?.['required']">
+                    <p class="text-danger fs-6"> this is required</p>
+                  </div>
+                  <div *ngIf="formControls?.phone?.errors?.['minlength'] || formControls?.phone?.errors?.['maxlength']">
+                    <p class="text-danger fs-6"> phone must be between 6 and 20 numbers.</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="mb-5">
+              <div class="d-flex justify-content-between">
+                <label for="exampleInputPassword1" class="form-label">
+                  {{'form.password'|translate}}
+                </label>
+                <a routerLink="/auth/forget-password" class="text-secondary-color">
+                  {{'form.forget_password'|translate}}
+                </a>
+              </div>
+
+              <div class="input-group">
+                <input [type]="showeye?'text':'password'" class="login-password-form form-control"
+                  id="exampleInputPassword1" formControlName="password"
+                  [class.is-invalid]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
+                  [class.is-valid]="formControls.password.dirty&&formControls.password.valid">
+                <span class="togglepassword input-group-text bg-white-color" (click)="togglepassword()"
+                  [class.border-red]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
+                  [class.border-green]="formControls.password.dirty&&formControls.password.valid">
+                  <i class="bg-white-color" [class]="showeye?'fas fa-eye':'fas fa-eye-slash'"></i></span>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.password?.touched || formControls?.password?.dirty) && formControls?.password?.invalid">
+                  <div *ngIf="formControls?.password?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div
+                    *ngIf="formControls?.password?.errors?.['minlength'] || formControls?.password?.errors?.['maxlength']">
+                    <span class="text-danger fs-6">
+                      {{'validations.pass_length'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn w-100 btn-solid-main mb-3" [disabled]="loginform.invalid">
+              {{'form.login'|translate}}
+            </button>
+
+            <div class="d-flex justify-content-start align-items-center">
+              <h1 class="text-secondary-color fw-bold">
+                {{'form.no_account'|translate}}
+                <a routerLink="/auth/register">{{'form.registeration'|translate}}</a>
+              </h1>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1 d-medium-none"></div>
+  </div>
+</div>
