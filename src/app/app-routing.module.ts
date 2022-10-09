@@ -3,11 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "auth",
-    pathMatch: "full",
-  },
+  
   {
     path: '',
     // canActivate: [AuthGuard],
@@ -24,6 +20,11 @@ const routes: Routes = [
     path: 'error',
     loadChildren: () => import('./modules/error/error.module')
       .then(m => m.ErrorModule)
+  },
+  {
+    path: "",
+    redirectTo: "auth",
+    pathMatch: "full",
   },
   { path: "**", redirectTo: "error" }
 ];
