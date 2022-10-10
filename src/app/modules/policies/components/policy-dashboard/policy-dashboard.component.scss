@@ -1,0 +1,13 @@
+.dashboard {
+
+  .dashboard-card {
+    border: 1px solid var(--text-white-color);
+    background: var(--bg-white-color);
+    border-radius: 10px;
+  }
+
+  .card {
+    overflow: inherit !important;
+  }
+
+}
