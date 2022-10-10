@@ -1,18 +1,18 @@
 .user-info {
-  &::after {
-    content: "";
-    position: absolute;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    bottom: 3px;
-    left: 0px;
-    background: #3bdd06;
-  }
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 0.5rem;
+  //   height: 0.5rem;
+  //   border-radius: 50%;
+  //   bottom: 3px;
+  //   left: 0px;
+  //   background: #3bdd06;
+  // }
 
   .user-img-parent {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .user-img-menu {

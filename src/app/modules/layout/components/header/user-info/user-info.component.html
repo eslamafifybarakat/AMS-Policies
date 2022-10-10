@@ -4,7 +4,7 @@
     <button class="btn dropdown-toggle p-0" type="button" [class.show]="collapse">
       <div (click)="collapse=!collapse" class="user-img-parent">
         <img [src]='userdata?.photo' onerror="src='assets/image/person.webp'"
-          class="user-img rounded-circle w-100 h-100">
+          class="user-img rounded-circle w-100 h-100 p-1 bg-white-color">
       </div>
     </button>
     <ul class="dropdown-menu border-0 shadow p-3 user-info-menu" aria-labelledby="dropdownMenuButton1"

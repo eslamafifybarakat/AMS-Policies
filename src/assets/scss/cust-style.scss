@@ -12,7 +12,7 @@
   --text-second-color: #cdf0ff;
   --bg-second-color: #cdf0ff;
 
-  --bg-page-card-color: #EAECF5;
+  --bg-page-card-color: #f7fffe;
 
   --border-input-color: #ebebeb;
 
@@ -40,7 +40,7 @@
   --header-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
   --shadow2: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
   --nav-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  --round: .5rem
+  --round: 0.5rem
 }
 
 // ======CLASSES COLOR=============
@@ -1008,8 +1008,8 @@ li.view-hover:hover {
 
 /*START HEADER*/
 .header {
-  background: var(--bg-white-color);
-  box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+  // background: var(--bg-white-color);
+  // box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
 }
 
 .nav-link.active {

@@ -2,8 +2,10 @@
   <div class="dropdown">
     <button class="dropdown-toggle btn p-0 dropdown-lang-select" type="button" id="dropdownMenuButton1"
       data-bs-toggle="dropdown" aria-expanded="false">
-      <img *ngIf="currentLanguage =='en'" class="dropdown-flag w-100 h-100" src="assets/image/us.svg">
-      <img *ngIf="currentLanguage =='ar'" class="dropdown-flag w-100 h-100" src="assets/image/eg.svg">
+      <img *ngIf="currentLanguage =='en'" class="dropdown-flag rounded-circle p-1 bg-white-color"
+        src="assets/image/us.svg">
+      <img *ngIf="currentLanguage =='ar'" class="dropdown-flag rounded-circle p-1 bg-white-color"
+        src="assets/image/eg.svg">
     </button>
     <ul class="dropdown-menu rounded-25 border-0 shadow" aria-labelledby="dropdownMenuButton1">
       <li class="drop-select d-flex align-items-center px-2 py-3" (click)="tanslationService?.changeLang('en')"><img

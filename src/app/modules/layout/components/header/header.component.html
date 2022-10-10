@@ -1,5 +1,5 @@
 <div class="header" (clickOutside)="collapsed == true ? collapsed = false : collapsed = false">
-  <div class="container">
+  <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light p-0">
       <img src="assets/image/logo.png" class="navbar-brand fit-contain">
       <button class="navbar-toggler" type="button" data-bs-target="#navbarNavAltMarkup"
@@ -7,8 +7,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse rounded-3" id="navbarNavAltMarkup" [class.show]="collapsed">
-        <div
-          class="d-flex flex-lg-row align-items-center justify-content-end  w-100 flex-column">
+        <div class="d-flex flex-lg-row align-items-center justify-content-end  w-100 flex-column">
           <!-- <div class="d-flex m-lg-auto">
             <ul class="navbar-nav">
               <li class="nav-item">

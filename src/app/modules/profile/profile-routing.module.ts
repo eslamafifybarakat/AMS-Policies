@@ -8,7 +8,8 @@ import { EmailSettingComponent } from './components/email-setting/email-setting.
 const routes: Routes = [
   {
     path: '',
-    component: ProfileComponent, children: [
+    component: ProfileComponent,
+    children: [
       {
         path: '',
         component: PersonalInfoComponent,

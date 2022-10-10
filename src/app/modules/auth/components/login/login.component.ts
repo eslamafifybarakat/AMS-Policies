@@ -97,7 +97,7 @@ export class LogInComponent implements OnInit {
           console.log(result);
           if (result?.verified) {
             setTimeout(() => {
-              this.router.navigate(['/']);
+              this.router.navigate(['/home']);
               this.alertsService.openSweetalert("success", this.translateService.instant('general.loggin_Success'));
               this.isloadingBtn = false;
             }, 500);
