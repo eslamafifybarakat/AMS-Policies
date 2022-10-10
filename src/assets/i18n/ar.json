@@ -87,13 +87,10 @@
     "english": " اللغة الإنجليزية",
     "arabic": "اللغة العربية"
   },
-  "topheader": {
-    "title": " إكس سايت ف خدمتك"
-  },
-  "nav": {
-    "home": "الرئيسية",
-    "sales": "المبيعات",
-    "about": "من نحن"
+  "policies": {
+    "dashboard": "لوحة التحكم",
+    "policies": "السياسات",
+    "payments": "وسائل الدفع"
   },
   "notifcation": {
     "not-title": "اشعارات",
@@ -168,6 +165,9 @@
     "select_addnew": "اختيار عديد + إضافة جديد"
   },
   "titles": {
+    "payments": "وسائل الدفع",
+    "policies": "السياسات",
+    "dashboard": "لوحة التحكم",
     "home": "الرئيسية",
     "sales": "المبيعات",
     "about": "من نحن",

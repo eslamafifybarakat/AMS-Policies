@@ -86,15 +86,10 @@
     "english": "English",
     "arabic": "Arabic"
   },
-  "topheader": {
-    "title": "XSite We Can Help."
-  },
-  "nav": {
-    "home": "Home",
-    "sales": "Sales",
-    "about": "About",
-    "blog": "Blog",
-    "contactus": "Contact Us"
+  "policies": {
+    "dashboard": "Dashboard",
+    "policies": "Policies",
+    "payments": "Payments"
   },
   "notifcation": {
     "not-title": "Notifications",
@@ -169,6 +164,9 @@
     "select_addnew": "select multi + new tags"
   },
   "titles": {
+    "payments": "Payments",
+    "policies": "Policies",
+    "dashboard": "Dashboard",
     "home": "Home",
     "sales": "Sales",
     "about": "About",

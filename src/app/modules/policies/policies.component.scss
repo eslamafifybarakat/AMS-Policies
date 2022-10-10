@@ -1,0 +1,71 @@
+.policies {
+  min-height: 100vh;
+
+  .policy {
+    border: 1px solid var(--text-white-color);
+    background: var(--bg-white-color);
+    border-radius: 10px;
+  }
+
+  .user-img {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.2rem;
+  }
+
+  .policydata-list li {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .policy-data svg {
+    color: var(--bg-secondary-color);
+    ;
+    transition: all .2s ease-in-out;
+  }
+
+  .policydata-list li:hover,
+  .active {
+    color: var(--text-main-color) !important;
+    background: var(--bg-second-color);
+    border-radius: 10px;
+  }
+
+  .policydata-list li:hover svg,
+  .active svg {
+    color: var(--text-main-color) !important;
+  }
+
+  .policydata-list li:focus-visible {
+    outline: none;
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+
+  .policyr-btn {
+    padding: 0.5rem 1rem;
+  }
+
+  .new-data {
+    color: var(--text-secondary-color);
+    background: #E1F0FF;
+    padding: 0.3rem 0.4rem;
+    font-size: 12px;
+  }
+
+  .card {
+    overflow: inherit !important;
+  }
+
+  .logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .logout-box {
+    border-radius: 0 0 9px 9px;
+  }
+}

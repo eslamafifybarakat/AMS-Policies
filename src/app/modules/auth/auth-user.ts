@@ -1,11 +1,11 @@
 export const userInfo = {
   name: {
-    en: "xsite",
-    ar: "مسخدم السايت"
+    en: "PMS Ploicy",
+    ar: "PMS Ploicy"
   },
-  email: "xsite@xsite.com",
+  email: "PMSploicy@PMSploicy.com",
   phone: "+212365478911",
-  password: "xsite",
+  password: "PMSploicy",
   photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe8JLDdrGGMLR-940AOSGgFP-p7VAfLrK5HQ&usqp=CAU"
 }
 
