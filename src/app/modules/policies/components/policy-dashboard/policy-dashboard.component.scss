@@ -10,4 +10,38 @@
     overflow: inherit !important;
   }
 
+  .card-auto-complete {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    border-radius: 1.5rem;
+  }
+
+  .flag-img {
+    width: 2rem;
+    height: 1.5rem;
+  }
+
+  .item-partner {
+    border-bottom: 1px solid var(--border-input-color);
+  }
+
+  .map-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    min-height: 24rem;
+    border-radius: 20px !important;
+  }
+
+  .card-item-statics {
+    border-radius: 1rem;
+    background-color: #d2eaf62d;
+  }
+
+  .box-auto-complete {
+    height: 20rem;
+    padding-inline-end: 1rem;
+    overflow-y: scroll;
+  }
+
 }

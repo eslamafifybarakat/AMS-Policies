@@ -1,5 +1,6 @@
 {
   "general": {
+    "job": "الوظيفة",
     "sitename": "AMS Policies",
     "start_date": "تاريخ البدأ",
     "check_email": "من فضلك افحص بريدك الإلكروني للتحقق",
@@ -7,6 +8,8 @@
     "comming_soon": "قريبا...",
     "update_image": "تحديث الصورة",
     "new": "جديد",
+    "direct": "مباشر",
+    "indirect": "غير مباشر",
     "type": "النوع",
     "cancel": "إلغاء",
     "deactivate": "إلغاء التفعيل",
@@ -88,6 +91,12 @@
     "arabic": "اللغة العربية"
   },
   "policies": {
+    "our_partner": "عملائنا",
+    "transactions": "تحويلاتك",
+    "Purchase": "سياسة الشراء",
+    "refunded": "سياسة الرفض",
+    "bounce_rate": "معدل الإرتداد",
+    "policy_caregories": "فئات السياسة",
     "dashboard": "لوحة التحكم",
     "policies": "السياسات",
     "payments": "وسائل الدفع"

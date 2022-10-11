@@ -1,7 +1,6 @@
 .profile {
-  min-height: 100vh;
-
   .user {
+    min-height: 80vh;
     border: 1px solid var(--text-white-color);
     background: var(--bg-white-color);
     border-radius: 10px;
@@ -90,10 +89,6 @@
   .LyButton-animations-g:focus::before {
     box-shadow: none !important;
     background: transparent !important;
-  }
-
-  .drop {
-    width: 340px;
   }
 
   .card {

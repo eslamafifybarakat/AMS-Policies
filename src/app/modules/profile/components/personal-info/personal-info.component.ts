@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-personal-info',
@@ -24,43 +25,10 @@ export class PersonalInfoComponent implements OnInit {
     CountryISO.UnitedKingdom
   ];
 
-  langs: any = [
-    { id: 1, name: 'English' },
-    { id: 2, name: 'Arabic' },
-    { id: 3, name: 'Freanch' },
-    { id: 4, name: 'Italanio' },
-  ];
-  timeszone: any = [
-    { id: 1, name: '(GMT-7:00)' },
-    { id: 2, name: '(GMT-11:00)' },
-    { id: 3, name: 'GMT-9:00)' },
-    { id: 4, name: '(GMT-11:00)' },
-  ];
-  skills: any[] = [
-    { id: 1, name: 'HTML' },
-    { id: 2, name: 'CSS' },
-    { id: 3, name: 'JS' },
-    { id: 4, name: 'BOOTSTRAP 5' },
-    { id: 5, name: 'REXJS' },
-    { id: 6, name: 'ANGULAR' },
-  ];
-  accounts = [
-    { name: 'Adam', email: 'adam@email.com', age: 12, country: 'United States', child: { state: 'Active' } },
-    { name: 'Homer', email: 'homer@email.com', age: 47, country: '', child: { state: 'Active' } },
-    { name: 'Samantha', email: 'samantha@email.com', age: 30, country: 'United States', child: { state: 'Active' } },
-    { name: 'Amalie', email: 'amalie@email.com', age: 12, country: 'Argentina', child: { state: 'Active' } },
-    { name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'Argentina', child: { state: 'Active' } },
-    { name: 'Adrian', email: 'adrian@email.com', age: 21, country: 'Ecuador', child: { state: 'Active' } },
-    { name: 'Wladimir', email: 'wladimir@email.com', age: 30, country: 'Ecuador', child: { state: 'Inactive' } },
-    { name: 'Natasha', email: 'natasha@email.com', age: 54, country: 'Ecuador', child: { state: 'Inactive' } },
-    { name: 'Nicole', email: 'nicole@email.com', age: 43, country: 'Colombia', child: { state: 'Inactive' } },
-    { name: 'Michael', email: 'michael@email.com', age: 15, country: 'Colombia', child: { state: 'Inactive' } },
-    { name: 'Nicolás', email: 'nicole@email.com', age: 43, country: 'Colombia', child: { state: 'Inactive' } }
-  ];
 
-  brands: any[] = [];
+  job: any[] = [];
   loading = false;
-  brandsNames = ['Uber', 'Microsoft', 'Flexigen'];
+  jobNames = ['Uber', 'Microsoft', 'Flexigen'];
 
   constructor(
     private fb: FormBuilder,
@@ -70,30 +38,26 @@ export class PersonalInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let birth: any = moment(
+      '10/10/1996',
+      "DD-MM-YYYY"
+    ).toDate();
+
     this.accountInfoForm.patchValue(
       {
         name: 'Eslam Barakat',
         phone: '01012525233',
         email: 'xsite@ME.com',
-        birthdate: '10/10/1996',
+        birthdate: birth,
+        gender: 'male',
         company: 'ME Company'
       }
     );
-    this.brandsNames.forEach((c, i) => {
-      this.brands.push({ id: i, name: c });
+    this.jobNames.forEach((c, i) => {
+      this.job.push({ id: i, name: c });
     });
   }
 
-  addTagPromise(name: any): any {
-    return new Promise((resolve) => {
-      this.loading = true;
-      // Simulate backend call.
-      setTimeout(() => {
-        resolve({ id: 5, name: name, valid: true });
-        this.loading = false;
-      }, 500);
-    })
-  }
 
   accountInfoForm = this.fb.group({
     name: ['', [Validators.required,
@@ -105,11 +69,11 @@ export class PersonalInfoComponent implements OnInit {
     company: ['', [
       Validators.minLength(3),
       Validators.maxLength(20)]],
-    gender: [null, [Validators.required]],
+    gender: ['', [Validators.required]],
     language: [null, Validators.required],
     timeszone: [null, Validators.required],
     skills: [null, Validators.required],
-    brands: [null, Validators.required],
+    job: [null, Validators.required],
     account: [null, Validators.required],
   });
   get formControls(): any {

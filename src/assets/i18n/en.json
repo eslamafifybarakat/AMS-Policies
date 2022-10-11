@@ -1,5 +1,6 @@
 {
   "general": {
+    "job": "Job",
     "sitename": "AMS Policies",
     "start_date": "Start Date",
     "check_email": "Please check your email for verfication",
@@ -8,6 +9,8 @@
     "update_image": "Update Image",
     "cancel": "Cancel",
     "new": "New",
+    "direct": "Direct",
+    "indirect": "Indirect",
     "type": "Type",
     "deactivate": "Deactivate",
     "share": "Share",
@@ -87,6 +90,12 @@
     "arabic": "Arabic"
   },
   "policies": {
+    "our_partner": "Our Partners",
+    "transactions": "Your Transactions",
+    "Purchase": "Purchase Policy",
+    "refunded": "Refunded Policy",
+    "bounce_rate": "Bounce Rate",
+    "policy_caregories": "Policy Caregories",
     "dashboard": "Dashboard",
     "policies": "Policies",
     "payments": "Payments"

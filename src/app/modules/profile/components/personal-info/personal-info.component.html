@@ -175,15 +175,6 @@
                 <ng-option value="female">{{'general.female' | translate}}</ng-option>
               </ng-select>
             </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.select_one' | translate}}
-              </span>
-            </span>
             <div class="mt-2">
               <div
                 *ngIf="(formControls?.gender?.touched || formControls?.gender?.dirty) && formControls?.gender?.invalid">
@@ -201,186 +192,18 @@
           <div class="mb-3">
             <div>
               <label class="form-label">
-                {{'general.timezone'|translate}}
+                {{'general.job'|translate}}
               </label>
-              <ng-select notFoundText="{{'general.no_item_founded'|translate}}" class="rounded"
-                formControlName="timeszone" placeholder="{{'general.select' | translate}}"
-                [class.border-red]="(formControls?.['timeszone']?.touched ||formControls?.['timeszone']?.dirty) && formControls?.['timeszone']?.invalid"
-                [class.border-green]="(formControls?.['timeszone']?.dirty) && formControls?.['timeszone']?.valid"
-                [searchable]="true" [clearSearchOnAdd]="true">
-                <ng-container *ngFor="let timezone of timeszone">
-                  <ng-option [value]="timezone.id">{{timezone.name}}</ng-option>
-                </ng-container>
-              </ng-select>
-            </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.select_one_seaech' | translate}}
-              </span>
-            </span>
-            <div class="mt-2">
-              <div
-                *ngIf="(formControls?.timeszone?.touched || formControls?.timeszone?.dirty) && formControls?.timeszone?.invalid">
-                <div *ngIf="formControls?.timeszone?.errors?.['required']">
-                  <span class="text-danger fs-6">
-                    {{'validations.reuired_field'|translate}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-          <div class="mb-3">
-            <div>
-              <label class="form-label">
-                {{'general.language'|translate}}
-              </label>
-              <ng-select notFoundText="{{'general.no_item_founded'|translate}}" class="rounded"
-                formControlName="language" placeholder="{{'general.select' | translate}}"
-                [class.border-red]="(formControls?.['language']?.touched ||formControls?.['language']?.dirty) && formControls?.['language']?.invalid"
-                [class.border-green]="(formControls?.['language']?.dirty) && formControls?.['language']?.valid"
-                [multiple]="true" [selectableGroup]="true" [closeOnSelect]="false" [selectableGroup]="true"
-                [maxSelectedItems]="3" [searchable]="true" [clearSearchOnAdd]="true">
-                <ng-container *ngFor="let lang of langs">
-                  <ng-option [value]="lang.id">{{lang.name}}</ng-option>
-                </ng-container>
-              </ng-select>
-            </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.selectm_seaech' | translate}}
-              </span>
-            </span>
-            <div class="mt-2">
-              <div
-                *ngIf="(formControls?.language?.touched || formControls?.language?.dirty) && formControls?.language?.invalid">
-                <div *ngIf="formControls?.language?.errors?.['required']">
-                  <span class="text-danger fs-6">
-                    {{'validations.reuired_field'|translate}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-          <div class="mb-3">
-            <div>
-              <label class="form-label">
-                {{'general.skills'|translate}}
-              </label>
-              <ng-select notFoundText="{{'general.no_item_founded'|translate}}" class="rounded" formControlName="skills"
+              <ng-select class="rounded" [items]="job" [closeOnSelect]="false" [searchable]="true"
+                [clearSearchOnAdd]="true" bindLabel="name" formControlName="job"
                 placeholder="{{'general.select' | translate}}"
-                [class.border-red]="(formControls?.['skills']?.touched ||formControls?.['skills']?.dirty) && formControls?.['skills']?.invalid"
-                [class.border-green]="(formControls?.['skills']?.dirty) && formControls?.['skills']?.valid"
-                [searchable]="true" [clearSearchOnAdd]="true" [multiple]="true" [selectableGroup]="true"
-                [closeOnSelect]="false" [items]="skills" bindLabel="name">
-
-                <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-                  <input id="item-{{index}}" class="form-check-input mt-0" type="checkbox" [checked]="item$.selected"
-                    [ngModel]="item$.selected" />
-                  {{item.name | uppercase}}
-                </ng-template>
+                [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
+                [class.border-green]="(formControls?.['job']?.dirty) && formControls?.['job']?.valid">
               </ng-select>
             </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.selectm_check_search' | translate}}
-              </span>
-            </span>
             <div class="mt-2">
-              <div
-                *ngIf="(formControls?.skills?.touched || formControls?.skills?.dirty) && formControls?.skills?.invalid">
-                <div *ngIf="formControls?.skills?.errors?.['required']">
-                  <span class="text-danger fs-6">
-                    {{'validations.reuired_field'|translate}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-          <div class="mb-3">
-            <div>
-              <label class="form-label">
-                {{'general.brands'|translate}}
-              </label>
-              <ng-select class="rounded" [items]="brands" [closeOnSelect]="false" [addTag]="addTagPromise"
-                [multiple]="true" bindLabel="name" [loading]="loading" formControlName="brands"
-                placeholder="{{'general.select' | translate}}"
-                [class.border-red]="(formControls?.['brands']?.touched ||formControls?.['brands']?.dirty) && formControls?.['brands']?.invalid"
-                [class.border-green]="(formControls?.['brands']?.dirty) && formControls?.['brands']?.valid">
-
-                <ng-template ng-tag-tmp let-search="searchTerm">
-                  <b>{{'general.create_new'|translate}}</b>: {{search}}
-                </ng-template>
-              </ng-select>
-            </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.select_addnew' | translate}}
-              </span>
-            </span>
-            <div class="mt-2">
-              <div
-                *ngIf="(formControls?.brands?.touched || formControls?.brands?.dirty) && formControls?.brands?.invalid">
-                <div *ngIf="formControls?.brands?.errors?.['required']">
-                  <span class="text-danger fs-6">
-                    {{'validations.reuired_field'|translate}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-          <div class="mb-3">
-            <div>
-              <label class="form-label">
-                {{'general.account'|translate}}
-              </label>
-              <ng-select [items]="accounts" bindLabel="name" bindValue="name" groupBy="country"
-                placeholder="{{'general.select' | translate}}" formControlName="account">
-                <ng-template ng-optgroup-tmp let-item="item">
-                  {{item.country || 'general.unnammed'|translate}}
-                </ng-template>
-              </ng-select>
-            </div>
-            <span class="text-secondary-color small">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              </svg>
-              <span class="">
-                {{'hints.select_one_group' | translate}}
-              </span>
-            </span>
-            <div class="mt-2">
-              <div
-                *ngIf="(formControls?.brands?.touched || formControls?.brands?.dirty) && formControls?.brands?.invalid">
-                <div *ngIf="formControls?.brands?.errors?.['required']">
+              <div *ngIf="(formControls?.job?.touched || formControls?.job?.dirty) && formControls?.job?.invalid">
+                <div *ngIf="formControls?.job?.errors?.['required']">
                   <span class="text-danger fs-6">
                     {{'validations.reuired_field'|translate}}
                   </span>
@@ -392,7 +215,7 @@
 
       </div>
     </div>
-    <hr class="text-secondary-color mt-3">
+    <!-- <hr class="text-secondary-color mt-3">
     <div class="security">
 
       <h1 class="fs-4 my-4 text-begin">
@@ -470,7 +293,7 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
   </form>
 </div>
 

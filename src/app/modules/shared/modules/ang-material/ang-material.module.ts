@@ -10,6 +10,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 const materialModules = [
@@ -20,7 +21,8 @@ const materialModules = [
   MatSlideToggleModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatAutocompleteModule
 ];
 
 

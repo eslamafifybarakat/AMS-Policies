@@ -1,11 +1,11 @@
 export const userInfo = {
   name: {
-    en: "PMS Ploicy",
-    ar: "PMS Ploicy"
+    en: "PMS Policy",
+    ar: "PMS Policy"
   },
-  email: "PMSploicy@PMSploicy.com",
+  email: "PMSpolicy@PMSpolicy.com",
   phone: "+212365478911",
-  password: "PMSploicy",
+  password: "PMSpolicy",
   photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe8JLDdrGGMLR-940AOSGgFP-p7VAfLrK5HQ&usqp=CAU"
 }
 

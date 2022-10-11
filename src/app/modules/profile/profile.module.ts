@@ -8,7 +8,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { EmailSettingComponent } from './components/email-setting/email-setting.component';
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import { EmailSettingComponent } from './components/email-setting/email-setting.
     ProfileComponent,
     PersonalInfoComponent,
     ChangePasswordComponent,
-    EmailSettingComponent,
     DeactiveComponent
 
   ],

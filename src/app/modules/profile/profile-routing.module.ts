@@ -3,7 +3,6 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
-import { EmailSettingComponent } from './components/email-setting/email-setting.component';
 
 const routes: Routes = [
   {
@@ -22,13 +21,6 @@ const routes: Routes = [
         component: ChangePasswordComponent,
         data: {
           title: 'titles.change_password'
-        }
-      },
-      {
-        path: 'emailsetting',
-        component: EmailSettingComponent,
-        data: {
-          title: 'titles.email_settings'
         }
       }
     ]

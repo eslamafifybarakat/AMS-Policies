@@ -31,12 +31,12 @@ const STYLES = (theme: ThemeVariables) => ({
 
 export class ProfileComponent implements OnInit {
 
-  link: any = 'https://www.linkedin.com/in/eslam-afify-barakat-3a1396142/';
+  // link: any = 'https://www.linkedin.com/in/eslam-afify-barakat-3a1396142/';
   cropped?: string = "";
   profileImgSelected: boolean = false;
   isMaxImg: boolean = false;
 
-  followvalue: string = "Follow";
+  // followvalue: string = "Follow";
   readonly classes = this.sRenderer.renderSheet(STYLES, true);
 
   constructor(
@@ -50,13 +50,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  followChange(): void {
-    if (this.followvalue == "Following") {
-      this.followvalue = "Follow";
-    } else {
-      this.followvalue = "Following";
-    }
-  }
+  // followChange(): void {
+  //   if (this.followvalue == "Following") {
+  //     this.followvalue = "Follow";
+  //   } else {
+  //     this.followvalue = "Following";
+  //   }
+  // }
 
   openCropperDialog(event: Event): void {
     this.cropped = null!;

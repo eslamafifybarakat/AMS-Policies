@@ -9,6 +9,18 @@
 
 //----- Components -----//
 @media (max-width: 767px) {
+  .policy {
+    min-height: auto !important;
+  }
+
+  .height-auto-small {
+    height: inherit !important;
+  }
+
+  .position-inherit-small {
+    position: inherit !important;
+  }
+
   .padding-small-1 {
     padding: 1rem !important;
   }
@@ -152,6 +164,10 @@
 }
 
 @media (max-width: 991px) {
+  .mt-medium-1 {
+    margin-top: 1rem !important;
+  }
+
   .flex-column-md {
     flex-direction: column !important;
   }
