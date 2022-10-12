@@ -1,6 +1,7 @@
 {
   "general": {
     "enter": "Enter",
+    "place_order": "Place Order",
     "your_email": "your email",
     "to_send": "to send",
     "verify_code": "verify code",

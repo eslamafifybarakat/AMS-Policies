@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './components/policies/new-policy/checkout/checkout.component';
 import { SharedModule } from './../shared/modules/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { PolicyDataComponent } from './components/policies/new-policy/policy-dat
     PoliciesListComponent,
     PaymentsComponent,
     PolicyDataComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,

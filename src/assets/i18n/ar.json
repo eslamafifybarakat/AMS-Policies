@@ -1,6 +1,7 @@
 {
   "general": {
     "enter": "أدخل",
+    "place_order": "إرسال طلب",
     "your_email": "إيميلك",
     "to_send": "لإرسال",
     "verify_code": "كود التفعيل",

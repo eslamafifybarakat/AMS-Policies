@@ -25,7 +25,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit(): void {
-    this.router.navigate(['/home/policies/checkout']);
+    this.isloading = true;
+    setTimeout(() => {
+      this.isloading = false;
+      this.router.navigate(['/home/policies/list']);
+    }, 2000);
   }
   back(): void {
     this.location.back();

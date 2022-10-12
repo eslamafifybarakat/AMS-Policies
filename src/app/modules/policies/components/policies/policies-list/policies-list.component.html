@@ -1,5 +1,5 @@
 <div class="polices-list py-small-2">
-  <div class="container">
+  <div class="container px-0">
     <div class="card-style rounded-25 px-4 py-3">
       <div
         class="header-polices-list d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
@@ -69,8 +69,11 @@
                 {{item?.type}}
               </td>
               <td>
-                <span class="d-inline-block text-center py-2 px-2 rounded-pill w-100" [class]="item?.class">
-                  {{item?.status}}
+                <span class="d-inline-block w-100">
+                  <i class="fas fa-circle fs-dot-status" [class]="item?.class"></i>
+                  <span class="px-1">
+                    {{item?.status}}
+                  </span>
                 </span>
               </td>
               <td>
