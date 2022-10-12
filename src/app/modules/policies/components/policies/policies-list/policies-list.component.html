@@ -1,0 +1,124 @@
+<div class="polices-list py-small-2">
+  <div class="container">
+    <div class="card-style rounded-25 px-4 py-3">
+      <div
+        class="header-polices-list d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
+        <h1 class="fs-5 text-main-color">
+          <span>
+            {{'policies.policies' | translate}}
+          </span>
+          <span class="badge bg-second-color text-main-color rounded-pill">
+            {{items.length}}
+          </span>
+        </h1>
+        <div class="search-table">
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text input-group-text-L bg-white-color">
+              <a (click)="applySearch($event)">
+                <i class="fa fa-search fas fa-color"></i>
+              </a>
+            </span>
+            <input type="text" class="form-control form-control-search-group" (keyup.enter)="applySearch($event)"
+              [(ngModel)]="searchValue" placeholder="{{'general.search' | translate}}">
+            <span class="input-group-text bg-white-color input-group-text-R">
+              <a (click)="searchValue !==''?clearSearch():''">
+                <i class="fa text-danger-color" [ngClass]="searchValue !==''?'fa-close':''"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+        <button class="btn btn-outline-main-header" [routerLink]="['/home/policies/policy-data']">
+          <i class="fas fa-plus me-1"></i>
+          {{'polices_list.new_policy' | translate}}
+        </button>
+      </div>
+      <hr class="color-grey-400" />
+      <div class="content-table mt-4">
+        <table class="table color-grey-400 w-100">
+          <thead class="bg-secondary-color text-white-color">
+            <tr>
+              <th scope="col">{{'polices_list.sale_id' | translate}}</th>
+              <th scope="col">{{'polices_list.customer_name' | translate}}</th>
+              <th scope="col">{{'polices_list.customer_id' | translate}}</th>
+              <th scope="col">{{'polices_list.establish_date' | translate}}</th>
+              <th scope="col">{{'polices_list.invoice_price' | translate}}</th>
+              <th scope="col">{{'general.type' | translate}}</th>
+              <th scope="col" class="px-3">{{'general.status' | translate}}</th>
+              <th scope="col">{{'general.actions' | translate}}</th>
+              <!-- <th scope="col"></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items | slice: (currentPage-1) * pageSize : currentPage * pageSize let i as index">
+              <td>
+                {{item?.id}}
+              </td>
+              <td>
+                {{item?.client}}
+              </td>
+              <td>
+                {{item?.client_id}}
+              </td>
+              <td>
+                {{item?.esablishDate | date}}
+              </td>
+              <td>
+                {{item?.price}}
+              </td>
+              <td>
+                {{item?.type}}
+              </td>
+              <td>
+                <span class="d-inline-block text-center py-2 px-2 rounded-pill w-100" [class]="item?.class">
+                  {{item?.status}}
+                </span>
+              </td>
+              <td>
+                <div class="dropdown mx-3">
+                  <button class="btn dropdown-toggle color-grey-400" type="button" id="select-dropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                      class="bi bi-three-dots" viewBox="0 0 16 16">
+                      <path
+                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu shadow border-0" aria-labelledby="select-dropdown">
+                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between view-hover">
+                      <a class=" text-muted">
+                        {{'general.view' | translate}}
+                      </a>
+                      <i class="fas fa-eye fs-6 text-muted"></i>
+                    </li>
+                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                      <a class=" text-muted">
+                        {{'general.edit' | translate}}
+                      </a>
+                      <i class="fas fa-pen fs-6 text-muted"></i>
+                    </li>
+                    <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                      <a class=" text-muted">
+                        {{'general.delete' | translate}}
+                      </a>
+                      <i class="fas fa-trash fs-6 text-muted"></i>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <!-- <td>
+                <span class="form-check-switch form-switch align-super">
+                  <input class="form-check-input switch" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                    [checked]="i.active">
+                </span>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-center mt-5 mb-2">
+        <ngb-pagination [collectionSize]="items.length" [pageSize]="pageSize" [(page)]="currentPage" [maxSize]="3"
+          (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>

@@ -36,6 +36,7 @@
                   {{'form.email'|translate}}
                 </label>
                 <input type="email" class="form-control" formControlName="email"
+                  placeholder="{{'placeholder.email' | translate}}"
                   [class.is-invalid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.invalid"
                   [class.is-valid]="formControls.email.dirty&&formControls.email.valid">
               </div>
@@ -103,6 +104,7 @@
               <div class="input-group">
                 <input [type]="showeye?'text':'password'" class="login-password-form form-control"
                   id="exampleInputPassword1" formControlName="password"
+                  placeholder="{{'placeholder.password' | translate}}"
                   [class.is-invalid]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
                   [class.is-valid]="formControls.password.dirty&&formControls.password.valid">
                 <span class="togglepassword input-group-text bg-white-color" (click)="togglepassword()"

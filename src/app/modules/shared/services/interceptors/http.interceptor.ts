@@ -11,8 +11,7 @@ import { keys } from '../../TS Files/localstorage-key';
 
 @Injectable()
 export class httpInterceptor implements HttpInterceptor {
-  LOCALIZATION_LOCAL_STORAGE_KEY = "language";
-  browserLang: any
+  browserLang: any;
 
   constructor(
     private translate: TranslateService

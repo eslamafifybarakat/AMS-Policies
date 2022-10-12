@@ -1,8 +1,15 @@
 {
   "general": {
+    "enter": "أدخل",
+    "your_email": "إيميلك",
+    "to_send": "لإرسال",
+    "verify_code": "كود التفعيل",
+    "to_continue": "للإستمرار",
     "job": "الوظيفة",
+    "next": "التالي",
     "sitename": "AMS Policies",
     "start_date": "تاريخ البدأ",
+    "end_date": "تاريخ الإنتهاء",
     "check_email": "من فضلك افحص بريدك الإلكروني للتحقق",
     "save_changes": "حفظ التغييرات",
     "comming_soon": "قريبا...",
@@ -60,6 +67,11 @@
     "change_password_text": "قم بتغيير كلمة المرور الخاصة بك",
     "registeration": "إنشاء حساب",
     "login": "تسجيل دخول",
+    "policy_id": "الرقم التعريفي",
+    "job": "الوظيفة",
+    "address": "العنوان",
+    "passport_num": "رقم جواز السفر",
+    "nationality": "الجنسية",
     "no_account": "لا تمتلك حساب بعد ؟",
     "have_account": "لدي حساب بالفعل",
     "remember": "تذكرنى",
@@ -79,6 +91,19 @@
     "confirm": "تأكيد",
     "send": "إرسال"
   },
+  "placeholder": {
+    "id": "أدخل رقم الهوية",
+    "name": "أدخل الإسم",
+    "start_date": "أدخل تاريخ البدأ",
+    "end_date": "أدخل تاريخ الإنتهاء",
+    "email": "أخل البريد الإلكتروني",
+    "address": "أدخل العنوان",
+    "password": "أدخل كلمة المرور",
+    "new_password": "أدخل كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "date_of_birth": "أدخل تاريخ الميلاد",
+    "passport_num": "أدخل رقم جواز السفر"
+  },
   "email-verfication": {
     "title": "تأكيد بواسطة البريد الالكتروني",
     "sub-title": "أدخل الرمز الذي أرسلناه للتو على بريدك الإلكتروني",
@@ -91,6 +116,7 @@
     "arabic": "اللغة العربية"
   },
   "policies": {
+    "policy_data": "معلومات السياسة",
     "our_partner": "عملائنا",
     "transactions": "تحويلاتك",
     "Purchase": "سياسة الشراء",
@@ -138,13 +164,13 @@
     "sub2": "الفاتورة",
     "sub3": "تنبيهات"
   },
-  "sales": {
+  "polices_list": {
     "sale_id": "الرقم",
     "customer_name": "اسم العميل",
     "customer_id": "تعريف العميل",
     "invoice_price": "سعر الفاتورة",
     "establish_date": "تاريخ الإنشاء",
-    "add_sale": "إضافه سلعة",
+    "new_policy": "سلعة جديدة",
     "clients": "العملاء"
   },
   "profile": {
@@ -174,6 +200,8 @@
     "select_addnew": "اختيار عديد + إضافة جديد"
   },
   "titles": {
+    "policy_data": "معلومات السياسة",
+    "checkout": "الدفع",
     "payments": "وسائل الدفع",
     "policies": "السياسات",
     "dashboard": "لوحة التحكم",

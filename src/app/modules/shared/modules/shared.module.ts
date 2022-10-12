@@ -1,3 +1,4 @@
+import { TranslationChildModule } from './translation-child/translation-child.module';
 import { CountdownComponent } from './../component/countdown/countdown.component';
 import { HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { TimeagoModule } from 'ngx-timeago';
@@ -38,6 +39,7 @@ const allShared = [
   FormsModule,
   ReactiveFormsModule,
   AngMaterialModule,
+  TranslationChildModule,
   TranslateModule,
   TimeagoModule,
   Ng2SearchPipeModule,

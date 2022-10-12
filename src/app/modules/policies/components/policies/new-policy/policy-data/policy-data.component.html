@@ -1,0 +1,335 @@
+<div class="policy-data">
+  <div class="policy-data-card p-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="fs-5 text-center-small text-muted">
+        {{'policies.policy_data' | translate}}
+      </h1>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6c757d"
+          class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path
+            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+        </svg>
+      </span>
+    </div>
+    <hr class="text-secondary-color mt-3" />
+    <form [formGroup]="policyForm" class="py-5" (ngSubmit)="submit()">
+      <div class="user-info">
+        <div class="row">
+
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.policy_id'|translate}}
+                </label>
+                <input type="text" class="form-control" formControlName="policy_id"
+                  placeholder="{{'placeholder.id' | translate}}"
+                  [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
+                  [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.policy_id?.touched || formControls?.policy_id?.dirty) && formControls?.policy_id?.invalid">
+                  <div *ngIf="formControls?.policy_id?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.name'|translate}}
+                </label>
+                <input type="text" class="form-control" formControlName="name"
+                  placeholder="{{'placeholder.name' | translate}}"
+                  [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
+                  [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
+              </div>
+              <div class="mt-2">
+                <div *ngIf="(formControls?.name?.touched || formControls?.name?.dirty) && formControls?.name?.invalid">
+                  <div *ngIf="formControls?.name?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div *ngIf="formControls?.name?.errors?.['minlength'] || formControls?.name?.errors?.['maxlength']">
+                    <span class="text-danger fs-6">
+                      {{'validations.name_length'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">
+                  {{"general.start_date"|translate}}
+                </label>
+                <div class="d-flex border rounded overflow-hidden"
+                  [class.border-red]="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid"
+                  [class.border-green]="(formControls?.['start_date']?.dirty) && formControls?.['start_date']?.valid">
+                  <input matInput class="form-control border-0" [matDatepicker]=" picker" [min]="todayDate"
+                    placeholder="{{'placeholder.start_date' | translate}}" formControlName="start_date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid">
+                  <div *ngIf="formControls?.start_date?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">
+                  {{"general.end_date"|translate}}
+                </label>
+                <div class="d-flex border rounded overflow-hidden"
+                  [class.border-red]="(formControls?.['end_date']?.touched ||formControls?.['end_date']?.dirty) && formControls?.['end_date']?.invalid"
+                  [class.border-green]="(formControls?.['end_date']?.dirty) && formControls?.['end_date']?.valid">
+                  <input matInput class="form-control border-0" [matDatepicker]=" picker2"
+                    [disabled]="policyForm?.value?.start_date==''" [min]="policyForm?.value?.start_date"
+                    formControlName="end_date" placeholder="{{'placeholder.end_date' | translate}}">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </div>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid ">
+                  <div *ngIf="formControls?.birthdate?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.phone'|translate}}
+                </label>
+                <ngx-intl-tel-input class="form-control"
+                  [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
+                  [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true" name="phone"
+                  formControlName="phone"
+                  [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
+                  [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid">
+                </ngx-intl-tel-input>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid">
+                  <div *ngIf="formControls?.['phone']?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.email'|translate}}
+                </label>
+                <input type="email" class="form-control" formControlName="email"
+                  placeholder="{{'placeholder.email' | translate}}"
+                  [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
+                  [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid">
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid ">
+                  <div *ngIf="formControls?.email?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div *ngIf="formControls?.email?.errors?.['email']">
+                    <span class="text-danger fs-6">
+                      {{'validations.not_valid'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.address'|translate}}
+                </label>
+                <input type="text" class="form-control" formControlName="address"
+                  placeholder="{{'placeholder.address' | translate}}"
+                  [class.is-invalid]="(formControls?.['address']?.touched ||formControls?.['address']?.dirty) && formControls?.['address']?.invalid"
+                  [class.is-valid]="(formControls?.['address']?.dirty) && formControls?.['address']?.valid">
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.address?.touched || formControls?.address?.dirty) && formControls?.address?.invalid">
+                  <div *ngIf="formControls?.address?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div
+                    *ngIf="formControls?.address?.errors?.['minlength'] || formControls?.address?.errors?.['maxlength']">
+                    <span class="text-danger fs-6">
+                      {{'validations.address_length'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.passport_num'|translate}}
+                </label>
+                <input type="number" class="form-control" formControlName="passport_number"
+                  placeholder="{{'placeholder.passport_num' | translate}}"
+                  [class.is-invalid]="(formControls?.['passport_number']?.touched ||formControls?.['passport_number']?.dirty) && formControls?.['passport_number']?.invalid"
+                  [class.is-valid]="(formControls?.['passport_number']?.dirty) && formControls?.['passport_number']?.valid">
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.passport_number?.touched || formControls?.passport_number?.dirty) && formControls?.passport_number?.invalid">
+                  <div *ngIf="formControls?.passport_number?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div
+                    *ngIf="formControls?.passport_number?.errors?.['minlength'] || formControls?.passport_number?.errors?.['maxlength']">
+                    <span class="text-danger fs-6">
+                      {{'validations.name_length'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'general.gender'|translate}}
+                </label>
+                <ng-select [closeOnSelect]="true" notFoundText="{{'general.no_item_founded'|translate}}" class="rounded"
+                  formControlName="gender" placeholder="{{'general.select' | translate}}"
+                  [class.border-red]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.invalid"
+                  [class.border-green]="(formControls?.['gender']?.dirty) && formControls?.['gender']?.valid">
+                  <ng-option value="male">{{'general.male' | translate}}</ng-option>
+                  <ng-option value="female">{{'general.female' | translate}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.gender?.touched || formControls?.gender?.dirty) && formControls?.gender?.invalid">
+                  <div *ngIf="formControls?.gender?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'general.job'|translate}}
+                </label>
+                <ng-select class="rounded" [items]="jobNames" [closeOnSelect]="true" [searchable]="true"
+                  [clearSearchOnAdd]="true" bindLabel="name" formControlName="job"
+                  placeholder="{{'general.select' | translate}}"
+                  [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
+                  [class.border-green]="(formControls?.['job']?.dirty) && formControls?.['job']?.valid">
+                </ng-select>
+              </div>
+              <div class="mt-2">
+                <div *ngIf="(formControls?.job?.touched || formControls?.job?.dirty) && formControls?.job?.invalid">
+                  <div *ngIf="formControls?.job?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.nationality'|translate}}
+                </label>
+                <ng-select class="rounded" [items]="nationalityNames" [closeOnSelect]="true" [searchable]="true"
+                  [clearSearchOnAdd]="true" bindLabel="name" formControlName="nationality"
+                  placeholder="{{'general.select' | translate}}"
+                  [class.border-red]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.invalid"
+                  [class.border-green]="(formControls?.['nationality']?.dirty) && formControls?.['nationality']?.valid">
+                </ng-select>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.nationality?.touched || formControls?.nationality?.dirty) && formControls?.nationality?.invalid">
+                  <div *ngIf="formControls?.nationality?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-end mt-5">
+            <div class="d-flex align-items-center">
+              <button class="btn btn-solid-second me-2" (click)="back()">
+                {{'general.cancel' | translate}}
+              </button>
+              <button class="btn btn-solid-main me-2" type="submit">
+                {{'general.next' | translate}}
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,8 +1,15 @@
 {
   "general": {
+    "enter": "Enter",
+    "your_email": "your email",
+    "to_send": "to send",
+    "verify_code": "verify code",
+    "to_continue": "to continue",
     "job": "Job",
+    "next": "Next",
     "sitename": "AMS Policies",
     "start_date": "Start Date",
+    "end_date": "End Date",
     "check_email": "Please check your email for verfication",
     "save_changes": "Save Changes",
     "comming_soon": "Comming Soon...",
@@ -60,6 +67,11 @@
     "change_password_text": "Change your account password",
     "registeration": "Create Account",
     "login": "Login",
+    "policy_id": "Policy ID",
+    "job": "Job",
+    "address": "Address",
+    "passport_num": "Passport Number",
+    "nationality": "Nationality",
     "no_account": "Don't have an account?",
     "have_account": "Have an account",
     "remember": "Remember Me",
@@ -78,6 +90,19 @@
     "confirm": "Confirm",
     "send": "Send"
   },
+  "placeholder": {
+    "id": "Enter id",
+    "name": "Enter name",
+    "start_date": "Enter start date",
+    "end_date": "Enter end date",
+    "email": "Enter email",
+    "address": "Enter address",
+    "password": "Enter password",
+    "new_password": "Enter new password",
+    "confirm_password": "Enter confirm password",
+    "date_of_birth": "Enter date of birth",
+    "passport_num": "Enter passport number"
+  },
   "email-verfication": {
     "title": "Email Verfication",
     "sub-title": "Enter the code we just send on your email",
@@ -90,6 +115,7 @@
     "arabic": "Arabic"
   },
   "policies": {
+    "policy_data": "Policy Data",
     "our_partner": "Our Partners",
     "transactions": "Your Transactions",
     "Purchase": "Purchase Policy",
@@ -137,13 +163,13 @@
     "sub2": "Billing",
     "sub3": "Notifcation"
   },
-  "sales": {
+  "polices_list": {
     "sale_id": "Sale Id",
     "customer_name": "Customer Name",
     "customer_id": "Customer Id",
     "invoice_price": "Invoice Price",
     "establish_date": "Establish Date",
-    "add_sale": "Add Sale",
+    "new_policy": "New Ploicy",
     "clients": "Clients"
   },
   "profile": {
@@ -173,7 +199,8 @@
     "select_addnew": "select multi + new tags"
   },
   "titles": {
-    "payments": "Payments",
+    "policy_data": "Policy Data",
+    "checkout": "Checkout",
     "policies": "Policies",
     "dashboard": "Dashboard",
     "home": "Home",

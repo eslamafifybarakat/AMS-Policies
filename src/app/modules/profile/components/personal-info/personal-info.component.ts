@@ -27,7 +27,6 @@ export class PersonalInfoComponent implements OnInit {
 
 
   job: any[] = [];
-  loading = false;
   jobNames = ['Uber', 'Microsoft', 'Flexigen'];
 
   constructor(

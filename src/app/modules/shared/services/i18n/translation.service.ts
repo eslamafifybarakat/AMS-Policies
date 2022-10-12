@@ -1,23 +1,23 @@
+import { keys } from './../../TS Files/localstorage-key';
 import { Injectable } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from "rxjs";
 
-const LOCALIZATION_LOCAL_STORAGE_KEY = "xsite";
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
   currentLang: any;
   localeEvent = new Subject<string>();
-constructor(public translate: TranslateService) {}
+  constructor(public translate: TranslateService) { }
   /**
    * Change language
    */
   changeLang(lang: string) {
-    this.currentLang = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY);
+    this.currentLang = localStorage.getItem(keys.language);
     if (this.currentLang !== lang) {
-      localStorage.setItem(LOCALIZATION_LOCAL_STORAGE_KEY, lang);
+      localStorage.setItem(keys.language, lang);
       window.location.reload();
     }
     setTimeout(() => {
@@ -25,7 +25,7 @@ constructor(public translate: TranslateService) {}
       this.localeEvent.next(lang);
 
       let direction =
-        localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) === "ar"
+        localStorage.getItem(keys.language) === "ar"
           ? "rtl"
           : "ltr";
       document.documentElement.dir = direction;

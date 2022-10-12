@@ -20,7 +20,7 @@ export class AppComponent {
   languages = ["en", "ar"];
   browserLang: any;
   currenttheme: any;
-  favIcon: HTMLLinkElement | any = document.querySelector("#appIcon") || 'assets/image/policy/logo.png';
+  favIcon: HTMLLinkElement | any = document.querySelector("#appIcon");
 
   constructor(
     private translate: TranslateService,
@@ -96,9 +96,9 @@ export class AppComponent {
 
 
   ngOnInit(): void {
+    this.favIcon.href = "assets/image/policy/logo.png";
     this.deviceLocationService.getUserLocation();
     AOS.init();
-    this.favIcon.href = "assets/image/logo.png";
     this.currenttheme = window.localStorage.getItem(keys?.theme);
     if (this.currenttheme == "light") {
       this._ThemeService.setLightTheme();

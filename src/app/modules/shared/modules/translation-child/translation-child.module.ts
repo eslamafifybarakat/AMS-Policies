@@ -1,5 +1,5 @@
+import { HttpLoaderFactory } from '../../../../app.module';
 import { HttpClient } from '@angular/common/http';
-import { HttpLoaderFactory } from 'src/app/app.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
       },
     }),
   ],
-  exports:[
+  exports: [
     TranslateModule
   ]
 })

@@ -31,6 +31,7 @@
                   {{'form.name'|translate}}
                 </label>
                 <input type="text" class="form-control" formControlName="name"
+                  placeholder="{{'placeholder.name' | translate}}"
                   [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
                   [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
               </div>
@@ -83,6 +84,7 @@
                   {{'form.email'|translate}}
                 </label>
                 <input type="email" class="form-control" formControlName="email"
+                  placeholder="{{'placeholder.email' | translate}}"
                   [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
                   [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid">
               </div>
@@ -109,8 +111,8 @@
               </label>
               <div class="input-group mb-3">
                 <input [type]="showeye?'text':'password'" class="login-password-form form-control"
-                  id="exampleInputPassword1" formControlName="password" name="txtPassword"
-                  compare-password="txtConfirmPassword"
+                  placeholder="{{'placeholder.password' | translate}}" id="exampleInputPassword1"
+                  formControlName="password" name="txtPassword" compare-password="txtConfirmPassword"
                   [class.is-invalid]="(formControls?.['password']?.touched||formControls?.['password']?.dirty)&&formControls?.['password']?.invalid"
                   [class.is-valid]="formControls?.['password']?.dirty&&formControls?.['password']?.valid">
                 <span class="togglepassword bg-white-color input-group-text" id="basic-addon1"
@@ -143,7 +145,8 @@
               </label>
               <div class="input-group mb-3">
                 <input [type]="showeye2?'text':'password'" class="login-password-form form-control"
-                  id="exampleInputPassword2" formControlName="confirmpassword"
+                  placeholder="{{'placeholder.confirm_password' | translate}}" id="exampleInputPassword2"
+                  formControlName="confirmpassword"
                   [class.is-invalid]="(formControls?.['confirmpassword']?.touched||formControls?.['confirmpassword']?.dirty)&&formControls?.['confirmpassword']?.invalid"
                   [class.is-valid]="formControls?.['confirmpassword']?.dirty&&formControls?.['confirmpassword']?.valid">
                 <span class="togglepassword input-group-text bg-white-color" id="basic-addon1"
@@ -177,7 +180,9 @@
                 <div class="d-flex border rounded"
                   [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
                   [class.border-green]="(formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
-                  <input matInput class="form-control border-0" [matDatepicker]=" picker" formControlName="birthdate">
+                  <input matInput class="form-control border-0"
+                    placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" picker"
+                    formControlName="birthdate">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </div>
