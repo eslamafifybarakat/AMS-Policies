@@ -18,30 +18,33 @@
       <div class="user-info">
         <div class="row">
 
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-            <div class="mb-3">
-              <div>
-                <label class="form-label">
-                  {{'form.policy_id'|translate}}
-                </label>
-                <input type="text" class="form-control" formControlName="policy_id"
-                  placeholder="{{'placeholder.id' | translate}}"
-                  [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
-                  [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.policy_id?.touched || formControls?.policy_id?.dirty) && formControls?.policy_id?.invalid">
-                  <div *ngIf="formControls?.policy_id?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
+          <ng-container *ngIf="isEdit">
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-3">
+                <div>
+                  <label class="form-label">
+                    {{'form.policy_id'|translate}}
+                  </label>
+                  <input type="text" class="form-control" formControlName="policy_id"
+                    placeholder="{{'placeholder.id' | translate}}"
+                    [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
+                    [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.policy_id?.touched || formControls?.policy_id?.dirty) && formControls?.policy_id?.invalid">
+                    <div *ngIf="formControls?.policy_id?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          </ng-container>
+
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -69,7 +72,7 @@
             </div>
           </div>
 
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label for="exampleFormControlInput1" class="form-label">
@@ -96,7 +99,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label for="exampleFormControlInput1" class="form-label">
@@ -125,7 +128,36 @@
             </div>
           </div>
 
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">
+                  {{"form.date_of_birth"|translate}}
+                </label>
+                <div class="d-flex border rounded"
+                  [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
+                  [class.border-green]="(formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
+                  <input matInput class="form-control border-0"
+                    placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" picker"
+                    formControlName="birthdate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid ">
+                  <div *ngIf="formControls?.birthdate?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -153,7 +185,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -182,7 +214,7 @@
             </div>
           </div>
 
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -211,37 +243,8 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
-            <div class="mb-3">
-              <div>
-                <label class="form-label">
-                  {{'form.passport_num'|translate}}
-                </label>
-                <input type="number" class="form-control" formControlName="passport_number"
-                  placeholder="{{'placeholder.passport_num' | translate}}"
-                  [class.is-invalid]="(formControls?.['passport_number']?.touched ||formControls?.['passport_number']?.dirty) && formControls?.['passport_number']?.invalid"
-                  [class.is-valid]="(formControls?.['passport_number']?.dirty) && formControls?.['passport_number']?.valid">
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.passport_number?.touched || formControls?.passport_number?.dirty) && formControls?.passport_number?.invalid">
-                  <div *ngIf="formControls?.passport_number?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                  <div
-                    *ngIf="formControls?.passport_number?.errors?.['minlength'] || formControls?.passport_number?.errors?.['maxlength']">
-                    <span class="text-danger fs-6">
-                      {{'validations.name_length'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -267,7 +270,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -291,7 +294,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-md-10 col-sm-12 col-12">
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -311,6 +314,99 @@
                     <span class="text-danger fs-6">
                       {{'validations.reuired_field'|translate}}
                     </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.duration'|translate}}
+                </label>
+                <div class="input-group">
+                  <input type="number" min="0" class="form-control" formControlName="duration"
+                    placeholder="{{'placeholder.duration' | translate}}"
+                    [class.is-invalid]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
+                    [class.is-valid]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid && formControls?.duration_type?.errors?.['required']">
+                  <div class="input-group-text"
+                    [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid || formControls?.duration_type?.errors?.['required']"
+                    [class.border-green]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid && formControls?.duration_type?.valid">
+                    <div class="d-flex justify-content-center align-items-center px-1">
+                      <input id="day" type="radio" value="day" formControlName="duration_type">
+                      <label class="px-1" for="day">
+                        {{'general.day' | translate}}
+                      </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center px-1">
+                      <input id="month" type="radio" value="month" formControlName="duration_type">
+                      <label class="px-1" for="month">
+                        {{'general.month' | translate}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid ">
+                  <div *ngIf="formControls?.duration?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                  <div *ngIf="formControls?.duration_type?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.must_choose_duration_type'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{'form.passport_image'|translate}}
+                </label>
+                <div class="specific-file-input">
+                  <div>
+                    <label class="file-label w-100">
+                      <input class="file-input" type="file" formControlName="passport_image"
+                        accept=".jpeg, .jpg, .png, .doc, .docx, .pdf" (change)="passportImageFileChangeEvent($event)">
+                      <span class="d-flex align-items-end justify-content-center form-control"
+                        [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty || passportImageFile.length==0) && (formControls?.['passport_image']?.invalid || true)"
+                        [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid && passportImageFile.length!=0">
+                        <span>
+                          <i class=" fas fa-upload fs-5 mx-2"></i>
+                        </span>
+                        <span class="mx-1">
+                          {{'general.upload' | translate}}
+                        </span>
+                      </span>
+                    </label>
+                    <ng-container *ngFor="let item of passportImageFile">
+                      <div *ngIf="passportImageFile.length>0" class="file-name mt-2 mb-0">
+                        <div class="d-flex justify-content-between align-items-center mb-0">
+                          <span class="d-flex justify-content-center align-items-baseline">
+                            <i class="fas fa-file-pdf mx-1"></i>
+                            {{item?.name}}
+                          </span>
+                          <button type="button" class="btn-close small" (click)="onRemovePassportImage(item?.name)"
+                            aria-label="Close"></button>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="isMaxImage">
+                      <div class="alert alert-danger" role="alert">
+                        {{'validations.validation_size_file' | translate}}
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>

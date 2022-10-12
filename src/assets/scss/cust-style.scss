@@ -789,7 +789,8 @@ a {
 }
 
 .form-control,
-.form-select {
+.form-select,
+.input-group-text {
   border-color: var(--border-input-color);
   height: 3.2rem;
 }
@@ -996,6 +997,21 @@ li.view-hover:hover {
 
   i {
     color: lightblue !important;
+  }
+}
+
+.specific-file-input {
+  position: relative;
+
+  .file-input {
+    // height: 100%;
+    left: 0;
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: none;
   }
 }
 

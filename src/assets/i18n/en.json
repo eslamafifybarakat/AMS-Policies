@@ -1,5 +1,7 @@
 {
   "general": {
+    "day": "Day",
+    "month": "Month",
     "details": "Details",
     "enter": "Enter",
     "place_order": "Place Order",
@@ -55,6 +57,8 @@
     "loggin_Success": "Login is successfully"
   },
   "validations": {
+    "validation_size_file": "The file size must be less than 5MB",
+    "must_choose_duration_type": "must choose duration type",
     "reuired_field": "This field is reuired",
     "not_valid": "This data is not vaild",
     "userPattern": "Username must be like [user_12,User_12-name] between 5 -50 characters",
@@ -64,6 +68,8 @@
     "name_length": "Name length must be 3–20"
   },
   "form": {
+    "passport_image": "Passport Image",
+    "duration": "Duration",
     "change_password_attention": "Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!",
     "change_password": "Change Password",
     "change_password_text": "Change your account password",
@@ -93,6 +99,7 @@
     "send": "Send"
   },
   "placeholder": {
+    "duration": "Enter duration",
     "company": "Enter company name",
     "id": "Enter id",
     "name": "Enter name",
