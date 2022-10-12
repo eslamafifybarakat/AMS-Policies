@@ -93,6 +93,7 @@
     "send": "Send"
   },
   "placeholder": {
+    "company": "Enter company name",
     "id": "Enter id",
     "name": "Enter name",
     "start_date": "Enter start date",
