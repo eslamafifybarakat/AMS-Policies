@@ -9,6 +9,7 @@ import { PolicyDashboardComponent } from './components/policy-dashboard/policy-d
 import { PoliciesListComponent } from './components/policies/policies-list/policies-list.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { PolicyDataComponent } from './components/policies/new-policy/policy-data/policy-data.component';
+import { PolicyPaymentDetailsModalComponent } from './components/payments/policy-payment-details-modal/policy-payment-details-modal.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PolicyDataComponent } from './components/policies/new-policy/policy-dat
     PoliciesListComponent,
     PaymentsComponent,
     PolicyDataComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    PolicyPaymentDetailsModalComponent
   ],
   imports: [
     CommonModule,

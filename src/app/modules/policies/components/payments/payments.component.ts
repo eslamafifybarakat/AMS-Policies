@@ -1,3 +1,5 @@
+import { PolicyPaymentDetailsModalComponent } from './policy-payment-details-modal/policy-payment-details-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -104,18 +106,27 @@ export class PaymentsComponent implements OnInit {
   ];
 
   constructor(
+    private dialog: MatDialog,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
   }
 
-  clearSearch(): void {
-    this.filterValue = '';
-    this.cdr.detectChanges();
+  openModal(data: any): void {
+    console.log(data);
+    let dialogRef = this.dialog.open(PolicyPaymentDetailsModalComponent, {
+      width: "35%",
+      data: {
+        details: data
+      }
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+    });
   }
-
   applyFilter(type: any): void {
+    this.currentPage = 1;
     if (type !== this.filterValue) {
       this.filterValue = type;
     } else {
