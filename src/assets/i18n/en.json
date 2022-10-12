@@ -1,5 +1,6 @@
 {
   "general": {
+    "details": "Details",
     "enter": "Enter",
     "place_order": "Place Order",
     "your_email": "your email",
@@ -116,6 +117,7 @@
     "arabic": "Arabic"
   },
   "policies": {
+    "payment_history": "Payment History",
     "policy_data": "Policy Data",
     "our_partner": "Our Partners",
     "transactions": "Your Transactions",
@@ -165,6 +167,8 @@
     "sub3": "Notifcation"
   },
   "polices_list": {
+    "amount": "Amount",
+    "description": "Description",
     "sale_id": "Sale Id",
     "customer_name": "Customer Name",
     "customer_id": "Customer Id",
@@ -202,6 +206,7 @@
   "titles": {
     "policy_data": "Policy Data",
     "checkout": "Checkout",
+    "payments": "Payments",
     "policies": "Policies",
     "dashboard": "Dashboard",
     "home": "Home",

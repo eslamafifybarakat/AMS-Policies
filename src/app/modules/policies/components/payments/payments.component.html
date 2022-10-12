@@ -1,1 +1,91 @@
-<p>payments works!</p>
+<div class="payment-history py-small-2">
+  <div class="container px-0">
+    <div class="card-style rounded-25 px-4">
+      <div
+        class="header-payment-history d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
+        <h1 class="fs-5 text-main-color">
+          <span>
+            {{'policies.payment_history' | translate}}
+          </span>
+        </h1>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6c757d"
+            class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+              d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+        </span>
+      </div>
+      <hr class="color-grey-400" />
+      <div class="card-filter px-4 mt-4">
+        <div class="row d-flex  py-2">
+          <div class="col-xl-1 col-md-0 col-sm-0 col-0"></div>
+          <div class="col-xl-5 col-md-12 col-sm-12 col-12 my-xl-4 my-md-2 my-sm-2 my-2">
+            <a (click)="applyFilter('paypal')">
+              <div class="card-item d-flex justify-content-center align-items-center">
+                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
+                  src="assets/image/payments/paypal.png" alt="">
+              </div>
+            </a>
+          </div>
+          <div class="col-xl-5 col-md-12 col-sm-12 col-12 my-xl-4 my-md-2 my-sm-2 my-2">
+            <a (click)="applyFilter('mastercard')">
+              <div class="card-item d-flex justify-content-center align-items-center">
+                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'mastercard'?'selected-card':''"
+                  src="assets/image/payments/mastercard.png" alt="">
+              </div>
+            </a>
+          </div>
+          <div class="col-xl-1 col-md-0 col-sm-0 col-0"></div>
+        </div>
+      </div>
+      <div class="data-table">
+        <div class="content-table mt-4">
+          <table class="table color-grey-400 w-100">
+            <thead class="bg-secondary-color text-white-color">
+              <tr>
+                <th scope="col" class="px-3">{{'general.status' | translate}}</th>
+                <th scope="col">{{'polices_list.amount' | translate}}</th>
+                <th scope="col">{{'polices_list.establish_date' | translate}}</th>
+                <th scope="col">{{'polices_list.description' | translate}}</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of items | slice: (currentPage-1) * pageSize : currentPage * pageSize let i as index">
+                <td>
+                  <span class="d-inline-block w-100">
+                    <i class="fas fa-circle fs-dot-status" [class]="item?.class"></i>
+                    <span class="px-1">
+                      {{item?.status}}
+                    </span>
+                  </span>
+                </td>
+                <td>
+                  {{item?.amount}}
+                </td>
+                <td>
+                  {{item?.esablishDate | date}}
+                </td>
+                <td>
+                  {{item?.description |slice:1:40}} ...
+                </td>
+                <td>
+                  <button class="btn p-0 btn-outline-main-header py-1 px-3">
+                    {{'general.details' | translate}}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center mt-5 mb-2">
+          <ngb-pagination [collectionSize]="items.length" [pageSize]="pageSize" [(page)]="currentPage" [maxSize]="3"
+            (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>

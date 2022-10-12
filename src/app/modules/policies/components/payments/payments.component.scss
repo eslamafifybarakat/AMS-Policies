@@ -1,0 +1,46 @@
+.payment-history {
+  border: 1px solid var(--text-white-color);
+  background: var(--bg-white-color);
+  border-radius: 10px;
+
+  .content-table {
+    overflow-x: scroll;
+  }
+
+  table {
+    min-width: 61rem;
+
+    td {
+      padding: 0 !important;
+      margin: 0 !important;
+      border-bottom: 1px solid var(--border-input-color);
+    }
+  }
+
+  table> :not(caption)>*>* {
+    padding: 1.3rem 1rem !important;
+    font-size: 0.95rem;
+    height: 3rem;
+  }
+
+
+  span.align-super {
+    vertical-align: super !important;
+  }
+
+  .card-filter {
+    border-radius: 1rem;
+    background-color: #d2eaf62d;
+    border-radius: 0.5rem !important;
+  }
+
+  .item-img {
+    width: 20rem;
+    height: 8rem;
+    background-color: var(--bg-white-color);
+  }
+
+  .selected-card {
+    border: 2px solid var(--bs-danger) !important;
+  }
+}

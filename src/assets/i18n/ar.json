@@ -1,5 +1,6 @@
 {
   "general": {
+    "details": "التفاصيل",
     "enter": "أدخل",
     "place_order": "إرسال طلب",
     "your_email": "إيميلك",
@@ -117,6 +118,7 @@
     "arabic": "اللغة العربية"
   },
   "policies": {
+    "payment_history": "سجل عمليات الدفع",
     "policy_data": "معلومات السياسة",
     "our_partner": "عملائنا",
     "transactions": "تحويلاتك",
@@ -166,6 +168,8 @@
     "sub3": "تنبيهات"
   },
   "polices_list": {
+    "amount": "الكمية",
+    "description": "الوصف",
     "sale_id": "الرقم",
     "customer_name": "اسم العميل",
     "customer_id": "تعريف العميل",
