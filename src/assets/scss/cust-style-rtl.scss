@@ -288,7 +288,7 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
   }
 }
 
-.search {
+.search-table {
   .form-control-search-group {
     border-right: 0 !important;
     border-left: 0 !important;
@@ -304,6 +304,18 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
     border-right: 1px solid var(--border-input-color) !important;
     border-left: 0 !important;
     border-radius: 0 0.25rem 0.25rem 0 !important;
+  }
+}
+
+.policy-data {
+  .input-group {
+    .form-control {
+      border-radius: 0 0.25rem 0.25rem 0 !important;
+    }
+
+    .input-group-text {
+      border-radius: 0.25rem 0 0 0.25rem !important;
+    }
   }
 }
 

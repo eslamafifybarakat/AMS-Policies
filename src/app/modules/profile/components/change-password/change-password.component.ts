@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmPasswordValidator } from './confirm-password-validator';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-change-password',
@@ -20,7 +19,6 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private location: Location,
     public router: Router
   ) { }
 
@@ -65,9 +63,6 @@ export class ChangePasswordComponent implements OnInit {
       this.isloadingBtn = false;
       this.router.navigate(['/auth/login']);
     }, 2000);
-  }
-  back(): void {
-    this.location.back();
   }
 
   ngOnDestroy(): void {

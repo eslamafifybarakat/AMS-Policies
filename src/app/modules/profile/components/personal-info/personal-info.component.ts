@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import * as moment from 'moment';
 
@@ -31,7 +30,6 @@ export class PersonalInfoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private location: Location,
     public dialog: MatDialog,
     public router: Router
   ) { }
@@ -95,9 +93,7 @@ export class PersonalInfoComponent implements OnInit {
       this.isloadingBtn = false;
     }, 2000);
   }
-  back(): void {
-    this.location.back();
-  }
+
   openDialog(): void {
     let dialogRef = this.dialog.open(DeactiveComponent, {
       width: "450px",

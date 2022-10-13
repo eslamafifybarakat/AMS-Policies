@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class PaymentsComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
+  searchValue: any = '';
   filterValue: any = '';
   currentPage = 1;
   pageSize = 6;
@@ -134,6 +135,19 @@ export class PaymentsComponent implements OnInit {
     }
     console.log(this.filterValue);
     this.cdr.detectChanges();
+  }
+
+  clearSearch(): void {
+    this.searchValue = '';
+    this.cdr.detectChanges();
+  }
+
+  applySearch(event: Event): void {
+    let applyFilter = (event.target as HTMLInputElement).value;
+    console.log(applyFilter);
+    console.log(this.searchValue);
+    this.cdr.detectChanges();
+
   }
 
   onChange(page: any): void {

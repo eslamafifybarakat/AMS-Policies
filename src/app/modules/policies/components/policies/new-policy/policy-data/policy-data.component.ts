@@ -64,25 +64,36 @@ export class PolicyDataComponent implements OnInit {
     passport_number: [null, [Validators.required,
     Validators.minLength(3),
     Validators.maxLength(20)]],
+    virus_c: [null, [Validators.required]],
+    virus_corona: [null, [Validators.required]],
+    suffer: [null, [Validators.required]],
+    poor_hearing: [null, [Validators.required]],
   });
   get formControls(): any {
     return this.policyForm.controls;
   }
 
   passportImageFileChangeEvent(event: any): void {
-    for (var i = 0; i < event?.target?.files?.length; i++) {
-      if (event?.target?.files[i]?.size <= 5120 * 1024) {
-        this.isMaxImage = false;
-        this.passportImageFile.push(event?.target?.files[i]);
-      } else {
-        this.isMaxImage = true;
-      }
+    // for (var i = 0; i < event?.target?.files?.length; i++) {
+    //   if (event?.target?.files[i]?.size <= 5120 * 1024) {
+    //     this.isMaxImage = false;
+    //     this.passportImageFile.push(event?.target?.files[i]);
+    //   } else {
+    //     this.isMaxImage = true;
+    //   }
+    // }
+    if (event?.target?.files[0]?.size <= 5120 * 1024) {
+      this.isMaxImage = false;
+      this.passportImageFile[0] = event?.target?.files[0];
+    } else {
+      this.isMaxImage = true;
     }
   }
   onRemovePassportImage(name: any): void {
     this.passportImageFile = this.passportImageFile?.filter((value: any) => {
       return value?.name !== name;
     });
+    this.policyForm?.get('passport_image')?.reset();
     this.cdr.detectChanges();
   }
 

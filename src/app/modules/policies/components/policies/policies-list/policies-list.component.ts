@@ -13,9 +13,6 @@ export class PoliciesListComponent implements OnInit {
   currentPage = 1;
   pageSize = 6;
 
-  masterSelected: any;
-  checkedList: any;
-
   date = new Date("10/10/1996");
   status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
   items = [

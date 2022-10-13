@@ -23,8 +23,9 @@
         <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['profile']" (click)="collapse = false">
           {{'user_info.profile'|translate}}
         </li>
-        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['/home/profile']" (click)="collapse = false">
-          {{'user_info.setting'|translate}}
+        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['/home/profile/changepassword']"
+          (click)="collapse = false">
+          {{'user_info.change_password'|translate}}
         </li>
         <hr class="text-secondary-color mt-3" />
         <li class="py-3 text-danger p-2 text-dir" (click)="signOut()" (click)="collapse = false">

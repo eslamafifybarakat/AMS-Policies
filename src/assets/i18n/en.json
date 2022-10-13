@@ -1,5 +1,9 @@
 {
   "general": {
+    "title_header": "Policies Management",
+    "id": "ID",
+    "yes": "Yes",
+    "no": "No",
     "day": "Day",
     "month": "Month",
     "details": "Details",
@@ -68,6 +72,10 @@
     "name_length": "Name length must be 3–20"
   },
   "form": {
+    "virus_c": "Have you ever been infected with C ?",
+    "virus_corona": "Have you ever had any type of corona virus ?",
+    "suffer": "Do you suffer from any deficiency in any part of your body ?",
+    "poor_hearing": "Do you suffer from poor hearing or vision, or do you have a chronic disease ?",
     "passport_image": "Passport Image",
     "duration": "Duration",
     "change_password_attention": "Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!",
@@ -169,6 +177,7 @@
     "project": "My Projects",
     "subscribe": "My Subscription",
     "setting": "Account Settings",
+    "change_password": "Change Password",
     "signout": "SignOut",
     "sub1": "Referrals",
     "sub2": "Billing",

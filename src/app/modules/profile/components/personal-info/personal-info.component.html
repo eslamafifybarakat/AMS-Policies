@@ -14,7 +14,7 @@
           [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty">
           {{'general.save_changes' | translate}}
         </button>
-        <button class="btn btn-solid-second me-2" (click)="back()">
+        <button class="btn btn-solid-second me-2" [routerLink]="['/home/policies/dashboard']">
           {{'general.cancel' | translate}}
         </button>
       </div>
