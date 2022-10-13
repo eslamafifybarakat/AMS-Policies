@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
@@ -12,13 +12,12 @@ export class CheckoutComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isloading: boolean = false;
 
-  todayDate: Date = new Date();
-
-
+  filterValue: any = '';
 
   constructor(
     private location: Location,
-    public router: Router
+    public router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +30,16 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/home/policies/list']);
     }, 2000);
   }
+  applyFilter(type: any): void {
+    if (type !== this.filterValue) {
+      this.filterValue = type;
+    } else {
+      this.filterValue = '';
+    }
+    console.log(this.filterValue);
+    this.cdr.detectChanges();
+  }
+
   back(): void {
     this.location.back();
   }

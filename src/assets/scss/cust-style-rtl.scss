@@ -319,6 +319,11 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
   }
 }
 
+.header-underline::after {
+  left: inherit !important;
+  right: 0 !important;
+}
+
 
 
 @media (min-width: 991px) {}

@@ -2,6 +2,9 @@
   "general": {
     "title_header": "إدارة السياسات",
     "id": "الرقم التعريفي",
+    "item": "العنصر",
+    "count": "عدد",
+    "total": "الإجمالي",
     "yes": "نعم",
     "no": "لا",
     "day": "يوم",
@@ -132,6 +135,10 @@
   "language": {
     "english": " اللغة الإنجليزية",
     "arabic": "اللغة العربية"
+  },
+  "checkout": {
+    "your_order": "طلبك",
+    "payment_methods": "طرق الدفع"
   },
   "policies": {
     "payment_history": "سجل عمليات الدفع",

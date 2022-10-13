@@ -1003,7 +1003,6 @@ li.view-hover:hover {
   position: relative;
 
   .file-input {
-    // height: 100%;
     left: 0;
     opacity: 0;
     outline: 0;
@@ -1012,6 +1011,20 @@ li.view-hover:hover {
     width: 100%;
     display: none;
   }
+}
+
+.header-underline {
+  position: relative;
+}
+
+.header-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 10%;
+  background-color: var(--bg-second-color);
+  border: 1.5px solid var(--text-second-color);
 }
 
 /* End GLOBAL RULES  */

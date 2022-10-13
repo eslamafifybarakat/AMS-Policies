@@ -2,7 +2,10 @@
   "general": {
     "title_header": "Policies Management",
     "id": "ID",
+    "item": "Item",
+    "count": "Count",
     "yes": "Yes",
+    "total": "Total",
     "no": "No",
     "day": "Day",
     "month": "Month",
@@ -131,6 +134,10 @@
   "language": {
     "english": "English",
     "arabic": "Arabic"
+  },
+  "checkout": {
+    "your_order": "Your Order",
+    "payment_methods": "Payment Methods"
   },
   "policies": {
     "payment_history": "Payment History",
