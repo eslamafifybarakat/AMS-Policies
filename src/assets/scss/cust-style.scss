@@ -1201,6 +1201,17 @@ li.view-hover:hover {
   background-color: var(--bg-main-color);
 }
 
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--text-main-color) !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: var(--bg-main-color) !important;
+}
+
 /* ===== End Angular Material Customization ===== */
 
 /* Importing Responsive SCSS file. */

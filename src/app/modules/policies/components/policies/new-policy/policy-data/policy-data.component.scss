@@ -16,10 +16,18 @@
 
   .border-red {
     border: 1px solid #dc3545 !important;
+    border-radius: 0.25rem !important;
   }
 
   .border-green {
     border: 1px solid #198754 !important;
+    border-radius: 0.25rem !important;
+  }
+
+  .btn-delete {
+    color: red !important;
+    border: none !important;
+    background: transparent;
   }
 
 }

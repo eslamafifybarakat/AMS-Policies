@@ -58,7 +58,7 @@
   },
   "validations": {
     "validation_size_file": "The file size must be less than 5MB",
-    "must_choose_duration_type": "must choose duration type",
+    "must_choose_duration_type": "Firstly, you must choose duration type...",
     "reuired_field": "This field is reuired",
     "not_valid": "This data is not vaild",
     "userPattern": "Username must be like [user_12,User_12-name] between 5 -50 characters",

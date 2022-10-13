@@ -58,7 +58,7 @@
   },
   "validations": {
     "validation_size_file": "يجب ان يكون حجم الملف اقل من 5 ميجا",
-    "must_choose_duration_type": "يجب أن تختار نوع المدة",
+    "must_choose_duration_type": "...أولا ,يجب أن تختار نوع المدة",
     "reuired_field": "هذا الحقل مطلوب",
     "not_valid": "هذه البيانات غير صالحة",
     "userPattern": "[user_12,User_12-name]اسم المستخدم يجب أن يكون علي هذا النمط بين 5 -50 حرف ",

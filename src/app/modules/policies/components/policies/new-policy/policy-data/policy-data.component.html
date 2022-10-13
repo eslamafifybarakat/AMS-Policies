@@ -138,10 +138,10 @@
                   [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
                   [class.border-green]="(formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
                   <input matInput class="form-control border-0"
-                    placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" picker"
+                    placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" pickerBirthdate"
                     formControlName="birthdate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-datepicker-toggle matSuffix [for]="pickerBirthdate"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerBirthdate></mat-datepicker>
                 </div>
               </div>
               <div class="mt-2">
@@ -326,43 +326,46 @@
                 <label class="form-label">
                   {{'form.duration'|translate}}
                 </label>
-                <div class="input-group">
-                  <input type="number" min="0" class="form-control" formControlName="duration"
-                    placeholder="{{'placeholder.duration' | translate}}"
-                    [class.is-invalid]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
-                    [class.is-valid]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid && formControls?.duration_type?.errors?.['required']">
-                  <div class="input-group-text"
-                    [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid || formControls?.duration_type?.errors?.['required']"
-                    [class.border-green]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid && formControls?.duration_type?.valid">
-                    <div class="d-flex justify-content-center align-items-center px-1">
-                      <input id="day" type="radio" value="day" formControlName="duration_type">
-                      <label class="px-1" for="day">
+                <div class="input-group"
+                  [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
+                  [class.border-green]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid">
+                  <ng-container
+                    *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'; else elseEnable">
+                    <input class="form-control" type="number" placeholder="{{'placeholder.duration' | translate}}"
+                      [disabled]="true">
+                  </ng-container>
+                  <ng-template #elseEnable>
+                    <input type="number" min="1" class="form-control" formControlName="duration"
+                      placeholder="{{'placeholder.duration' | translate}}">
+                  </ng-template>
+                  <div class="input-group-text">
+                    <mat-radio-group formControlName="duration_type">
+                      <mat-radio-button value="day" class="me-2">
                         {{'general.day' | translate}}
-                      </label>
-                    </div>
-
-                    <div class="d-flex justify-content-center align-items-center px-1">
-                      <input id="month" type="radio" value="month" formControlName="duration_type">
-                      <label class="px-1" for="month">
+                      </mat-radio-button>
+                      <mat-radio-button value="month">
                         {{'general.month' | translate}}
-                      </label>
-                    </div>
+                      </mat-radio-button>
+                    </mat-radio-group>
                   </div>
                 </div>
               </div>
               <div class="mt-2">
                 <div
-                  *ngIf="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid ">
+                  *ngIf="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid">
                   <div *ngIf="formControls?.duration?.errors?.['required']">
                     <span class="text-danger fs-6">
                       {{'validations.reuired_field'|translate}}
                     </span>
                   </div>
-                  <div *ngIf="formControls?.duration_type?.errors?.['required']">
-                    <span class="text-danger fs-6">
+                </div>
+                <div *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'">
+                  <span>
+                    <i class="fas fa-info-circle text-info"></i>
+                    <span class="text-muted fs-6 px-1">
                       {{'validations.must_choose_duration_type'|translate}}
                     </span>
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>
@@ -379,28 +382,29 @@
                     <label class="file-label w-100">
                       <input class="file-input" type="file" formControlName="passport_image"
                         accept=".jpeg, .jpg, .png, .doc, .docx, .pdf" (change)="passportImageFileChangeEvent($event)">
-                      <span class="d-flex align-items-end justify-content-center form-control"
+                      <span class="d-flex align-items-center justify-content-center form-control text-muted"
                         [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty || passportImageFile.length==0) && (formControls?.['passport_image']?.invalid || true)"
                         [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid && passportImageFile.length!=0">
-                        <span>
-                          <i class=" fas fa-upload fs-5 mx-2"></i>
-                        </span>
-                        <span class="mx-1">
+                        <span class="me-2">
                           {{'general.upload' | translate}}
                         </span>
+                        <i class=" fas fa-cloud-upload-alt fs-5"></i>
                       </span>
                     </label>
                     <ng-container *ngFor="let item of passportImageFile">
-                      <div *ngIf="passportImageFile.length>0" class="file-name mt-2 mb-0">
-                        <div class="d-flex justify-content-between align-items-center mb-0">
-                          <span class="d-flex justify-content-center align-items-baseline">
-                            <i class="fas fa-file-pdf mx-1"></i>
-                            {{item?.name}}
-                          </span>
-                          <button type="button" class="btn-close small" (click)="onRemovePassportImage(item?.name)"
-                            aria-label="Close"></button>
+                      <ng-container *ngIf="passportImageFile.length>0">
+                        <div class="file-name mt-2 mb-0  mx-2">
+                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted">
+                            <span class="d-flex justify-content-center align-items-baseline">
+                              <i class="fas fa-file mx-1 text-main-color"></i>
+                              {{item?.name}}
+                            </span>
+                            <button type="button" class="btn-delete" (click)="onRemovePassportImage(item?.name)">
+                              X
+                            </button>
+                          </div>
                         </div>
-                      </div>
+                      </ng-container>
                     </ng-container>
                     <ng-container *ngIf="isMaxImage">
                       <div class="alert alert-danger" role="alert">
