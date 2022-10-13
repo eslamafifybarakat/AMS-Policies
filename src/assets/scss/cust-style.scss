@@ -1224,6 +1224,11 @@ li.view-hover:hover {
   background-color: var(--bg-main-color) !important;
 }
 
+.mat-dialog-container {
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
 /* ===== End Angular Material Customization ===== */
 
 /* Importing Responsive SCSS file. */
