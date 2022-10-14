@@ -25,7 +25,7 @@
                   <label class="form-label">
                     {{'form.policy_id'|translate}}
                   </label>
-                  <input type="text" class="form-control" formControlName="policy_id"
+                  <input type="text" class="form-control" formControlName="policy_id" [disabled]="true"
                     placeholder="{{'placeholder.id' | translate}}"
                     [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
                     [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">

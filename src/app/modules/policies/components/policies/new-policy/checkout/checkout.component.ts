@@ -1,5 +1,7 @@
+// import { PolicyService } from 'src/app/modules/policies/services/policy.service';
+import { AlertsService } from './../../../../../shared/services/alerts/alerts.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 
@@ -11,16 +13,25 @@ import { Location } from '@angular/common';
 export class CheckoutComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isloading: boolean = false;
+  isEdit: boolean = false;
+
+  policyData: any;
 
   filterValue: any = '';
 
   constructor(
+    // private policyService: PolicyService,
+    private alertsService: AlertsService,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     public router: Router,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.policyData = JSON.parse(this.activatedRoute?.snapshot?.params['data'] || '{}');
+    this.isEdit = this.activatedRoute?.snapshot?.params['isEdit'];
+    console.log(this.policyData, this.isEdit);
   }
 
   submit(): void {
@@ -30,7 +41,93 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/home/policies/list']);
     }, 2000);
   }
-  applyFilter(type: any): void {
+
+  onSubmit(): void {
+    this.isloading = true;
+
+    // let policyDataObj: any;
+    // if (this.isEdit) {
+    //   policyData = {
+    //     policy_id: this.policyData?.policy_id,
+    //     name: this.policyData?.name,
+    //     start_date: this.policyData?.start_date,
+    //     end_date: this.policyData?.end_date,
+    //     birthdate: this.policyData?.birthdate,
+    //     email: this.policyData?.email,
+    //     phone: this.policyData?.phone,
+    //     duration: this.policyData?.duration,
+    //     duration_type: this.policyData?.duration_type,
+    //     passport_image: this.policyData?.passport_image,
+    //     job: this.policyData?.job,
+    //     gender: this.policyData?.gender,
+    //     nationality: this.policyData?.nationality,
+    //     address: this.policyData?.address,
+    //     virus_c: this.policyData?.virus_c,
+    //     virus_corona: this.policyData?.virus_corona,
+    //     suffer: this.policyData?.suffer,
+    //     poor_hearing: this.policyData?.poor_hearing
+    //   }
+
+    //   this.policyService?.updatePolicy(policyDataObj, this.policyData?.policy_id)?.subscribe(
+    //     (res: any) => {
+    //       if (res?.code === 200) {
+    //         this.alertsService.openSweetalert('success',res?.message);
+    // this.router.navigate(['/home/policies/list']);
+    //         this.isloading = false;
+    //       } else {
+    //         this.alertsService.openSweetalert('info',res?.message);
+    //         this.isloading = false;
+    //       }
+    //     },
+    //     (err) => {
+    //     if (err?.message) {
+    //       this.alertsService.openSweetalert('error',err?.message);
+    //     }
+    //       this.isloading = false;
+    //     });
+    // } else {
+    //   policyDataObj = {
+    //     name: this.policyData?.name,
+    //     start_date: this.policyData?.start_date,
+    //     end_date: this.policyData?.end_date,
+    //     birthdate: this.policyData?.birthdate,
+    //     email: this.policyData?.email,
+    //     phone: this.policyData?.phone,
+    //     duration: this.policyData?.duration,
+    //     duration_type: this.policyData?.duration_type,
+    //     passport_image: this.policyData?.passport_image,
+    //     job: this.policyData?.job,
+    //     gender: this.policyData?.gender,
+    //     nationality: this.policyData?.nationality,
+    //     address: this.policyData?.address,
+    //     virus_c: this.policyData?.virus_c,
+    //     virus_corona: this.policyData?.virus_corona,
+    //     suffer: this.policyData?.suffer,
+    //     poor_hearing: this.policyData?.poor_hearing
+    //   }
+
+    //   this.policyService?.addPolicy(policyDataObj)?.subscribe(
+    //     (res: any) => {
+    //       if (res?.code === 200) {
+    //         this.alertsService.openSweetalert('success',res?.message);
+    // this.router.navigate(['/home/policies/list']);
+    //         this.isloading = false;
+    //       } else {
+    //         this.alertsService.openSweetalert('info',res?.message);
+    //         this.isloading = false;
+    //       }
+    //     },
+    //     (err) => {
+    //     if (err?.message) {
+    //       this.alertsService.openSweetalert('error',err?.message);
+    //     }
+    //       this.isloading = false;
+    //     });
+    // }
+    this.cdr.detectChanges();
+  }
+
+  check(type: any): void {
     if (type !== this.filterValue) {
       this.filterValue = type;
     } else {

@@ -1,8 +1,10 @@
+import { AlertsService } from './../../../../../shared/services/alerts/alerts.service';
+import { PolicyService } from './../../../../services/policy.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,8 +14,11 @@ import { Location } from '@angular/common';
 })
 export class PolicyDataComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
-  isloading: boolean = false;
+  isLoading: boolean = false;
+
   isEdit: boolean = false;
+  policyId: any = null;
+  policyData: any = null;
 
   passportImageFile: File[] = [];
   isMaxImage: boolean = false;
@@ -33,13 +38,22 @@ export class PolicyDataComponent implements OnInit {
 
 
   constructor(
+    private policyService: PolicyService,
+    private alertsService: AlertsService,
     private fb: FormBuilder,
     private location: Location,
     public router: Router,
+    private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.policyId = this.activatedRoute?.snapshot?.params['id'];
+    if (this.policyId) {
+      this.isEdit = true;
+      this.policyForm.controls['policy_id'].disable();
+      this.getPloicyData(this.policyId);
+    }
   }
 
   policyForm = this.fb.group({
@@ -61,9 +75,6 @@ export class PolicyDataComponent implements OnInit {
     address: ['', [Validators.required,
     Validators.minLength(3),
     Validators.maxLength(20)]],
-    passport_number: [null, [Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(20)]],
     virus_c: [null, [Validators.required]],
     virus_corona: [null, [Validators.required]],
     suffer: [null, [Validators.required]],
@@ -71,6 +82,42 @@ export class PolicyDataComponent implements OnInit {
   });
   get formControls(): any {
     return this.policyForm.controls;
+  }
+
+  getPloicyData(id: any): void {
+    this.isLoading = true;
+    // this.policyService?.getPolicyById(id)?.subscribe(
+    //   (res) => {
+    //     this.policyData = res?.data;
+    //     this.policyForm?.patchValue({
+    //       policy_id: this.policyData?.,
+    //       name: this.policyData?.,
+    //       start_date: this.policyData?.,
+    //       end_date: this.policyData?.,
+    //       birthdate: this.policyData?.,
+    //       email: this.policyData?.,
+    //       phone: this.policyData?.,
+    //       duration: this.policyData?.,
+    //       passport_image: this.policyData?.,
+    //       duration_type: this.policyData?.,
+    //       job: this.policyData?.,
+    //       gender: this.policyData?.,
+    //       nationality: this.policyData?.,
+    //       address: this.policyData?.,
+    //       passport_number: this.policyData?.,
+    //       virus_c: this.policyData?.,
+    //       virus_corona: this.policyData?.,
+    //       suffer: this.policyData?.,
+    //       poor_hearing: this.policyData?.,
+    //     });
+    //     this.isLoading = false;
+    //   },
+    //   (err) => {
+    //     if (err?.message) {
+    //       this.alertsService?.openSweetalert("error", err?.message);
+    //     }
+    //   }
+    // );
   }
 
   passportImageFileChangeEvent(event: any): void {
@@ -99,7 +146,7 @@ export class PolicyDataComponent implements OnInit {
 
   submit(): void {
     console.log(this.policyForm?.value);
-    this.router.navigate(['/home/policies/checkout']);
+    this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
   }
   back(): void {
     this.location.back();

@@ -2,6 +2,8 @@ import { PolicyPaymentDetailsModalComponent } from './policy-payment-details-mod
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+// import { AlertsService } from 'src/app/modules/shared/services/alerts/alerts.service';
+// import { PolicyService } from '../../services/policy.service';
 
 @Component({
   selector: 'app-payments',
@@ -10,11 +12,13 @@ import { Subscription } from 'rxjs';
 })
 export class PaymentsComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
+  isLoading: boolean = false;
 
   searchValue: any = '';
   filterValue: any = '';
   currentPage = 1;
   pageSize = 6;
+  paymentsList: any = [];
 
   date = new Date("10/10/1996");
   status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
@@ -107,11 +111,14 @@ export class PaymentsComponent implements OnInit {
   ];
 
   constructor(
+    // private policyService: PolicyService,
+    // private alertsService: AlertsService,
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.getAllPloicies();
   }
 
   openModal(data: any): void {
@@ -126,35 +133,84 @@ export class PaymentsComponent implements OnInit {
       console.log(result);
     });
   }
+
+  getAllPloicies(): void {
+    // this.isLoading = true;
+    //  if (this.searchValue !=='') {
+    // this.currentPage = 1;
+    //   this.policyService?.getPaymentsList(this.currentPage, this.pageSize,this.searchValue)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.paymentsList = res?.data;
+    //         this.isLoading = false;
+    //       } else {
+    //         this.isLoading = false;
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //     }
+    //   );
+    //  } else {
+    //   this.policyService?.getPaymentsList(this.currentPage, this.pageSize)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.paymentsList = res?.data;
+    //         this.isLoading = false;
+    //       } else {
+    //         this.isLoading = false;
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //     }
+    //   );
+    //  }
+    this.cdr.detectChanges();
+  }
+
   applyFilter(type: any): void {
     this.currentPage = 1;
     if (type !== this.filterValue) {
       this.filterValue = type;
+      this.getAllPloicies();
     } else {
       this.filterValue = '';
     }
     console.log(this.filterValue);
     this.cdr.detectChanges();
   }
-
   clearSearch(): void {
     this.searchValue = '';
+    this.getAllPloicies();
     this.cdr.detectChanges();
   }
-
   applySearch(event: Event): void {
     let applyFilter = (event.target as HTMLInputElement).value;
     console.log(applyFilter);
     console.log(this.searchValue);
+    this.getAllPloicies();
     this.cdr.detectChanges();
 
   }
 
   onChange(page: any): void {
-    // this.getDoctorsList();
+    this.getAllPloicies();
+
   }
   loadPage(page: number): void {
-    // this.getDoctorsList();
+    this.getAllPloicies();
+
   }
 
   ngOnDestroy(): void {

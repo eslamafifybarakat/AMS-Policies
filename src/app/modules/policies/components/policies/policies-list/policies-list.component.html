@@ -2,7 +2,7 @@
   <div class="container px-0">
     <div class="card-style rounded-25 px-4 py-3">
       <div
-        class="header-polices-list d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
+        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2 p-1 mt-3">
         <h1 class="fs-5 text-main-color">
           <span>
             {{'policies.policies' | translate}}
@@ -87,13 +87,8 @@
                     </svg>
                   </button>
                   <ul class="dropdown-menu shadow border-0" aria-labelledby="select-dropdown">
-                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between view-hover">
-                      <a class=" text-muted">
-                        {{'general.view' | translate}}
-                      </a>
-                      <i class="fas fa-eye fs-6 text-muted"></i>
-                    </li>
-                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover"
+                      (click)="goToDetails(item?.id)">
                       <a class=" text-muted">
                         {{'general.edit' | translate}}
                       </a>
@@ -125,3 +120,9 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="isLoading">
+    <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
+      <div class="spinner-grow" role="status">
+      </div>
+    </div>
+  </ng-container>

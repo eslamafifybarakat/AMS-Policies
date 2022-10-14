@@ -1,3 +1,6 @@
+// import { AlertsService } from './../../../../shared/services/alerts/alerts.service';
+// import { PolicyService } from 'src/app/modules/policies/services/policy.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
@@ -8,10 +11,12 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 })
 export class PoliciesListComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
+  isLoading: boolean = false;
 
   searchValue: any = '';
   currentPage = 1;
   pageSize = 6;
+  policiesList: any = [];
 
   date = new Date("10/10/1996");
   status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
@@ -136,30 +141,84 @@ export class PoliciesListComponent implements OnInit {
   ];
 
   constructor(
+    // private policyService: PolicyService,
+    // private alertsService: AlertsService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.getAllPloicies();
+  }
+
+  getAllPloicies(): void {
+    // this.isLoading = true;
+    //  if (this.searchValue !=='') {
+    // this.currentPage = 1;
+    //   this.policyService?.getPoliciesList(this.currentPage, this.pageSize,this.searchValue)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.policiesList = res?.data;
+    //         this.isLoading = false;
+    //       } else {
+    //         this.isLoading = false;
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //     }
+    //   );
+    //  } else {
+    //   this.policyService?.getPoliciesList(this.currentPage, this.pageSize)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.policiesList = res?.data;
+    //         this.isLoading = false;
+    //       } else {
+    //         this.isLoading = false;
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //     }
+    //   );
+    //  }
+    this.cdr.detectChanges();
   }
 
   clearSearch(): void {
     this.searchValue = '';
+    this.getAllPloicies();
     this.cdr.detectChanges();
   }
-
   applySearch(event: Event): void {
     let applyFilter = (event.target as HTMLInputElement).value;
     console.log(applyFilter);
     console.log(this.searchValue);
+    this.getAllPloicies();
     this.cdr.detectChanges();
 
   }
 
+  goToDetails(id: any): void {
+    this.router.navigate(['/home/policies/policy-data', { id: id }]);
+  }
+
   onChange(page: any): void {
-    // this.getDoctorsList();
+    this.getAllPloicies();
   }
   loadPage(page: number): void {
-    // this.getDoctorsList();
+    this.getAllPloicies();
   }
 
   ngOnDestroy(): void {

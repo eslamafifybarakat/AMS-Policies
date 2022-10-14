@@ -73,7 +73,7 @@
           </h1>
           <div class="row mt-4">
             <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <a (click)="applyFilter('mastercard')">
+              <a (click)="check('mastercard')">
                 <div class="card-item d-flex justify-content-center align-items-center">
                   <img class="item-img rounded-25 fit-contain"
                     [ngClass]="filterValue == 'mastercard'?'selected-card':''"
@@ -82,7 +82,7 @@
               </a>
             </div>
             <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <a (click)="applyFilter('paypal')">
+              <a (click)="check('paypal')">
                 <div class="card-item d-flex justify-content-center align-items-center">
                   <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
                     src="assets/image/payments/paypal.png" alt="">
