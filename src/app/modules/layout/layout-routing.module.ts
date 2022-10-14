@@ -8,9 +8,19 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('../pages/pages.module')
-          .then(m => m.PagesModule)
+        path: 'policies',
+        loadChildren: () => import('../../modules/policies/policies.module')
+          .then(m => m.PoliciesModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('../../modules/profile/profile.module')
+          .then(m => m.ProfileModule)
+      },
+      {
+        path: "",
+        redirectTo: "policies",
+        pathMatch: "full",
       },
     ]
   }
