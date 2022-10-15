@@ -170,6 +170,12 @@
 }
 
 @media (max-width: 991px) {
+
+  .mat-dialog-container,
+  .cdk-overlay-pane {
+    width: 75% !important;
+  }
+
   .gap-medium-2 {
     gap: 0.5rem !important;
   }
