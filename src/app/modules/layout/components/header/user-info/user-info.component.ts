@@ -1,6 +1,5 @@
 import { keys } from './../../../../shared/TS Files/localstorage-key';
 import { AuthUserService } from '../../../../auth/services/auth-user.service';
-import { SocialAuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -15,7 +14,6 @@ export class UserInfoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private socialAuthService: SocialAuthService,
     public _AuthUserser: AuthUserService
   ) {
     console.log(this.userdata);

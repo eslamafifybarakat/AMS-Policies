@@ -96,7 +96,7 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-    this.favIcon.href = "assets/image/policy/logo.png";
+    this.favIcon.href = "https://img.icons8.com/material-rounded/2x/autodesk-autocad.png";
     this.deviceLocationService.getUserLocation();
     AOS.init();
     this.currenttheme = window.localStorage.getItem(keys?.theme);

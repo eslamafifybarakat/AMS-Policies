@@ -86,20 +86,23 @@
                         d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
                     </svg>
                   </button>
-                  <ul class="dropdown-menu shadow border-0" aria-labelledby="select-dropdown">
-                    <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover"
-                      (click)="goToDetails(item?.id)">
-                      <a class=" text-muted">
-                        {{'general.edit' | translate}}
-                      </a>
-                      <i class="fas fa-pen fs-6 text-muted"></i>
-                    </li>
-                    <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
-                      <a class=" text-muted">
-                        {{'general.delete' | translate}}
-                      </a>
-                      <i class="fas fa-trash fs-6 text-muted"></i>
-                    </li>
+                  <ul class="dropdown-menu shadow border-0">
+                    <a (click)="isWaitingAction? '': goToDetails(item?.id)">
+                      <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                        <span class="text-muted">
+                          {{'general.edit' | translate}}
+                        </span>
+                        <i class="fas fa-pen fs-6 text-muted"></i>
+                      </li>
+                    </a>
+                    <a (click)="isWaitingAction? '':onaDeleteItem(item)">
+                      <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                        <span class="text-muted">
+                          {{'general.delete' | translate}}
+                        </span>
+                        <i class="fas fa-trash fs-6 text-muted"></i>
+                      </li>
+                    </a>
                   </ul>
                 </div>
               </td>

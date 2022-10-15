@@ -1,3 +1,4 @@
+import { ConfirmDeleteModalComponent } from './../component/confirm-delete-modal/confirm-delete-modal.component';
 import { TranslationChildModule } from './translation-child/translation-child.module';
 import { CountdownComponent } from './../component/countdown/countdown.component';
 import { HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -10,7 +11,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ClipboardModule } from 'ngx-clipboard';
-import { ChatComponent } from '../component/chat/chat.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {
@@ -33,7 +33,6 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CropperImageDialogComponent } from '../component/cropper-image-dialog/cropper-image-dialog.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { ShareSocialBtnsComponent } from '../component/share-social-btns/share-social-btns.component';
 
 const allShared = [
   FormsModule,
@@ -65,12 +64,10 @@ const alyleUi = [
 ];
 
 const components = [
-  ChatComponent,
   LanguageSelectorComponent,
   CropperImageDialogComponent,
-  ShareSocialBtnsComponent,
-  ChatComponent,
-  CountdownComponent
+  CountdownComponent,
+  ConfirmDeleteModalComponent
 ];
 
 @NgModule({

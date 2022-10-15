@@ -1,3 +1,5 @@
+import { ConfirmDeleteModalComponent } from './../../../../shared/component/confirm-delete-modal/confirm-delete-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 // import { AlertsService } from './../../../../shared/services/alerts/alerts.service';
 // import { PolicyService } from 'src/app/modules/policies/services/policy.service';
 import { Router } from '@angular/router';
@@ -12,6 +14,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 export class PoliciesListComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isLoading: boolean = false;
+  isWaitingAction: boolean = false;
 
   searchValue: any = '';
   currentPage = 1;
@@ -143,6 +146,7 @@ export class PoliciesListComponent implements OnInit {
   constructor(
     // private policyService: PolicyService,
     // private alertsService: AlertsService,
+    public dialog: MatDialog,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) { }
@@ -153,6 +157,57 @@ export class PoliciesListComponent implements OnInit {
 
   getAllPloicies(): void {
     // this.isLoading = true;
+    //  if (this.searchValue !=='') {
+    // this.currentPage = 1;
+    //   this.policyService?.getPoliciesList(this.currentPage, this.pageSize,this.searchValue)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.policiesList = res?.data;
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //       } else {
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //     }
+    //   );
+    //  } else {
+    //   this.policyService?.getPoliciesList(this.currentPage, this.pageSize)?.subscribe(
+    //     (res) => {
+    //       if (res?.code == 200) {
+    //         this.policiesList = res?.data;
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //       } else {
+    //         if (res?.message) {
+    //           this.alertsService?.openSweetalert("info", res?.message);
+    //         }
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService?.openSweetalert("error", err?.message);
+    //       }
+    //         this.isLoading = false;
+    // this.isWaitingAction = false;
+    //     }
+    //   );
+    //  }
+    this.cdr.detectChanges();
+  }
+  getAllPloiciesWithoutLoading(): void {
     //  if (this.searchValue !=='') {
     // this.currentPage = 1;
     //   this.policyService?.getPoliciesList(this.currentPage, this.pageSize,this.searchValue)?.subscribe(
@@ -194,6 +249,38 @@ export class PoliciesListComponent implements OnInit {
     //   );
     //  }
     this.cdr.detectChanges();
+  }
+
+  onaDeleteItem(item: any): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      width: "40%",
+      data: item?.client
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result?.confirm === true) {
+        console.log(result);
+        // this.isWaitingAction= true;
+        // this.policyService?.deletePolicy(item?.id)?.subscribe(
+        //   (res: any) => {
+        //     if (res?.code === 200) {
+        //       if (res?.message) {
+        //         this.alertsService?.openSweetalert("success", res?.message);
+        //       }
+        //       this.getAllPloiciesWithoutLoading();
+        //     } else {
+        //       if (res?.message) {
+        //         this.alertsService?.openSweetalert("info", res?.message);
+        //       }
+        //     }
+        //   },
+        //   (err: any) => {
+        //     if (err?.message) {
+        //       this.alertsService?.openSweetalert("error", err?.message);
+        //     }
+        //   });
+      }
+      this.cdr.detectChanges();
+    });
   }
 
   clearSearch(): void {

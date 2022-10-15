@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { keys } from '../../shared/TS Files/localstorage-key';
-import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -25,7 +24,6 @@ export class AuthUserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private socialAuthService: SocialAuthService
   ) {
     if (window.localStorage.getItem(keys.logged)) {
       this.xdashLogged = window.localStorage.getItem(keys.logged);
@@ -78,97 +76,12 @@ export class AuthUserService {
   }
 
 
-
-  signInWithGoogle(): void {
-    this.isUserLogin.next(true);
-    this.socialAuthService?.signIn(GoogleLoginProvider?.PROVIDER_ID)
-      .then((res) => {
-        let data = {
-          email: res?.email,
-          social_id: res?.id,
-          name: res?.name,
-          photo: res?.photoUrl,
-        };
-        if (data.social_id) {
-          window.localStorage.setItem(keys.logged, 'true');
-          window.localStorage.setItem(keys.userData, JSON.stringify(data));
-        }
-        setTimeout(() => {
-          this.isLogged.next(true);
-          this.isLoggedSocial.next(true);
-          this.isUserLogin.next(false);
-          this.router.navigate(['/']);
-        }, 1000);
-      })
-      .catch((error) => {
-        if (error?.message) {
-          console.log(error);
-        }
-      });
-  }
-  signInWithFB(): void {
-    this.socialAuthService?.signIn(FacebookLoginProvider?.PROVIDER_ID)
-      .then((res) => {
-        let data = {
-          email: res?.email,
-          social_id: res?.id,
-          name: res?.name,
-          photo: res?.photoUrl,
-          from: res?.response?.idpId,
-        };
-        this.signWithSocial(data);
-      })
-      .catch((error) => {
-        if (error?.message) {
-          // this.sweetAlertPopupService?.alertMessage(error?.message, "error");
-        }
-      });
-  }
-  signWithSocial(data: any) {
-    // let from_social = data?.from;
-    // return this.http
-    //   .post<any>(this.apiUrl + "/auth/callback/" + from_social, data)
-    //   .subscribe(
-    //     (res: any) => {
-    //       if (res?.status) {
-    //         window?.localStorage?.setItem(keys.userData, JSON.stringify(res));
-    //         this.api_token = res?.data?.api_token;
-    //         if (res?.message) {
-    //           this.sweetAlertPopupService?.alertMessage(
-    //             res?.message,
-    //             "success"
-    //           );
-    //         }
-    //         this.router.navigate([""]);
-    //       } else {
-    //         if (res?.message) {
-    //           this.sweetAlertPopupService?.alertMessage(
-    //             res?.message,
-    //             "success"
-    //           );
-    //         }
-    //       }
-    //     },
-    //     (err) => {
-    //       if (err?.message) {
-    //         this.sweetAlertPopupService?.alertMessage(err?.message, "error");
-    //       }
-    //     }
-    //   );
-  }
-
   signOut(): void {
     setTimeout(() => {
       window.localStorage.removeItem(keys.logged);
       window.localStorage.removeItem(keys.userData);
       this.isUserLogin.next(false);
       this.isLogged.next(false);
-      this.isLoggedSocial.subscribe((res: any) => {
-        if (res) {
-          this.socialAuthService.signOut();
-          this.isLoggedSocial.next(false);
-        }
-      });
       this.router.navigate(['/auth']);
     }, 1000);
   }

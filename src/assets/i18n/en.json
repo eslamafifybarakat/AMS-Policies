@@ -1,7 +1,11 @@
 {
   "general": {
+    "enter_name_correctly": "Enter name correctly",
+    "confirm_delete": "Confirm Delete",
+    "confirm_delete_qu": "Are sure to delete",
     "title_header": "Policies Management",
     "id": "ID",
+    "keep": "Keep",
     "item": "Item",
     "count": "Count",
     "yes": "Yes",
@@ -124,7 +128,7 @@
     "date_of_birth": "Enter date of birth",
     "passport_num": "Enter passport number"
   },
-  "email-verfication": {
+  "email_verfication": {
     "title": "Email Verfication",
     "sub-title": "Enter the code we just send on your email",
     "sub-title2": "Don't receive the code?",
@@ -154,41 +158,14 @@
   },
   "notifcation": {
     "not-title": "Notifications",
-    "not-report": "24 reports",
-    "logos": "Logos",
-    "updates": "Updates",
-    "alerts": "Alerts",
-    "view": "view all"
-  },
-  "alerts": {
-    "title1": "Project Alice",
-    "subtitle1": "Phase 1 development",
-    "time1": "now",
-    "title2": "HR Confidential",
-    "subtitle2": "Confidential staff documents",
-    "time2": "2 h",
-    "title3": "Company HR",
-    "subtitle3": "Corporeate staff profiles",
-    "time3": "now",
-    "title4": "Project Redux",
-    "subtitle4": "New frontend admin theme",
-    "time4": "now",
-    "title5": "Company HR",
-    "subtitle5": "Corporeate staff profiles",
-    "time5": "1 week"
+    "not-report": "24 reports"
   },
   "user_info": {
     "name": "X-TEAM",
     "email": "X-Tam@mail.com",
     "profile": "My Profile",
-    "project": "My Projects",
-    "subscribe": "My Subscription",
-    "setting": "Account Settings",
     "change_password": "Change Password",
-    "signout": "SignOut",
-    "sub1": "Referrals",
-    "sub2": "Billing",
-    "sub3": "Notifcation"
+    "signout": "SignOut"
   },
   "polices_list": {
     "amount": "Amount",
@@ -218,14 +195,6 @@
     "account_info": "Account Information",
     "personal_info": "Personal Information",
     "personal_info_text": " Update your personal informaiton"
-  },
-  "hints": {
-    "select_one": "select one",
-    "select_one_group": "select one from group",
-    "select_one_seaech": "select one + search",
-    "selectm_seaech": "select multi + search",
-    "selectm_check_search": "checkbox + select multi + search",
-    "select_addnew": "select multi + new tags"
   },
   "titles": {
     "policy_data": "Policy Data",

@@ -1,7 +1,11 @@
 {
   "general": {
+    "enter_name_correctly": "أدخل الإسم صحيحا",
+    "confirm_delete": "تأكيد الحذف",
+    "confirm_delete_qu": "هل حقا تريد حذف",
     "title_header": "إدارة السياسات",
     "id": "الرقم التعريفي",
+    "KEEP": "احتفظ",
     "item": "العنصر",
     "count": "عدد",
     "total": "الإجمالي",
@@ -125,7 +129,7 @@
     "date_of_birth": "أدخل تاريخ الميلاد",
     "passport_num": "أدخل رقم جواز السفر"
   },
-  "email-verfication": {
+  "email_verfication": {
     "title": "تأكيد بواسطة البريد الالكتروني",
     "sub-title": "أدخل الرمز الذي أرسلناه للتو على بريدك الإلكتروني",
     "sub-title2": "لم تتلقى الرمز؟",
@@ -155,41 +159,14 @@
   },
   "notifcation": {
     "not-title": "اشعارات",
-    "not-report": "24 تقرير",
-    "logos": "الشعارات",
-    "updates": "التحديات",
-    "alerts": "التنبيهات",
-    "view": "عرض الكل"
-  },
-  "alerts": {
-    "title1": "مشروع أليس",
-    "subtitle1": "تطوير المرحلة الأولى",
-    "time1": "1 ساعة",
-    "title2": "الموارد البشرية السرية",
-    "subtitle2": "وثائق الموظفين السرية",
-    "time2": "2 ساعة",
-    "title3": "مؤسسة الموارد البشرية",
-    "subtitle3": " ملفات تعريف موظفي الشركة",
-    "time3": "1 ساعة",
-    "title4": "مشروع الإحياء",
-    "subtitle4": "موضوع مشرف الواجهة الأمامية الجديد",
-    "time4": "1 ساعة",
-    "title5": "مؤسسة الموارد البشرية",
-    "subtitle5": " ملفات تعريف موظفي الشركة",
-    "time5": "  1 أسبوع "
+    "not-report": "24 تقرير"
   },
   "user_info": {
     "name": "إكس تيم",
     "email": "X-Tam@mail.com",
     "profile": "ملفي الشخصي",
-    "project": "مشاريعي",
-    "subscribe": "اشتراكي",
-    "setting": "إعدادات الحساب",
     "change_password": "تغيير كلمة المرور",
-    "signout": "تسجيل الخروج",
-    "sub1": "إحالات",
-    "sub2": "الفاتورة",
-    "sub3": "تنبيهات"
+    "signout": "تسجيل الخروج"
   },
   "polices_list": {
     "amount": "الكمية",
@@ -219,14 +196,6 @@
     "account_info": "إعدادات الحساب",
     "personal_info": "المعلومات الشخصية",
     "personal_info_text": "تحديث معلوماتك الشخصية"
-  },
-  "hints": {
-    "select_one": "اختيار واحد فقط",
-    "select_one_group": "اختيار واحد من مجموعة",
-    "select_one_seaech": "اختيار واحد فقط + بحث",
-    "selectm_seaech": "اختيار عديد + بحث",
-    "selectm_check_search": "علامه + اختيارعديد+بحث",
-    "select_addnew": "اختيار عديد + إضافة جديد"
   },
   "titles": {
     "policy_data": "معلومات السياسة",

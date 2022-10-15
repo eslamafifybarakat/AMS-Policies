@@ -1,10 +1,10 @@
 <div class="dialog">
 
   <h1 class="fw-bold fs-4 py-2">
-    {{'email-verfication.title'|translate}}
+    {{'email_verfication.title'|translate}}
   </h1>
   <p class="text-secondary-color lh-base">
-    {{'email-verfication.sub-title'|translate}}
+    {{'email_verfication.sub-title'|translate}}
     <span class="text-main-color fs-5">
       {{data.email}}
     </span>
@@ -18,11 +18,11 @@
 
     <h1 class="text-secondary-color d-flex align-items-center justify-content-end">
       <p>
-        {{'email-verfication.sub-title2'|translate}}
+        {{'email_verfication.sub-title2'|translate}}
       </p>
       <ng-container *ngIf="isWaiting">
         <a (click)="resendCode()" class="text-main-color mx-1">
-          {{'email-verfication.resend'|translate}}
+          {{'email_verfication.resend'|translate}}
         </a>
       </ng-container>
       <ng-container *ngIf="!isWaiting">
@@ -31,7 +31,7 @@
     </h1>
 
     <button type="submit" class="btn btn-solid-main mt-4 w-100" [disabled]="dialogform?.invalid || isloadingBtn">
-      {{'email-verfication.button'|translate}}
+      {{'email_verfication.button'|translate}}
       <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" *ngIf="isloadingBtn"></span>
     </button>
 
