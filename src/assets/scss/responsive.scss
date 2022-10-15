@@ -9,6 +9,12 @@
 
 //----- Components -----//
 @media (max-width: 767px) {
+
+  .mat-dialog-container,
+  .cdk-overlay-pane {
+    width: 100% !important;
+  }
+
   .policy {
     min-height: auto !important;
   }

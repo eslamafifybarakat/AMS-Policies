@@ -6,8 +6,8 @@ export interface Theme {
 export const light: Theme = {
   name: "light",
   properties: {
-    "--text-main-color": " #3DB2FF",
-    "--bg-main-color": " #3DB2FF",
+    "--text-main-color": " #0098fe",
+    "--bg-main-color": " #0098fe",
   },
 };
 
