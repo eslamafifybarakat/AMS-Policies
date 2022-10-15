@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class CheckoutComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
-  isloading: boolean = false;
+  isLoading: boolean = false;
   isEdit: boolean = false;
 
   policyData: any;
@@ -35,97 +35,56 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit(): void {
-    this.isloading = true;
+    this.isLoading = true;
     setTimeout(() => {
-      this.isloading = false;
+      this.isLoading = false;
       this.router.navigate(['/home/policies/list']);
     }, 2000);
   }
 
-  onSubmit(): void {
-    this.isloading = true;
+  // onSubmit(): void {
+  //   this.isLoading = true;
 
-    // let policyDataObj: any;
-    // if (this.isEdit) {
-    //   policyData = {
-    //     policy_id: this.policyData?.policy_id,
-    //     name: this.policyData?.name,
-    //     start_date: this.policyData?.start_date,
-    //     end_date: this.policyData?.end_date,
-    //     birthdate: this.policyData?.birthdate,
-    //     email: this.policyData?.email,
-    //     phone: this.policyData?.phone,
-    //     duration: this.policyData?.duration,
-    //     duration_type: this.policyData?.duration_type,
-    //     passport_image: this.policyData?.passport_image,
-    //     job: this.policyData?.job,
-    //     gender: this.policyData?.gender,
-    //     nationality: this.policyData?.nationality,
-    //     address: this.policyData?.address,
-    //     virus_c: this.policyData?.virus_c,
-    //     virus_corona: this.policyData?.virus_corona,
-    //     suffer: this.policyData?.suffer,
-    //     poor_hearing: this.policyData?.poor_hearing
-    //   }
+  //   let policyDataObj: any;
+  //   policyDataObj = {
+  //     name: this.policyData?.name,
+  //     start_date: this.policyData?.start_date,
+  //     end_date: this.policyData?.end_date,
+  //     birthdate: this.policyData?.birthdate,
+  //     email: this.policyData?.email,
+  //     phone: this.policyData?.phone,
+  //     duration: this.policyData?.duration,
+  //     duration_type: this.policyData?.duration_type,
+  //     passport_image: this.policyData?.passport_image,
+  //     job: this.policyData?.job,
+  //     gender: this.policyData?.gender,
+  //     nationality: this.policyData?.nationality,
+  //     address: this.policyData?.address,
+  //     virus_c: this.policyData?.virus_c,
+  //     virus_corona: this.policyData?.virus_corona,
+  //     suffer: this.policyData?.suffer,
+  //     poor_hearing: this.policyData?.poor_hearing
+  //   }
+  //   this.policyService?.addPolicy(policyDataObj)?.subscribe(
+  //     (res: any) => {
+  //       if (res?.code === 200) {
+  //         this.alertsService.openSweetalert('success', res?.message);
+  //         this.router.navigate(['/home/policies/list']);
+  //         this.isLoading = false;
+  //       } else {
+  //         this.alertsService.openSweetalert('info', res?.message);
+  //         this.isLoading = false;
+  //       }
+  //     },
+  //     (err) => {
+  //       if (err?.message) {
+  //         this.alertsService.openSweetalert('error', err?.message);
+  //       }
+  //       this.isLoading = false;
+  //     });
 
-    //   this.policyService?.updatePolicy(policyDataObj, this.policyData?.policy_id)?.subscribe(
-    //     (res: any) => {
-    //       if (res?.code === 200) {
-    //         this.alertsService.openSweetalert('success',res?.message);
-    // this.router.navigate(['/home/policies/list']);
-    //         this.isloading = false;
-    //       } else {
-    //         this.alertsService.openSweetalert('info',res?.message);
-    //         this.isloading = false;
-    //       }
-    //     },
-    //     (err) => {
-    //     if (err?.message) {
-    //       this.alertsService.openSweetalert('error',err?.message);
-    //     }
-    //       this.isloading = false;
-    //     });
-    // } else {
-    //   policyDataObj = {
-    //     name: this.policyData?.name,
-    //     start_date: this.policyData?.start_date,
-    //     end_date: this.policyData?.end_date,
-    //     birthdate: this.policyData?.birthdate,
-    //     email: this.policyData?.email,
-    //     phone: this.policyData?.phone,
-    //     duration: this.policyData?.duration,
-    //     duration_type: this.policyData?.duration_type,
-    //     passport_image: this.policyData?.passport_image,
-    //     job: this.policyData?.job,
-    //     gender: this.policyData?.gender,
-    //     nationality: this.policyData?.nationality,
-    //     address: this.policyData?.address,
-    //     virus_c: this.policyData?.virus_c,
-    //     virus_corona: this.policyData?.virus_corona,
-    //     suffer: this.policyData?.suffer,
-    //     poor_hearing: this.policyData?.poor_hearing
-    //   }
-
-    //   this.policyService?.addPolicy(policyDataObj)?.subscribe(
-    //     (res: any) => {
-    //       if (res?.code === 200) {
-    //         this.alertsService.openSweetalert('success',res?.message);
-    // this.router.navigate(['/home/policies/list']);
-    //         this.isloading = false;
-    //       } else {
-    //         this.alertsService.openSweetalert('info',res?.message);
-    //         this.isloading = false;
-    //       }
-    //     },
-    //     (err) => {
-    //     if (err?.message) {
-    //       this.alertsService.openSweetalert('error',err?.message);
-    //     }
-    //       this.isloading = false;
-    //     });
-    // }
-    this.cdr.detectChanges();
-  }
+  //   this.cdr.detectChanges();
+  // }
 
   check(type: any): void {
     if (type !== this.filterValue) {

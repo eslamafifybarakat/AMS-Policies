@@ -108,13 +108,16 @@
   }
 
   .notifcation .dropdown-menu {
-    width: 24rem !important;
-    transform: translateX(-54%) !important;
+    width: 22rem !important;
   }
 
   .user-info .dropdown-menu {
     width: 21rem !important;
     transform: translateX(-68%) !important;
+  }
+
+  .dropdown-language .dropdown-menu {
+    transform: translateX(50%);
   }
 }
 
@@ -173,7 +176,7 @@
 
   .mat-dialog-container,
   .cdk-overlay-pane {
-    width: 75% !important;
+    width: auto !important;
   }
 
   .gap-medium-2 {

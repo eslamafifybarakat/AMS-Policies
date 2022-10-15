@@ -477,9 +477,16 @@
               <button class="btn btn-solid-second me-2" (click)="back()">
                 {{'general.cancel' | translate}}
               </button>
-              <button class="btn btn-solid-main me-2" type="submit">
-                {{'general.next' | translate}}
-              </button>
+              <ng-container *ngIf="isEdit; else elseTemplate">
+                <button class="btn btn-solid-main me-2" type="button" (click)="update()">
+                  {{'general.update' | translate}}
+                </button>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <button class="btn btn-solid-main me-2" type="submit">
+                  {{'general.next' | translate}}
+                </button>
+              </ng-template>
             </div>
           </div>
 
@@ -488,3 +495,9 @@
     </form>
   </div>
 </div>
+<ng-container *ngIf="isLoading">
+  <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
+    <div class="spinner-grow" role="status">
+    </div>
+  </div>
+</ng-container>

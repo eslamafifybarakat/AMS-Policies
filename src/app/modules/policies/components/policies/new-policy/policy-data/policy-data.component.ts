@@ -85,7 +85,7 @@ export class PolicyDataComponent implements OnInit {
   }
 
   getPloicyData(id: any): void {
-    this.isLoading = true;
+    // this.isLoading = true;
     // this.policyService?.getPolicyById(id)?.subscribe(
     //   (res) => {
     //     this.policyData = res?.data;
@@ -147,6 +147,59 @@ export class PolicyDataComponent implements OnInit {
   submit(): void {
     console.log(this.policyForm?.value);
     this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+  }
+
+  update(): void {
+
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.router.navigate(['/home/policies/list']);
+    }, 2000);
+
+    // this.isLoading = true;
+
+    // let policyDataObj: any;
+    // if (this.isEdit) {
+    //   policyDataObj = {
+    //     policy_id: this.policyData?.policy_id,
+    //     name: this.policyData?.name,
+    //     start_date: this.policyData?.start_date,
+    //     end_date: this.policyData?.end_date,
+    //     birthdate: this.policyData?.birthdate,
+    //     email: this.policyData?.email,
+    //     phone: this.policyData?.phone,
+    //     duration: this.policyData?.duration,
+    //     duration_type: this.policyData?.duration_type,
+    //     passport_image: this.policyData?.passport_image,
+    //     job: this.policyData?.job,
+    //     gender: this.policyData?.gender,
+    //     nationality: this.policyData?.nationality,
+    //     address: this.policyData?.address,
+    //     virus_c: this.policyData?.virus_c,
+    //     virus_corona: this.policyData?.virus_corona,
+    //     suffer: this.policyData?.suffer,
+    //     poor_hearing: this.policyData?.poor_hearing
+    //   }
+    //   this.policyService?.updatePolicy(policyDataObj, this.policyData?.policy_id)?.subscribe(
+    //     (res: any) => {
+    //       if (res?.code === 200) {
+    //         this.alertsService.openSweetalert('success', res?.message);
+    //         this.router.navigate(['/home/policies/list']);
+    //         this.isLoading = false;
+    //       } else {
+    //         this.alertsService.openSweetalert('info', res?.message);
+    //         this.isLoading = false;
+    //       }
+    //     },
+    //     (err) => {
+    //       if (err?.message) {
+    //         this.alertsService.openSweetalert('error', err?.message);
+    //       }
+    //       this.isLoading = false;
+    //     });
+    // }
+    this.cdr.detectChanges();
   }
   back(): void {
     this.location.back();
