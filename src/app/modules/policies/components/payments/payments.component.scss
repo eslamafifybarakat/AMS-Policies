@@ -3,6 +3,11 @@
   background: var(--bg-white-color);
   border-radius: 10px;
 
+  table {
+    border-radius: 0.3rem !important;
+    overflow: hidden;
+  }
+
   .content-table {
     overflow-x: scroll;
   }
