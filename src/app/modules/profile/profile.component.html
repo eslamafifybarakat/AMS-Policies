@@ -3,82 +3,6 @@
     <div class="col-lg-3 col-md-5 col-sm-12">
       <div class="user position-relative p-3">
         <div class="h-100">
-          <!-- <div class="share">
-            <div class="btn-group d-flex justify-content-center align-items-center">
-              <button class="btn text-muted-color dropdown-toggle position-relative" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ms-3 fas fa-share scaleX-rtl"></i>
-              </button>
-
-              <ul class="dropdown-menu drop border-0 shadow p-3 round mt-2">
-                <div class="m-3 d-flex justify-content-between">
-                  <h3 class="fs-5">
-                    {{"general.share"|translate}}
-                  </h3>
-                  <p><i class="fas fa-share"></i></p>
-                </div>
-                <div class="row alert">
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='twitter' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='linkedIn' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='facebook' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='whatsapp' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='instagram' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='discard' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                  <div class="col-3">
-                    <li>
-                      <app-share-social-btns type='telegram' [shareUrl]='link'>
-                      </app-share-social-btns>
-                    </li>
-                  </div>
-                </div>
-                <div class="m-3">
-                  <h5 class="text-start">
-                    {{"general.copy_link"|translate}}
-                  </h5>
-                  <a ngxClipboard [cbContent]="link">
-                    <div
-                      class="d-flex justify-content-between align-items-center bg-light text-muted-color py-2 px-3 rounded mt-3">
-                      <p class="mb-0">
-                        <input class="border-0 bg-transparent link" type="text" [value]="link">
-                      </p>
-                      <p class="mb-0"><i class="far fa-copy"></i></p>
-                    </div>
-                  </a>
-                </div>
-              </ul>
-            </div>
-          </div> -->
-
           <div class="d-flex flex-column justify-content-center align-content-center my-3">
             <div class="text-center">
               <img [src]="cropped || 'assets/image/userprofile.jpg'" class="img-user rounded p-1 shadow-lg"
@@ -111,7 +35,7 @@
 
           <div class="d-flex align-items-center justify-content-center">
             <div>
-              <h1 class="fs-4 mb-2">
+              <h1 class="text-center fs-6 mb-2">
                 Eslam Afify Barakat
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="green"
@@ -121,14 +45,6 @@
                   </svg>
                 </span>
               </h1>
-              <!-- <div class="d-flex justify-content-center align-items-center mt-3">
-                <button class="btn btn-solid-main me-2 user-btn w-50">
-                  {{'general.chat' | translate}}
-                </button>
-                <button class="btn btn-solid-second user-btn w-50" (click)="followChange()">
-                  {{followvalue}}
-                </button>
-              </div> -->
             </div>
           </div>
           <hr class="text-secondary-color mt-3" />
