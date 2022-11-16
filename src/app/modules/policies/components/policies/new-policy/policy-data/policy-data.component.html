@@ -189,6 +189,35 @@
             <div class="mb-3">
               <div>
                 <label class="form-label">
+                  {{'form.alt_phone'|translate}}
+                </label>
+                <ngx-intl-tel-input class="form-control"
+                  [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
+                  [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true" name="alt_phone"
+                  formControlName="alt_phone"
+                  [class.is-invalid]="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid"
+                  [class.is-valid]="formControls?.['alt_phone']?.dirty && formControls?.['alt_phone']?.valid">
+                </ngx-intl-tel-input>
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid">
+                  <div *ngIf="formControls?.['alt_phone']?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{'validations.reuired_field'|translate}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
                   {{'form.email'|translate}}
                 </label>
                 <input type="email" class="form-control" formControlName="email"
@@ -330,7 +359,7 @@
                   [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
                   [class.border-green]="(formControls?.['duration']?.dirty) && formControls?.['duration']?.valid">
                   <ng-container
-                    *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'; else elseEnable">
+                    *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'year'; else elseEnable">
                     <input class="form-control" type="number" placeholder="{{'placeholder.duration' | translate}}"
                       [disabled]="true">
                   </ng-container>
@@ -343,8 +372,11 @@
                       <mat-radio-button value="day" class="me-2">
                         {{'general.day' | translate}}
                       </mat-radio-button>
-                      <mat-radio-button value="month">
+                      <mat-radio-button value="month" class="me-2">
                         {{'general.month' | translate}}
+                      </mat-radio-button>
+                      <mat-radio-button value="year">
+                        {{'general.year' | translate}}
                       </mat-radio-button>
                     </mat-radio-group>
                   </div>
@@ -359,7 +391,8 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'">
+                <div
+                  *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'&& policyForm?.value?.duration_type !== 'year'">
                   <span>
                     <i class="fas fa-info-circle text-info"></i>
                     <span class="text-muted fs-6 px-1">
@@ -371,7 +404,7 @@
             </div>
           </div>
 
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+          <!-- <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-3">
               <div>
                 <label class="form-label">
@@ -415,7 +448,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <hr class="text-secondary-color my-4" />
 

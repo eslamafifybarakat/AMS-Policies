@@ -13,6 +13,7 @@
     "no": "No",
     "day": "Day",
     "month": "Month",
+    "year": "Year",
     "details": "Details",
     "enter": "Enter",
     "place_order": "Place Order",
@@ -79,10 +80,10 @@
     "name_length": "Name length must be 3–20"
   },
   "form": {
-    "virus_c": "Have you ever been infected with C ?",
-    "virus_corona": "Have you ever had any type of corona virus ?",
-    "suffer": "Do you suffer from any deficiency in any part of your body ?",
-    "poor_hearing": "Do you suffer from poor hearing or vision, or do you have a chronic disease ?",
+    "virus_c": "Did you have virus C cindection before?",
+    "virus_corona": "Did you have any covid-19 virus before?",
+    "suffer": "Did you suffer from any physicaldisablity?",
+    "poor_hearing": "Did you suffer from any hearing or vision dedects or have any chronic diseas?",
     "passport_image": "Passport Image",
     "duration": "Duration",
     "change_password_attention": "Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!",
@@ -109,6 +110,7 @@
     "confirm_password": "Confirm Password",
     "email": "Email",
     "phone": "Phone Number",
+    "alt_phone": "Alternative Phone Number",
     "date_of_birth": "Date of birth",
     "confirm": "Confirm",
     "send": "Send"

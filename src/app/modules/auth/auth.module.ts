@@ -13,6 +13,8 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
 import { RegisterComponent } from './components/register/register.component';
 import { VerfiyPasswordComponent } from './components/verfiy-password/verfiy-password.component';
 
+import { CodeInputModule } from 'angular-code-input';
+
 @NgModule({
   declarations: [
     AuthComponent,
@@ -29,6 +31,7 @@ import { VerfiyPasswordComponent } from './components/verfiy-password/verfiy-pas
     ReactiveFormsModule,
     SharedModule,
     NgxIntlTelInputModule,
+    CodeInputModule
   ]
 
 })

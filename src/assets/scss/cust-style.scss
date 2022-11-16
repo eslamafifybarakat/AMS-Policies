@@ -1124,48 +1124,20 @@ li.view-hover:hover {
 
 /*END PROFILE*/
 
-
-/*---------- START ANIMATIONS ----------*/
-.aminate-hero {
-  -webkit-animation: move-three 7s ease-in-out infinite;
-  animation: move-three 7s ease-in-out infinite;
+code-input {
+  direction: ltr !important;
+  --item-background: #fafafa !important;
 }
 
-@-webkit-keyframes move-three {
-  0% {
-    -webkit-transform: translateX(0) translateY(-90px);
-    transform: translateX(0) translateY(-90px);
-  }
-
-  50% {
-    -webkit-transform: translateX(0) translateY(-50px);
-    transform: translateX(0) translateY(-50px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0) translateY(-90px);
-    transform: translateX(0) translateY(-90px);
-  }
+[_nghost-ygk-c326] input[_ngcontent-ygk-c326] {
+  height: calc(2.98em + 0.75rem + 2px) !important;
 }
 
-@keyframes move-three {
-  0% {
-    -webkit-transform: translateX(0) translateY(-90px);
-    transform: translateX(0) translateY(-90px);
-  }
-
-  50% {
-    -webkit-transform: translateX(0) translateY(-50px);
-    transform: translateX(0) translateY(-50px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0) translateY(-90px);
-    transform: translateX(0) translateY(-90px);
+.otp-code {
+  input {
+    height: calc(2.98em + 0.75rem + 2px) !important;
   }
 }
-
-/*---------- END ANIMATIONS ----------*/
 
 /* ===== Start Owl-Carousel Customization ===== */
 .owl-theme .owl-dots .owl-dot.active span,

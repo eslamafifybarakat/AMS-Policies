@@ -16,6 +16,7 @@ export class VerfiyPasswordComponent implements OnInit {
 
   time: any = Date.now() + ((60 * 1000) * 1); // current time + 1 minute ///
   minute: any;
+  codeLength:any;
 
   constructor(
     public dialogRef: MatDialogRef<VerfiyPasswordComponent>,
@@ -28,27 +29,19 @@ export class VerfiyPasswordComponent implements OnInit {
     this.minute = this.time;
   }
 
-  dialogForm = this.fb.group({
-    txt1: ['', Validators.required],
-    txt2: ['', Validators.required],
-    txt3: ['', Validators.required],
-    txt4: ['', Validators.required]
-  })
-
-  move(e: any, p: any, c: any, n: any): any {
-    var length = c.value.length;
-    var maxlength = c.getAttribute('maxlenght');
-    if (length == maxlength) {
-      if (n != '') {
-        n.focus();
-      }
-    }
-    if (e.key === "Backspace") {
-      if (p != '') {
-        p.focus();
-      }
-    }
+  // this called every time when user changed the code
+  onCodeChanged(code: string): void {
+    console.log(code);
+    this.codeLength = code;
   }
+
+  // this called only if user entered full code
+  onCodeCompleted(code: string): void {
+    console.log(code);
+    this.codeLength = code;
+    console.log(this.codeLength);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
