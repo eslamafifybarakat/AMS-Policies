@@ -79,6 +79,12 @@ export class LogInComponent implements OnInit {
   }
 
   submit(): void {
+    // let loginData= {
+    //   email:this.loginform?.value?.email,
+    //   password:this.loginform?.value?.password,
+    //   device_location_info :{}
+    //     }
+
     this.loginData = this._AuthUser?.login(this.loginform?.value?.email, this.loginform?.value?.password);
     if (this.loginData['status'] == true) {
       this.isloadingBtn = true;

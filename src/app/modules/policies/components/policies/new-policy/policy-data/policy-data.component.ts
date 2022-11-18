@@ -68,7 +68,7 @@ export class PolicyDataComponent implements OnInit {
     phone: ['', [Validators.required]],
     alt_phone: ['', []],
     duration: ['', [Validators.required]],
-    // passport_image: [null, [Validators.required]],
+    passport_image: [null, [Validators.required]],
     duration_type: ['', [Validators.required]],
     job: [null, [Validators.required]],
     gender: [null, [Validators.required]],
