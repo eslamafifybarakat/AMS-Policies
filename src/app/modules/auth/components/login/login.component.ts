@@ -1,3 +1,4 @@
+import { DeviceLocationService } from './../../../../services/device-location.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
@@ -45,7 +46,8 @@ export class LogInComponent implements OnInit {
     private location: Location,
     public _AuthUser: AuthUserService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private deviceLocationService:DeviceLocationService
   ) { }
 
   ngOnInit(): void {
@@ -79,43 +81,46 @@ export class LogInComponent implements OnInit {
   }
 
   submit(): void {
-    // let loginData= {
-    //   email:this.loginform?.value?.email,
-    //   password:this.loginform?.value?.password,
-    //   device_location_info :{}
-    //     }
+    let loginData= {
+      email:this.loginform?.value?.email,
+      password:this.loginform?.value?.password,
+      device_location_info :this.deviceLocationService.device_location_info
+        }
 
-    this.loginData = this._AuthUser?.login(this.loginform?.value?.email, this.loginform?.value?.password);
-    if (this.loginData['status'] == true) {
-      this.isloadingBtn = true;
-      window.localStorage.setItem("isauth", "true");
+        console.log(loginData);
+        this.router.navigate(['auth/confirm-login-code'])
 
-      setTimeout(() => {
-        this.isloadingBtn = false;
-        let dialogRef = this.dialog.open(ConfirmLoginCodeComponent, {
-          width: "auto",
-          data: {
-            email: userInfo.email
-          }
-        });
-        dialogRef.afterClosed().subscribe((result: any) => {
-          this.isloadingBtn = true;
-          console.log(result);
-          if (result?.verified) {
-            setTimeout(() => {
-              this.router.navigate(['/home']);
-              this.alertsService.openSweetalert("success", this.translateService.instant('general.loggin_Success'));
-              this.isloadingBtn = false;
-            }, 500);
-          } else {
-            this.isloadingBtn = false;
-          }
-        });
-      }, 1000);
-    }
-    else {
-      alert(this.loginData['message']);
-    }
+    // this.loginData = this._AuthUser?.login(this.loginform?.value?.email, this.loginform?.value?.password);
+    // if (this.loginData['status'] == true) {
+    //   this.isloadingBtn = true;
+    //   window.localStorage.setItem("isauth", "true");
+
+    //   setTimeout(() => {
+    //     this.isloadingBtn = false;
+    //     let dialogRef = this.dialog.open(ConfirmLoginCodeComponent, {
+    //       width: "auto",
+    //       data: {
+    //         email: userInfo.email
+    //       }
+    //     });
+    //     dialogRef.afterClosed().subscribe((result: any) => {
+    //       this.isloadingBtn = true;
+    //       console.log(result);
+    //       if (result?.verified) {
+    //         setTimeout(() => {
+    //           this.router.navigate(['/home']);
+    //           this.alertsService.openSweetalert("success", this.translateService.instant('general.loggin_Success'));
+    //           this.isloadingBtn = false;
+    //         }, 500);
+    //       } else {
+    //         this.isloadingBtn = false;
+    //       }
+    //     });
+    //   }, 1000);
+    // }
+    // else {
+    //   alert(this.loginData['message']);
+    // }
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-<div class="dialog">
+<!-- <div class="dialog">
 
   <h1 class="fw-bold fs-4 py-2">
     {{'email_verfication.title'|translate}}
@@ -10,7 +10,7 @@
     </span>
   </p>
 
-  <form [formGroup]="dialogform" (ngSubmit)="confirm()">
+  <form [formGroup]="confirmLoginForm" (ngSubmit)="confirm()">
 
     <div class="d-flex align-items-center justify-content-center my-4">
       <input type="text" formControlName="code" class="form-control">
@@ -30,18 +30,87 @@
       </ng-container>
     </h1>
 
-    <button type="submit" class="btn btn-solid-main mt-4 w-100" [disabled]="dialogform?.invalid || isloadingBtn">
+    <button type="submit" class="btn btn-solid-main mt-4 w-100" [disabled]="confirmLoginForm?.invalid || isloadingBtn">
       {{'email_verfication.button'|translate}}
       <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" *ngIf="isloadingBtn"></span>
     </button>
 
   </form>
 
-</div>
+</div> -->
 
-<ng-container *ngIf="isloading">
+ <ng-container *ngIf="isloadingBtn">
   <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
     <div class="spinner-grow" role="status">
     </div>
   </div>
 </ng-container>
+
+<div class="forget-password overflow-hidden bg-white-color">
+  <div class="row d-flex justify-content-center align-items-center">
+
+    <div class="col-xl-5 col-md-6 col-sm-8 col-12 h-100">
+      <div class="d-flex flex-column justify-content-center align-items-center min-vh-100 mx-5">
+
+        <div class="d-flex justify-content-between align-items-center select-language w-100 mt-3">
+          <img *ngIf="currentLanguage=='ar'" src="assets/image/us.svg" class="fit-contain lang"
+            (click)="translationService?.changeLang('en')">
+          <img *ngIf="currentLanguage=='en'" src="assets/image/eg.svg" class="fit-contain lang"
+            (click)="translationService?.changeLang('ar')">
+          <i class="fa fa-arrow-left scaleX-rtl" style="font-size: 1.5rem" (click)="back()"></i>
+        </div>
+
+        <h2 class="text-black-color mt-3 fs-3">
+          {{'acount_verification.title'|translate}}
+        </h2>
+
+        <div class="bg-second-color p-4 rounded-25 color-secondry mt-4 lh-base w-100">
+          <!-- {{'general.enter'| translate}} <span class="fw-bold"> {{'general.your_email'| translate}} </span>
+          {{'general.to_send'| translate}} <span class="fw-bold"> {{'general.verify_code'| translate}} </span>
+          {{'general.to_continue'| translate}} -->
+          <span>
+    {{'email_verfication.sub-title'|translate}}
+          </span>
+        </div>
+
+        <form [formGroup]="confirmLoginForm" (ngSubmit)="confirm()" class="w-100">
+          <div class="d-flex align-items-center justify-content-center my-4">
+            <code-input class="otp-code" [isCodeHidden]="false" [codeLength]="5" (codeChanged)="onCodeChanged($event)"
+              (codeCompleted)="onCodeCompleted($event)">
+            </code-input>
+
+          </div>
+          <div class="my-3">
+              <label class="form-label">
+                {{'form.email'|translate}}
+              </label>
+              <input type="email" class="form-control" [value]="confirmLoginForm.value.email"
+                placeholder="{{'placeholder.email' | translate}}" [disabled]="true">
+          </div>
+
+          <h1 class="text-secondary-color d-flex align-items-center justify-content-end">
+            <p>
+              {{'email_verfication.sub-title2'|translate}}
+            </p>
+            <ng-container *ngIf="isWaiting">
+              <a (click)="resendCode()" class="text-main-color mx-1">
+                {{'email_verfication.resend'|translate}}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="!isWaiting">
+              <app-countdown [customTitle]="minute" (emitServicePrice)="printTimeEnd($event)"></app-countdown>
+            </ng-container>
+          </h1>
+
+          <button type="submit" class="btn btn-solid-main mt-4 w-100" [disabled]="codeLength?.length<5 || isloadingBtn">
+            {{'email_verfication.button'|translate}}
+            <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" *ngIf="isloadingBtn"></span>
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+

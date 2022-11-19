@@ -138,6 +138,9 @@
     "resend": " إعادة إرسال",
     "button": "إرسال"
   },
+  "acount_verification":{
+    "title":"تأكيد الحساب"
+  },
   "language": {
     "english": " اللغة الإنجليزية",
     "arabic": "اللغة العربية"

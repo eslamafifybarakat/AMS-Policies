@@ -49,27 +49,30 @@ export class ForgrtPasswordComponent implements OnInit {
 
   submit(): void {
     this.isloadingBtn = true;
-    setTimeout(() => {
-      this.isloadingBtn = false;
-      let dialogRef = this.dialog.open(VerfiyPasswordComponent, {
-        width: "500px",
-        data: {
-          email: this.forgetPassword?.value?.email
-        }
-      });
-      dialogRef.afterClosed().subscribe((result: any) => {
-        this.isloadingBtn = true;
-        console.log(result);
-        if (result?.verified) {
-          setTimeout(() => {
-            this.router.navigate(['/auth/new-password']);
-            this.isloadingBtn = false;
-          }, 500);
-        } else {
-          this.isloadingBtn = false;
-        }
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   this.isloadingBtn = false;
+    //   let dialogRef = this.dialog.open(VerfiyPasswordComponent, {
+    //     width: "500px",
+    //     data: {
+    //       email: this.forgetPassword?.value?.email
+    //     }
+    //   });
+    //   dialogRef.afterClosed().subscribe((result: any) => {
+    //     this.isloadingBtn = true;
+    //     console.log(result);
+    //     if (result?.verified) {
+    //       setTimeout(() => {
+    //         this.router.navigate(['/auth/new-password']);
+    //         this.isloadingBtn = false;
+    //       }, 500);
+    //     } else {
+    //       this.isloadingBtn = false;
+    //     }
+    //   });
+    // }, 1000);
+
+    console.log(this.forgetPassword.value);
+    this.router.navigate(['/auth/email-verification'])
   }
   back(): void {
     this.location.back();

@@ -7,7 +7,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   providedIn: 'root'
 })
 export class DeviceLocationService {
-
+  device_location_info :any=[]
   constructor(
     private http: HttpClient,
     private deviceService: DeviceDetectorService
@@ -20,6 +20,11 @@ export class DeviceLocationService {
       expire.setTime(time);
       console.log(res);
       console.log(this.device);
+      this.device_location_info.push(res);
+      this.device_location_info.push(this.device);
+      // this.device_location_info ={...res,...this.device}
+      console.log(this.device_location_info);
+
 
       Cookie.set("userLocationData", JSON.stringify(res), expire);
       window.localStorage.setItem('userLocationData', JSON.stringify(res));

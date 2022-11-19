@@ -137,6 +137,9 @@
     "resend": " Resend",
     "button": "Send"
   },
+  "acount_verification":{
+    "title":"Acount Verification"
+  },
   "language": {
     "english": "English",
     "arabic": "Arabic"

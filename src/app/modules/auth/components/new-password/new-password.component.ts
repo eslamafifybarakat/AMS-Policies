@@ -67,6 +67,8 @@ export class NewPasswordComponent implements OnInit {
     setTimeout(() => {
       this.isloadingBtn = false;
       this.alertsService.openSweetalert('info', this.translateService.instant('general.check_email'));
+      console.log(this.newPasswordForm.value);
+
       this.router.navigate(['/auth/login']);
     }, 2000);
   }

@@ -1,3 +1,5 @@
+import { VerfiyPasswordComponent } from './components/verfiy-password/verfiy-password.component';
+import { ConfirmLoginCodeComponent } from './components/confirm-login-code/confirm-login-code.component';
 
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -34,6 +36,20 @@ const routes: Routes = [
     component: NewPasswordComponent,
     data: {
       title: 'titles.new_password'
+    }
+  },
+  {
+    path: 'confirm-login-code',
+    component: ConfirmLoginCodeComponent,
+    data: {
+      title: ''
+    }
+  },
+  {
+    path: 'email-verification',
+    component: VerfiyPasswordComponent,
+    data: {
+      title: ''
     }
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
