@@ -215,14 +215,14 @@
 /* Start Pagination Customization */
 ngb-pagination {
   .page-item.active .page-link {
-    background-color: var(--bg-main-color) !important;
-    border-color: var(--text-main-color) !important;
+    background-color: #ff3b3b !important;
+    border-color: #ff3b3b !important;
     color: var(--text-white-color) !important;
   }
 
   .page-item .page-link {
     border-radius: 0.5rem !important;
-    color: var(--text-main-color) !important;
+    color: #ff3b3b !important;
     margin: 0 0.5rem;
   }
 }
@@ -493,6 +493,10 @@ a {
   width: 95%;
 }
 
+.btn-sm {
+  padding: 0.5rem 1rem !important;
+}
+
 .btn-solid-main {
   min-width: 7rem;
   color: var(--text-white-color);
@@ -530,6 +534,83 @@ a {
     transition: all 0.4s ease-in-out;
   }
 }
+
+.btn-success {
+  min-width: 7rem;
+  color: var(--text-white-color);
+  background-color: green;
+  border-color: green;
+  border-radius: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    background-color: var(--text-white-color);
+    border-color: green !important;
+    border-radius: 7px;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+.btn-success:hover {
+  background-color: var(--text-white-color);
+  color: green;
+  border-color: green !important;
+
+  &::after {
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+.btn-danger {
+  min-width: 7rem;
+  color: var(--text-white-color);
+  background-color: red;
+  border-color: red;
+  border-radius: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    background-color: var(--text-white-color);
+    border-color: red !important;
+    border-radius: 7px;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+.btn-danger:hover {
+  background-color: var(--text-white-color);
+  color: red;
+  border-color: red !important;
+
+  &::after {
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
 
 .btn-solid-second {
   min-width: 7rem;

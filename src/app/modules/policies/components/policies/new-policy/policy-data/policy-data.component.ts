@@ -21,7 +21,9 @@ export class PolicyDataComponent implements OnInit {
   policyData: any = null;
 
   passportImageFile: File[] = [];
+  profileImageFile: File[] = [];
   isMaxImage: boolean = false;
+  isMaxProfileImage: boolean = false;
 
   jobNames = ['Uber', 'Microsoft', 'Flexigen'];
 
@@ -69,6 +71,8 @@ export class PolicyDataComponent implements OnInit {
     alt_phone: ['', []],
     duration: ['', [Validators.required]],
     passport_image: [null, [Validators.required]],
+    profile_image: [null, [Validators.required]],
+    pass_num: [null, [Validators.required]],
     duration_type: ['', [Validators.required]],
     job: [null, [Validators.required]],
     gender: [null, [Validators.required]],
@@ -122,14 +126,6 @@ export class PolicyDataComponent implements OnInit {
   }
 
   passportImageFileChangeEvent(event: any): void {
-    // for (var i = 0; i < event?.target?.files?.length; i++) {
-    //   if (event?.target?.files[i]?.size <= 5120 * 1024) {
-    //     this.isMaxImage = false;
-    //     this.passportImageFile.push(event?.target?.files[i]);
-    //   } else {
-    //     this.isMaxImage = true;
-    //   }
-    // }
     if (event?.target?.files[0]?.size <= 5120 * 1024) {
       this.isMaxImage = false;
       this.passportImageFile[0] = event?.target?.files[0];
@@ -142,6 +138,22 @@ export class PolicyDataComponent implements OnInit {
       return value?.name !== name;
     });
     this.policyForm?.get('passport_image')?.reset();
+    this.cdr.detectChanges();
+  }
+
+  profileImageFileChangeEvent(event: any): void {
+    if (event?.target?.files[0]?.size <= 5120 * 1024) {
+      this.isMaxProfileImage = false;
+      this.profileImageFile[0] = event?.target?.files[0];
+    } else {
+      this.isMaxProfileImage = true;
+    }
+  }
+  onRemoveProfileImage(name: any): void {
+    this.profileImageFile = this.profileImageFile?.filter((value: any) => {
+      return value?.name !== name;
+    });
+    this.policyForm?.get('profile_image')?.reset();
     this.cdr.detectChanges();
   }
 

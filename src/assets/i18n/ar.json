@@ -3,9 +3,13 @@
     "enter_name_correctly": "أدخل الإسم صحيحا",
     "confirm_delete": "تأكيد الحذف",
     "confirm_delete_qu": "هل حقا تريد حذف",
-    "title_header": "إدارة السياسات",
+    "title_header": "إدارة الوثائق",
     "id": "الرقم التعريفي",
-    "KEEP": "احتفظ",
+    "export": "تصدير",
+    "print": "طباعة",
+    "keep": "احتفظ",
+    "asc": "تصاعدي",
+    "desc": "تنازلي",
     "item": "العنصر",
     "count": "عدد",
     "total": "الإجمالي",
@@ -31,8 +35,11 @@
     "comming_soon": "قريبا...",
     "update_image": "تحديث الصورة",
     "new": "جديد",
-    "direct": "مباشر",
-    "indirect": "غير مباشر",
+    "active": "فعال",
+    "pending": "منتظر",
+    "canceled": "تم إلغاؤه",
+    "expired": "منتهي",
+    "under_review": "تحت المراجعة",
     "type": "النوع",
     "cancel": "إلغاء",
     "deactivate": "إلغاء التفعيل",
@@ -50,6 +57,7 @@
     "male": "ذكر",
     "female": "أنثي",
     "actions": "الإجراءات",
+    "duration": "مدة الوثيقة",
     "view": "عرض",
     "delete": "حذف",
     "update": "تحديث",
@@ -85,6 +93,7 @@
     "suffer": "هل تعاني من أي إعاقة جسدية؟",
     "poor_hearing": "هل تعاني من ضعف السمع أو الرؤية ، أو أي أمراض مزمنة؟",
     "passport_image": "صورة جواز السفر",
+    "profile_image": "صورة شخصية",
     "duration": "المدة",
     "change_password_attention": "تكوين كلمات مرور المستخدم لتنتهي صلاحيتها بشكل دوري. سيحتاج المستخدمون إلى تحذير من انتهاء صلاحية كلمات المرور الخاصة بهم ، أو قد يتم حظرهم عن غير قصد من النظام!",
     "change_password": "تغيير كلمة المرور",
@@ -93,6 +102,7 @@
     "login": "تسجيل دخول",
     "policy_id": "الرقم التعريفي",
     "job": "الوظيفة",
+    "pass_num": "رقم جواز السفر",
     "address": "العنوان",
     "passport_num": "رقم جواز السفر",
     "nationality": "الجنسية",
@@ -117,6 +127,7 @@
     "send": "إرسال"
   },
   "placeholder": {
+    "pass_num": "أدخل رقم جواز السفر",
     "duration": "أدخل المدة",
     "company": "أدخل اسم الشركة",
     "id": "أدخل رقم الهوية",
@@ -138,8 +149,8 @@
     "resend": " إعادة إرسال",
     "button": "إرسال"
   },
-  "acount_verification":{
-    "title":"تأكيد الحساب"
+  "acount_verification": {
+    "title": "تأكيد الحساب"
   },
   "language": {
     "english": " اللغة الإنجليزية",
@@ -151,16 +162,16 @@
   },
   "policies": {
     "payment_history": "سجل عمليات الدفع",
-    "policy_data": "معلومات السياسة",
+    "policy_data": "معلومات الوثيقة",
     "our_partner": "عملائنا",
-    "transactions": "تحويلاتك",
-    "Purchase": "سياسة الشراء",
-    "refunded": "سياسة الرفض",
+    "transactions": "العمليات",
+    "Purchase": "وثائق تأمين تم شراؤها",
+    "refunded": "وثائق تأمين تم رفضها",
     "bounce_rate": "معدل الإرتداد",
-    "policy_caregories": "فئات السياسة",
-    "dashboard": "لوحة التحكم",
-    "policies": "السياسات",
-    "payments": "وسائل الدفع"
+    "policy_caregories": "وثائق التأمين",
+    "dashboard": "الرئيسية",
+    "policies": "الوثائق",
+    "payments": "عمليات الدفع"
   },
   "notifcation": {
     "not-title": "اشعارات",
@@ -174,14 +185,14 @@
     "signout": "تسجيل الخروج"
   },
   "polices_list": {
-    "amount": "الكمية",
+    "amount": "رسوم الوثيقة",
     "description": "الوصف",
-    "sale_id": "الرقم",
+    "sale_id": "رقم",
     "customer_name": "اسم العميل",
-    "customer_id": "تعريف العميل",
-    "invoice_price": "سعر الفاتورة",
-    "establish_date": "تاريخ الإنشاء",
-    "new_policy": "سياسة جديدة",
+    "customer_id": "الرقم المرجعي",
+    "invoice_price": "رسوم الوثيقة",
+    "establish_date": "تاريخ الإصدار",
+    "new_policy": "وثيقة جديدة",
     "clients": "العملاء"
   },
   "profile": {
@@ -203,11 +214,11 @@
     "personal_info_text": "تحديث معلوماتك الشخصية"
   },
   "titles": {
-    "policy_data": "معلومات السياسة",
+    "policy_data": "بيانات الوثيقة",
     "checkout": "الدفع",
-    "payments": "وسائل الدفع",
-    "policies": "السياسات",
-    "dashboard": "لوحة التحكم",
+    "payments": "عمليات الدفع",
+    "policies": "وثائق التأمين",
+    "dashboard": "الرئيسية",
     "home": "الرئيسية",
     "sales": "المبيعات",
     "about": "من نحن",

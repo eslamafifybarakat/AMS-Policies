@@ -5,7 +5,11 @@
     "confirm_delete_qu": "Are sure to delete",
     "title_header": "Policies Management",
     "id": "ID",
+    "export": "Export",
+    "print": "Print",
     "keep": "Keep",
+    "asc": "Ascend",
+    "desc": "descend",
     "item": "Item",
     "count": "Count",
     "yes": "Yes",
@@ -32,8 +36,11 @@
     "update_image": "Update Image",
     "cancel": "Cancel",
     "new": "New",
-    "direct": "Direct",
-    "indirect": "Indirect",
+    "active": "Active",
+    "pending": "Pending",
+    "canceled": "Canceled",
+    "expired": "Expired",
+    "under_review": "Under Review",
     "type": "Type",
     "deactivate": "Deactivate",
     "share": "Share",
@@ -50,6 +57,7 @@
     "male": "Male",
     "female": "Female",
     "actions": "Actions",
+    "duration": "Duration",
     "view": "View",
     "delete": "Delete",
     "update": "Update",
@@ -85,6 +93,7 @@
     "suffer": "Did you suffer from any physicaldisablity?",
     "poor_hearing": "Did you suffer from any hearing or vision dedects or have any chronic diseas?",
     "passport_image": "Passport Image",
+    "profile_image": "Profile Image",
     "duration": "Duration",
     "change_password_attention": "Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!",
     "change_password": "Change Password",
@@ -116,6 +125,7 @@
     "send": "Send"
   },
   "placeholder": {
+    "pass_num": "Enter passport number",
     "duration": "Enter duration",
     "company": "Enter company name",
     "id": "Enter id",
@@ -137,8 +147,8 @@
     "resend": " Resend",
     "button": "Send"
   },
-  "acount_verification":{
-    "title":"Acount Verification"
+  "acount_verification": {
+    "title": "Acount Verification"
   },
   "language": {
     "english": "English",
@@ -153,11 +163,11 @@
     "policy_data": "Policy Data",
     "our_partner": "Our Partners",
     "transactions": "Your Transactions",
-    "Purchase": "Purchase Policy",
-    "refunded": "Refunded Policy",
+    "Purchase": "Purchased Policies",
+    "refunded": "Refunded Policies",
     "bounce_rate": "Bounce Rate",
-    "policy_caregories": "Policy Caregories",
-    "dashboard": "Dashboard",
+    "policy_caregories": "Policies",
+    "dashboard": "Home",
     "policies": "Policies",
     "payments": "Payments"
   },
@@ -173,13 +183,13 @@
     "signout": "SignOut"
   },
   "polices_list": {
-    "amount": "Amount",
+    "amount": "Policy Fees",
     "description": "Description",
-    "sale_id": "Sale Id",
+    "sale_id": "No.",
     "customer_name": "Customer Name",
-    "customer_id": "Customer Id",
-    "invoice_price": "Invoice Price",
-    "establish_date": "Establish Date",
+    "customer_id": "Reference No",
+    "invoice_price": "Fees",
+    "establish_date": "Issue Date",
     "new_policy": "New Ploicy",
     "clients": "Clients"
   },
@@ -206,7 +216,7 @@
     "checkout": "Checkout",
     "payments": "Payments",
     "policies": "Policies",
-    "dashboard": "Dashboard",
+    "dashboard": "Home",
     "home": "Home",
     "sales": "Sales",
     "about": "About",

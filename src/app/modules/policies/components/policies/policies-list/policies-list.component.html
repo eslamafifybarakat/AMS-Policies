@@ -33,19 +33,249 @@
         </button>
       </div>
       <hr class="color-grey-400" />
+      <div class="d-flex align-items-center justify-content-end gap-2">
+        <button type="button" class="btn btn-solid-main btn-sm">{{'general.export' | translate}}</button>
+        <button type="button" class="btn btn-outline-main btn-sm">{{'general.print' | translate}}</button>
+        <button type="button" class="btn btn-success btn-sm"
+          (click)="isWaitingAction?'':goToDetails(1)">{{'general.edit' | translate}}</button>
+        <button type="button" class="btn btn-danger btn-sm"
+          (click)="isWaitingAction?'':onaDeleteItem({name:'eslam'})">{{'general.delete' | translate}}</button>
+      </div>
       <div class="content-table mt-4">
         <table class="table color-grey-400 w-100">
           <thead class="bg-secondary-color text-white-color">
             <tr>
-              <th scope="col">{{'polices_list.sale_id' | translate}}</th>
-              <th scope="col">{{'polices_list.customer_name' | translate}}</th>
-              <th scope="col">{{'polices_list.customer_id' | translate}}</th>
-              <th scope="col">{{'polices_list.establish_date' | translate}}</th>
-              <th scope="col">{{'polices_list.invoice_price' | translate}}</th>
-              <th scope="col">{{'general.type' | translate}}</th>
-              <th scope="col" class="px-3">{{'general.status' | translate}}</th>
-              <th scope="col">{{'general.actions' | translate}}</th>
-              <!-- <th scope="col"></th> -->
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'polices_list.sale_id' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'polices_list.customer_name' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'polices_list.customer_id' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'polices_list.establish_date' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'polices_list.invoice_price' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'general.duration' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
+              <th scope="col" class="px-3">
+                <span class="d-flex align-items-center">
+                  <span class="w-100 text-truncate">{{'general.status' | translate}}</span>
+                  <div class="dropdown mx-1">
+                    <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="d-flex">
+                        <i class="fas fa-arrow-up text-white-color fs-dot-status"></i>
+                        <i class="fas fa-arrow-down text-white-color fs-dot-status"></i>
+                      </div>
+                    </button>
+                    <ul class="dropdown-menu shadow border-0">
+                      <a (click)="isWaitingAction? '': ''">
+                        <li
+                          class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
+                          <span class="text-muted">
+                            {{'general.asc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-up text-muted"></i>
+                        </li>
+                      </a>
+                      <a (click)="isWaitingAction? '': ''">
+                        <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
+                          <span class="text-muted">
+                            {{'general.desc' | translate}}
+                          </span>
+                          <i class="fas fa-arrow-down text-muted"></i>
+                        </li>
+                      </a>
+                    </ul>
+                  </div>
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -66,52 +296,16 @@
                 {{item?.price}}
               </td>
               <td>
-                {{item?.type}}
+                12:54
               </td>
               <td>
-                <span class="d-inline-block w-100">
-                  <i class="fas fa-circle fs-dot-status" [class]="item?.class"></i>
-                  <span class="px-1">
+                <span class="d-inline-block w-100 text-truncate">
+                  <i class=" fas fa-circle fs-dot-status" [class]="item?.class"></i>
+                  <span class="w-100 text-truncate px-1">
                     {{item?.status}}
                   </span>
                 </span>
               </td>
-              <td>
-                <div class="dropdown mx-3">
-                  <button class="btn dropdown-toggle color-grey-400" type="button" id="select-dropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                      class="bi bi-three-dots" viewBox="0 0 16 16">
-                      <path
-                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                    </svg>
-                  </button>
-                  <ul class="dropdown-menu shadow border-0">
-                    <a (click)="isWaitingAction? '': goToDetails(item?.id)">
-                      <li class="dropdown-item py-2 mb-2 d-flex align-items-center justify-content-between edit-hover">
-                        <span class="text-muted">
-                          {{'general.edit' | translate}}
-                        </span>
-                        <i class="fas fa-pen fs-6 text-muted"></i>
-                      </li>
-                    </a>
-                    <a (click)="isWaitingAction? '':onaDeleteItem(item)">
-                      <li class="dropdown-item py-2 d-flex align-items-center justify-content-between delete-hover">
-                        <span class="text-muted">
-                          {{'general.delete' | translate}}
-                        </span>
-                        <i class="fas fa-trash fs-6 text-muted"></i>
-                      </li>
-                    </a>
-                  </ul>
-                </div>
-              </td>
-              <!-- <td>
-                <span class="form-check-switch form-switch align-super">
-                  <input class="form-check-input switch" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                    [checked]="i.active">
-                </span>
-              </td> -->
             </tr>
           </tbody>
         </table>
