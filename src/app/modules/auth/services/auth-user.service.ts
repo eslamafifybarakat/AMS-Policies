@@ -38,9 +38,9 @@ export class AuthUserService {
   verificationCode(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/users/auth/verify-otp", data);
   }
-  // forgetPassword(user: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl + "/auth/forget-password", user);
-  // }
+  forgetPassword(email: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/auth/password/email", email);
+  }
   // verifyForgetPasswordCode(user: any): Observable<any> {
   //   return this.http.post<any>(this.apiUrl + "/reset-password-verify", user);
   // }

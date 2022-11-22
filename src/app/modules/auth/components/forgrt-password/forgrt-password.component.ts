@@ -1,5 +1,6 @@
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { VerfiyPasswordComponent } from './../verfiy-password/verfiy-password.component';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
+import { AuthUserService } from '../../services/auth-user.service';
 
 
 @Component({
@@ -27,17 +29,22 @@ export class ForgrtPasswordComponent implements OnInit {
   ];
 
   currentLanguage: any;
+  urlData:any
 
   constructor(
-    public fb: FormBuilder,
-    public dialog: MatDialog,
-    public router: Router,
+    public translationService: TranslationService,
+    public authUserService:AuthUserService,
+    private activateRoute: ActivatedRoute,
+    public alertsService:AlertsService,
     private location: Location,
-    public tanslationService: TranslationService
+    public dialog: MatDialog,
+    public fb: FormBuilder,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
     this.currentLanguage = window.localStorage.getItem(keys.language);
+    this.urlData = this.activateRoute.snapshot.params;
   }
 
   forgetPassword = this.fb.group({
@@ -49,30 +56,33 @@ export class ForgrtPasswordComponent implements OnInit {
 
   submit(): void {
     this.isloadingBtn = true;
-    // setTimeout(() => {
-    //   this.isloadingBtn = false;
-    //   let dialogRef = this.dialog.open(VerfiyPasswordComponent, {
-    //     width: "500px",
-    //     data: {
-    //       email: this.forgetPassword?.value?.email
-    //     }
-    //   });
-    //   dialogRef.afterClosed().subscribe((result: any) => {
-    //     this.isloadingBtn = true;
-    //     console.log(result);
-    //     if (result?.verified) {
-    //       setTimeout(() => {
-    //         this.router.navigate(['/auth/new-password']);
+    let data={
+      email:this.urlData.email
+    }
+    console.log(data);
+    this.router.navigate(['/auth/new-password',{
+      email:this.forgetPassword?.value?.email
+    }])
+
+    // this.authUserService?.forgetPassword(data)?.subscribe(
+    //   (res: any) => {
+    //     if (res?.status == 'success') {
+    //         res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
     //         this.isloadingBtn = false;
-    //       }, 500);
+    //         this.router.navigate(['/auth/new-password'])
+
     //     } else {
     //       this.isloadingBtn = false;
+    //       res?.message ? this.alertsService.openSnackBar(res?.message) : '';
     //     }
-    //   });
-    // }, 1000);
-
-    console.log(this.forgetPassword.value);
-    this.router.navigate(['/auth/email-verification'])
+    //   },
+    //   (err: any) => {
+    //     if (err?.message) {
+    //       err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+    //     }
+    //     this.isloadingBtn = false;
+    //   }
+    // );
   }
   back(): void {
     this.location.back();

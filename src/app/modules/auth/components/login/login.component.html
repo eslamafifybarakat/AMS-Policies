@@ -96,7 +96,7 @@
                 <label for="exampleInputPassword1" class="form-label">
                   {{'form.password'|translate}}
                 </label>
-                <a routerLink="/auth/forget-password" class="text-secondary-color">
+                <a (click)="forgetPassword()" class="text-secondary-color">
                   {{'form.forget_password'|translate}}
                 </a>
               </div>

@@ -67,6 +67,10 @@ export class LogInComponent implements OnInit {
   togglepassword(): void {
     this.showeye = !this.showeye;
   }
+  forgetPassword():void{
+    this.router.navigate(['/auth/forget-password',{
+      email: this.loginForm?.value?.email}])
+  }
   back(): void {
     this.location.back();
   }
