@@ -53,10 +53,6 @@ email:[userInfo.email,[Validators.required]]
     console.log(this.codeLength);
   }
 
-  onNoClick(): void {
-    // this.dialogRef.close();
-  }
-
   resendCode(): void {
     this.isloading = true;
     setTimeout(() => {

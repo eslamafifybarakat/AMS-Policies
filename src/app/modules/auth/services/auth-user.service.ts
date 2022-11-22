@@ -41,12 +41,9 @@ export class AuthUserService {
   forgetPassword(email: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/users/auth/password/email", email);
   }
-  // verifyForgetPasswordCode(user: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl + "/reset-password-verify", user);
-  // }
-  // resetPassword(user: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl + "/password-reset", user);
-  // }
+  resetPassword(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/auth/password/reset", user);
+  }
 
   isLoggedIn(): boolean {
     return window.localStorage.getItem(keys?.logged) ? true : false;
