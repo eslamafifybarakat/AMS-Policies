@@ -220,8 +220,16 @@
                   placeholder="{{ 'placeholder.confirm_password' | translate }}"
                   id="exampleInputPassword2"
                   formControlName="confirmPassword"
-                  [class.is-invalid]="(formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty) && formControls?.confirmPassword?.invalid"
-                  [class.is-valid]="(formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty) && formControls?.confirmPassword?.valid"
+                  [class.is-invalid]="
+                    (formControls?.confirmPassword?.touched ||
+                      formControls?.confirmPassword?.dirty) &&
+                    formControls?.confirmPassword?.invalid
+                  "
+                  [class.is-valid]="
+                    (formControls?.confirmPassword?.touched ||
+                      formControls?.confirmPassword?.dirty) &&
+                    formControls?.confirmPassword?.valid
+                  "
                 />
                 <span
                   class="togglepassword input-group-text bg-white-color"
@@ -302,13 +310,18 @@
               {{ "form.confirm" | translate }}
             </button>
 
-            <div class="d-flex justify-content-start align-items-center mt-3">
+            <div class="d-flex justify-content-between align-items-center mt-3">
               <h1 class="fw-bold text-secondary-color">
                 {{ "form.have_account" | translate }}
                 <a routerLink="/auth/login">
                   {{ "form.login" | translate }}
                 </a>
               </h1>
+              <ng-container *ngIf="showResend">
+                <button class="btn btn-solid-main p-2" (click)="resend()">
+                  Resend
+                </button>
+              </ng-container>
             </div>
           </form>
         </div>

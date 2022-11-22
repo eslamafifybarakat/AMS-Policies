@@ -15,9 +15,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthUserService {
   apiUrl = environment.apiUrl;
 
+  isLoggedSocial = new BehaviorSubject<boolean>(false);
   isUserLogin = new BehaviorSubject<boolean>(false);
   isLogged = new BehaviorSubject<boolean>(false);
-  isLoggedSocial = new BehaviorSubject<boolean>(false);
 
   // xdashLogged;
   // data: any = userInfo;
@@ -57,6 +57,9 @@ export class AuthUserService {
 
   register(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/users/auth/signup", data);
+  }
+  resendEmail(email:any):Observable<any>{
+    return  this.http.post<any>(this.apiUrl + "/api/email/resend",email)
   }
   // verificationCode(user: any): Observable<any> {
   //   return this.http.post<any>(this.apiUrl + "/auth/verify", user);

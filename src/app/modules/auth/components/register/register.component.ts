@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   showeye2: boolean = false;
   currentLanguage: any;
   deviceLocationData: any;
-
+  showResend:boolean=false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
@@ -101,34 +101,41 @@ export class RegisterComponent implements OnInit {
         os_version: this.deviceLocationData?.os_version
       }
     }
-
     console.log(data);
-
-    // this.authUserService?.register(data)?.subscribe(
-    //   (res: any) => {
-    //     if (res?.status == 'success') {
-    //         res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-    //         this.alertsService.openSweetalert('info', this.translateService.instant(res?.message));
-    //         this.isLoadingBtn = false;
-    //         this.registerForm.reset();
-    //     } else {
-    //       this.isLoadingBtn = false;
-    //       res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-    //     }
-    //   },
-    //   (err: any) => {
-    //     if (err?.message) {
-    //       err?.message ? this.alertsService.openSnackBar(err?.message) : '';
-    //     }
-    //     this.isLoadingBtn = false;
-    //   }
-    // );
-
-
-    // setTimeout(() => {
-    //   this.isLoadingBtn = false;
-    //   this.alertsService.openSweetalert('info', this.translateService.instant('general.check_email'));
-    //   this.router.navigate(['/auth/login']);
-    // }, 2000);
+    this.authUserService?.register(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == 'success') {
+            res?.message ? this.alertsService.openSweetalert('info', this.translateService.instant(res?.message)): '';
+            this.isLoadingBtn = false;
+            this.registerForm.reset();
+            this.showResend=true;
+        } else {
+          this.isLoadingBtn = false;
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.isLoadingBtn = false;
+      }
+    );
+  }
+  resend():void{
+    this.authUserService?.resendEmail(this.registerForm?.value?.email)?.subscribe(
+      (res: any) => {
+        if (res?.status == 'success') {
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        } else {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+      }
+    );
   }
 }
