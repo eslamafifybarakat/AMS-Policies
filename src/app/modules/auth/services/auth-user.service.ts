@@ -18,51 +18,26 @@ export class AuthUserService {
   isUserLogin = new BehaviorSubject<boolean>(false);
   isLogged = new BehaviorSubject<boolean>(false);
 
-  // xdashLogged;
-  // data: any = userInfo;
-
   constructor(
     private http: HttpClient,
     private router: Router,
-  ) {
-    // if (window.localStorage.getItem(keys.logged)) {
-    //   this.xdashLogged = window.localStorage.getItem(keys.logged);
-    // } else {
-    //   this.xdashLogged = false;
-    // }
-  }
-
-  // register(user: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl + "/register", user);
-  // }
-
-  // login(email: any, password: any): any {
-  //   this.isUserLogin.next(true);
-  //   if (this.data.email == email && this.data.password == password) {
-  //     this.xdashLogged = true;
-  //     window.localStorage.setItem(keys.logged, 'true');
-  //     window.localStorage.setItem(keys.userData, JSON.stringify(this.data));
-  //     this.isLogged.next(true);
-  //     return {
-  //       status: true,
-  //       data: this.data
-  //     };
-  //   }
-  //   return {
-  //     status: false
-  //   };
-
-  // }
+  ) {}
 
   register(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/users/auth/signup", data);
   }
+
   resendEmail(email:any):Observable<any>{
     return  this.http.post<any>(this.apiUrl + "/api/email/resend",email)
   }
-  // verificationCode(user: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl + "/auth/verify", user);
-  // }
+
+  login(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/auth/login", data);
+  }
+
+  verificationCode(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/auth/verify-otp", data);
+  }
   // forgetPassword(user: any): Observable<any> {
   //   return this.http.post<any>(this.apiUrl + "/auth/forget-password", user);
   // }
@@ -87,27 +62,6 @@ export class AuthUserService {
     window.localStorage.removeItem(keys.userData);
     this.router.navigate(['/auth/login']);
   }
-
-
-  // isLoggedIn(): boolean {
-  //   return window.localStorage.getItem(keys?.userData) ? true : false;
-  //   // return window.localStorage.getItem(keys?.token) ? true : false;
-  // }
-
-  // isLoggedOut(): boolean {
-  //   return !this.isLoggedIn();
-  // }
-
-
-  // signOut(): void {
-  //   setTimeout(() => {
-  //     window.localStorage.removeItem(keys.logged);
-  //     window.localStorage.removeItem(keys.userData);
-  //     this.isUserLogin.next(false);
-  //     this.isLogged.next(false);
-  //     this.router.navigate(['/auth']);
-  //   }, 1000);
-  // }
 
 }
 

@@ -1,10 +1,13 @@
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
+import { AuthUserService } from './../../services/auth-user.service';
+import { Subscription } from 'rxjs';
 import { userInfo } from './../../auth-user';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-confirm-login-code',
@@ -12,30 +15,35 @@ import { Location } from '@angular/common';
   styleUrls: ['./confirm-login-code.component.scss']
 })
 export class ConfirmLoginCodeComponent implements OnInit {
+  private unsubscribe: Subscription[] = [];
 
   isloading: boolean = false;
   isloadingBtn: boolean = false;
   isWaiting: boolean = false;
-
+  urlData: any;
   time: any = Date.now() + ((60 * 1000) * 1); // current time + 1 minute ///
   minute: any;
   currentLanguage: any;
   codeLength:any;
+  deviceLocationData: any;
 
   constructor(
-    // public dialogRef: MatDialogRef<ConfirmLoginCodeComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any,
+    public translationService: TranslationService,
+    public authUserService:AuthUserService,
+    private activateRoute: ActivatedRoute,
+    public alertsService:AlertsService,
+    private cdr: ChangeDetectorRef,
+    public _location:Location,
     public fb: FormBuilder,
     public router: Router,
-    private cdr: ChangeDetectorRef,
-    public translationService: TranslationService,
-    public _location:Location
-
   ) { }
 
   ngOnInit(): void {
     this.currentLanguage = window.localStorage.getItem(keys.language);
     this.minute = this.time;
+    this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
+    this.urlData = this.activateRoute.snapshot.params;
+    console.log(this.urlData);
   }
 
   confirmLoginForm = this.fb.group({
@@ -53,18 +61,48 @@ export class ConfirmLoginCodeComponent implements OnInit {
     }, 500);
   }
   confirm(): void {
-    this.isloadingBtn = true;this.confirmLoginForm.patchValue({
-      code:this.codeLength,
-      email:userInfo.email
-    })
-    setTimeout(() => {
-      console.log(this.confirmLoginForm.value);
-      this.isloadingBtn = false;
-      this.onNoClick();
-      this.router.navigate(['/home'])
-      // this.dialogRef.close({ verified: true });
-      this.isWaiting = false;
-    }, 2000);
+    this.isloadingBtn = true;
+    let data = {
+      otp:{
+        user_id: this.urlData.user_id,
+        code:this.codeLength
+      },
+      auth_location_and_device_info: {
+        country_name: this.deviceLocationData?.country_name,
+        region:this.deviceLocationData?.region,
+        city: this.deviceLocationData?.city,
+        browser: this.deviceLocationData?.browser,
+        browser_version:this.deviceLocationData?.browser_version,
+        deviceType: this.deviceLocationData?.deviceType,
+        os: this.deviceLocationData?.os,
+        os_version: this.deviceLocationData?.os_version
+      }
+    }
+    console.log(data);
+    this.authUserService?.verificationCode(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == 'success') {
+            res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
+            this.isloadingBtn = false;
+            this.confirmLoginForm.reset();
+        } else {
+          this.isloadingBtn = false;
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.isloadingBtn = false;
+      }
+    );
+    // setTimeout(() => {
+    //   console.log(this.confirmLoginForm.value);
+    //   this.isloadingBtn = false;
+    //   this.router.navigate(['/home'])
+    //   this.isWaiting = false;
+    // }, 2000);
   }
 
   printTimeEnd(event: any): void {
@@ -73,9 +111,6 @@ export class ConfirmLoginCodeComponent implements OnInit {
     }
   }
 
-  onNoClick(): void {
-    // this.dialogRef.close();
-  }
   back():void{
     this._location.back();
   }
@@ -92,4 +127,7 @@ export class ConfirmLoginCodeComponent implements OnInit {
     console.log(this.codeLength);
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+  }
 }

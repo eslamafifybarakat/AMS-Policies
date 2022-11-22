@@ -21,9 +21,9 @@ import { AuthUserService } from '../../services/auth-user.service';
 })
 export class LogInComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
-
   showeye: boolean = false;
   currentLanguage: any;
+  deviceLocationData: any;
 
   loginData: any;
   separateDialCode = false;
@@ -36,33 +36,24 @@ export class LogInComponent implements OnInit {
 
   isLoggedin?: boolean;
   userData: any = userInfo;
-  isloadingBtn: boolean = false;
+  isLoadingBtn: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    public tanslationService: TranslationService,
-    private translateService: TranslateService,
+    public translationService: TranslationService,
+    private authUserService:AuthUserService,
     private alertsService: AlertsService,
-    private location: Location,
     public _AuthUser: AuthUserService,
-    private dialog: MatDialog,
+    private location: Location,
+    private fb: FormBuilder,
     private router: Router,
-    private deviceLocationService:DeviceLocationService
   ) { }
 
   ngOnInit(): void {
     this.currentLanguage = window.localStorage.getItem(keys.language);
-    this.loginform.patchValue(
-      {
-        phone: userInfo.phone,
-        email: userInfo.email,
-        password: userInfo.password
-      }
-    );
+    this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
   }
 
-  loginform = this.fb.group({
-    phone: [''],
+  loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [
       Validators.required,
@@ -70,7 +61,7 @@ export class LogInComponent implements OnInit {
       Validators.maxLength(20)]]
   });
   get formControls(): any {
-    return this.loginform?.controls;
+    return this.loginForm?.controls;
   }
 
   togglepassword(): void {
@@ -81,46 +72,52 @@ export class LogInComponent implements OnInit {
   }
 
   submit(): void {
-    let loginData= {
-      email:this.loginform?.value?.email,
-      password:this.loginform?.value?.password,
-      device_location_info :this.deviceLocationService.device_location_info
-        }
+    this.isLoadingBtn = true;
+    let data = {
+      login:{
+        email: this.loginForm?.value?.email,
+        password: this.loginForm?.value?.password,
+      },
+      auth_location_and_device_info: {
+        country_name: this.deviceLocationData?.country_name,
+        region:this.deviceLocationData?.region,
+        city: this.deviceLocationData?.city,
+        browser: this.deviceLocationData?.browser,
+        browser_version:this.deviceLocationData?.browser_version,
+        deviceType: this.deviceLocationData?.deviceType,
+        os: this.deviceLocationData?.os,
+        os_version: this.deviceLocationData?.os_version
+      }
+    }
 
-        console.log(loginData);
-        this.router.navigate(['auth/confirm-login-code'])
-
-    // this.loginData = this._AuthUser?.login(this.loginform?.value?.email, this.loginform?.value?.password);
-    // if (this.loginData['status'] == true) {
-    //   this.isloadingBtn = true;
-    //   window.localStorage.setItem("isauth", "true");
-
-    //   setTimeout(() => {
-    //     this.isloadingBtn = false;
-    //     let dialogRef = this.dialog.open(ConfirmLoginCodeComponent, {
-    //       width: "auto",
-    //       data: {
-    //         email: userInfo.email
+    console.log(data);
+    this.router.navigate(['/auth/confirm-login-code',{
+      user_id: 1}])
+    // this.authUserService?.login(data)?.subscribe(
+    //   (res: any) => {
+    //     if (res?.status == 'success') {
+    //       if(res?.data?.token != null){
+    //         res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
+    //         this.isLoadingBtn = false;
+    //         this.loginForm.reset();
+    //         this.router.navigate(['/home'])
+    //       }else{
+    //         this.router.navigate(['/auth/confirm-login-code',{
+    //           user_id: res?.data.id}])
     //       }
-    //     });
-    //     dialogRef.afterClosed().subscribe((result: any) => {
-    //       this.isloadingBtn = true;
-    //       console.log(result);
-    //       if (result?.verified) {
-    //         setTimeout(() => {
-    //           this.router.navigate(['/home']);
-    //           this.alertsService.openSweetalert("success", this.translateService.instant('general.loggin_Success'));
-    //           this.isloadingBtn = false;
-    //         }, 500);
-    //       } else {
-    //         this.isloadingBtn = false;
-    //       }
-    //     });
-    //   }, 1000);
-    // }
-    // else {
-    //   alert(this.loginData['message']);
-    // }
+
+    //     } else {
+    //       this.isLoadingBtn = false;
+    //       res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+    //     }
+    //   },
+    //   (err: any) => {
+    //     if (err?.message) {
+    //       err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+    //     }
+    //     this.isLoadingBtn = false;
+    //   }
+    // );
   }
 
   ngOnDestroy(): void {

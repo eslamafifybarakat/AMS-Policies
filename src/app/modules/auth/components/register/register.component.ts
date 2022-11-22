@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
@@ -16,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  private unsubscribe: Subscription[] = [];
   isLoadingBtn: boolean = false;
   showeye: boolean = false;
   showeye2: boolean = false;
@@ -78,7 +80,6 @@ export class RegisterComponent implements OnInit {
     this.location.back();
   }
 
-
   submit(): void {
     this.isLoadingBtn = true;
     let data = {
@@ -137,5 +138,9 @@ export class RegisterComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }
