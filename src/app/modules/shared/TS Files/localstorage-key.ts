@@ -4,5 +4,7 @@ export const keys = {
   logged: 'AMSPolicieLogged',
   userData: 'AMSPolicieUserData',
   theme: 'AMSPolicietheme',
-  token: 'AMSPolicieToken'
+  token: 'AMSPolicieToken',
+  deviceLocation: 'amsdeviceLocation',
+
 };

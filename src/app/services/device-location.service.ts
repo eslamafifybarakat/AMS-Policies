@@ -1,3 +1,4 @@
+import { keys } from './../modules/shared/TS Files/localstorage-key';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cookie } from "ng2-cookies";
@@ -13,22 +14,18 @@ export class DeviceLocationService {
     private deviceService: DeviceDetectorService
   ) { }
 
+
   getUserLocation(): any {
     this.http.get<any>(`https://ipapi.co/json`).subscribe((res: any) => {
       var expire = new Date();
       var time = Date.now() + ((3600 * 1000) * 24); // current time + 24 hours ///
       expire.setTime(time);
-      console.log(res);
-      console.log(this.device);
-      this.device_location_info.push(res);
-      this.device_location_info.push(this.device);
-      // this.device_location_info ={...res,...this.device}
-      console.log(this.device_location_info);
 
+      let device_location_obj: any;
+      device_location_obj = Object.assign(res, this.device);
 
       Cookie.set("userLocationData", JSON.stringify(res), expire);
-      window.localStorage.setItem('userLocationData', JSON.stringify(res));
-
+      window.localStorage.setItem(keys.deviceLocation, JSON.stringify(device_location_obj));
     });
   }
 
@@ -44,4 +41,5 @@ export class DeviceLocationService {
   get isDesktop(): boolean {
     return this.deviceService.isDesktop();
   }
+
 }
