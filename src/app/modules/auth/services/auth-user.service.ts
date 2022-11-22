@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { userInfo } from '../auth-user';
 import { BehaviorSubject, Observable } from 'rxjs';
-// import { environment } from 'src/environments/environment';
 
 
 @Injectable({

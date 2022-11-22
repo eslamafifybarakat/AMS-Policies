@@ -82,6 +82,37 @@
                 </div>
               </div>
             </div>
+            <div class="mb-3">
+              <div>
+                <label class="form-label">
+                  {{ "form.email" | translate }}
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="{{ 'placeholder.email' | translate }}"
+                  [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
+                  [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid"
+                />
+              </div>
+              <div class="mt-2">
+                <div
+                  *ngIf="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid "
+                >
+                  <div *ngIf="formControls?.email?.errors?.['required']">
+                    <span class="text-danger fs-6">
+                      {{ "validations.reuired_field" | translate }}
+                    </span>
+                  </div>
+                  <div *ngIf="formControls?.email?.errors?.['email']">
+                    <span class="text-danger fs-6">
+                      {{ "validations.not_valid" | translate }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="mb-3">
               <div>
@@ -127,30 +158,35 @@
 
             <div class="mb-3">
               <div>
-                <label class="form-label">
-                  {{ "form.email" | translate }}
+                <label for="exampleFormControlInput1" class="form-label">
+                  {{ "form.date_of_birth" | translate }}
                 </label>
-                <input
-                  type="email"
-                  class="form-control"
-                  formControlName="email"
-                  placeholder="{{ 'placeholder.email' | translate }}"
-                  [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
-                  [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid"
-                />
+                <div
+                  class="d-flex border rounded"
+                  [class.border-red]="(formControls?.['birth_date']?.touched ||formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.invalid"
+                  [class.border-green]="(formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.valid"
+                >
+                  <input
+                    matInput
+                    class="form-control border-0"
+                    placeholder="{{ 'placeholder.date_of_birth' | translate }}"
+                    [matDatepicker]="picker"
+                    formControlName="birth_date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
               </div>
               <div class="mt-2">
                 <div
-                  *ngIf="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid "
+                  *ngIf="(formControls?.['birth_date']?.touched ||formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.invalid "
                 >
-                  <div *ngIf="formControls?.email?.errors?.['required']">
+                  <div *ngIf="formControls?.birth_date?.errors?.['required']">
                     <span class="text-danger fs-6">
                       {{ "validations.reuired_field" | translate }}
-                    </span>
-                  </div>
-                  <div *ngIf="formControls?.email?.errors?.['email']">
-                    <span class="text-danger fs-6">
-                      {{ "validations.not_valid" | translate }}
                     </span>
                   </div>
                 </div>
@@ -265,47 +301,10 @@
               </div>
             </div>
 
-            <div class="mb-3">
-              <div>
-                <label for="exampleFormControlInput1" class="form-label">
-                  {{ "form.date_of_birth" | translate }}
-                </label>
-                <div
-                  class="d-flex border rounded"
-                  [class.border-red]="(formControls?.['birth_date']?.touched ||formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.invalid"
-                  [class.border-green]="(formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.valid"
-                >
-                  <input
-                    matInput
-                    class="form-control border-0"
-                    placeholder="{{ 'placeholder.date_of_birth' | translate }}"
-                    [matDatepicker]="picker"
-                    formControlName="birth_date"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </div>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['birth_date']?.touched ||formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.invalid "
-                >
-                  <div *ngIf="formControls?.birth_date?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{ "validations.reuired_field" | translate }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <button
               type="submit"
               class="btn w-100 btn-solid-main mt-2"
-              [disabled]="registerForm.invalid"
+              [disabled]="registerForm.invalid || isResend"
             >
               {{ "form.confirm" | translate }}
             </button>
@@ -317,12 +316,15 @@
                   {{ "form.login" | translate }}
                 </a>
               </h1>
-              <ng-container *ngIf="showResend">
-                <button class="btn btn-solid-main p-2" (click)="resend()">
-                  Resend
-                </button>
-              </ng-container>
             </div>
+            <ng-container *ngIf="isResend">
+              <h1 class="fw-bold text-secondary-color">
+                haven't received confirmation email
+                <a class="text-main-color">
+                  resend confirmation
+                </a>
+              </h1>
+            </ng-container>
           </form>
         </div>
       </div>

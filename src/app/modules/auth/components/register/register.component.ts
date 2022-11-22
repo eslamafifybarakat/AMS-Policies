@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   showeye2: boolean = false;
   currentLanguage: any;
   deviceLocationData: any;
-  showResend:boolean=false;
+  isResend:boolean=false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
@@ -105,10 +105,10 @@ export class RegisterComponent implements OnInit {
     this.authUserService?.register(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-            res?.message ? this.alertsService.openSweetalert('info', this.translateService.instant(res?.message)): '';
+            res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
             this.isLoadingBtn = false;
             this.registerForm.reset();
-            this.showResend=true;
+            this.isResend=true;
         } else {
           this.isLoadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
