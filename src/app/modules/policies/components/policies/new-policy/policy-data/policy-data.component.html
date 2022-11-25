@@ -148,11 +148,11 @@
                   </ng-template>
                   <div class="input-group-text">
                     <div class="dropdown mx-1">
-                      <button class="btn dropdown-toggle color-grey-400 p-0" type="button" id="select-dropdown"
+                      <button class="btn dropdown-toggle color-grey-400 p-0 d-flex justify-content-center align-items-center gap-2" type="button" id="select-dropdown"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="text-capitalize">
                           {{policyForm?.value?.duration_type || 'general.type'|translate}}
-                        </span>
+                        </span><i class="fas fa-chevron-down"></i>
                       </button>
                       <ul class="dropdown-menu shadow border-0">
                         <mat-radio-group class="d-flex flex-column px-2 gap-3" formControlName="duration_type">
