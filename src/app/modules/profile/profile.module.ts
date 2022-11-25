@@ -22,8 +22,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     CommonModule,
     ProfileRoutingModule,
     ImageCropperModule,
-    SharedModule
-
+    SharedModule,
+    ImageCropperModule,
   ]
 })
 export class ProfileModule { }
