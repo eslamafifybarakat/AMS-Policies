@@ -535,6 +535,40 @@ a {
   }
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}
+
+.input-group {
+
+  .form-control-double,
+  .form-control-double:focus,
+  .form-control-double:focus-within,
+  .form-control-double:focus-visible {
+    border-radius: 0;
+    border-left: transparent !important;
+    border-right: transparent !important;
+  }
+
+  .form-control-single,
+  .form-control-single:focus,
+  .form-control-single:focus-within,
+  .form-control-single:focus-visible {
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    border-right: transparent;
+  }
+
+  .input-group-text-left {
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    border-right: transparent !important;
+  }
+
+  .input-group-text-right {
+    border-radius: 0 0.25rem 0.25rem 0 !important;
+    border-left: transparent !important;
+  }
+}
+
 .btn-success {
   min-width: 7rem;
   color: var(--text-white-color);
@@ -610,7 +644,6 @@ a {
     transition: all 0.4s ease-in-out;
   }
 }
-
 
 .btn-solid-second {
   min-width: 7rem;
@@ -1207,7 +1240,7 @@ li.view-hover:hover {
 
 code-input {
   direction: ltr !important;
-  --item-background: #fafafa !important;
+  --item-background: #fff !important;
 }
 
 [_nghost-ygk-c326] input[_ngcontent-ygk-c326] {

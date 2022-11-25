@@ -29,13 +29,13 @@ export class ForgrtPasswordComponent implements OnInit {
   ];
 
   currentLanguage: any;
-  urlData:any
+  urlData: any
 
   constructor(
     public translationService: TranslationService,
-    public authUserService:AuthUserService,
+    public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
-    public alertsService:AlertsService,
+    public alertsService: AlertsService,
     private location: Location,
     public dialog: MatDialog,
     public fb: FormBuilder,
@@ -47,42 +47,34 @@ export class ForgrtPasswordComponent implements OnInit {
     this.urlData = this.activateRoute.snapshot.params;
   }
 
-  forgetPassword = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-  })
-  get formControls(): any {
-    return this.forgetPassword.controls;
-  }
-
   submit(): void {
     this.isloadingBtn = true;
-    let data={
-      email:this.urlData.email
+    let data = {
+      email: this.urlData.email
     }
     console.log(data);
-    this.router.navigate(['/auth/new-password',{
-      email:this.forgetPassword?.value?.email
+    this.router.navigate(['/auth/new-password', {
+      email: this.urlData.email
     }])
 
-    // this.authUserService?.forgetPassword(data)?.subscribe(
-    //   (res: any) => {
-    //     if (res?.status == 'success') {
-    //         res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
-    //         this.isloadingBtn = false;
-    //         this.router.navigate(['/auth/new-password'])
-
-    //     } else {
-    //       this.isloadingBtn = false;
-    //       res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-    //     }
-    //   },
-    //   (err: any) => {
-    //     if (err?.message) {
-    //       err?.message ? this.alertsService.openSnackBar(err?.message) : '';
-    //     }
-    //     this.isloadingBtn = false;
-    //   }
-    // );
+    this.authUserService?.forgetPassword(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == 'success') {
+          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          this.isloadingBtn = false;
+          this.router.navigate(['/auth/new-password'])
+        } else {
+          this.isloadingBtn = false;
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.isloadingBtn = false;
+      }
+    );
   }
   back(): void {
     this.location.back();

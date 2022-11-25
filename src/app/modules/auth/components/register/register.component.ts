@@ -19,11 +19,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class RegisterComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isLoadingBtn: boolean = false;
+  isLoadingResend: boolean = false;
   showeye: boolean = false;
-  showeye2: boolean = false;
   currentLanguage: any;
   deviceLocationData: any;
-  isResend:boolean=false;
+  isResend: boolean = false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
@@ -44,8 +44,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(keys.language);
     this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
+    this.currentLanguage = window.localStorage.getItem(keys.language);
   }
 
   registerForm = this.fb.group(
@@ -73,17 +73,15 @@ export class RegisterComponent implements OnInit {
   togglepassword(): void {
     this.showeye = !this.showeye;
   }
-  togglepassword_confirm():void {
-    this.showeye2 = !this.showeye2;
-  }
   back(): void {
     this.location.back();
   }
 
   submit(): void {
     this.isLoadingBtn = true;
+    this.isResend = false;
     let data = {
-      registration:{
+      registration: {
         name: this.registerForm?.value?.name,
         email: this.registerForm?.value?.email,
         phone: this.registerForm?.value?.phone,
@@ -93,10 +91,10 @@ export class RegisterComponent implements OnInit {
       },
       auth_location_and_device_info: {
         country_name: this.deviceLocationData?.country_name,
-        region:this.deviceLocationData?.region,
+        region: this.deviceLocationData?.region,
         city: this.deviceLocationData?.city,
         browser: this.deviceLocationData?.browser,
-        browser_version:this.deviceLocationData?.browser_version,
+        browser_version: this.deviceLocationData?.browser_version,
         deviceType: this.deviceLocationData?.deviceType,
         os: this.deviceLocationData?.os,
         os_version: this.deviceLocationData?.os_version
@@ -106,28 +104,33 @@ export class RegisterComponent implements OnInit {
     this.authUserService?.register(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-            res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
-            this.isLoadingBtn = false;
-            this.registerForm.reset();
-            this.isResend=true;
+          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          this.isLoadingBtn = false;
+          this.registerForm.reset();
+          this.isResend = true;
         } else {
           this.isLoadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
       (err: any) => {
-        if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        if (err?.error) {
+          err?.error ? this.alertsService.openSnackBar(err?.error) : '';
         }
         this.isLoadingBtn = false;
       }
     );
   }
-  resend():void{
-    this.authUserService?.resendEmail(this.registerForm?.value?.email)?.subscribe(
+  resend(): void {
+    this.isLoadingResend = true;
+    let data = {
+      email: this.registerForm?.value?.email
+    }
+    this.authUserService?.resendEmail(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.isLoadingResend = false;
         } else {
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
@@ -136,6 +139,7 @@ export class RegisterComponent implements OnInit {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
+        this.isLoadingResend = false;
       }
     );
   }

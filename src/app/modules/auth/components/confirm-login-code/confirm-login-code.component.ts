@@ -24,16 +24,16 @@ export class ConfirmLoginCodeComponent implements OnInit {
   time: any = Date.now() + ((60 * 1000) * 1); // current time + 1 minute ///
   minute: any;
   currentLanguage: any;
-  codeLength:any;
+  codeLength: any;
   deviceLocationData: any;
 
   constructor(
     public translationService: TranslationService,
-    public authUserService:AuthUserService,
+    public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
-    public alertsService:AlertsService,
+    public alertsService: AlertsService,
     private cdr: ChangeDetectorRef,
-    public _location:Location,
+    public _location: Location,
     public fb: FormBuilder,
     public router: Router,
   ) { }
@@ -47,32 +47,50 @@ export class ConfirmLoginCodeComponent implements OnInit {
   }
 
   confirmLoginForm = this.fb.group({
-    email:[userInfo.email],
+    email: [userInfo.email],
     code: [0, Validators.required]
   })
 
   resendCode(): void {
-    this.isloading = true
-    setTimeout(() => {
-      this.isloading = false;
-      this.isWaiting = false;
-      this.minute = Date.now() + ((60 * 1000) * 0.1);
-      this.cdr.detectChanges();
-    }, 500);
+    this.isloading = true;
+    this.isWaiting = true;
+    let data = {
+      email: this.urlData?.email,
+      password: this.urlData?.password,
+      device_location_info: this.deviceLocationData
+    }
+    this.authUserService?.login(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == true && res?.code == 200) {
+          this.codeLength = '';
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        } else {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+      }
+    );
+    this.minute = Date.now() + ((60 * 1000) * 1);
+    this.isloading = false;
+    this.isWaiting = false;
   }
   confirm(): void {
     this.isloadingBtn = true;
     let data = {
-      otp:{
+      otp: {
         user_id: this.urlData.user_id,
-        code:this.codeLength
+        code: this.codeLength
       },
       auth_location_and_device_info: {
         country_name: this.deviceLocationData?.country_name,
-        region:this.deviceLocationData?.region,
+        region: this.deviceLocationData?.region,
         city: this.deviceLocationData?.city,
         browser: this.deviceLocationData?.browser,
-        browser_version:this.deviceLocationData?.browser_version,
+        browser_version: this.deviceLocationData?.browser_version,
         deviceType: this.deviceLocationData?.deviceType,
         os: this.deviceLocationData?.os,
         os_version: this.deviceLocationData?.os_version
@@ -82,9 +100,9 @@ export class ConfirmLoginCodeComponent implements OnInit {
     this.authUserService?.verificationCode(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-            res?.message ? this.alertsService.openSweetalert('info',res?.message): '';
-            this.isloadingBtn = false;
-            this.confirmLoginForm.reset();
+          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          this.isloadingBtn = false;
+          this.confirmLoginForm.reset();
         } else {
           this.isloadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
@@ -97,12 +115,6 @@ export class ConfirmLoginCodeComponent implements OnInit {
         this.isloadingBtn = false;
       }
     );
-    // setTimeout(() => {
-    //   console.log(this.confirmLoginForm.value);
-    //   this.isloadingBtn = false;
-    //   this.router.navigate(['/home'])
-    //   this.isWaiting = false;
-    // }, 2000);
   }
 
   printTimeEnd(event: any): void {
@@ -110,21 +122,15 @@ export class ConfirmLoginCodeComponent implements OnInit {
       this.isWaiting = true;
     }
   }
-
-  back():void{
+  back(): void {
     this._location.back();
   }
-   // this called every time when user changed the code
-   onCodeChanged(code: string): void {
-    console.log(code);
+
+  onCodeChanged(code: string): void {
     this.codeLength = code;
   }
-
-  // this called only if user entered full code
   onCodeCompleted(code: string): void {
-    console.log(code);
     this.codeLength = code;
-    console.log(this.codeLength);
   }
 
   ngOnDestroy(): void {

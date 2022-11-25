@@ -355,3 +355,15 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
     transform: translateX(-50%) !important;
   }
 }
+
+.input-group {
+  .input-group-text-right {
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    border-left: 1px solid var(--border-input-color) !important;
+    border-right: 0 !important;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}

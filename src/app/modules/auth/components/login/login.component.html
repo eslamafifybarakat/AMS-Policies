@@ -38,7 +38,7 @@
                 <input type="email" class="form-control" formControlName="email"
                   placeholder="{{'placeholder.email' | translate}}"
                   [class.is-invalid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.invalid"
-                  [class.is-valid]="formControls.email.dirty&&formControls.email.valid">
+                  [class.is-valid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.valid">
               </div>
               <div class="mt-2">
                 <div
@@ -56,40 +56,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="mb-3">
-              <div>
-                <label for="exampleInputEmail1" class="form-label">
-                  {{'form.phone'|translate}}
-                </label>
-                <ngx-intl-tel-input
-              class="form-control"
-              [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
-              [enableAutoCountrySelect]="false"
-              [enablePlaceholder]="true"
-              [searchCountryFlag]="true"
-              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-              [selectFirstCountry]="false"
-              [selectedCountryISO]="CountryISO.Egypt"
-              [maxLength]="15"
-              [phoneValidation]="true"
-              name="phone"
-              formControlName="phone"
-              [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
-              [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid"
-              >
-              </ngx-intl-tel-input>
-              </div>
-              <div class="mt-2">
-                <div *ngIf="(formControls?.phone?.touched || formControls?.phone?.dirty) && formControls?.phone?.invalid">
-                  <div *ngIf="formControls?.phone?.errors?.['required']">
-                    <p class="text-danger fs-6"> this is required</p>
-                  </div>
-                  <div *ngIf="formControls?.phone?.errors?.['minlength'] || formControls?.phone?.errors?.['maxlength']">
-                    <p class="text-danger fs-6"> phone must be between 6 and 20 numbers.</p>
-                  </div>
-                </div>
-              </div>
-            </div> -->
 
             <div class="mb-5">
               <div class="d-flex justify-content-between">
@@ -100,16 +66,16 @@
                   {{'form.forget_password'|translate}}
                 </a>
               </div>
-
               <div class="input-group">
-                <input [type]="showeye?'text':'password'" class="login-password-form form-control"
+                <input [type]="showeye?'text':'password'" class="login-password-form form-control form-control-single"
                   id="exampleInputPassword1" formControlName="password"
                   placeholder="{{'placeholder.password' | translate}}"
                   [class.is-invalid]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
-                  [class.is-valid]="formControls.password.dirty&&formControls.password.valid">
-                <span class="togglepassword input-group-text bg-white-color" (click)="togglepassword()"
+                  [class.is-valid]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.valid">
+                <span class="togglepassword input-group-text bg-white-color input-group-text-right"
+                  (click)="togglepassword()"
                   [class.border-red]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
-                  [class.border-green]="formControls.password.dirty&&formControls.password.valid">
+                  [class.border-green]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.valid">
                   <i class="bg-white-color" [class]="showeye?'fas fa-eye':'fas fa-eye-slash'"></i></span>
               </div>
               <div class="mt-2">

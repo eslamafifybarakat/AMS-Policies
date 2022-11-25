@@ -88,6 +88,9 @@
     "name_length": "Name length must be 3–20"
   },
   "form": {
+    "verification_code": "Verification Code",
+    "resend_confirm_q": "Haven't received confirmation email",
+    "resend_confirmation": "resend confirmation",
     "virus_c": "Did you have virus C cindection before?",
     "virus_corona": "Did you have any covid-19 virus before?",
     "suffer": "Did you suffer from any physicaldisablity?",
