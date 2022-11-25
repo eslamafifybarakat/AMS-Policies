@@ -10,8 +10,9 @@
         </p>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-solid-main me-2" type="submit"
-          [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty">
+        <button class="btn btn-solid-main me-2" type="submit" [disabled]="accountInfoForm.invalid"
+         >
+         <!-- [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty" -->
           {{'general.save_changes' | translate}}
         </button>
         <button class="btn btn-solid-second me-2" [routerLink]="['/home/policies/dashboard']">
@@ -35,7 +36,7 @@
               <input type="text" class="form-control" formControlName="name"
                 placeholder="{{'placeholder.name' | translate}}"
                 [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
-                [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
+                  [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
             </div>
             <div class="mt-2">
               <div *ngIf="(formControls?.name?.touched || formControls?.name?.dirty) && formControls?.name?.invalid">
@@ -92,7 +93,7 @@
               <input type="email" class="form-control" formControlName="email"
                 placeholder="{{'placeholder.email' | translate}}"
                 [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
-                [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid">
+                [class.is-valid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.valid">
             </div>
             <div class="mt-2">
               <div
@@ -120,7 +121,7 @@
               </label>
               <div class="d-flex border rounded overflow-hidden"
                 [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
-                [class.border-green]="(formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
+                [class.border-green]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
                 <input matInput class="form-control border-0" placeholder="{{'placeholder.date_of_birth' | translate}}"
                   [matDatepicker]=" picker" formControlName="birthdate">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -138,6 +139,7 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="col-xl-6 col-md-10 col-sm-12 col-12">
@@ -149,7 +151,7 @@
               <input type="text" class="form-control" formControlName="company"
                 placeholder="{{'placeholder.company' | translate}}"
                 [class.is-invalid]="(formControls?.['company']?.touched ||formControls?.['company']?.dirty) && formControls?.['company']?.invalid"
-                [class.is-valid]="(formControls?.['company']?.dirty) && formControls?.['company']?.valid">
+                [class.is-valid]="(formControls?.['company']?.touched ||formControls?.['company']?.dirty) && formControls?.['company']?.valid">
             </div>
             <div class="mt-2">
               <div
@@ -174,7 +176,7 @@
               <ng-select notFoundText="{{'general.no_item_founded'|translate}}" class="rounded" formControlName="gender"
                 placeholder="{{'general.select' | translate}}"
                 [class.border-red]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.invalid"
-                [class.border-green]="(formControls?.['gender']?.dirty) && formControls?.['gender']?.valid">
+                [class.border-green]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.valid">
                 <ng-option value="male">{{'general.male' | translate}}</ng-option>
                 <ng-option value="female">{{'general.female' | translate}}</ng-option>
               </ng-select>
@@ -202,7 +204,7 @@
                 [clearSearchOnAdd]="true" bindLabel="name" formControlName="job"
                 placeholder="{{'general.select' | translate}}"
                 [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
-                [class.border-green]="(formControls?.['job']?.dirty) && formControls?.['job']?.valid">
+                [class.border-green]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.valid">
               </ng-select>
             </div>
             <div class="mt-2">

@@ -1193,13 +1193,7 @@ li.view-hover:hover {
     border-left: none;
   }
 
-  .border-red {
-    border: 1px solid #dc3545 !important;
-  }
 
-  .border-green {
-    border: 1px solid #198754 !important;
-  }
 
   .form-control.is-valid:focus,
   .was-validated .form-control:valid:focus,
@@ -1320,6 +1314,12 @@ code-input {
 }
 
 /* ===== End Angular Material Customization ===== */
+.border-red {
+  border: 1px solid #dc3545 !important;
+}
 
+.border-green {
+  border: 1px solid #198754 !important;
+}
 /* Importing Responsive SCSS file. */
 @import "./responsive.scss";

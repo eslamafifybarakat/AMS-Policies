@@ -16,4 +16,12 @@ export class LayoutService {
   profileData(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/dashboard/admins/auth/profile", data);
   }
+
+  editProfile(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/profile/edit-profile", data);
+  }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/users/profile/change-password", data);
+  }
 }
