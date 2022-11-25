@@ -73,11 +73,11 @@ export class PersonalInfoComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20)]],
     gender: ['', [Validators.required]],
-    language: [null, Validators.required],
-    timeszone: [null, Validators.required],
-    skills: [null, Validators.required],
+    // language: [null, Validators.required],
+    // timeszone: [null, Validators.required],
+    // skills: [null, Validators.required],
     job: [null, Validators.required],
-    account: [null, Validators.required],
+    // account: [null, Validators.required],
   });
   get formControls(): any {
     return this.accountInfoForm.controls;

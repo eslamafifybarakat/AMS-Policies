@@ -10,9 +10,8 @@
         </p>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-solid-main me-2" type="submit" [disabled]="accountInfoForm.invalid"
+        <button class="btn btn-solid-main me-2" type="submit" [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty"
          >
-         <!-- [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty" -->
           {{'general.save_changes' | translate}}
         </button>
         <button class="btn btn-solid-second me-2" [routerLink]="['/home/policies/dashboard']">
