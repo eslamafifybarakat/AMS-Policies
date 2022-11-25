@@ -35,20 +35,21 @@
       <hr class="color-grey-400" />
       <div class="d-lg-flex d-md-block d-sm-flex align-items-center justify-content-end gap-2">
         <div class="d-flex justify-content-end gap-2">
-          <button type="button" class="btn btn-solid-main btn-sm">{{'general.export' | translate}}</button>
-        <button type="button" class="btn btn-outline-main btn-sm">{{'general.print' | translate}}</button>
+          <button type="button" class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.export' | translate}}</span> <i class="fas fa-file-export"></i></button>
+        <button type="button" class="btn btn-outline-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.print' | translate}}</span> <i class="fas fa-print"></i></button>
         </div>
         <div class="d-flex justify-content-end gap-2 mt-lg-0 mt-2">
-          <button type="button" class="btn btn-success btn-sm"
-          (click)="isWaitingAction?'':goToDetails(1)">{{'general.edit' | translate}}</button>
-        <button type="button" class="btn btn-danger btn-sm"
-          (click)="isWaitingAction?'':onaDeleteItem({name:'eslam'})">{{'general.delete' | translate}}</button>
+          <button type="button" class="btn btn-success btn-sm d-flex justify-content-between align-items-center"
+          (click)="isWaitingAction?'':goToDetails(1)"[disabled]="!isSelect"><span>{{'general.edit' | translate}}</span> <i class="fas fa-pen"></i></button>
+        <button type="button" class="btn btn-danger btn-sm d-flex justify-content-between align-items-center"
+          (click)="isWaitingAction?'':onaDeleteItem({name:'eslam'})"[disabled]="!isSelect"><span>{{'general.delete' | translate}}</span> <i class="fas fa-close"></i></button>
         </div>
       </div>
       <div class="content-table mt-4">
         <table class="table color-grey-400 w-100">
           <thead class="bg-secondary-color text-white-color">
             <tr>
+              <th><span class="cursor-pointer" *ngIf="isSelect" (click)="clearAllSelected()"><i class="fas fa-close"></i></span></th>
               <th scope="col">
                 <span class="d-flex align-items-center">
                   <span class="w-100 text-truncate">{{'polices_list.sale_id' | translate}}</span>
@@ -284,6 +285,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of items | slice: (currentPage-1) * pageSize : currentPage * pageSize">
+              <td>  <input class="form-check-input position-static cursor-pointer" type="radio" [checked]="item.isSelected" (click)="selected(item.id)">
+              </td>
               <td>
                 {{item?.id}}
               </td>

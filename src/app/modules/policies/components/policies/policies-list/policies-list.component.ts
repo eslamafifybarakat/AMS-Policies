@@ -35,7 +35,8 @@ export class PoliciesListComponent implements OnInit {
       class: "success",
       price: "150",
       type: "Products",
-      status: this.status[0]
+      status: this.status[0],
+      isSelected:false
     },
     {
 
@@ -48,7 +49,8 @@ export class PoliciesListComponent implements OnInit {
       class: "confirm",
       price: "50",
       type: "Cars",
-      status: this.status[1]
+      status: this.status[1],
+      isSelected:false
     },
     {
 
@@ -61,7 +63,8 @@ export class PoliciesListComponent implements OnInit {
       class: "rejected",
       price: "150",
       type: "Products",
-      status: this.status[2]
+      status: this.status[2],
+      isSelected:false
     },
     {
 
@@ -74,7 +77,8 @@ export class PoliciesListComponent implements OnInit {
       class: "warning",
       price: "50",
       type: "Cars",
-      status: this.status[3]
+      status: this.status[3],
+      isSelected:false
     },
     {
 
@@ -87,7 +91,8 @@ export class PoliciesListComponent implements OnInit {
       class: "success",
       price: "150",
       type: "Products",
-      status: this.status[0]
+      status: this.status[0],
+      isSelected:false
     },
     {
 
@@ -100,7 +105,8 @@ export class PoliciesListComponent implements OnInit {
       class: "confirm",
       price: "50",
       type: "Cars",
-      status: this.status[1]
+      status: this.status[1],
+      isSelected:false
     },
     {
 
@@ -113,7 +119,8 @@ export class PoliciesListComponent implements OnInit {
       class: "rejected",
       price: "150",
       type: "Products",
-      status: this.status[2]
+      status: this.status[2],
+      isSelected:false
     },
     {
 
@@ -126,7 +133,8 @@ export class PoliciesListComponent implements OnInit {
       class: "warning",
       price: "50",
       type: "Cars",
-      status: this.status[3]
+      status: this.status[3],
+      isSelected:false
     },
     {
 
@@ -139,10 +147,11 @@ export class PoliciesListComponent implements OnInit {
       class: "warning",
       price: "50",
       type: "Cars",
-      status: this.status[3]
+      status: this.status[3],
+      isSelected:false
     }
   ];
-
+isSelect:boolean=false
   constructor(
     // private policyService: PolicyService,
     // private alertsService: AlertsService,
@@ -306,6 +315,22 @@ export class PoliciesListComponent implements OnInit {
   }
   loadPage(page: number): void {
     this.getAllPloicies();
+  }
+
+  selected(e?:any){
+    this.items.forEach((e:any) => {
+      e.isSelected=false
+    });
+    this.items[e-1].isSelected=true
+    console.log(this.items[e-1]);
+
+    this.isSelect=true
+  }
+  clearAllSelected(){
+    this.items.forEach((e:any) => {
+      e.isSelected=false
+    });
+    this.isSelect=false
   }
 
   ngOnDestroy(): void {
