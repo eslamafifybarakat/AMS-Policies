@@ -1,3 +1,11 @@
 .layout-content {
   background-color: var(--bg-page-card-color);
 }
+.spinner{
+  height: 100vh;
+  .spinner-grow {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    margin: 0 2px;
+  }
+}
