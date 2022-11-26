@@ -1315,7 +1315,11 @@ code-input {
   max-height: 85vh;
   overflow-y: scroll;
 }
-
+.policy-data {
+  .mat-radio-container{
+    transform: scale(.7) !important;
+  }
+}
 /* ===== End Angular Material Customization ===== */
 .border-red {
   border: 1px solid #dc3545 !important;

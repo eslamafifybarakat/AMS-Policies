@@ -92,8 +92,11 @@
 
   .crop-content{
     max-height: 95vh;
+    min-height: 70vh;
+    min-width: 50%;
     max-width: 80%;
     overflow: auto;
+    border-radius: 10px;
   }
   .form-control:disabled,
   .form-control,
