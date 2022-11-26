@@ -49,3 +49,11 @@
     border: 2px solid var(--bs-danger) !important;
   }
 }
+.spinner{
+  height: calc(100vh - 142px) !important;
+  .spinner-grow {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    margin: 0 2px;
+  }
+}
