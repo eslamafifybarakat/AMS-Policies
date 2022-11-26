@@ -97,7 +97,9 @@ export class LogInComponent implements OnInit {
 
     console.log(data);
     // this.router.navigate(['/auth/confirm-login-code', {
-    //   user_id: 1
+    //   user_id: 1,
+    //   email: this.loginForm?.value?.email,
+    //   password: this.loginForm?.value?.password
     // }])
     this.authUserService?.login(data)?.subscribe(
       (res: any) => {
