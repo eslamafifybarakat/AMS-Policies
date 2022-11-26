@@ -16,7 +16,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoadingBtn = true;
-    this.layoutService?.profileData('')?.subscribe(
+    this.layoutService?.profileData()?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';

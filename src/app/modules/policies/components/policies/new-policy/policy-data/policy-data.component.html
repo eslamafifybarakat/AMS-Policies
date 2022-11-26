@@ -210,7 +210,7 @@
                         <span>
                           {{'general.upload' | translate}}
                         </span>
-                        <i class=" fas fa-cloud-upload-alt fs-5"></i>
+                        <i class=" fas fa-cloud-upload-alt fs-5 mx-2"></i>
                       </span>
                     </label>
                     <ng-container *ngFor="let item of passportImageFile">
@@ -567,6 +567,7 @@
               </ng-container>
               <ng-template #elseTemplate>
                 <button class="btn btn-solid-main me-2" type="submit">
+                  <!-- [disabled]="policyForm.invalid" -->
                   {{'general.next' | translate}}
                 </button>
               </ng-template>
