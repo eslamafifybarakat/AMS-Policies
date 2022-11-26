@@ -10,9 +10,12 @@
         </p>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-solid-main me-2" type="submit" [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty"
+        <button class="btn btn-solid-main me-2 d-flex justify-content-center align-items-center gap-2" type="submit" [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty"
          >
-          {{'general.save_changes' | translate}}
+          <span>{{'general.save_changes' | translate}}</span>
+          <ng-container *ngIf="isloadingBtn">
+            <div id="spinner"></div>
+          </ng-container>
         </button>
         <button class="btn btn-solid-second me-2" [routerLink]="['/home/policies/dashboard']">
           {{'general.cancel' | translate}}

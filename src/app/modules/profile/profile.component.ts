@@ -73,7 +73,6 @@ export class ProfileComponent implements OnInit {
   //   setTimeout(() => {
   //     console.log(this.img);
   //     this.isLoadingBtn=false
-  //     this._location.back();
   //   }, 1000);
   // }
 

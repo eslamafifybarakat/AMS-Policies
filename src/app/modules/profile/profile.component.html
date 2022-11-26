@@ -16,8 +16,11 @@
                 format="png"
                 (imageCropped)="imageCropped($event)"></image-cropper>
                 <div class="d-flex gap-3 mt-4">
-                  <button class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2" (click)="ok()">
-                    {{"general.confirm"|translate}}
+                  <button class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2 text-capitalize" (click)="ok()">
+                    <span>{{"general.confirm"|translate}}</span>
+                    <ng-container *ngIf="isLoadingBtn">
+                      <div id="spinner"></div>
+                    </ng-container>
                   </button>
                   <button class="btn btn-outline-main-header" (click)="cancel()">{{"general.cancel"|translate}}</button>
                 </div>
@@ -26,7 +29,7 @@
             </ng-container>
             <img class="img-user rounded p-1 shadow-lg" [src]="img" alt="profile-img">
             <input hidden (change)="onFileSelected($event)" #fileInput type="file" accept="image" id="file">
-            <button type="button" class="btn btn-outline-main-header btn-img my-2" (click)="fileInput.click()" >
+            <button type="button" class="btn btn-outline-main-header btn-img my-2 d-flex justify-content-center align-items-center gap-2" (click)="fileInput.click()" >
               {{"general.update_image"|translate}}
             </button>
           </div>
