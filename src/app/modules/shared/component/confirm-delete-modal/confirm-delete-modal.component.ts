@@ -18,6 +18,8 @@ export class ConfirmDeleteModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.textDelete = this.text;
+    console.log(this.textDelete);
+
     if (this.textDelete) {
       this.showRoleNameInput = true;
     }

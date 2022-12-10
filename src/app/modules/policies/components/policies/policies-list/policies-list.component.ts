@@ -36,7 +36,7 @@ export class PoliciesListComponent implements OnInit {
       price: "150",
       type: "Products",
       status: this.status[0],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -50,7 +50,7 @@ export class PoliciesListComponent implements OnInit {
       price: "50",
       type: "Cars",
       status: this.status[1],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -64,7 +64,7 @@ export class PoliciesListComponent implements OnInit {
       price: "150",
       type: "Products",
       status: this.status[2],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -78,7 +78,7 @@ export class PoliciesListComponent implements OnInit {
       price: "50",
       type: "Cars",
       status: this.status[3],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -92,7 +92,7 @@ export class PoliciesListComponent implements OnInit {
       price: "150",
       type: "Products",
       status: this.status[0],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -106,7 +106,7 @@ export class PoliciesListComponent implements OnInit {
       price: "50",
       type: "Cars",
       status: this.status[1],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -120,7 +120,7 @@ export class PoliciesListComponent implements OnInit {
       price: "150",
       type: "Products",
       status: this.status[2],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -134,7 +134,7 @@ export class PoliciesListComponent implements OnInit {
       price: "50",
       type: "Cars",
       status: this.status[3],
-      isSelected:false
+      isSelected: false
     },
     {
 
@@ -148,10 +148,10 @@ export class PoliciesListComponent implements OnInit {
       price: "50",
       type: "Cars",
       status: this.status[3],
-      isSelected:false
+      isSelected: false
     }
   ];
-isSelect:boolean=false
+  isSelect: boolean = false
   constructor(
     // private policyService: PolicyService,
     // private alertsService: AlertsService,
@@ -263,7 +263,7 @@ isSelect:boolean=false
   onaDeleteItem(item: any): void {
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
       width: "40%",
-      data: item?.client
+      data: 'item name'
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result?.confirm === true) {
@@ -317,20 +317,20 @@ isSelect:boolean=false
     this.getAllPloicies();
   }
 
-  selected(e?:any){
-    this.items.forEach((e:any) => {
-      e.isSelected=false
+  selected(e?: any) {
+    this.items.forEach((e: any) => {
+      e.isSelected = false
     });
-    this.items[e-1].isSelected=true
-    console.log(this.items[e-1]);
+    this.items[e - 1].isSelected = true
+    console.log(this.items[e - 1]);
 
-    this.isSelect=true
+    this.isSelect = true
   }
-  clearAllSelected(){
-    this.items.forEach((e:any) => {
-      e.isSelected=false
+  clearAllSelected() {
+    this.items.forEach((e: any) => {
+      e.isSelected = false
     });
-    this.isSelect=false
+    this.isSelect = false
   }
 
   ngOnDestroy(): void {
