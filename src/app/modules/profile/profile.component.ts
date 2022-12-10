@@ -5,21 +5,9 @@ import { ImgCropperEvent } from "@alyle/ui/image-cropper";
 import { AuthUserService } from '../auth/services/auth-user.service';
 import { CropperImageDialogComponent } from '../shared/component/cropper-image-dialog/cropper-image-dialog.component';
 import { PublicService } from '../../services/public.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
-const STYLES = (theme: ThemeVariables) => ({
-  $global: lyl`{
-    body {
-      background-color: ${theme.background.default}
-      color: ${theme.text.default}
-      font-family: ${theme.typography.fontFamily}
-      margin: 0
-      direction: ${theme.direction}
-    }
-  }`,
-  root: lyl`{
-    display: block
-  }`
-});
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -35,9 +23,12 @@ export class ProfileComponent implements OnInit {
   cropped?: string = "";
   profileImgSelected: boolean = false;
   isMaxImg: boolean = false;
-
-  // followvalue: string = "Follow";
-  readonly classes = this.sRenderer.renderSheet(STYLES, true);
+  img:any='assets/image/userprofile.jpg'
+  selectedFile: any = '';
+  croppedImage: any = this.img;
+  imageChangedEvent: any = '';
+  showCrop :boolean= false;
+  isLoadingBtn:boolean=false;
 
   constructor(
     readonly publicService: PublicService,
@@ -50,51 +41,40 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // followChange(): void {
-  //   if (this.followvalue == "Following") {
-  //     this.followvalue = "Follow";
-  //   } else {
-  //     this.followvalue = "Following";
-  //   }
-  // }
+  onFileSelected(event: any): void {
+    this.imageChangedEvent = event;
+    this.selectedFile = event.target.files[0] ?? null;
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      // this.userData.photo=event.target.result;
+      this.img = this.croppedImage;
 
-  openCropperDialog(event: Event): void {
-    this.cropped = null!;
-    this._dialog
-      .open<CropperImageDialogComponent, Event>(CropperImageDialogComponent, {
-        data: event,
-        width: "35%",
-        disableClose: true,
-      })
-      .afterClosed.subscribe((result?: ImgCropperEvent) => {
-        if (result) {
-          this.cropped = result.dataURL;
-          this.profileImgSelected = true;
-          let img = this.publicService?.base64ToImageFile(
-            this.cropped,
-            "image"
-          );
-          if (img?.size <= 5120 * 1024) {
-            this.isMaxImg = false;
-          } else {
-            this.cropped = "";
-            this.profileImgSelected = false;
-            this.cdr.markForCheck();
-            this.isMaxImg = true;
-          }
-
-          this.cdr.markForCheck();
-        }
-      });
-  }
-
-  onRemoveImage(): void {
-    this.cropped = "";
-    if (this.cropped == "") {
-      this.profileImgSelected = false;
     }
-    this.cdr?.detectChanges();
+    reader.readAsDataURL(this.selectedFile)
+    this.showCrop = true
   }
+
+  imageCropped(event: ImageCroppedEvent):void {
+    this.croppedImage = event.base64;
+  }
+  ok():void {
+    this.isLoadingBtn=true
+    setTimeout(() => {
+      this.img = this.croppedImage;
+      this.isLoadingBtn=false
+      this.showCrop = false
+    }, 1000);
+  }
+  cancel():void {
+    this.showCrop = false
+  }
+  // save():void{
+  //   this.isLoadingBtn=true
+  //   setTimeout(() => {
+  //     console.log(this.img);
+  //     this.isLoadingBtn=false
+  //   }, 1000);
+  // }
 
   signOut(): void {
     this._AuthUserser.signOut();

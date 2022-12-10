@@ -1,7 +1,17 @@
-<!-- <ng-container *ngIf="true">
-
+<ng-container *ngIf="isLoadingBtn">
+  <div class="spinner d-flex justify-content-center align-items-center">
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 </ng-container>
-<ng-container *ngIf="false"> -->
+<ng-container *ngIf="!isLoadingBtn">
 <div class="layout-content min-vh-100 py-5">
   <app-header></app-header>
   <div class="container">
@@ -9,4 +19,4 @@
   </div>
 </div>
 
-<!-- </ng-container> -->
+</ng-container>

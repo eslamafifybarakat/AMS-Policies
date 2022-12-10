@@ -13,14 +13,14 @@
           {{(title || 'policies.dashboard') | translate}}
         </h1>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-target="#navbarNavAltMarkup"
+      <button class="navbar-toggler bg-white-color border-0" type="button" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation" (click)="collapsed=!collapsed">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse rounded-3" id="navbarNavAltMarkup" [class.show]="collapsed">
         <div class="d-flex flex-lg-row align-items-center justify-content-end  w-100 flex-column">
           <div class="d-flex align-items-center my-xl-0 my-md-3 my-sm-3 my-3">
-            <ng-container *ngIf="!isLoggedin">
+            <ng-container >
               <li class="nav-item mx-2">
                 <app-language-selector></app-language-selector>
               </li>

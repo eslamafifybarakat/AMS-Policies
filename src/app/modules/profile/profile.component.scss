@@ -73,22 +73,7 @@
   }
 
   .btn-img {
-    width: 9rem;
-  }
-
-  .LyStyle--mf-1-n {
-    margin: 0 !important;
-    width: 100%;
-    height: auto;
-  }
-
-  .LyButton-animations-g:hover,
-  .LyButton-animations-g:hover::before,
-  .LyButton-animations-g:focus,
-  .LyButton-animations-g:focus-visible,
-  .LyButton-animations-g:focus::before {
-    box-shadow: none !important;
-    background: transparent !important;
+    // width: 9rem;
   }
 
   .card {
@@ -103,5 +88,61 @@
 
   .logout-box {
     border-radius: 0 0 9px 9px;
+  }
+
+  .crop-content{
+    max-height: 95vh;
+    min-height: 70vh;
+    min-width: 50%;
+    max-width: 80%;
+    overflow: auto;
+    border-radius: 10px;
+  }
+  .form-control:disabled,
+  .form-control,
+  .input-group-text {
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    height: 3rem;
+  }
+  .crop{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #spinner {
+    -webkit-animation: frames 1s infinite linear;
+    animation: frames 1s infinite linear;
+    background: transparent;
+    border: 0.2rem solid var(--bg-white-color);
+    border-radius: 100%;
+    border-top-color: var(--bg-main-color);
+    width: .9rem;
+    height: .9rem;
+    opacity: 0.6;
+    padding: 0;
+    z-index: 999;
+  }
+
+  @keyframes frames {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
   }
 }

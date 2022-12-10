@@ -11,6 +11,8 @@ import { Location, DatePipe } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { AuthUserService } from '../../services/auth-user.service';
 import { TranslateService } from '@ngx-translate/core';
+import Validation from "../../../shared/utils/validation";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -64,7 +66,7 @@ export class RegisterComponent implements OnInit {
       Validators.maxLength(20)])]]
     },
     {
-      validator: ConfirmPasswordValidator.MatchPassword
+      validators: [Validation.match("password", "confirmPassword")],
     }
   );
   get formControls(): any {

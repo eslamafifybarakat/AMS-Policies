@@ -212,7 +212,8 @@
     "deactivate_text": " For extra security, this requires you to confirm your email or phone number when you reset your password",
     "account_info": "Account Information",
     "personal_info": "Personal Information",
-    "personal_info_text": " Update your personal informaiton"
+    "personal_info_text": " Update your personal informaiton",
+    "update_profile": "Update profile photo"
   },
   "titles": {
     "policy_data": "Policy Data",

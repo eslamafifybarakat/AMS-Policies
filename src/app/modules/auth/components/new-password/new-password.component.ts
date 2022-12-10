@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ConfirmPasswordValidator } from './confirm-password-validator';
 import { Location } from '@angular/common';
+import Validation from "../../../shared/utils/validation";
 
 @Component({
   selector: 'app-new-password',
@@ -49,9 +49,9 @@ export class NewPasswordComponent implements OnInit {
     ]],
     confirmpassword: ['', Validators.required]
   },
-    {
-      validator: ConfirmPasswordValidator.MatchPassword
-    }
+  {
+    validators: [Validation.match("newpassword", "confirmpassword")],
+  }
   )
   get formControls(): any {
     return this.newPasswordForm.controls;

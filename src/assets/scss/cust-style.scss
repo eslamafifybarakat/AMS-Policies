@@ -186,6 +186,9 @@
   border: 2px solid var(--warning-color);
 }
 
+.cursor-pointer{
+  cursor: pointer !important;
+}
 /* Start Search Group Customization */
 .search-table {
   position: relative;
@@ -1193,13 +1196,7 @@ li.view-hover:hover {
     border-left: none;
   }
 
-  .border-red {
-    border: 1px solid #dc3545 !important;
-  }
 
-  .border-green {
-    border: 1px solid #198754 !important;
-  }
 
   .form-control.is-valid:focus,
   .was-validated .form-control:valid:focus,
@@ -1318,8 +1315,18 @@ code-input {
   max-height: 85vh;
   overflow-y: scroll;
 }
-
+.policy-data {
+  .mat-radio-container{
+    transform: scale(.7) !important;
+  }
+}
 /* ===== End Angular Material Customization ===== */
+.border-red {
+  border: 1px solid #dc3545 !important;
+}
 
+.border-green {
+  border: 1px solid #198754 !important;
+}
 /* Importing Responsive SCSS file. */
 @import "./responsive.scss";

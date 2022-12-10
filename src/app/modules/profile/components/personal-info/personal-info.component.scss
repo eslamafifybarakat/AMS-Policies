@@ -36,5 +36,29 @@
     background: #F64E60;
     color: white;
   }
+  #spinner {
+    -webkit-animation: frames 1s infinite linear;
+    animation: frames 1s infinite linear;
+    background: transparent;
+    border: 0.2rem solid var(--bg-white-color);
+    border-radius: 100%;
+    border-top-color: var(--bg-main-color);
+    width: .9rem;
+    height: .9rem;
+    opacity: 0.6;
+    padding: 0;
+    z-index: 999;
+  }
 
+  @keyframes frames {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
 }

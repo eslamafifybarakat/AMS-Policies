@@ -44,7 +44,7 @@
     "ngx-bootstrap": "^9.0.0",
     "ngx-clipboard": "^15.1.0",
     "ngx-device-detector": "^4.0.1",
-    "ngx-image-cropper": "^6.2.2",
+    "ngx-image-cropper": "^6.3.1",
     "ngx-intl-tel-input": "^3.2.0",
     "ngx-photo-editor": "^0.4.3",
     "ngx-pipes": "^3.1.0",
