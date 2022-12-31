@@ -79,10 +79,8 @@ export class LogInComponent implements OnInit {
   submit(): void {
     this.isLoadingBtn = true;
     let data = {
-      login: {
-        email: this.loginForm?.value?.email,
-        password: this.loginForm?.value?.password,
-      },
+      email: this.loginForm?.value?.email,
+      password: this.loginForm?.value?.password,
       auth_location_and_device_info: {
         country_name: this.deviceLocationData?.country_name,
         region: this.deviceLocationData?.region,

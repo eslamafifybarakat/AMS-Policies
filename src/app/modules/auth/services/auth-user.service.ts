@@ -21,18 +21,18 @@ export class AuthUserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-  ) {}
+  ) { }
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/register", data);
+    return this.http.post<any>(this.apiUrl + "/api/site/register", data);
   }
 
-  resendEmail(email:any):Observable<any>{
-    return  this.http.post<any>(this.apiUrl + "/api/email/resend",email)
+  resendEmail(email: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/email/resend", email)
   }
 
   login(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/users/auth/login", data);
+    return this.http.post<any>(this.apiUrl + "/api/site/login", data);
   }
 
   verificationCode(data: any): Observable<any> {
