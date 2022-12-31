@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
       Validators.maxLength(20)]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      birth_date: ['', [Validators.required]],
+      birth_date: ['', []],
       password: ['', [Validators.compose([Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20)])]],
@@ -83,24 +83,29 @@ export class RegisterComponent implements OnInit {
     this.isLoadingBtn = true;
     this.isResend = false;
     let data = {
-      registration: {
-        name: this.registerForm?.value?.name,
-        email: this.registerForm?.value?.email,
-        phone: this.registerForm?.value?.phone,
-        birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
-        password: this.registerForm?.value?.password,
-        password_confirmation: this.registerForm?.value?.confirmPassword,
-      },
-      auth_location_and_device_info: {
-        country_name: this.deviceLocationData?.country_name,
-        region: this.deviceLocationData?.region,
-        city: this.deviceLocationData?.city,
-        browser: this.deviceLocationData?.browser,
-        browser_version: this.deviceLocationData?.browser_version,
-        deviceType: this.deviceLocationData?.deviceType,
-        os: this.deviceLocationData?.os,
-        os_version: this.deviceLocationData?.os_version
-      }
+      name:this.registerForm?.value?.name,
+      email:this.registerForm?.value?.email,
+      password:this.registerForm?.value?.password,
+      phone:'01009778667',
+      photo:''
+      // registration: {
+      //   name: this.registerForm?.value?.name,
+      //   email: this.registerForm?.value?.email,
+      //   phone: this.registerForm?.value?.phone,
+      //   birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
+      //   password: this.registerForm?.value?.password,
+      //   password_confirmation: this.registerForm?.value?.confirmPassword,
+      // },
+      // auth_location_and_device_info: {
+      //   country_name: this.deviceLocationData?.country_name,
+      //   region: this.deviceLocationData?.region,
+      //   city: this.deviceLocationData?.city,
+      //   browser: this.deviceLocationData?.browser,
+      //   browser_version: this.deviceLocationData?.browser_version,
+      //   deviceType: this.deviceLocationData?.deviceType,
+      //   os: this.deviceLocationData?.os,
+      //   os_version: this.deviceLocationData?.os_version
+      // }
     }
     console.log(data);
     this.authUserService?.register(data)?.subscribe(
