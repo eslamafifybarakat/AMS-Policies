@@ -257,6 +257,7 @@ export class PoliciesListComponent implements OnInit {
     //     }
     //   );
     //  }
+
     this.cdr.detectChanges();
   }
 
