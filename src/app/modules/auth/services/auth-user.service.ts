@@ -24,7 +24,7 @@ export class AuthUserService {
   ) {}
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/users/auth/signup", data);
+    return this.http.post<any>(this.apiUrl + "/register", data);
   }
 
   resendEmail(email:any):Observable<any>{
