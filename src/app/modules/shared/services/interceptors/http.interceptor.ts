@@ -38,10 +38,9 @@ export class httpInterceptor implements HttpInterceptor {
       );
     }
 
-    let user = JSON.parse(window.localStorage.getItem(keys.userData) || "{}");
-
+    let user = JSON.parse(window.localStorage.getItem(keys.userLoginData) || "{}");
     if (user) {
-      header["Authorization"] = `Bearer ${user?.data?.api_token}`;
+      header["Authorization"] = `Bearer ${user?.token}`;
     }
 
     request = request.clone({

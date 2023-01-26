@@ -8,16 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./policies.component.scss']
 })
 export class PoliciesComponent implements OnInit {
-
-  imageUser: any = 'https://www.facebook.com/photo?fbid=3431412950405130&set=a.1378383755708070';
   userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
 
   constructor(
     public _AuthUserser: AuthUserService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   signOut(): void {
     this._AuthUserser.signOut();

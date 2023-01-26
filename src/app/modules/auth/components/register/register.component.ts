@@ -90,13 +90,13 @@ export class RegisterComponent implements OnInit {
       birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
       password: this.registerForm?.value?.password,
       password_confirmation: this.registerForm?.value?.confirmPassword,
-      auth_location_and_device_info: {
+      location_device_info: {
         country_name: this.deviceLocationData?.country_name,
         region: this.deviceLocationData?.region,
         city: this.deviceLocationData?.city,
         browser: this.deviceLocationData?.browser,
         browser_version: this.deviceLocationData?.browser_version,
-        deviceType: this.deviceLocationData?.deviceType,
+        device_type: this.deviceLocationData?.deviceType,
         os: this.deviceLocationData?.os,
         os_version: this.deviceLocationData?.os_version
       }
@@ -106,6 +106,7 @@ export class RegisterComponent implements OnInit {
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          this.router.navigate(['/auth/login']);
           this.isLoadingBtn = false;
           this.registerForm.reset();
           this.isResend = true;

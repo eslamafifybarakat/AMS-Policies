@@ -1,6 +1,6 @@
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { DatePipe } from '@angular/common';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
-import { LayoutService } from './../../../layout/services/layout.service';
 import { DeactiveComponent } from './deactive/deactive.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,7 @@ export class PersonalInfoComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
   isloadingBtn: boolean = false;
-
+  userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
@@ -32,28 +32,27 @@ export class PersonalInfoComponent implements OnInit {
   jobNames = ['Uber', 'Microsoft', 'Flexigen'];
 
   constructor(
-    public layoutService:LayoutService,
-    public alertsService:AlertsService,
+    public alertsService: AlertsService,
     public dialog: MatDialog,
     private fb: FormBuilder,
     public router: Router,
-    public datePipe:DatePipe
+    public datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
     let birth: any = moment(
-      '10/10/1996',
+      this.userdata?.birth_date,
       "DD-MM-YYYY"
     ).toDate();
 
     this.accountInfoForm.patchValue(
       {
-        name: 'Eslam Barakat',
-        phone: '01012525233',
-        email: 'xsite@ME.com',
+        name: this.userdata?.name,
+        phone: this.userdata?.phone,
+        email: this.userdata?.email,
         birthdate: birth,
-        gender: 'male',
-        company: 'ME Company'
+        gender: this.userdata?.gender,
+        company: this.userdata?.company
       }
     );
     this.jobNames.forEach((c, i) => {
@@ -73,11 +72,7 @@ export class PersonalInfoComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20)]],
     gender: ['', [Validators.required]],
-    // language: [null, Validators.required],
-    // timeszone: [null, Validators.required],
-    // skills: [null, Validators.required],
-    job: [null, Validators.required],
-    // account: [null, Validators.required],
+    job: [null, Validators.required]
   });
   get formControls(): any {
     return this.accountInfoForm.controls;
@@ -86,31 +81,14 @@ export class PersonalInfoComponent implements OnInit {
   submit(): void {
     this.isloadingBtn = true;
     console.log(this.accountInfoForm);
-    let data={
+    let data = {
       name: this.accountInfoForm?.value?.name,
-        email: this.accountInfoForm?.value?.email,
-        phone: this.accountInfoForm?.value?.phone,
-        birth_date: this.datePipe.transform(this.accountInfoForm?.value?.birthdate, "yyyy-MM-dd"),
+      email: this.accountInfoForm?.value?.email,
+      phone: this.accountInfoForm?.value?.phone,
+      birth_date: this.datePipe.transform(this.accountInfoForm?.value?.birthdate, "yyyy-MM-dd"),
     }
     console.log(data);
 
-    this.layoutService?.editProfile(data)?.subscribe(
-      (res: any) => {
-        if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
-          this.isloadingBtn = false;
-        } else {
-          this.isloadingBtn = false;
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-        }
-      },
-      (err: any) => {
-        if (err?.error) {
-          err?.error ? this.alertsService.openSnackBar(err?.error) : '';
-        }
-        this.isloadingBtn = false;
-      }
-    );
     // setTimeout(() => {
     //   this.accountInfoForm.patchValue(
     //     {

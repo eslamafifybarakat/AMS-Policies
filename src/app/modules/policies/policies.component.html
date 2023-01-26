@@ -5,10 +5,10 @@
         <div class="h-100">
           <div class="user-info-data d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-center align-items-center">
-              <img class="rounded-circle user-img border-icon-menu" [src]="imageUser"
+              <img class="rounded-circle user-img border-icon-menu" [src]="userdata?.photo"
                 onerror="this.src='assets/image/nonuser.webp'" alt="doctor photo" />
               <span class="mx-1 fs-5">
-                {{'Eslam Afify'}}
+                {{userdata?.name}}
               </span>
             </div>
           </div>

@@ -22,7 +22,6 @@ export class NewPasswordComponent implements OnInit {
   showeye: boolean = false;
   showeye2: boolean = false;
   currentLanguage: any;
-  codeLength: any;
   urlData: any;
 
   constructor(
@@ -49,9 +48,9 @@ export class NewPasswordComponent implements OnInit {
     ]],
     confirmpassword: ['', Validators.required]
   },
-  {
-    validators: [Validation.match("newpassword", "confirmpassword")],
-  }
+    {
+      validators: [Validation.match("newpassword", "confirmpassword")],
+    }
   )
   get formControls(): any {
     return this.newPasswordForm.controls;
@@ -66,33 +65,21 @@ export class NewPasswordComponent implements OnInit {
   back(): void {
     this.location.back();
   }
-  onCodeChanged(code: string): void {
-    console.log(code);
-    this.codeLength = code;
-  }
-  onCodeCompleted(code: string): void {
-    console.log(code);
-    this.codeLength = code;
-    console.log(this.codeLength);
-  }
-
 
   submit(): void {
     this.isloadingBtn = true;
     let data = {
-      code: this.codeLength,
+      code: this.urlData?.code,
       password: this.newPasswordForm?.value?.newpassword,
       password_confirmation: this.newPasswordForm?.value?.confirmpassword
     }
-    // console.log(data);
-    // this.router.navigate(['/auth/login'])
 
     this.authUserService?.resetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
           this.isloadingBtn = false;
-          this.router.navigate(['/auth/login'])
+          this.router.navigate(['/auth/login']);
 
         } else {
           this.isloadingBtn = false;

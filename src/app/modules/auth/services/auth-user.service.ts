@@ -27,6 +27,10 @@ export class AuthUserService {
     return this.http.post<any>(this.apiUrl + "/api/site/register", data);
   }
 
+  getUserData(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/api/site/profile");
+  }
+
   resendEmail(email: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/email/resend", email)
   }
@@ -36,13 +40,24 @@ export class AuthUserService {
   }
 
   verificationCode(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/users/auth/verify-otp", data);
+    return this.http.post<any>(this.apiUrl + "/api/site/verify-email", data);
   }
   forgetPassword(email: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/users/auth/password/email", email);
+    return this.http.post<any>(this.apiUrl + "/api/site/forget-password", email);
+  }
+  verificationPassword(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/site/verify-password-code", data);
   }
   resetPassword(user: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/users/auth/password/reset", user);
+    return this.http.post<any>(this.apiUrl + "/api/site/password-reset", user);
+  }
+
+  editProfile(data: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl + "/api/users/profile/edit-profile", data);
+  }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl + "/api/site/change-password", data);
   }
 
   isLoggedIn(): boolean {

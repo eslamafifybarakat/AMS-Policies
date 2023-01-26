@@ -4,32 +4,33 @@
       <div class="user position-relative p-3">
         <div class="h-100">
           <div class="d-flex justify-content-center align-items-center flex-column ">
-            <ng-container  *ngIf="showCrop">
+            <ng-container *ngIf="showCrop">
               <div class="text-center crop w-100">
                 <div class="p-4 crop-content  bg-white-color">
                   <h5 class="fs-4-1 mb-4 border-bottom pb-3 text-main-color">{{"profile.update_profile"|translate}}</h5>
-                <image-cropper class="w-fit"
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="4 / 4"
-                [resizeToWidth]="300"
-                format="png"
-                (imageCropped)="imageCropped($event)"></image-cropper>
-                <div class="d-flex gap-3 mt-4">
-                  <button class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2 text-capitalize" (click)="ok()">
-                    <span>{{"general.confirm"|translate}}</span>
-                    <ng-container *ngIf="isLoadingBtn">
-                      <div id="spinner"></div>
-                    </ng-container>
-                  </button>
-                  <button class="btn btn-outline-main-header" (click)="cancel()">{{"general.cancel"|translate}}</button>
+                  <image-cropper class="w-fit" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 4" [resizeToWidth]="300" format="png"
+                    (imageCropped)="imageCropped($event)"></image-cropper>
+                  <div class="d-flex gap-3 mt-4">
+                    <button
+                      class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2 text-capitalize"
+                      (click)="ok()">
+                      <span>{{"general.confirm"|translate}}</span>
+                      <ng-container *ngIf="isLoadingBtn">
+                        <div id="spinner"></div>
+                      </ng-container>
+                    </button>
+                    <button class="btn btn-outline-main-header"
+                      (click)="cancel()">{{"general.cancel"|translate}}</button>
+                  </div>
                 </div>
-                </div>
-            </div>
+              </div>
             </ng-container>
-            <img class="img-user rounded p-1 shadow-lg" [src]="img" alt="profile-img">
+            <img class="img-user rounded p-1 shadow-lg" [src]="userdata?.photo || img" alt="profile-img">
             <input hidden (change)="onFileSelected($event)" #fileInput type="file" accept="image" id="file">
-            <button type="button" class="btn btn-outline-main-header btn-img my-2 d-flex justify-content-center align-items-center gap-2" (click)="fileInput.click()" >
+            <button type="button"
+              class="btn btn-outline-main-header btn-img my-2 d-flex justify-content-center align-items-center gap-2"
+              (click)="fileInput.click()">
               {{"general.update_image"|translate}}
             </button>
           </div>
@@ -38,7 +39,7 @@
           <div class="d-flex align-items-center justify-content-center">
             <div>
               <h1 class="text-center fs-6 mb-2">
-                Eslam Afify Barakat
+                {{userdata?.name}}
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="green"
                     class="bi bi-patch-check-fill ms-1" viewBox="0 0 16 16">

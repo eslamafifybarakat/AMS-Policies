@@ -6,6 +6,7 @@ import { AuthUserService } from '../auth/services/auth-user.service';
 import { CropperImageDialogComponent } from '../shared/component/cropper-image-dialog/cropper-image-dialog.component';
 import { PublicService } from '../../services/public.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { keys } from '../shared/TS Files/localstorage-key';
 
 
 @Component({
@@ -19,16 +20,16 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 export class ProfileComponent implements OnInit {
 
-  // link: any = 'https://www.linkedin.com/in/eslam-afify-barakat-3a1396142/';
+  userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
   cropped?: string = "";
   profileImgSelected: boolean = false;
   isMaxImg: boolean = false;
-  img:any='assets/image/userprofile.jpg'
+  img: any = 'assets/image/userprofile.jpg'
   selectedFile: any = '';
   croppedImage: any = this.img;
   imageChangedEvent: any = '';
-  showCrop :boolean= false;
-  isLoadingBtn:boolean=false;
+  showCrop: boolean = false;
+  isLoadingBtn: boolean = false;
 
   constructor(
     readonly publicService: PublicService,
@@ -54,18 +55,18 @@ export class ProfileComponent implements OnInit {
     this.showCrop = true
   }
 
-  imageCropped(event: ImageCroppedEvent):void {
+  imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
   }
-  ok():void {
-    this.isLoadingBtn=true
+  ok(): void {
+    this.isLoadingBtn = true
     setTimeout(() => {
       this.img = this.croppedImage;
-      this.isLoadingBtn=false
+      this.isLoadingBtn = false
       this.showCrop = false
     }, 1000);
   }
-  cancel():void {
+  cancel(): void {
     this.showCrop = false
   }
   // save():void{

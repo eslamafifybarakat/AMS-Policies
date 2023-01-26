@@ -52,17 +52,12 @@ export class ForgrtPasswordComponent implements OnInit {
     let data = {
       email: this.urlData.email
     }
-    console.log(data);
-    this.router.navigate(['/auth/new-password', {
-      email: this.urlData.email
-    }])
-
     this.authUserService?.forgetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
           this.isloadingBtn = false;
-          this.router.navigate(['/auth/new-password'])
+          this.router.navigate(['/auth/email-verification']);
         } else {
           this.isloadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';

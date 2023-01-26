@@ -10,8 +10,8 @@
         </p>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-solid-main me-2 d-flex justify-content-center align-items-center gap-2" type="submit" [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty"
-         >
+        <button class="btn btn-solid-main me-2 d-flex justify-content-center align-items-center gap-2" type="submit"
+          [disabled]="accountInfoForm.invalid || !accountInfoForm.dirty">
           <span>{{'general.save_changes' | translate}}</span>
           <ng-container *ngIf="isloadingBtn">
             <div id="spinner"></div>
@@ -38,7 +38,7 @@
               <input type="text" class="form-control" formControlName="name"
                 placeholder="{{'placeholder.name' | translate}}"
                 [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
-                  [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
+                [class.is-valid]="(formControls?.['name']?.dirty) && formControls?.['name']?.valid">
             </div>
             <div class="mt-2">
               <div *ngIf="(formControls?.name?.touched || formControls?.name?.dirty) && formControls?.name?.invalid">
@@ -223,85 +223,6 @@
 
       </div>
     </div>
-    <!-- <hr class="text-secondary-color mt-3">
-    <div class="security">
-
-      <h1 class="fs-4 my-4 text-begin">
-        {{'profile.security' | translate}}:
-      </h1>
-
-      <div class="d-flex flex-column-md my-4">
-        <label class="form-label w-25 mb-0 w-100-md mb-1-md lh-base">
-          {{'profile.communcation' | translate}}
-        </label>
-        <div class="d-flex w-100">
-          <div class="form-check me-2">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault1">
-            <label class="form-check-label lh-base" for="flexCheckDefault1">
-              {{'form.email' | translate}}
-            </label>
-          </div>
-          <div class="form-check me-2">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault2">
-            <label class="form-check-label lh-base" for="flexCheckDefault2">
-              {{'form.sms' | translate}}
-            </label>
-          </div>
-          <div class="form-check me-2">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault3">
-            <label class="form-check-label lh-base" for="flexCheckDefault3">
-              {{'form.email' | translate}}
-            </label>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="d-flex flex-column-md mt-3">
-        <label class="form-label w-25 mb-0 w-100-md mb-1-md lh-base">
-          {{'profile.login_verification' | translate}}
-        </label>
-
-        <div class="w-100">
-          <button class="btn mb-3 setup-btn">
-            {{'profile.login_verification_btn' | translate}}
-          </button>
-          <p class="text-secondary-color lh-base my-2">
-            {{'profile.login_verification_text' | translate}}
-            <a class="text-main-color">
-              {{'general.learn_more' | translate}}
-            </a>
-          </p>
-        </div>
-      </div>
-
-      <div class="d-flex flex-column-md mt-3">
-        <label class="form-label mb-0 w-100-md mb-1-md lh-base">
-          {{'profile.password_reset_verification' | translate}}
-        </label>
-
-        <div>
-          <div class="form-check me-2">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label lh-base" for="flexCheckDefault">
-              {{'profile.deactivate_attention' | translate}}
-            </label>
-          </div>
-          <p class="text-secondary-color lh-base my-2">
-            <span>
-              {{'profile.deactivate_text' | translate}}
-            </span>
-            <a class="text-main-color">
-              {{'general.learn_more' | translate}}
-            </a>
-          </p>
-          <button class="btn mt-3 deactive-btn" (click)="openDialog()">
-            {{'profile.deactivate' | translate}}
-          </button>
-        </div>
-      </div>
-
-    </div> -->
   </form>
 </div>
 

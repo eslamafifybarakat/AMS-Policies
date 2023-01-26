@@ -68,9 +68,7 @@ export class LogInComponent implements OnInit {
     this.showeye = !this.showeye;
   }
   forgetPassword(): void {
-    this.router.navigate(['/auth/forget-password', {
-      email: this.loginForm?.value?.email
-    }])
+    this.router.navigate(['/auth/forget-password'])
   }
   back(): void {
     this.location.back();
@@ -81,39 +79,60 @@ export class LogInComponent implements OnInit {
     let data = {
       email: this.loginForm?.value?.email,
       password: this.loginForm?.value?.password,
-      auth_location_and_device_info: {
+      location_device_info: {
         country_name: this.deviceLocationData?.country_name,
         region: this.deviceLocationData?.region,
         city: this.deviceLocationData?.city,
         browser: this.deviceLocationData?.browser,
         browser_version: this.deviceLocationData?.browser_version,
-        deviceType: this.deviceLocationData?.deviceType,
+        device_type: this.deviceLocationData?.deviceType,
         os: this.deviceLocationData?.os,
         os_version: this.deviceLocationData?.os_version
       }
     }
-
-    console.log(data);
-    // this.router.navigate(['/auth/confirm-login-code', {
-    //   user_id: 1,
-    //   email: this.loginForm?.value?.email,
-    //   password: this.loginForm?.value?.password
-    // }])
     this.authUserService?.login(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          if (res?.data?.token != null) {
-            res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
-            this.isLoadingBtn = false;
-            this.loginForm.reset();
-            this.router.navigate(['/home']);
+          window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data));
+          if (res?.data?.verified == true) {
+            this.authUserService?.getUserData()?.subscribe(
+              (res: any) => {
+                if (res?.code == 200) {
+                  window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
+                  this.router.navigate(['/home']);
+                  this.isLoadingBtn = false;
+                } else {
+                  this.isLoadingBtn = false;
+                  res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+                }
+              },
+              (err: any) => {
+                if (err?.message) {
+                  err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+                }
+                this.isLoadingBtn = false;
+              }
+            );
           } else {
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
             this.router.navigate(['/auth/confirm-login-code', {
               user_id: res?.data?.id,
               email: this.loginForm?.value?.email,
               password: this.loginForm?.value?.password
-            }])
+            }]);
           }
+          // if (res?.data?.token !== null) {
+          //   res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          //   this.loginForm.reset();
+          //   this.router.navigate(['/home']);
+          //   this.isLoadingBtn = false;
+          // } else {
+          //   this.router.navigate(['/auth/confirm-login-code', {
+          //     user_id: res?.data?.id,
+          //     email: this.loginForm?.value?.email,
+          //     password: this.loginForm?.value?.password
+          //   }])
+          // }
 
         } else {
           this.isLoadingBtn = false;

@@ -1,6 +1,6 @@
+import { AuthUserService } from './../../../auth/services/auth-user.service';
 import Validation from "../../../shared/utils/validation";
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
-import { LayoutService } from './../../../layout/services/layout.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -21,8 +21,8 @@ export class ChangePasswordComponent implements OnInit {
   showeye2: boolean = false;
 
   constructor(
-    public layoutService:LayoutService,
-    public alertsService:AlertsService,
+    public _AuthUser: AuthUserService,
+    public alertsService: AlertsService,
     private fb: FormBuilder,
     public router: Router
   ) { }
@@ -47,9 +47,9 @@ export class ChangePasswordComponent implements OnInit {
       Validators.maxLength(20)
     ]]
   },
-  {
-    validators: [Validation.match("newpassword", "confirmpassword")],
-  }
+    {
+      validators: [Validation.match("newpassword", "confirmpassword")],
+    }
 
   )
   get formControls(): any {
@@ -66,35 +66,35 @@ export class ChangePasswordComponent implements OnInit {
   submit(): void {
     this.isloadingBtn = true;
     console.log(this.changePasswordForm);
-    let data={
-      current_password:this.changePasswordForm.value.currentpassword,
-      new_password:this.changePasswordForm.value.newpassword,
-      new_password_confirmation:this.changePasswordForm.value.confirmpassword
+    let data = {
+      current_password: this.changePasswordForm.value.currentpassword,
+      new_password: this.changePasswordForm.value.newpassword,
+      new_password_confirmation: this.changePasswordForm.value.confirmpassword
     }
     console.log(data);
-
-    this.layoutService?.changePassword(data)?.subscribe(
+    this._AuthUser?.changePassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
-          this.isloadingBtn = false;
-    //   this.router.navigate(['/auth/login']);
+          if (res?.data?.verified == true) {
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+            this.isloadingBtn = false;
+          } else {
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+            this.isloadingBtn = false;
+          }
+
         } else {
           this.isloadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
       (err: any) => {
-        if (err?.error) {
-          err?.error ? this.alertsService.openSnackBar(err?.error) : '';
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
         this.isloadingBtn = false;
       }
     );
-    // setTimeout(() => {
-    //   this.isloadingBtn = false;
-    //   this.router.navigate(['/auth/login']);
-    // }, 2000);
   }
 
   ngOnDestroy(): void {

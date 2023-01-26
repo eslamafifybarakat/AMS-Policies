@@ -8,15 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-
-  // userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
+  userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
   collapse: boolean = false;
 
   constructor(
-    private router: Router,
     public _AuthUserser: AuthUserService
   ) {
-    // console.log(this.userdata);
+    console.log(this.userdata);
   }
 
   ngOnInit(): void {

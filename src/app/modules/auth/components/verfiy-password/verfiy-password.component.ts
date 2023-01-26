@@ -1,9 +1,12 @@
+import { Subscription } from 'rxjs';
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
+import { AuthUserService } from './../../services/auth-user.service';
 import { userInfo } from './../../auth-user';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 @Component({
@@ -12,34 +15,39 @@ import { Location } from '@angular/common';
   styleUrls: ['./verfiy-password.component.scss']
 })
 export class VerfiyPasswordComponent implements OnInit {
+  private unsubscribe: Subscription[] = [];
 
   isloading: boolean = false;
   isloadingBtn: boolean = false;
   isWaiting: boolean = false;
-
+  urlData: any;
   time: any = Date.now() + ((60 * 1000) * 1); // current time + 1 minute ///
   minute: any;
-  codeLength:any;
   currentLanguage: any;
+  codeLength: any;
 
   constructor(
-    // public dialogRef: MatDialogRef<VerfiyPasswordComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any,
+    public translationService: TranslationService,
+    public authUserService: AuthUserService,
+    private activateRoute: ActivatedRoute,
+    public alertsService: AlertsService,
+    private cdr: ChangeDetectorRef,
+    public _location: Location,
     public fb: FormBuilder,
     public router: Router,
-    public translationService: TranslationService,
-    public _location:Location
 
   ) { }
-emailVerification=this.fb.group({
-code:[0,[Validators.required]],
-email:[userInfo.email,[Validators.required]]
-})
+
   ngOnInit(): void {
     this.currentLanguage = window.localStorage.getItem(keys.language);
     this.minute = this.time;
+    this.urlData = this.activateRoute.snapshot.params;
   }
 
+  emailVerification = this.fb.group({
+    code: [0, [Validators.required]],
+    email: [userInfo.email, [Validators.required]]
+  })
   // this called every time when user changed the code
   onCodeChanged(code: string): void {
     console.log(code);
@@ -55,11 +63,29 @@ email:[userInfo.email,[Validators.required]]
 
   resendCode(): void {
     this.isloading = true;
-    setTimeout(() => {
-      this.isloading = false;
-      this.isWaiting = false;
-      this.minute = Date.now() + ((60 * 1000) * 0.1);;
-    }, 2000);
+    this.isWaiting = true;
+    let data = {
+      email: this.urlData?.email,
+    }
+    this.authUserService?.forgetPassword(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == 'success') {
+          this.router.navigate(['/auth/email-verification', { code: this.codeLength }]);
+          this.codeLength = '';
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        } else {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+      }
+    );
+    this.minute = Date.now() + ((60 * 1000) * 1);
+    this.isloading = false;
+    this.isWaiting = false;
   }
   printTimeEnd(event: any): void {
     if (event?.end) {
@@ -67,21 +93,32 @@ email:[userInfo.email,[Validators.required]]
     }
   }
 
-  submit(): void {
+  confirm(): void {
     this.isloadingBtn = true;
-    setTimeout(() => {
-      this.isloadingBtn = false;
-      this.emailVerification.patchValue({
-        code:this.codeLength,
-        email:this.emailVerification.value.email
-      })
-      console.log(this.emailVerification.value);
+    let data = {
+      email: this.urlData.email,
+      code: this.codeLength
+    }
+    console.log(data);
+    this.authUserService?.verificationPassword(data)?.subscribe(
+      (res: any) => {
+        if (res?.code == 200) {
 
-      // this.onNoClick();
-      this.router.navigate(['/auth/new-password']);
-    }, 2000);
+          this.isloadingBtn = false;
+        } else {
+          this.isloadingBtn = false;
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.isloadingBtn = false;
+      }
+    );
   }
-  back():void{
+  back(): void {
     this._location.back();
   }
 }

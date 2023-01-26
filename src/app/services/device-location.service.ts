@@ -8,7 +8,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   providedIn: 'root'
 })
 export class DeviceLocationService {
-  device_location_info :any=[]
+  device_location_info: any = []
   constructor(
     private http: HttpClient,
     private deviceService: DeviceDetectorService
@@ -16,6 +16,8 @@ export class DeviceLocationService {
 
 
   getUserLocation(): any {
+    console.log('dddd');
+
     this.http.get<any>(`https://ipapi.co/json`).subscribe((res: any) => {
       var expire = new Date();
       var time = Date.now() + ((3600 * 1000) * 24); // current time + 24 hours ///

@@ -38,8 +38,8 @@
             <label class="form-label fw-bold mb-3 ps-2">
               {{'form.verification_code'|translate}}
             </label>
-            <code-input class="otp-code" [isCodeHidden]="false" [codeLength]="6" (codeChanged)="onCodeChanged($event)"
-              (codeCompleted)="onCodeCompleted($event)">
+            <code-input class="otp-code" [isCodeHidden]="false" [initialFocusField]="0" [codeLength]="6"
+              (codeChanged)="onCodeChanged($event)" (codeCompleted)="onCodeCompleted($event)">
             </code-input>
           </div>
           <h1 class="text-secondary-color d-flex align-items-center justify-content-end">

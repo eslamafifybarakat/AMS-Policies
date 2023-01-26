@@ -43,7 +43,6 @@ export class ConfirmLoginCodeComponent implements OnInit {
     this.minute = this.time;
     this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
     this.urlData = this.activateRoute.snapshot.params;
-    console.log(this.urlData);
   }
 
   confirmLoginForm = this.fb.group({
@@ -81,26 +80,34 @@ export class ConfirmLoginCodeComponent implements OnInit {
   confirm(): void {
     this.isloadingBtn = true;
     let data = {
-      otp: {
-        user_id: this.urlData.user_id,
-        code: this.codeLength
-      },
-      auth_location_and_device_info: {
-        country_name: this.deviceLocationData?.country_name,
-        region: this.deviceLocationData?.region,
-        city: this.deviceLocationData?.city,
-        browser: this.deviceLocationData?.browser,
-        browser_version: this.deviceLocationData?.browser_version,
-        deviceType: this.deviceLocationData?.deviceType,
-        os: this.deviceLocationData?.os,
-        os_version: this.deviceLocationData?.os_version
-      }
+      email: this.urlData.email,
+      password: this.urlData.password,
+      code: this.codeLength
     }
     console.log(data);
     this.authUserService?.verificationCode(data)?.subscribe(
       (res: any) => {
-        if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+        if (res?.status == true) {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data));
+          this.authUserService?.getUserData()?.subscribe(
+            (res: any) => {
+              if (res?.code == 200) {
+                window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
+                this.router.navigate(['/home']);
+                this.isloadingBtn = false;
+              } else {
+                this.isloadingBtn = false;
+                res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+              }
+            },
+            (err: any) => {
+              if (err?.message) {
+                err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+              }
+              this.isloadingBtn = false;
+            }
+          );
           this.isloadingBtn = false;
           this.confirmLoginForm.reset();
         } else {
