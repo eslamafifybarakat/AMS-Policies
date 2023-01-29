@@ -1,11 +1,10 @@
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { AuthUserService } from './../../../auth/services/auth-user.service';
 import Validation from "../../../shared/utils/validation";
-import { AlertsService } from './../../../shared/services/alerts/alerts.service';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ConfirmPasswordValidator } from './confirm-password-validator';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
@@ -21,8 +20,8 @@ export class ChangePasswordComponent implements OnInit {
   showeye2: boolean = false;
 
   constructor(
-    public _AuthUser: AuthUserService,
     public alertsService: AlertsService,
+    public _AuthUser: AuthUserService,
     private fb: FormBuilder,
     public router: Router
   ) { }
@@ -76,8 +75,10 @@ export class ChangePasswordComponent implements OnInit {
       (res: any) => {
         if (res?.status == 'success') {
           if (res?.data?.verified == true) {
+            this.changePasswordForm?.reset();
             res?.message ? this.alertsService.openSnackBar(res?.message) : '';
             this.isloadingBtn = false;
+            this._AuthUser.signOut();
           } else {
             res?.message ? this.alertsService.openSnackBar(res?.message) : '';
             this.isloadingBtn = false;

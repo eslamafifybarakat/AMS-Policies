@@ -72,6 +72,7 @@ export class AuthUserService {
   signOut(): void {
     window.localStorage.removeItem(keys.logged);
     window.localStorage.removeItem(keys.userData);
+    window.localStorage.removeItem(keys.token);
     this.router.navigate(['/auth/login']);
   }
 

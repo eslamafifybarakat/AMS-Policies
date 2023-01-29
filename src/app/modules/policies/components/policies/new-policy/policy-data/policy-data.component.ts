@@ -5,7 +5,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-policy-data',
@@ -15,19 +16,17 @@ import { Location } from '@angular/common';
 export class PolicyDataComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isLoading: boolean = false;
+  isLoadingBtn: boolean = false;
 
   isEdit: boolean = false;
   policyId: any = null;
   policyData: any = null;
+  pageData: any = [];
 
   passportImageFile: File[] = [];
   profileImageFile: File[] = [];
   isMaxImage: boolean = false;
   isMaxProfileImage: boolean = false;
-
-  jobNames = ['Uber', 'Microsoft', 'Flexigen'];
-
-  nationalityNames = ['Uber', 'Microsoft', 'Flexigen'];
 
   todayDate: Date = new Date();
 
@@ -46,36 +45,32 @@ export class PolicyDataComponent implements OnInit {
     private location: Location,
     public router: Router,
     private activatedRoute: ActivatedRoute,
+    public datePipe: DatePipe,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.policyId = this.activatedRoute?.snapshot?.params['id'];
-    if (this.policyId) {
-      this.isEdit = true;
-      this.policyForm.controls['policy_id'].disable();
-      this.getPloicyData(this.policyId);
-    }
+    this.getPloicyFormData();
   }
 
   policyForm = this.fb.group({
-    policy_id: ['', [Validators.required]],
+    policy_id: ['', []],
     name: ['', [Validators.required,
     Validators.minLength(3),
     Validators.maxLength(20)]],
     start_date: ["", [Validators.required]],
-    end_date: ["", [Validators.required]],
     birthdate: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required]],
     alt_phone: ['', []],
     duration: ['', [Validators.required]],
-    passport_image: [null, [Validators.required]],
-    profile_image: [null, [Validators.required]],
+    passport_image: [null, []],
+    profile_image: [null, []],
     pass_num: [null, [Validators.required]],
     duration_type: ['', [Validators.required]],
     job: [null, [Validators.required]],
-    gender: [null, [Validators.required]],
+    gender: ['', [Validators.required]],
     nationality: [null, Validators.required],
     address: ['', [Validators.required,
     Validators.minLength(3),
@@ -89,40 +84,76 @@ export class PolicyDataComponent implements OnInit {
     return this.policyForm.controls;
   }
 
+  getPloicyFormData(): void {
+    this.isLoading = true;
+    this.policyService?.getPolicyFormData()?.subscribe(
+      (res) => {
+        if (res?.code == "200") {
+          this.pageData = res?.data;
+          if (this.policyId) {
+            this.isEdit = true;
+            this.policyForm.controls['policy_id'].disable();
+            this.getPloicyData(this.policyId);
+          } else {
+            this.isLoading = false;
+          }
+        } else {
+          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+          this.isLoading = false;
+        }
+      },
+      (err) => {
+        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+        this.isLoading = false;
+      }
+    );
+  }
+
   getPloicyData(id: any): void {
-    // this.isLoading = true;
-    // this.policyService?.getPolicyById(id)?.subscribe(
-    //   (res) => {
-    //     this.policyData = res?.data;
-    //     this.policyForm?.patchValue({
-    //       policy_id: this.policyData?.,
-    //       name: this.policyData?.,
-    //       start_date: this.policyData?.,
-    //       end_date: this.policyData?.,
-    //       birthdate: this.policyData?.,
-    //       email: this.policyData?.,
-    //       phone: this.policyData?.,
-    //       duration: this.policyData?.,
-    //       passport_image: this.policyData?.,
-    //       duration_type: this.policyData?.,
-    //       job: this.policyData?.,
-    //       gender: this.policyData?.,
-    //       nationality: this.policyData?.,
-    //       address: this.policyData?.,
-    //       passport_number: this.policyData?.,
-    //       virus_c: this.policyData?.,
-    //       virus_corona: this.policyData?.,
-    //       suffer: this.policyData?.,
-    //       poor_hearing: this.policyData?.,
-    //     });
-    //     this.isLoading = false;
-    //   },
-    //   (err) => {
-    //     if (err?.message) {
-    //       this.alertsService?.openSweetalert("error", err?.message);
-    //     }
-    //   }
-    // );
+    this.policyService?.getPolicyById(id)?.subscribe(
+      (res) => {
+        if (res?.code == "200") {
+          this.isLoading = false;
+          this.policyData = res?.data;
+          let birth: any = moment(
+            this.policyData?.birth_date,
+            "yyyy-MM-dd"
+          ).toDate();
+          let start: any = moment(
+            this.policyData?.start_date,
+            "yyyy-MM-dd"
+          ).toDate();
+
+          this.policyForm?.patchValue({
+            policy_id: this.policyData?.id,
+            name: this.policyData?.name,
+            start_date: start,
+            birthdate: birth,
+            email: this.policyData?.email,
+            gender: this.policyData?.gender,
+            phone: this.policyData?.phone_number,
+            alt_phone: this.policyData?.alternative_phone,
+            duration: this.policyData?.duration,
+            duration_type: this.policyData?.duration_type,
+            job: this.policyData?.job_id,
+            nationality: this.policyData?.country_id,
+            address: this.policyData?.address,
+            pass_num: this.policyData?.passport_number,
+            virus_c: this.policyData?.c_virus,
+            virus_corona: this.policyData?.corona_virus,
+            suffer: this.policyData?.deficiency_part_of_body,
+            poor_hearing: this.policyData?.chronic_disease
+          });
+        } else {
+          this.isLoading = false;
+          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+        }
+      },
+      (err) => {
+        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+        this.isLoading = false;
+      }
+    );
   }
 
   passportImageFileChangeEvent(event: any): void {
@@ -158,60 +189,73 @@ export class PolicyDataComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.policyForm?.value);
-    this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
-  }
+    this.isLoadingBtn = true;
+    let formValue: any = this.policyForm?.value;
+    let formData = new FormData();
+    console.log(formValue?.name);
+    formData.append("name", formValue?.name);
+    formData.append("email", formValue?.email);
+    formData.append("address", formValue?.address);
+    this.profileImageFile[0] ? formData.append("image", this.profileImageFile[0]) : '';
 
-  update(): void {
+    formData.append("phone_number[number]", formValue?.phone?.number);
+    formData.append("phone_number[dialCode]", formValue?.phone?.dialCode);
+    formData.append("alternative_phone[number]", formValue?.alt_phone?.number);
+    formData.append("alternative_phone[dialCode]", formValue?.alt_phone?.dialCode);
+    formData.append("gender", formValue?.gender);
+    formData.append("passport_number", formValue?.pass_num);
+    let start_date: any = this.datePipe.transform(formValue?.start_date, "yyyy-MM-dd");
+    formData.append("start_date", start_date);
+    let birthDate: any = this.datePipe.transform(formValue?.birthdate, "yyyy-MM-dd");
+    formData.append("birth_date", birthDate);
+    formData.append("job_id", formValue?.job);
 
-    this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-      this.router.navigate(['/home/policies/list']);
-    }, 2000);
+    formData.append("duration_type", formValue?.duration_type);
+    formData.append("duration", formValue?.duration);
+    this.passportImageFile[0] ? formData.append("passport_photo", this.passportImageFile[0]) : '';
+    formData.append("c_virus", formValue?.virus_c);
+    formData.append("corona_virus", formValue?.virus_corona);
+    formData.append("deficiency_part_of_body", formValue?.suffer);
+    formData.append("chronic_disease", formValue?.poor_hearing);
+    formData.append("country_id", formValue?.nationality);
 
-    // this.isLoading = true;
-
-    // let policyDataObj: any;
-    // if (this.isEdit) {
-    //   policyDataObj = {
-    //     policy_id: this.policyData?.policy_id,
-    //     name: this.policyData?.name,
-    //     start_date: this.policyData?.start_date,
-    //     end_date: this.policyData?.end_date,
-    //     birthdate: this.policyData?.birthdate,
-    //     email: this.policyData?.email,
-    //     phone: this.policyData?.phone,
-    //     duration: this.policyData?.duration,
-    //     duration_type: this.policyData?.duration_type,
-    //     passport_image: this.policyData?.passport_image,
-    //     job: this.policyData?.job,
-    //     gender: this.policyData?.gender,
-    //     nationality: this.policyData?.nationality,
-    //     address: this.policyData?.address,
-    //     virus_c: this.policyData?.virus_c,
-    //     virus_corona: this.policyData?.virus_corona,
-    //     suffer: this.policyData?.suffer,
-    //     poor_hearing: this.policyData?.poor_hearing
-    //   }
-    //   this.policyService?.updatePolicy(policyDataObj, this.policyData?.policy_id)?.subscribe(
-    //     (res: any) => {
-    //       if (res?.code === 200) {
-    //         this.alertsService.openSweetalert('success', res?.message);
-    //         this.router.navigate(['/home/policies/list']);
-    //         this.isLoading = false;
-    //       } else {
-    //         this.alertsService.openSweetalert('info', res?.message);
-    //         this.isLoading = false;
-    //       }
-    //     },
-    //     (err) => {
-    //       if (err?.message) {
-    //         this.alertsService.openSweetalert('error', err?.message);
-    //       }
-    //       this.isLoading = false;
-    //     });
-    // }
+    if (this.policyId) {
+      this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
+        (res: any) => {
+          if (res?.code === "200") {
+            this.alertsService.openSweetalert('success', res?.message);
+            this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            this.isLoadingBtn = false;
+          } else {
+            this.alertsService.openSweetalert('info', res?.message);
+            this.isLoadingBtn = false;
+          }
+        },
+        (err) => {
+          if (err?.message) {
+            this.alertsService.openSweetalert('error', err?.message);
+          }
+          this.isLoadingBtn = false;
+        });
+    } else {
+      this.policyService?.addPolicy(formData)?.subscribe(
+        (res: any) => {
+          if (res?.code === "200") {
+            this.alertsService.openSweetalert('success', res?.message);
+            this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            this.isLoadingBtn = false;
+          } else {
+            this.alertsService.openSweetalert('info', res?.message);
+            this.isLoadingBtn = false;
+          }
+        },
+        (err) => {
+          if (err?.message) {
+            this.alertsService.openSweetalert('error', err?.message);
+          }
+          this.isLoadingBtn = false;
+        });
+    }
     this.cdr.detectChanges();
   }
   back(): void {

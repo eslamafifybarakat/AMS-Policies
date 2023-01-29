@@ -148,8 +148,9 @@
                   </ng-template>
                   <div class="input-group-text">
                     <div class="dropdown mx-1">
-                      <button class="btn dropdown-toggle color-grey-400 p-0 d-flex justify-content-center align-items-center gap-2" type="button" id="select-dropdown"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                      <button
+                        class="btn dropdown-toggle color-grey-400 p-0 d-flex justify-content-center align-items-center gap-2"
+                        type="button" id="select-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="text-capitalize">
                           {{policyForm?.value?.duration_type || 'general.type'|translate}}
                         </span><i class="fas fa-chevron-down"></i>
@@ -205,8 +206,8 @@
                       <input class="file-input" type="file" formControlName="passport_image"
                         accept=".jpeg, .jpg, .png, .doc, .docx, .pdf" (change)="passportImageFileChangeEvent($event)">
                       <span class="d-flex align-items-center justify-content-center form-control text-muted"
-                        [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty || passportImageFile.length==0) && (formControls?.['passport_image']?.invalid || true)"
-                        [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid && passportImageFile.length!=0">
+                        [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty) && (formControls?.['passport_image']?.invalid)"
+                        [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid">
                         <span>
                           {{'general.upload' | translate}}
                         </span>
@@ -274,8 +275,8 @@
                       <input class="file-input" type="file" formControlName="profile_image" accept=".jpeg, .jpg, .png"
                         (change)="profileImageFileChangeEvent($event)">
                       <span class="d-flex align-items-center justify-content-center form-control text-muted"
-                        [class.border-red]="(formControls?.['profile_image']?.touched ||formControls?.['profile_image']?.dirty || profileImageFile.length==0) && (formControls?.['profile_image']?.invalid || true)"
-                        [class.border-green]="(formControls?.['profile_image']?.touched || formControls?.['profile_image']?.dirty) && formControls?.['profile_image']?.valid && profileImageFile.length!=0">
+                        [class.border-red]="(formControls?.['profile_image']?.touched ||formControls?.['profile_image']?.dirty) && (formControls?.['profile_image']?.invalid)"
+                        [class.border-green]="(formControls?.['profile_image']?.touched || formControls?.['profile_image']?.dirty) && formControls?.['profile_image']?.valid">
                         <span class="me-2">
                           {{'general.upload' | translate}}
                         </span>
@@ -313,8 +314,8 @@
                 <label class="form-label">
                   {{'form.nationality'|translate}}
                 </label>
-                <ng-select class="rounded" [items]="nationalityNames" [closeOnSelect]="true" [searchable]="true"
-                  [clearSearchOnAdd]="true" bindLabel="name" formControlName="nationality"
+                <ng-select class="rounded" [items]="pageData?.countries" [closeOnSelect]="true" [searchable]="true"
+                  [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="nationality"
                   placeholder="{{'general.select' | translate}}"
                   [class.border-red]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.invalid"
                   [class.border-green]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.valid">
@@ -480,8 +481,8 @@
                 <label class="form-label">
                   {{'general.job'|translate}}
                 </label>
-                <ng-select class="rounded" [items]="jobNames" [closeOnSelect]="true" [searchable]="true"
-                  [clearSearchOnAdd]="true" bindLabel="name" formControlName="job"
+                <ng-select class="rounded" [items]="pageData?.jobs" [closeOnSelect]="true" [searchable]="true"
+                  [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="job"
                   placeholder="{{'general.select' | translate}}"
                   [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
                   [class.border-green]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.valid">
@@ -507,10 +508,10 @@
               {{'form.virus_c'|translate}}
             </label>
             <mat-radio-group formControlName="virus_c">
-              <mat-radio-button value="yes" class="me-2">
+              <mat-radio-button [value]="1" class="me-2">
                 {{'general.yes' | translate}}
               </mat-radio-button>
-              <mat-radio-button value="no">
+              <mat-radio-button [value]="0">
                 {{'general.no' | translate}}
               </mat-radio-button>
             </mat-radio-group>
@@ -520,10 +521,10 @@
               {{'form.virus_corona'|translate}}
             </label>
             <mat-radio-group formControlName="virus_corona">
-              <mat-radio-button value="yes" class="me-2">
+              <mat-radio-button [value]="1" class="me-2">
                 {{'general.yes' | translate}}
               </mat-radio-button>
-              <mat-radio-button value="no">
+              <mat-radio-button [value]="0">
                 {{'general.no' | translate}}
               </mat-radio-button>
             </mat-radio-group>
@@ -533,10 +534,10 @@
               {{'form.suffer'|translate}}
             </label>
             <mat-radio-group formControlName="suffer">
-              <mat-radio-button value="yes" class="me-2">
+              <mat-radio-button [value]="1" class="me-2">
                 {{'general.yes' | translate}}
               </mat-radio-button>
-              <mat-radio-button value="no">
+              <mat-radio-button [value]="0">
                 {{'general.no' | translate}}
               </mat-radio-button>
             </mat-radio-group>
@@ -546,10 +547,10 @@
               {{'form.poor_hearing'|translate}}
             </label>
             <mat-radio-group formControlName="poor_hearing">
-              <mat-radio-button value="yes" class="me-2">
+              <mat-radio-button [value]="1" class="me-2">
                 {{'general.yes' | translate}}
               </mat-radio-button>
-              <mat-radio-button value="no">
+              <mat-radio-button [value]="0">
                 {{'general.no' | translate}}
               </mat-radio-button>
             </mat-radio-group>
@@ -561,13 +562,12 @@
                 {{'general.cancel' | translate}}
               </button>
               <ng-container *ngIf="isEdit; else elseTemplate">
-                <button class="btn btn-solid-main me-2" type="button" (click)="update()">
+                <button class="btn btn-solid-main me-2" type="submit">
                   {{'general.update' | translate}}
                 </button>
               </ng-container>
               <ng-template #elseTemplate>
-                <button class="btn btn-solid-main me-2" type="submit">
-                  <!-- [disabled]="policyForm.invalid" -->
+                <button class="btn btn-solid-main me-2" type="submit" [disabled]="policyForm.invalid || isLoadingBtn">
                   {{'general.next' | translate}}
                 </button>
               </ng-template>
