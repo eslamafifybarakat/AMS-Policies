@@ -13,9 +13,11 @@ import { TimeagoModule } from 'ngx-timeago';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { interceptorProviders } from './modules/shared/TS Files/interceptors';
 import { SharedModule } from './modules/shared/modules/shared.module';
+import { OverlayLoadingComponent } from './modules/shared/component/overlay-loading/overlay-loading.component';
 @NgModule({
   declarations: [
     AppComponent,
+    OverlayLoadingComponent,
   ],
   imports: [
     BrowserModule,

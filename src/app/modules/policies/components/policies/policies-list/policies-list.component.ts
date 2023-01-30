@@ -134,7 +134,7 @@ export class PoliciesListComponent implements OnInit {
   }
 
   goToDetails(): void {
-    this.router.navigate(['/home/policies/policy-data', { id: 5 }]);
+    this.router.navigate(['/home/policies/policy-data', { id: this.selectedItem?.id}]);
   }
 
   onChange(page: any): void {
@@ -145,16 +145,27 @@ export class PoliciesListComponent implements OnInit {
   }
 
   selected(item: any, e?: any): any {
-    this.policiesList.forEach((e: any) => {
-      e.isSelected = false;
-    });
-    this.policiesList[e - 1].isSelected = true;
-    this.selectedItem = item;
-    this.isSelect = true;
-  }
+  //   this.policiesList.forEach((e: any) => {
+  //     e.isSelected = false;
+  //   });
+  //   this.policiesList[e - 1].isSelected = true;
+  //   this.isSelect = true;
+  // }
+  this.selectedItem = item;
+  this.policiesList.forEach((e: any) => {
+    e.isSelect = false;
+    console.log(e);
+
+  });
+  console.log(item);
+
+  // this.selectedItem = item;
+  this.isSelect=true;
+  item.isSelect = !item.isSelect;
+}
   clearAllSelected(): void {
     this.policiesList.forEach((e: any) => {
-      e.isSelected = false;
+      e.isSelect= false;
     });
     this.isSelect = false;
   }

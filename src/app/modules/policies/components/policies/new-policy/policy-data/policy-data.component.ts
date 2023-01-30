@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../../../services/public.service';
 import { AlertsService } from './../../../../../shared/services/alerts/alerts.service';
 import { PolicyService } from './../../../../services/policy.service';
 import { Subscription } from 'rxjs';
@@ -29,7 +30,8 @@ export class PolicyDataComponent implements OnInit {
   isMaxProfileImage: boolean = false;
 
   todayDate: Date = new Date();
-
+  readonly minAge = 18;
+  maxDob: any;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
@@ -39,19 +41,23 @@ export class PolicyDataComponent implements OnInit {
 
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private policyService: PolicyService,
     private alertsService: AlertsService,
-    private fb: FormBuilder,
+    private publicService:PublicService,
+    private cdr: ChangeDetectorRef,
     private location: Location,
-    public router: Router,
-    private activatedRoute: ActivatedRoute,
     public datePipe: DatePipe,
-    private cdr: ChangeDetectorRef
+    private fb: FormBuilder,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
     this.policyId = this.activatedRoute?.snapshot?.params['id'];
     this.getPloicyFormData();
+
+    const today = new Date();
+    this.maxDob = new Date(today.getFullYear() - this.minAge, today.getMonth(), today.getDate());
   }
 
   policyForm = this.fb.group({
@@ -70,7 +76,7 @@ export class PolicyDataComponent implements OnInit {
     pass_num: [null, [Validators.required]],
     duration_type: ['', [Validators.required]],
     job: [null, [Validators.required]],
-    gender: ['', [Validators.required]],
+    gender: [null, [Validators.required]],
     nationality: [null, Validators.required],
     address: ['', [Validators.required,
     Validators.minLength(3),
@@ -111,10 +117,12 @@ export class PolicyDataComponent implements OnInit {
 
   getPloicyData(id: any): void {
     this.policyService?.getPolicyById(id)?.subscribe(
+
       (res) => {
         if (res?.code == "200") {
           this.isLoading = false;
           this.policyData = res?.data;
+          console.log(this.policyData);
           let birth: any = moment(
             this.policyData?.birth_date,
             "yyyy-MM-dd"
@@ -123,6 +131,7 @@ export class PolicyDataComponent implements OnInit {
             this.policyData?.start_date,
             "yyyy-MM-dd"
           ).toDate();
+
 
           this.policyForm?.patchValue({
             policy_id: this.policyData?.id,
@@ -190,9 +199,11 @@ export class PolicyDataComponent implements OnInit {
 
   submit(): void {
     this.isLoadingBtn = true;
+    this.publicService?.show_loader?.next(true);
     let formValue: any = this.policyForm?.value;
     let formData = new FormData();
     console.log(formValue?.name);
+    console.log(formValue?.phone);
     formData.append("name", formValue?.name);
     formData.append("email", formValue?.email);
     formData.append("address", formValue?.address);
@@ -200,8 +211,16 @@ export class PolicyDataComponent implements OnInit {
 
     formData.append("phone_number[number]", formValue?.phone?.number);
     formData.append("phone_number[dialCode]", formValue?.phone?.dialCode);
+    formData.append("phone_number[countryCode]", formValue?.phone?.countryCode);
+    formData.append("phone_number[e164Number]", formValue?.phone?.e164Number);
+    formData.append("phone_number[internationalNumber]", formValue?.phone?.internationalNumber);
+    formData.append("phone_number[nationalNumber]", formValue?.phone?.nationalNumber);
     formData.append("alternative_phone[number]", formValue?.alt_phone?.number);
     formData.append("alternative_phone[dialCode]", formValue?.alt_phone?.dialCode);
+    formData.append("alternative_phone[countryCode]", formValue?.phone?.countryCode);
+    formData.append("alternative_phone[e164Number]", formValue?.phone?.e164Number);
+    formData.append("alternative_phone[internationalNumber]", formValue?.phone?.internationalNumber);
+    formData.append("alternative_phone[nationalNumber]", formValue?.phone?.nationalNumber);
     formData.append("gender", formValue?.gender);
     formData.append("passport_number", formValue?.pass_num);
     let start_date: any = this.datePipe.transform(formValue?.start_date, "yyyy-MM-dd");
@@ -218,17 +237,27 @@ export class PolicyDataComponent implements OnInit {
     formData.append("deficiency_part_of_body", formValue?.suffer);
     formData.append("chronic_disease", formValue?.poor_hearing);
     formData.append("country_id", formValue?.nationality);
-
+    formData.append(
+      "phone",
+      formValue?.phone_number?.number.replace(
+        formValue?.phone_number?.dialCode,
+        ""
+      )
+    );
+    formData.append("phone_code", formValue?.phone_number?.dialCode);
     if (this.policyId) {
+
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
             this.alertsService.openSweetalert('success', res?.message);
             this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             this.isLoadingBtn = false;
+            this.publicService?.show_loader?.next(false);
           } else {
             this.alertsService.openSweetalert('info', res?.message);
             this.isLoadingBtn = false;
+            this.publicService?.show_loader?.next(false);
           }
         },
         (err) => {
@@ -236,6 +265,7 @@ export class PolicyDataComponent implements OnInit {
             this.alertsService.openSweetalert('error', err?.message);
           }
           this.isLoadingBtn = false;
+          this.publicService?.show_loader?.next(false);
         });
     } else {
       this.policyService?.addPolicy(formData)?.subscribe(
@@ -244,9 +274,11 @@ export class PolicyDataComponent implements OnInit {
             this.alertsService.openSweetalert('success', res?.message);
             this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             this.isLoadingBtn = false;
+            this.publicService?.show_loader?.next(false);
           } else {
             this.alertsService.openSweetalert('info', res?.message);
             this.isLoadingBtn = false;
+            this.publicService?.show_loader?.next(false);
           }
         },
         (err) => {
@@ -254,6 +286,7 @@ export class PolicyDataComponent implements OnInit {
             this.alertsService.openSweetalert('error', err?.message);
           }
           this.isLoadingBtn = false;
+          this.publicService?.show_loader?.next(false);
         });
     }
     this.cdr.detectChanges();

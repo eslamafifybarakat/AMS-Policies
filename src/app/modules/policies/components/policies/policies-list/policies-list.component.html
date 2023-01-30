@@ -291,37 +291,51 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of policiesList; let i =index">
-              <td> <input class="form-check-input position-static cursor-pointer" type="radio"
-                  [checked]="item.isSelected" (click)="selected(item,item?.id)">
-              </td>
-              <td>
-                {{i+1}}
-              </td>
-              <td>
-                {{item?.name}}
-              </td>
-              <td>
-                {{item?.id}}
-              </td>
-              <td class="w-100 text-nowrap">
-                {{item?.start_date | date: 'EE | yyyy-MM-dd'}}
-              </td>
-              <td>
-                {{item?.fees || ''}}
-              </td>
-              <td>
-                {{item?.duration||''}}/{{item?.duration_type||''}}
-              </td>
-              <td>
-                <span class="d-inline-block w-100 text-truncate">
-                  <i class=" fas fa-circle fs-dot-status" [class]="item?.class||''"></i>
-                  <span class="w-100 text-truncate px-1">
-                    {{item?.status||''}}
-                  </span>
-                </span>
-              </td>
-            </tr>
+            <ng-container *ngIf="policiesList?.length>0; else noData">
+              <ng-container *ngFor="let item of policiesList; let i =index">
+                <tr >
+                  <td> <input class="form-check-input position-static cursor-pointer" type="radio"
+                      [checked]="item.isSelect" (click)="selected(item,item?.id)">
+                  </td>
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{item?.name}}
+                  </td>
+                  <td>
+                    {{item?.id}}
+                  </td>
+                  <td class="w-100 text-nowrap">
+                    {{item?.start_date | date: 'EE | yyyy-MM-dd'}}
+                  </td>
+                  <td>
+                    {{item?.fees || ''}}
+                  </td>
+                  <td>
+                    {{item?.duration||''}}/{{item?.duration_type||''}}
+                  </td>
+                  <td>
+                    <span class="d-inline-block w-100 text-truncate">
+                      <i class=" fas fa-circle fs-dot-status" [class]="item?.class||''"></i>
+                      <span class="w-100 text-truncate px-1">
+                        {{item?.status||''}}
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+              </ng-container>
+
+            </ng-container>
+            <ng-template #noData>
+              <tr>
+                <td colspan="8" class="text-center py-4">
+                   <div class="py-5">
+                    <img src="assets/image/not-found.png" alt="not-found" width="100px">
+                   </div>
+                </td>
+              </tr>
+            </ng-template>
           </tbody>
         </table>
       </div>

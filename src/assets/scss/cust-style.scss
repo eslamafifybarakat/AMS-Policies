@@ -572,6 +572,11 @@ input:-webkit-autofill {
   }
 }
 
+.required:after{
+  content: '*';
+  color: red;
+}
+
 .btn-success {
   min-width: 7rem;
   color: var(--text-white-color);

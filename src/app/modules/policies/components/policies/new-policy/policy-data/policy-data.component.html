@@ -48,7 +48,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.name'|translate}}
                 </label>
                 <input type="text" class="form-control" formControlName="name"
@@ -75,7 +75,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label for="exampleFormControlInput1" class="form-label">
+                <label for="exampleFormControlInput1" class="form-label required">
                   {{"form.date_of_birth"|translate}}
                 </label>
                 <div class="d-flex border rounded"
@@ -83,7 +83,7 @@
                   [class.border-green]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
                   <input matInput class="form-control border-0"
                     placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" pickerBirthdate"
-                    formControlName="birthdate">
+                    formControlName="birthdate" [max]="maxDob">
                   <mat-datepicker-toggle matSuffix [for]="pickerBirthdate"></mat-datepicker-toggle>
                   <mat-datepicker #pickerBirthdate></mat-datepicker>
                 </div>
@@ -104,7 +104,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label for="exampleFormControlInput1" class="form-label">
+                <label for="exampleFormControlInput1" class="form-label required">
                   {{"general.start_date"|translate}}
                 </label>
                 <div class="d-flex border rounded overflow-hidden"
@@ -131,7 +131,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.duration'|translate}}
                 </label>
                 <div class="input-group"
@@ -216,15 +216,18 @@
                     </label>
                     <ng-container *ngFor="let item of passportImageFile">
                       <ng-container *ngIf="passportImageFile.length>0">
-                        <div class="file-name mt-2 mb-0  mx-2">
-                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted">
+                        <div class="file-name mt-2 mb-0">
+                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
                             <span class="d-flex justify-content-center align-items-baseline">
                               <i class="fas fa-file mx-1 text-main-color"></i>
                               {{item?.name}}
                             </span>
-                            <button type="button" class="btn-delete" (click)="onRemovePassportImage(item?.name)">
-                              X
-                            </button>
+                            <div class="d-flex gap-2">
+                              <a><i class="far fa-eye"></i></a>
+                              <button type="button" class="btn-delete" (click)="onRemovePassportImage(item?.name)">
+                                X
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </ng-container>
@@ -242,7 +245,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.passport_num'|translate}}
                 </label>
                 <input type="number" min="1" class="form-control" formControlName="pass_num"
@@ -285,15 +288,18 @@
                     </label>
                     <ng-container *ngIf="profileImageFile.length>0">
                       <ng-container *ngFor="let item of profileImageFile">
-                        <div class="file-name mt-2 mb-0  mx-2">
-                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted">
+                        <div class="file-name mt-2 mb-0">
+                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
                             <span class="d-flex justify-content-center align-items-baseline">
                               <i class="fas fa-file mx-1 text-main-color"></i>
                               {{item?.name}}
                             </span>
+                            <div class="d-flex gap-2">
+                              <a><i class="far fa-eye"></i></a>
                             <button type="button" class="btn-delete" (click)="onRemoveProfileImage(item?.name)">
                               X
                             </button>
+                            </div>
                           </div>
                         </div>
                       </ng-container>
@@ -311,7 +317,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.nationality'|translate}}
                 </label>
                 <ng-select class="rounded" [items]="pageData?.countries" [closeOnSelect]="true" [searchable]="true"
@@ -337,7 +343,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.phone'|translate}}
                 </label>
                 <ngx-intl-tel-input class="form-control"
@@ -365,7 +371,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.alt_phone'|translate}}
                 </label>
                 <ngx-intl-tel-input class="form-control"
@@ -394,7 +400,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.email'|translate}}
                 </label>
                 <input type="email" class="form-control" formControlName="email"
@@ -422,7 +428,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'form.address'|translate}}
                 </label>
                 <input type="text" class="form-control" formControlName="address"
@@ -452,7 +458,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'general.gender'|translate}}
                 </label>
                 <ng-select [closeOnSelect]="true" notFoundText="{{'general.no_item_founded'|translate}}" class="rounded"
@@ -478,7 +484,7 @@
           <div class="col-xl-6 col-md-112 col-sm-12 col-12">
             <div class="mb-4">
               <div>
-                <label class="form-label">
+                <label class="form-label required">
                   {{'general.job'|translate}}
                 </label>
                 <ng-select class="rounded" [items]="pageData?.jobs" [closeOnSelect]="true" [searchable]="true"
@@ -504,7 +510,7 @@
           <hr class="text-secondary-color my-4" />
 
           <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2">
+            <label class="form-label mb-2 required">
               {{'form.virus_c'|translate}}
             </label>
             <mat-radio-group formControlName="virus_c">
@@ -517,7 +523,7 @@
             </mat-radio-group>
           </div>
           <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2">
+            <label class="form-label mb-2 required">
               {{'form.virus_corona'|translate}}
             </label>
             <mat-radio-group formControlName="virus_corona">
@@ -530,7 +536,7 @@
             </mat-radio-group>
           </div>
           <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2">
+            <label class="form-label mb-2 required">
               {{'form.suffer'|translate}}
             </label>
             <mat-radio-group formControlName="suffer">
@@ -543,7 +549,7 @@
             </mat-radio-group>
           </div>
           <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2">
+            <label class="form-label mb-2 required">
               {{'form.poor_hearing'|translate}}
             </label>
             <mat-radio-group formControlName="poor_hearing">
