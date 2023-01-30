@@ -53,7 +53,7 @@ export class AuthUserService {
   }
 
   editProfile(data: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + "/api/users/profile/edit-profile", data);
+    return this.http.put<any>(this.apiUrl + "/api/site/profile/edit-profile", data);
   }
 
   changePassword(data: any): Observable<any> {

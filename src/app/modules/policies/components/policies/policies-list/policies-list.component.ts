@@ -134,7 +134,7 @@ export class PoliciesListComponent implements OnInit {
   }
 
   goToDetails(): void {
-    this.router.navigate(['/home/policies/policy-data', { id: this.selectedItem?.id }]);
+    this.router.navigate(['/home/policies/policy-data', { id: 5 }]);
   }
 
   onChange(page: any): void {
