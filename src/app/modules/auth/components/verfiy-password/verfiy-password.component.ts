@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { Subscription } from 'rxjs';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { AuthUserService } from './../../services/auth-user.service';
@@ -31,6 +32,7 @@ export class VerfiyPasswordComponent implements OnInit {
     public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
     public alertsService: AlertsService,
+    private publicService: PublicService,
     private cdr: ChangeDetectorRef,
     public _location: Location,
     public fb: FormBuilder,
@@ -42,11 +44,16 @@ export class VerfiyPasswordComponent implements OnInit {
     this.currentLanguage = window.localStorage.getItem(keys.language);
     this.minute = this.time;
     this.urlData = this.activateRoute.snapshot.params;
+    console.log(this.urlData);
+    if (this.urlData?.email) {
+      this.emailVerification.patchValue({
+        email: this.urlData?.email
+      });
+    }
   }
 
   emailVerification = this.fb.group({
-    code: [0, [Validators.required]],
-    email: [userInfo.email, [Validators.required]]
+    email: ['', [Validators.required]]
   })
   // this called every time when user changed the code
   onCodeChanged(code: string): void {
@@ -62,30 +69,31 @@ export class VerfiyPasswordComponent implements OnInit {
   }
 
   resendCode(): void {
-    this.isloading = true;
     this.isWaiting = true;
     let data = {
       email: this.urlData?.email,
     }
+    this.publicService.show_loader.next(true);
     this.authUserService?.forgetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          this.router.navigate(['/auth/email-verification', { code: this.codeLength }]);
           this.codeLength = '';
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
+          this.minute = Date.now() + ((60 * 1000) * 1);
+          this.isWaiting = false;
         } else {
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
         }
       },
       (err: any) => {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          this.publicService.show_loader.next(false);
         }
       }
     );
-    this.minute = Date.now() + ((60 * 1000) * 1);
-    this.isloading = false;
-    this.isWaiting = false;
   }
   printTimeEnd(event: any): void {
     if (event?.end) {
@@ -94,27 +102,28 @@ export class VerfiyPasswordComponent implements OnInit {
   }
 
   confirm(): void {
-    this.isloadingBtn = true;
+    this.publicService.show_loader.next(true);
     let data = {
       email: this.urlData.email,
       code: this.codeLength
     }
-    console.log(data);
     this.authUserService?.verificationPassword(data)?.subscribe(
       (res: any) => {
         if (res?.code == 200) {
-
-          this.isloadingBtn = false;
-        } else {
-          this.isloadingBtn = false;
+          window.localStorage.setItem(keys.forgetPassoedToken, res?.data?.token);
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.router.navigate(['/auth/new-password', { email: this.urlData?.email }]);
+          this.publicService.show_loader.next(false);
+        } else {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
         }
       },
       (err: any) => {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          this.publicService.show_loader.next(false);
         }
-        this.isloadingBtn = false;
       }
     );
   }

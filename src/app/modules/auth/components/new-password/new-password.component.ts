@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { AuthUserService } from './../../services/auth-user.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,6 +31,7 @@ export class NewPasswordComponent implements OnInit {
     public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
     private alertsService: AlertsService,
+    private publicService: PublicService,
     private location: Location,
     public fb: FormBuilder,
     public router: Router,
@@ -67,22 +69,23 @@ export class NewPasswordComponent implements OnInit {
   }
 
   submit(): void {
-    this.isloadingBtn = true;
+    this.publicService.show_loader.next(true);
     let data = {
-      code: this.urlData?.code,
+      email: this.urlData?.email,
       password: this.newPasswordForm?.value?.newpassword,
-      password_confirmation: this.newPasswordForm?.value?.confirmpassword
+      password_confirmation: this.newPasswordForm?.value?.confirmpassword,
+      token: window.localStorage.getItem(keys?.forgetPassoedToken)
     }
 
     this.authUserService?.resetPassword(data)?.subscribe(
       (res: any) => {
-        if (res?.status == 'success') {
+        if (res?.code == 200) {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
+          window.localStorage.removeItem(keys?.forgetPassoedToken);
           this.router.navigate(['/auth/login']);
-
         } else {
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
@@ -90,7 +93,7 @@ export class NewPasswordComponent implements OnInit {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
-        this.isloadingBtn = false;
+        this.publicService.show_loader.next(false);
       }
     );
   }

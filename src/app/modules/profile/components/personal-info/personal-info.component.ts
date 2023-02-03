@@ -1,10 +1,13 @@
+import { AuthUserService } from './../../../auth/services/auth-user.service';
+import { PolicyService } from './../../../policies/services/policy.service';
+import { PublicService } from './../../../../services/public.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { DatePipe } from '@angular/common';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { DeactiveComponent } from './deactive/deactive.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
@@ -19,44 +22,34 @@ export class PersonalInfoComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
   isloadingBtn: boolean = false;
-  userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
+  userdata: any;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
     CountryISO.Egypt,
     CountryISO.UnitedKingdom
   ];
-
-
-  job: any[] = [];
-  jobNames = ['Uber', 'Microsoft', 'Flexigen'];
+  pageData: any;
 
   constructor(
+    public policyService: PolicyService,
+    public publicService: PublicService,
     public alertsService: AlertsService,
+    private _AuthUser: AuthUserService,
+    public cdr: ChangeDetectorRef,
+    public datePipe: DatePipe,
     public dialog: MatDialog,
     private fb: FormBuilder,
-    public router: Router,
-    public datePipe: DatePipe
+    public router: Router
   ) { }
 
   ngOnInit(): void {
-    let birth: any = moment(
-      this.userdata?.birth_date,
-      "DD-MM-YYYY"
-    ).toDate();
-
-    this.accountInfoForm.patchValue(
-      {
-        name: this.userdata?.name,
-        phone: this.userdata?.phone,
-        email: this.userdata?.email,
-        birthdate: birth,
-        gender: this.userdata?.gender,
-        company: this.userdata?.company
+    this.getPageData();
+    this.publicService.recallUserDataStorage.subscribe((res) => {
+      if (res == true) {
+        this.getPageData(false);
+        this.cdr.detectChanges();
       }
-    );
-    this.jobNames.forEach((c, i) => {
-      this.job.push({ id: i, name: c });
     });
   }
 
@@ -71,36 +64,80 @@ export class PersonalInfoComponent implements OnInit {
     company: ['', [
       Validators.minLength(3),
       Validators.maxLength(20)]],
-    gender: ['', [Validators.required]],
-    job: [null, Validators.required]
+    gender: ['', []],
+    job: [null, []]
   });
   get formControls(): any {
     return this.accountInfoForm.controls;
   }
 
+  getPageData(activeLoading?: any): void {
+    activeLoading == false ? '' : this.publicService.show_loader.next(true);
+    this.userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
+    this.policyService?.getPolicyFormData()?.subscribe(
+      (res) => {
+        if (res?.code == "200") {
+          this.pageData = res?.data;
+          let birth: any = moment(
+            this.userdata?.birth_date,
+            "DD-MM-YYYY"
+          ).toDate();
+
+          this.accountInfoForm.patchValue(
+            {
+              name: this.userdata?.name,
+              phone: this.userdata?.phone,
+              email: this.userdata?.email,
+              birthdate: birth,
+              gender: this.userdata?.gender,
+              job: this.userdata?.job_id,
+              company: this.userdata?.company
+            }
+          );
+          this.publicService.show_loader.next(false);
+          this.cdr.detectChanges();
+        } else {
+          this.publicService.show_loader.next(false);
+          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+        }
+      },
+      (err) => {
+        this.publicService.show_loader.next(false);
+        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+      }
+    );
+  }
+
   submit(): void {
-    this.isloadingBtn = true;
-    console.log(this.accountInfoForm);
+    this.publicService.show_loader.next(true);
     let data = {
       name: this.accountInfoForm?.value?.name,
       email: this.accountInfoForm?.value?.email,
       phone: this.accountInfoForm?.value?.phone,
+      job_id: this.accountInfoForm?.value?.job,
+      gender: this.accountInfoForm?.value?.gender,
+      company: this.accountInfoForm?.value?.company,
       birth_date: this.datePipe.transform(this.accountInfoForm?.value?.birthdate, "yyyy-MM-dd"),
     }
-    console.log(data);
-
-    // setTimeout(() => {
-    //   this.accountInfoForm.patchValue(
-    //     {
-    //       name: 'Eslam Barakat',
-    //       phone: '01012525233',
-    //       email: 'xsite@ME.com',
-    //       birthdate: '10/10/1996',
-    //       company: 'ME Company'
-    //     }
-    //   );
-    //   this.isloadingBtn = false;
-    // }, 2000);
+    this._AuthUser?.editProfile(data)?.subscribe(
+      (res: any) => {
+        if (res?.code == 200) {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.recallUserDataFn.next(true);
+          this.publicService.show_loader.next(false);
+          this.cdr.detectChanges();
+        } else {
+          this.publicService.show_loader.next(false);
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.publicService.show_loader.next(false);
+      }
+    );
   }
 
   openDialog(): void {

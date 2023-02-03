@@ -42,8 +42,8 @@ export class AuthUserService {
   verificationCode(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/site/verify-email", data);
   }
-  forgetPassword(email: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "/api/site/forget-password", email);
+  forgetPassword(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/api/site/forget-password", data);
   }
   verificationPassword(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/api/site/verify-password-code", data);
@@ -53,7 +53,7 @@ export class AuthUserService {
   }
 
   editProfile(data: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + "/api/site/profile/edit-profile", data);
+    return this.http.put<any>(this.apiUrl + "/api/site/edit-profile", data);
   }
 
   changePassword(data: any): Observable<any> {
@@ -70,6 +70,7 @@ export class AuthUserService {
   }
 
   signOut(): void {
+    window.localStorage.removeItem(keys.forgetPassoedToken);
     window.localStorage.removeItem(keys.logged);
     window.localStorage.removeItem(keys.userData);
     window.localStorage.removeItem(keys.token);

@@ -1,3 +1,4 @@
+import { AlertsService } from './../shared/services/alerts/alerts.service';
 import { LyDialog } from '@alyle/ui/dialog';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { StyleRenderer, ThemeVariables, lyl } from '@alyle/ui';
@@ -32,14 +33,21 @@ export class ProfileComponent implements OnInit {
   isLoadingBtn: boolean = false;
 
   constructor(
-    readonly publicService: PublicService,
     public _AuthUserser: AuthUserService,
+    private publicService: PublicService,
+    public alertsService: AlertsService,
+    public _AuthUser: AuthUserService,
     readonly sRenderer: StyleRenderer,
-    readonly cdr: ChangeDetectorRef,
-    private _dialog: LyDialog
+    readonly cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.publicService.recallUserDataStorage.subscribe((res) => {
+      if (res == true) {
+        this.userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   onFileSelected(event: any): void {
@@ -47,9 +55,7 @@ export class ProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0] ?? null;
     var reader = new FileReader();
     reader.onload = (event: any) => {
-      // this.userData.photo=event.target.result;
       this.img = this.croppedImage;
-
     }
     reader.readAsDataURL(this.selectedFile)
     this.showCrop = true
@@ -59,12 +65,28 @@ export class ProfileComponent implements OnInit {
     this.croppedImage = event.base64;
   }
   ok(): void {
-    this.isLoadingBtn = true
-    setTimeout(() => {
-      this.img = this.croppedImage;
-      this.isLoadingBtn = false
-      this.showCrop = false
-    }, 1000);
+    this.publicService.show_loader.next(true);
+    let formData = new FormData();
+    formData.append('photo', this.selectedFile)
+    this._AuthUser?.editProfile(formData)?.subscribe(
+      (res: any) => {
+        if (res?.code == 200) {
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
+          this.publicService.recallUserDataFn.next(true);
+          this.showCrop = false;
+        } else {
+          this.publicService.show_loader.next(false);
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+        }
+      },
+      (err: any) => {
+        if (err?.message) {
+          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        }
+        this.publicService.show_loader.next(false);
+      }
+    );
   }
   cancel(): void {
     this.showCrop = false

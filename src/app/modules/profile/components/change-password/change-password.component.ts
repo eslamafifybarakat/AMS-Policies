@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { AuthUserService } from './../../../auth/services/auth-user.service';
 import Validation from "../../../shared/utils/validation";
@@ -20,6 +21,7 @@ export class ChangePasswordComponent implements OnInit {
   showeye2: boolean = false;
 
   constructor(
+    private publicService: PublicService,
     public alertsService: AlertsService,
     public _AuthUser: AuthUserService,
     private fb: FormBuilder,
@@ -63,29 +65,21 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   submit(): void {
-    this.isloadingBtn = true;
-    console.log(this.changePasswordForm);
+    this.publicService.show_loader.next(true);
     let data = {
       current_password: this.changePasswordForm.value.currentpassword,
       new_password: this.changePasswordForm.value.newpassword,
       new_password_confirmation: this.changePasswordForm.value.confirmpassword
     }
-    console.log(data);
     this._AuthUser?.changePassword(data)?.subscribe(
       (res: any) => {
-        if (res?.status == 'success') {
-          if (res?.data?.verified == true) {
-            this.changePasswordForm?.reset();
-            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-            this.isloadingBtn = false;
-            this._AuthUser.signOut();
-          } else {
-            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-            this.isloadingBtn = false;
-          }
-
+        if (res?.code == 200) {
+          this.changePasswordForm?.reset();
+          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
+          this._AuthUser.signOut();
         } else {
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
@@ -93,7 +87,7 @@ export class ChangePasswordComponent implements OnInit {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
-        this.isloadingBtn = false;
+        this.publicService.show_loader.next(false);
       }
     );
   }

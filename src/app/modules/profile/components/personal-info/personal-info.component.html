@@ -202,8 +202,8 @@
               <label class="form-label">
                 {{'general.job'|translate}}
               </label>
-              <ng-select class="rounded" [items]="job" [closeOnSelect]="false" [searchable]="true"
-                [clearSearchOnAdd]="true" bindLabel="name" formControlName="job"
+              <ng-select class="rounded" [items]="pageData?.jobs" [closeOnSelect]="false" [searchable]="true"
+                [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="job"
                 placeholder="{{'general.select' | translate}}"
                 [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
                 [class.border-green]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.valid">

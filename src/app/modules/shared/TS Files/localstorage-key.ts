@@ -7,5 +7,5 @@ export const keys = {
   theme: 'AMSPolicietheme',
   token: 'AMSPolicieToken',
   deviceLocation: 'amsdeviceLocation',
-
+  forgetPassoedToken: 'AMSPolicieForgetPasswordToken'
 };

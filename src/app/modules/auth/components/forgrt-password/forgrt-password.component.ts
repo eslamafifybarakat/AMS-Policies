@@ -30,6 +30,7 @@ export class ForgrtPasswordComponent implements OnInit {
 
   currentLanguage: any;
   urlData: any
+  email: any;
 
   constructor(
     public translationService: TranslationService,
@@ -50,14 +51,14 @@ export class ForgrtPasswordComponent implements OnInit {
   submit(): void {
     this.isloadingBtn = true;
     let data = {
-      email: this.urlData.email
+      email: this.email
     }
     this.authUserService?.forgetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
           this.isloadingBtn = false;
-          this.router.navigate(['/auth/email-verification']);
+          this.router.navigate(['/auth/email-verification', { email: this.email }]);
         } else {
           this.isloadingBtn = false;
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';

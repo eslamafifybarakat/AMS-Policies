@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { AuthUserService } from './../../services/auth-user.service';
 import { Subscription } from 'rxjs';
@@ -21,7 +22,7 @@ export class ConfirmLoginCodeComponent implements OnInit {
   isloadingBtn: boolean = false;
   isWaiting: boolean = false;
   urlData: any;
-  time: any = Date.now() + ((60 * 1000) * 1); // current time + 1 minute ///
+  time: any = Date.now() + ((60 * 1000) * 0.1); // current time + 1 minute ///
   minute: any;
   currentLanguage: any;
   codeLength: any;
@@ -31,6 +32,7 @@ export class ConfirmLoginCodeComponent implements OnInit {
     public translationService: TranslationService,
     public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
+    private publicService: PublicService,
     public alertsService: AlertsService,
     private cdr: ChangeDetectorRef,
     public _location: Location,
@@ -51,53 +53,62 @@ export class ConfirmLoginCodeComponent implements OnInit {
   })
 
   resendCode(): void {
-    this.isloading = true;
+    this.publicService.show_loader.next(true);
     this.isWaiting = true;
     let data = {
       email: this.urlData?.email,
       password: this.urlData?.password,
-      device_location_info: this.deviceLocationData
+      location_device_info: {
+        country_name: this.deviceLocationData?.country_name,
+        region: this.deviceLocationData?.region,
+        city: this.deviceLocationData?.city,
+        browser: this.deviceLocationData?.browser,
+        browser_version: this.deviceLocationData?.browser_version,
+        device_type: this.deviceLocationData?.deviceType,
+        os: this.deviceLocationData?.os,
+        os_version: this.deviceLocationData?.os_version
+      }
     }
     this.authUserService?.login(data)?.subscribe(
       (res: any) => {
-        if (res?.status == true && res?.code == 200) {
+        if (res?.code == 200) {
           this.codeLength = '';
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
+          this.minute = Date.now() + ((60 * 1000) * 1);
+          this.isWaiting = false;
         } else {
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService.show_loader.next(false);
         }
       },
       (err: any) => {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          this.publicService.show_loader.next(false);
         }
       }
     );
-    this.minute = Date.now() + ((60 * 1000) * 1);
-    this.isloading = false;
-    this.isWaiting = false;
   }
   confirm(): void {
-    this.isloadingBtn = true;
+    this.publicService.show_loader.next(true);
     let data = {
       email: this.urlData.email,
       password: this.urlData.password,
       code: this.codeLength
     }
-    console.log(data);
     this.authUserService?.verificationCode(data)?.subscribe(
       (res: any) => {
-        if (res?.status == true) {
+        if (res?.code == 200) {
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-          window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data));
           this.authUserService?.getUserData()?.subscribe(
             (res: any) => {
               if (res?.code == 200) {
                 window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
                 this.router.navigate(['/home']);
-                this.isloadingBtn = false;
+                this.publicService.show_loader.next(false);
               } else {
-                this.isloadingBtn = false;
+                this.publicService.show_loader.next(false);
                 res?.message ? this.alertsService.openSnackBar(res?.message) : '';
               }
             },
@@ -105,13 +116,13 @@ export class ConfirmLoginCodeComponent implements OnInit {
               if (err?.message) {
                 err?.message ? this.alertsService.openSnackBar(err?.message) : '';
               }
-              this.isloadingBtn = false;
+              this.publicService.show_loader.next(false);
             }
           );
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           this.confirmLoginForm.reset();
         } else {
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
@@ -119,7 +130,7 @@ export class ConfirmLoginCodeComponent implements OnInit {
         if (err?.message) {
           err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
-        this.isloadingBtn = false;
+        this.publicService.show_loader.next(false);
       }
     );
   }

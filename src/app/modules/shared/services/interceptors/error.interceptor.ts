@@ -33,7 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           }
           if (error?.status == 403) {
-            window.location.reload();
+            // window.location.reload();
           }
 
           if (error?.status == 404) {

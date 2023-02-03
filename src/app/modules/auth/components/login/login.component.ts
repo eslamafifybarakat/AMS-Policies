@@ -92,7 +92,8 @@ export class LogInComponent implements OnInit {
     }
     this.authUserService?.login(data)?.subscribe(
       (res: any) => {
-        if (res?.status == 'success') {
+        if (res?.code == 200) {
+          window.localStorage.setItem(keys.token, res?.data?.token);
           window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data));
           if (res?.data?.verified == true) {
             this.authUserService?.getUserData()?.subscribe(

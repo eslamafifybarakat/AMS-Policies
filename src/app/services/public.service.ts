@@ -1,10 +1,12 @@
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicService {
+  recallUserDataFn = new BehaviorSubject<boolean>(false);
+  recallUserDataStorage = new BehaviorSubject<boolean>(false);
   show_loader = new Subject<boolean>();
   constructor() { }
 
