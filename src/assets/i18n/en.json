@@ -85,7 +85,9 @@
     "not_matched": "Confirm password must match New password",
     "not_match": "Confirm password must match password",
     "pass_length": "Password length must be 5–20",
-    "name_length": "Name length must be 3–20"
+    "name_length": "Name length must be 3–20",
+    "passwordPattern":"Your password must be 8 or more characters, contains upper & lower case letters, numbers, at least one special character (!%*?&|...)",
+    "pass_num_pattern":"Passport number must be number and string"
   },
   "form": {
     "verification_code": "Verification Code",
@@ -112,6 +114,8 @@
     "have_account": "Have an account",
     "remember": "Remember Me",
     "name": "Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "company": "Company",
     "sms": "SMS",
     "password": "Password",
@@ -133,6 +137,8 @@
     "company": "Enter company name",
     "id": "Enter id",
     "name": "Enter name",
+    "firstName": "Enter first name",
+    "lastName": "Enter last name",
     "start_date": "Enter start date",
     "end_date": "Enter end date",
     "email": "Enter email",

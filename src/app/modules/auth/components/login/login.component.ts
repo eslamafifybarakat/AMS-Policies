@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { userInfo } from '../../auth-user';
 import { AuthUserService } from '../../services/auth-user.service';
+import { patterns } from '../../../shared/TS Files/patternValidation';
 
 @Component({
   selector: 'app-log-in',
@@ -57,8 +58,8 @@ export class LogInComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20)]]
+      // Validators.pattern(patterns?.password)
+    ]]
   });
   get formControls(): any {
     return this.loginForm?.controls;

@@ -248,7 +248,7 @@
                 <label class="form-label required">
                   {{'form.passport_num'|translate}}
                 </label>
-                <input type="number" min="1" class="form-control" formControlName="pass_num"
+                <input type="text" min="1" class="form-control" formControlName="pass_num"
                   [class.is-invalid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.invalid"
                   [class.is-valid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.valid"
                   placeholder="{{'placeholder.pass_num' | translate}}">
@@ -261,6 +261,11 @@
                       {{'validations.reuired_field'|translate}}
                     </span>
                   </div>
+                  <ng-container *ngIf="formControls?.['pass_num']?.errors?.['pattern']">
+                    <span class="text-danger fs-6">
+                      {{'validations.pass_num_pattern'|translate}}
+                    </span>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -296,9 +301,9 @@
                             </span>
                             <div class="d-flex gap-2">
                               <a><i class="far fa-eye"></i></a>
-                            <button type="button" class="btn-delete" (click)="onRemoveProfileImage(item?.name)">
-                              X
-                            </button>
+                              <button type="button" class="btn-delete" (click)="onRemoveProfileImage(item?.name)">
+                                X
+                              </button>
                             </div>
                           </div>
                         </div>

@@ -1,5 +1,5 @@
-import { PublicService } from './../../../../../../services/public.service';
 import { AlertsService } from './../../../../../shared/services/alerts/alerts.service';
+import { PublicService } from './../../../../../../services/public.service';
 import { PolicyService } from './../../../../services/policy.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -44,7 +44,7 @@ export class PolicyDataComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private policyService: PolicyService,
     private alertsService: AlertsService,
-    private publicService:PublicService,
+    private publicService: PublicService,
     private cdr: ChangeDetectorRef,
     private location: Location,
     public datePipe: DatePipe,
@@ -73,7 +73,7 @@ export class PolicyDataComponent implements OnInit {
     duration: ['', [Validators.required]],
     passport_image: [null, []],
     profile_image: [null, []],
-    pass_num: [null, [Validators.required]],
+    pass_num: [null, [Validators.required, Validators.pattern(/[0-9]/), Validators.pattern(/[a-zA-Z]/), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
     duration_type: ['', [Validators.required]],
     job: [null, [Validators.required]],
     gender: [null, [Validators.required]],

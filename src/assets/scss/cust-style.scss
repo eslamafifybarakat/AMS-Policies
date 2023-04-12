@@ -7,12 +7,12 @@
   --bg-secondary-color: #718295;
 
   --bg-dashboard-body: #f4f7fa;
-  --bg-form-control-profile: #F2F4F8;
+  --bg-form-control-profile: #f2f4f8;
 
   --text-second-color: #cdf0ff;
   --bg-second-color: #cdf0ff;
 
-  --bg-page-card-color: #F6F6F6;
+  --bg-page-card-color: #f6f6f6;
 
   --border-input-color: #ebebeb;
 
@@ -33,9 +33,9 @@
   --grey-900: #101010;
   --grey-700: #484848;
   --grey-400: #999999;
-  --grey-100: #9C9C9C;
+  --grey-100: #9c9c9c;
   --icon-color: #999999;
-  --muted: #9B9B9B;
+  --muted: #9b9b9b;
   // shadow and raduis
   --header-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
   --shadow2: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
@@ -186,7 +186,7 @@
   border: 2px solid var(--warning-color);
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer !important;
 }
 /* Start Search Group Customization */
@@ -543,7 +543,6 @@ input:-webkit-autofill {
 }
 
 .input-group {
-
   .form-control-double,
   .form-control-double:focus,
   .form-control-double:focus-within,
@@ -570,10 +569,23 @@ input:-webkit-autofill {
     border-radius: 0 0.25rem 0.25rem 0 !important;
     border-left: transparent !important;
   }
+  &.border-green,
+  &.border-red {
+    border-radius: 0.25rem !important;
+    .input-group-text-right,
+    .form-control {
+      border: 0 !important;
+    }
+  }
 }
-
-.required:after{
-  content: '*';
+.mat-datepicker-toggle {
+  background-color: var(--bg-white-color) !important;
+  border-radius: 4px !important;
+  display: flex;
+  align-items: center;
+}
+.required:after {
+  content: "*";
   color: red;
 }
 
@@ -887,8 +899,8 @@ input:-webkit-autofill {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, .5);
-  opacity: .5;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
   z-index: 9999;
   height: 100%;
 
@@ -904,7 +916,7 @@ input:-webkit-autofill {
   opacity: 0.65;
 }
 
-.btn-check:focus+.btn,
+.btn-check:focus + .btn,
 .btn:focus {
   outline: 0;
   box-shadow: none;
@@ -920,11 +932,14 @@ input:-webkit-autofill {
   top: 0.5rem !important;
 }
 
-.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
   box-shadow: none !important;
 }
 
-.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
   padding-top: 10px;
 }
 
@@ -942,11 +957,11 @@ input:-webkit-autofill {
 }
 
 .iti--allow-dropdown input,
-.iti--allow-dropdown input[type=text],
-.iti--allow-dropdown input[type=tel],
+.iti--allow-dropdown input[type="text"],
+.iti--allow-dropdown input[type="tel"],
 .iti--separate-dial-code input,
-.iti--separate-dial-code input[type=text],
-.iti--separate-dial-code input[type=tel] {
+.iti--separate-dial-code input[type="text"],
+.iti--separate-dial-code input[type="tel"] {
   border: 0;
   width: 100%;
   height: 100%;
@@ -1183,6 +1198,13 @@ li.view-hover:hover {
 /*END HEADER*/
 
 /*START AUTH FORM*/
+.auth-form {
+  // background-color: #fff8f8;
+  background-color: #fcf7f7;
+  .btn-solid-main {
+    height: 3.1rem;
+  }
+}
 .lang {
   width: 2rem;
   cursor: pointer;
@@ -1195,13 +1217,11 @@ li.view-hover:hover {
 
 .form-content {
   .togglepassword {
-    background: transparent;
+    // background: transparent;
     color: gray;
     border: 1px solid #ebebeb;
     border-left: none;
   }
-
-
 
   .form-control.is-valid:focus,
   .was-validated .form-control:valid:focus,
@@ -1213,7 +1233,6 @@ li.view-hover:hover {
   .was-validated .form-control:invalid:focus-visible {
     box-shadow: none !important;
   }
-
 }
 
 /*END AUTH FORM*/
@@ -1221,13 +1240,12 @@ li.view-hover:hover {
 /*START PROFILE*/
 .personal,
 .policy-data {
-
   .iti--allow-dropdown input,
-  .iti--allow-dropdown input[type=text],
-  .iti--allow-dropdown input[type=tel],
+  .iti--allow-dropdown input[type="text"],
+  .iti--allow-dropdown input[type="tel"],
   .iti--separate-dial-code input,
-  .iti--separate-dial-code input[type=text],
-  .iti--separate-dial-code input[type=tel] {
+  .iti--separate-dial-code input[type="text"],
+  .iti--separate-dial-code input[type="tel"] {
     background: var(--bg-form-control-profile) !important;
   }
 
@@ -1310,7 +1328,9 @@ code-input {
 }
 
 .mat-radio-button.mat-accent .mat-radio-inner-circle,
-.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
 .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
   background-color: var(--bg-main-color) !important;
@@ -1321,8 +1341,8 @@ code-input {
   overflow-y: scroll;
 }
 .policy-data {
-  .mat-radio-container{
-    transform: scale(.7) !important;
+  .mat-radio-container {
+    transform: scale(0.7) !important;
   }
 }
 /* ===== End Angular Material Customization ===== */

@@ -2,6 +2,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { roots } from '../../shared/TS Files/api-roots';
 // import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -67,5 +68,9 @@ export class PolicyService {
   //     }
   //     return this.http.get<any>(this.apiUrl + '/policies', { params: params });
   //   }
+
+  getHomeData(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.home?.getHomeData);
+  }
 
 }

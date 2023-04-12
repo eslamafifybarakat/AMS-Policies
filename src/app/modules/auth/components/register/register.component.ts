@@ -1,3 +1,4 @@
+import { patterns } from './../../../shared/TS Files/patternValidation';
 
 import { Subscription } from 'rxjs';
 import { keys } from './../../../shared/TS Files/localstorage-key';
@@ -53,15 +54,17 @@ export class RegisterComponent implements OnInit {
 
   registerForm = this.fb.group(
     {
-      name: ['', [Validators.required,
+      firstName: ['', [Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20)]],
+      lastName: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20)]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       birth_date: ['', []],
       password: ['', [Validators.compose([Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20)])]],
+      Validators.pattern(patterns?.password)])]],
       confirmPassword: ['', [Validators.compose([Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20)])]]
@@ -84,7 +87,7 @@ export class RegisterComponent implements OnInit {
     this.isLoadingBtn = true;
     this.isResend = false;
     let data = {
-      name: this.registerForm?.value?.name,
+      name: this.registerForm?.value?.firstName + ' ' + this.registerForm?.value?.lastName,
       email: this.registerForm?.value?.email,
       phone: this.registerForm?.value?.phone,
       birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),

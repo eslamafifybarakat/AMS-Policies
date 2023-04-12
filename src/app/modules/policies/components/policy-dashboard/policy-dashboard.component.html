@@ -1,3 +1,10 @@
+<ng-container *ngIf="isFullLoading">
+  <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
+    <div class="spinner-grow" role="status">
+    </div>
+  </div>
+</ng-container>
+
 <div class="dashboard">
   <div class="row">
     <div class="col-xl-8 col-md-12 col-sm-12 col-12 mb-3">
@@ -27,7 +34,7 @@
                 <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
               </svg>
               <div class="px-2">
-                <span class="d-block fw-bold fs-4">3</span>
+                <span class="d-block fw-bold fs-4">{{yourTransactions?.purchased_policies}}</span>
                 <span class="d-block text-muted mt-1 fs-p">
                   {{'policies.Purchase' | translate}}
                 </span>
@@ -45,7 +52,7 @@
                 </svg>
               </span>
               <div class="px-2">
-                <span class="d-block fw-bold fs-4">50</span>
+                <span class="d-block fw-bold fs-4">{{yourTransactions?.bounce_rate}}</span>
                 <span class="d-block text-muted mt-1 fs-p">
                   {{'policies.refunded' | translate}}
                 </span>
@@ -60,7 +67,7 @@
                   d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
               </svg>
               <div class="px-2">
-                <span class="d-block fw-bold fs-4">3%</span>
+                <span class="d-block fw-bold fs-4">{{yourTransactions?.bounce_rate}}%</span>
                 <span class="d-block text-muted mt-1 fs-p">
                   {{'policies.bounce_rate' | translate}}
                 </span>
@@ -99,7 +106,7 @@
           </div>
           <div>
             <span class="fs-6 text-muted px-1">
-              32
+              {{policies?.active}}
             </span>
           </div>
         </div>
@@ -116,7 +123,7 @@
           </div>
           <div>
             <span class="fs-6 text-muted px-1">
-              2
+              {{policies?.pending}}
             </span>
           </div>
         </div>
@@ -133,7 +140,7 @@
           </div>
           <div>
             <span class="fs-6 text-muted px-1">
-              2
+              {{policies?.canceled}}
             </span>
           </div>
         </div>
@@ -150,7 +157,7 @@
           </div>
           <div>
             <span class="fs-6 text-muted px-1">
-              10
+              {{policies?.expired}}
             </span>
           </div>
         </div>
@@ -167,7 +174,7 @@
           </div>
           <div>
             <span class="fs-6 text-muted px-1">
-              10
+              {{policies?.under_review}}
             </span>
           </div>
         </div>

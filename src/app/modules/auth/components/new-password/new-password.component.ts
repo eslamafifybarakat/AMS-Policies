@@ -1,3 +1,4 @@
+import { patterns } from './../../../shared/TS Files/patternValidation';
 import { PublicService } from './../../../../services/public.service';
 import { AuthUserService } from './../../services/auth-user.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
@@ -45,8 +46,7 @@ export class NewPasswordComponent implements OnInit {
   newPasswordForm = this.fb.group({
     newpassword: ['', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20)
+      Validators.pattern(patterns?.password)
     ]],
     confirmpassword: ['', Validators.required]
   },

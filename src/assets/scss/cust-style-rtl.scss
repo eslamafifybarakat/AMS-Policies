@@ -110,17 +110,42 @@ video {
 /*-- END COMPONENTS --*/
 
 /* ===== Start RTL Owl-Carousel Customization ===== */
-owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div,
-owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>div>div>div {
+owl-carousel-o > div > div.owl-stage-outer.ng-star-inserted > owl-stage > div,
+owl-carousel-o
+  > div
+  > div.owl-stage-outer.ng-star-inserted
+  > owl-stage
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div {
   direction: ltr !important;
 }
 
-div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>div>div,
-owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>div>div {
+div.owl-stage-outer.ng-star-inserted > owl-stage > div > div > div > div > div,
+owl-carousel-o
+  > div
+  > div.owl-stage-outer.ng-star-inserted
+  > owl-stage
+  > div
+  > div
+  > div
+  > div
+  > div {
   direction: rtl !important;
 }
 
-owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>div>span {
+owl-carousel-o
+  > div
+  > div.owl-stage-outer.ng-star-inserted
+  > owl-stage
+  > div
+  > div
+  > div
+  > div
+  > span {
   direction: rtl !important;
 }
 
@@ -151,11 +176,11 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
 }
 
 .iti--allow-dropdown input,
-.iti--allow-dropdown input[type=text],
-.iti--allow-dropdown input[type=tel],
+.iti--allow-dropdown input[type="text"],
+.iti--allow-dropdown input[type="tel"],
 .iti--separate-dial-code input,
-.iti--separate-dial-code input[type=text],
-.iti--separate-dial-code input[type=tel] {
+.iti--separate-dial-code input[type="text"],
+.iti--separate-dial-code input[type="tel"] {
   padding-left: 6px;
   padding-right: 52px !important;
   width: 94%;
@@ -197,7 +222,7 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
 .form-check {
   display: flex;
 
-  input[type=checkbox] {
+  input[type="checkbox"] {
     margin-left: 0.4rem !important;
   }
 }
@@ -227,12 +252,12 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
 
 .me-2 {
   margin-right: inherit !important;
-  margin-left: 0.5rem !important
+  margin-left: 0.5rem !important;
 }
 
 .me-4 {
   margin-right: inherit;
-  margin-left: 2rem !important
+  margin-left: 2rem !important;
 }
 
 .bi-arrow-right {
@@ -249,7 +274,7 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
 
   .chat-social i {
     right: initial !important;
-    left: .5rem;
+    left: 0.5rem;
   }
 
   .activation .fas fa-twitter {
@@ -324,11 +349,11 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
   right: 0 !important;
 }
 
+@media (min-width: 991px) {
+}
 
-
-@media (min-width: 991px) {}
-
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+}
 
 @media (max-width: 991px) {
   .dropdown-menu {
@@ -363,7 +388,20 @@ owl-carousel-o>div>div.owl-stage-outer.ng-star-inserted>owl-stage>div>div>div>di
     border-right: 0 !important;
   }
 }
+.input-group
+  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+    .valid-feedback
+  ):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: 0 !important;
+}
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}
+
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3),
+.input-group:not(.has-validation)
+  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
 }
