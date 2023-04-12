@@ -44,7 +44,7 @@
         </div>
         <div class="d-flex justify-content-end gap-2 mt-lg-0 mt-2">
           <button type="button" class="btn btn-success btn-sm d-flex justify-content-between align-items-center"
-            (click)="isWaitingAction?'':goToDetails()" [disabled]="false"><span>{{'general.edit' |
+            (click)="isWaitingAction?'':goToDetails()" [disabled]="!isSelect"><span>{{'general.edit' |
               translate}}</span> <i class="fas fa-pen"></i></button>
           <button type="button" class="btn btn-danger btn-sm d-flex justify-content-between align-items-center"
             (click)="isWaitingAction?'':onaDeleteItem()" [disabled]="!isSelect"><span>{{'general.delete' |
@@ -293,7 +293,7 @@
           <tbody>
             <ng-container *ngIf="policiesList?.length>0; else noData">
               <ng-container *ngFor="let item of policiesList; let i =index">
-                <tr >
+                <tr>
                   <td> <input class="form-check-input position-static cursor-pointer" type="radio"
                       [checked]="item.isSelect" (click)="selected(item,item?.id)">
                   </td>
@@ -330,9 +330,9 @@
             <ng-template #noData>
               <tr>
                 <td colspan="8" class="text-center py-4">
-                   <div class="py-5">
+                  <div class="py-5">
                     <img src="assets/image/not-found.png" alt="not-found" width="100px">
-                   </div>
+                  </div>
                 </td>
               </tr>
             </ng-template>
