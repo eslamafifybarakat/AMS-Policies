@@ -3,106 +3,109 @@
     <p-table #dt1 [value]="tableData" (onFilter)="customFilter($event,dt1)" [(selection)]="selectedItems"
       responsiveLayout="scroll" [rowHover]="false" [resizableColumns]="true" [columns]="tableHeaders"
       [customSort]="true" (onSort)="customSort($event)" dataKey="id">
-      <ng-template pTemplate="caption">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <ng-container *ngIf="showSearch">
-            <span class="p-input-icon-right">
-              <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText class="search-input" type="text" #search
-                  (keyup.enter)="searchHandlerEmit(search?.value)"
-                  placeholder="{{'placeholder.SearchForWord'|translate}}" />
+      <ng-container *ngIf="showCaption">
+        <ng-template pTemplate="caption">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <ng-container *ngIf="showSearch">
+              <span class="p-input-icon-right">
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText class="search-input" type="text" #search
+                    (keyup.enter)="searchHandlerEmit(search?.value)"
+                    placeholder="{{'placeholder.SearchForWord'|translate}}" />
+                </span>
+                <ng-container *ngIf="search.value && !isLoadingSearch">
+                  <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+                </ng-container>
+                <ng-container *ngIf="isLoadingSearch">
+                  <i class="pi pi-spin pi-spinner"></i>
+                </ng-container>
               </span>
-              <ng-container *ngIf="search.value && !isLoadingSearch">
-                <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+            </ng-container>
+            <div class="d-flex gap-2">
+              <ng-container *ngIf="enableArticleNoteStatusButton">
+                <div class="dropdown">
+                  <button data-bs-toggle="dropdown" aria-expanded="false" pButton
+                    class="p-button-outlined p-button-secondary clear px-2 fw-bold">
+                    <i class="pi pi-arrow-right-arrow-left"></i>
+                    <span class="lh-0 ps-1">
+                      {{'general.changeStatus'|translate}}
+                    </span>
+                  </button>
+                  <ul class="dropdown-menu border-0 p-3">
+                    <ng-container *ngFor="let item of articleStatusList">
+                      <li><a class="dropdown-item d-flex gap-1" (click)="itemChangeStatusActionEmitter(item)">
+                          {{item?.name}}
+                        </a>
+                      </li>
+                    </ng-container>
+
+                  </ul>
+                </div>
               </ng-container>
-              <ng-container *ngIf="isLoadingSearch">
-                <i class="pi pi-spin pi-spinner"></i>
+              <ng-container *ngIf="enableAssignToButton">
+                <div class="dropdown">
+                  <button data-bs-toggle="dropdown" aria-expanded="false" pButton
+                    class="p-button-outlined p-button-secondary clear px-2 fw-bold">
+                    <i class="pi pi-arrow-right scaleX-rtl"></i>
+                    <span class="lh-0 ps-1">
+                      {{'labels.assignTo'|translate}}
+                    </span>
+                  </button>
+                  <ul class="dropdown-menu border-0 p-3">
+                    <ng-container *ngFor="let item of assignedUsers">
+                      <li><a class="dropdown-item d-flex gap-1" (click)="itemAssignUserActionEmitter(item)">
+                          {{item?.name}}
+                        </a>
+                      </li>
+                    </ng-container>
+
+                  </ul>
+                </div>
               </ng-container>
-            </span>
-          </ng-container>
-          <div class="d-flex gap-2">
-            <ng-container *ngIf="enableArticleNoteStatusButton">
-              <div class="dropdown">
-                <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                  class="p-button-outlined p-button-secondary clear px-2 fw-bold">
-                  <i class="pi pi-arrow-right-arrow-left"></i>
-                  <span class="lh-0 ps-1">
-                    {{'general.changeStatus'|translate}}
-                  </span>
+
+              <ng-container *ngIf="showClear">
+                <button pButton label="{{'general.reset'|translate}}" class="p-button-outlined p-button-secondary clear"
+                  icon="pi pi-refresh" (click)="clear(dt1)">
                 </button>
-                <ul class="dropdown-menu border-0 p-3">
-                  <ng-container *ngFor="let item of articleStatusList">
-                    <li><a class="dropdown-item d-flex gap-1" (click)="itemChangeStatusActionEmitter(item)">
-                        {{item?.name}}
-                      </a>
-                    </li>
-                  </ng-container>
+              </ng-container>
 
-                </ul>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="enableAssignToButton">
-              <div class="dropdown">
-                <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                  class="p-button-outlined p-button-secondary clear px-2 fw-bold">
-                  <i class="pi pi-arrow-right scaleX-rtl"></i>
-                  <span class="lh-0 ps-1">
-                    {{'labels.assignTo'|translate}}
-                  </span>
-                </button>
-                <ul class="dropdown-menu border-0 p-3">
-                  <ng-container *ngFor="let item of assignedUsers">
-                    <li><a class="dropdown-item d-flex gap-1" (click)="itemAssignUserActionEmitter(item)">
-                        {{item?.name}}
-                      </a>
-                    </li>
-                  </ng-container>
+              <ng-container *ngIf="enableAddNewQuestion">
+                <div class="dropdown">
+                  <!-- <button data-bs-toggle="dropdown" aria-expanded="false" pButton
+                    label="{{'dashboard.usersList.addNewQuestion'|translate}}"
+                    class="p-button-outlined p-button-secondary clear">
+                  </button> -->
+                  <ul class="dropdown-menu border-0 p-3">
+                    <ng-container *ngFor="let item of newQuestionList">
+                      <li><a class="dropdown-item d-flex gap-1">
+                          {{item?.name}}
+                        </a>
+                      </li>
+                    </ng-container>
 
-                </ul>
-              </div>
-            </ng-container>
+                  </ul>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="enableDeleteButton">
+                <button (click)="deleteSelectedItems()" [disabled]="!selectedItems || !selectedItems?.length"
+                  class="btn btn-danger clear">{{'general.delete'|translate}}</button>
+              </ng-container>
+            </div>
 
-            <ng-container *ngIf="showClear">
-              <button pButton label="{{'general.reset'|translate}}" class="p-button-outlined p-button-secondary clear"
-                icon="pi pi-refresh" (click)="clear(dt1)">
-              </button>
-            </ng-container>
-
-            <ng-container *ngIf="enableAddNewQuestion">
-              <div class="dropdown">
-                <!-- <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                  label="{{'dashboard.usersList.addNewQuestion'|translate}}"
-                  class="p-button-outlined p-button-secondary clear">
-                </button> -->
-                <ul class="dropdown-menu border-0 p-3">
-                  <ng-container *ngFor="let item of newQuestionList">
-                    <li><a class="dropdown-item d-flex gap-1">
-                        {{item?.name}}
-                      </a>
-                    </li>
-                  </ng-container>
-
-                </ul>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="enableDeleteButton">
-              <button (click)="deleteSelectedItems()" [disabled]="!selectedItems || !selectedItems?.length"
-                class="btn btn-danger clear">{{'general.delete'|translate}}</button>
-            </ng-container>
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button"
+                class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"
+                (click)="downloadFileHandlerEmit()"><span>{{'general.export'
+                  | translate}}</span> <i class="fas fa-file-export"></i></button>
+              <button type="button" (click)="printTableHandlerEmit()"
+                class="btn btn-outline-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
+                  | translate}}</span> <i class="fas fa-print"></i></button>
+            </div>
           </div>
+        </ng-template>
+      </ng-container>
 
-          <div class="d-flex justify-content-end gap-2">
-            <button type="button"
-              class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"
-              (click)="downloadFileHandlerEmit()"><span>{{'general.export'
-                | translate}}</span> <i class="fas fa-file-export"></i></button>
-            <button type="button" (click)="printTableHandlerEmit()"
-              class="btn btn-outline-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
-                | translate}}</span> <i class="fas fa-print"></i></button>
-          </div>
-        </div>
-      </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
           <ng-container *ngIf="showSelection">
@@ -178,7 +181,10 @@
                             <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event)"
                               placeholder="Any">
                               <ng-template let-option pTemplate="item">
-                                <span [class]="'item-badge status-' + option.value">{{option.label}}</span>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="item-badge {{option?.status}}"></span>
+                                  <span>{{option?.status}}</span>
+                                </div>
                               </ng-template>
                             </p-dropdown>
                           </ng-template>
@@ -376,7 +382,7 @@
                 </ng-container>
                 <ng-container *ngIf="col?.type=='status'">
                   <td>
-                    <div class="d-flex align-items-center gap-1">
+                    <div class="d-flex align-items-center gap-2">
                       <span class="item-badge {{item?.status}}"></span>
                       <span>{{item?.status}}</span>
                     </div>
@@ -400,9 +406,12 @@
               <td>
                 <div class="d-flex gap-2">
                   <ng-container *ngIf="showDetails">
-                    <a class="fw-500" (click)="detailsHandlerEmit(item)">
+                    <!-- <a class="fw-500" (click)="detailsHandlerEmit(item)">
                       <i class="far fa-eye"></i>
-                    </a>
+                    </a> -->
+                    <button class="btn p-0 btn-outline-main-header py-1 px-3" (click)="detailsHandlerEmit(item)">
+                      {{'general.details' | translate}}
+                    </button>
                   </ng-container>
                   <ng-container *ngIf="showPrint">
                     <a class="d-flex align-items-center
@@ -519,7 +528,10 @@
                             <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event)"
                               placeholder="Any">
                               <ng-template let-option pTemplate="item">
-                                <span [class]="'item-badge status-' + option.value">{{option.label}}</span>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="item-badge {{item?.status}}"></span>
+                                  <span>{{item?.status}}</span>
+                                </div>
                               </ng-template>
                             </p-dropdown>
                           </ng-template>
@@ -635,7 +647,10 @@
                 </ng-container>
                 <ng-container *ngIf="col?.type=='status'">
                   <td>
-                    <span [class]="'item-badge status-' + item?.status">{{item?.status}}</span>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="item-badge {{item?.status}}"></span>
+                      <span>{{item?.status}}</span>
+                    </div>
                   </td>
                 </ng-container>
                 <ng-container *ngIf="col?.type=='boolean'">

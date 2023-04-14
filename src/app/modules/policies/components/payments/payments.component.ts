@@ -1,9 +1,10 @@
 import { PolicyPaymentDetailsModalComponent } from './policy-payment-details-modal/policy-payment-details-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
+import { PublicService } from './../../../../services/public.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { PaymentService } from '../../services/payment.service';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-// import { AlertsService } from 'src/app/modules/shared/services/alerts/alerts.service';
-// import { PolicyService } from '../../services/policy.service';
 
 @Component({
   selector: 'app-payments',
@@ -22,168 +23,156 @@ export class PaymentsComponent implements OnInit {
 
   date = new Date("10/10/1996");
   status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
-  items = [
-    {
-      id: 1,
-      esablishDate: this.date,
-      class: "success",
-      amount: "150",
-      description: "there is a description for this policy",
-      status: this.status[0]
-    },
-    {
 
-      id: 2,
-      client: 'Eslam Afify Barakat',
-      esablishDate: this.date,
-      class: "confirm",
-      amount: "50",
-      description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-      status: this.status[1]
-    },
-    {
-
-      id: 3,
-      esablishDate: this.date,
-      class: "rejected",
-      amount: "150",
-      description: "there is a description for this policy",
-      status: this.status[2]
-    },
-    {
-
-      id: 4,
-      client: 'Eslam Afify Barakat',
-      esablishDate: this.date,
-      class: "warning",
-      amount: "50",
-      description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-      status: this.status[3]
-    },
-    {
-
-      id: 5,
-      esablishDate: this.date,
-      class: "success",
-      amount: "150",
-      description: "there is a description for this policy",
-      status: this.status[0]
-    },
-    {
-
-      id: 6,
-      client: 'Eslam Afify Barakat',
-      esablishDate: this.date,
-      class: "confirm",
-      amount: "50",
-      description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-      status: this.status[1]
-    },
-    {
-
-      id: 7,
-      esablishDate: this.date,
-      class: "rejected",
-      amount: "150",
-      description: "there is a description for this policy",
-      status: this.status[2]
-    },
-    {
-
-      id: 8,
-      client: 'Eslam Afify Barakat',
-      esablishDate: this.date,
-      class: "warning",
-      amount: "50",
-      description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-      status: this.status[3]
-    },
-    {
-
-      id: 9,
-      client: 'Eslam Afify Barakat',
-      esablishDate: this.date,
-      class: "warning",
-      amount: "50",
-      description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-      status: this.status[3]
-    }
-  ];
+  tableHeaders: any = [];
+  isSearch: boolean = false;
+  enableSortFilter: boolean = true;
+  sortObj: any = {};
 
   constructor(
-    // private policyService: PolicyService,
-    // private alertsService: AlertsService,
+    private paymentService: PaymentService,
+    private alertsService: AlertsService,
+    private publicService: PublicService,
+    private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
-    this.getAllPloicies();
+    this.getAllPayments();
+    this.tableHeaders = [
+      {
+        field: 'id', header: this.publicService?.translateTextFromJson('general.id'), title: this.publicService?.translateTextFromJson('general.id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false
+        , type: 'numeric'
+      },
+      // { field: 'client', header: this.publicService?.translateTextFromJson('polices_list.customer_name'), title: this.publicService?.translateTextFromJson('polices_list.customer_name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'text' },
+      { field: 'status', header: this.publicService?.translateTextFromJson('general.status'), title: this.publicService?.translateTextFromJson('general.status'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'status' },
+      { field: 'amount', header: this.publicService?.translateTextFromJson('polices_list.amount'), title: this.publicService?.translateTextFromJson('polices_list.amount'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
+      { field: 'esablishDate', header: this.publicService?.translateTextFromJson('polices_list.establish_date'), title: this.publicService?.translateTextFromJson('polices_list.establish_date'), sort: true, showDefaultSort: true, showAscSort: false, type: 'date' },
+      { field: 'description', header: this.publicService?.translateTextFromJson('polices_list.description'), title: this.publicService?.translateTextFromJson('polices_list.description'), sort: true, showDefaultSort: true, showAscSort: false, type: 'text' },
+    ];
   }
 
-  openModal(data: any): void {
-    console.log(data);
-    let dialogRef = this.dialog.open(PolicyPaymentDetailsModalComponent, {
-      width: "35%",
-      data: {
-        details: data
+
+
+  getAllPayments(): void {
+    this.isLoading = true;
+    this.currentPage = 1;
+    this.paymentService?.getPaymentsList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
+      (res) => {
+        if (res?.code == 200) {
+          this.paymentsList = res?.data;
+          this.isLoading = false;
+        } else {
+          this.isLoading = false;
+          if (res?.message) {
+            this.alertsService?.openSweetalert("info", res?.message);
+          }
+        }
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetalert("error", err?.message);
+          this.isLoading = false;
+        }
       }
-    });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(result);
-    });
-  }
+    );
+    this.cdr?.detectChanges();
 
-  getAllPloicies(): void {
-    // this.isLoading = true;
-    //  if (this.searchValue !=='') {
-    // this.currentPage = 1;
-    //   this.policyService?.getPaymentsList(this.currentPage, this.pageSize,this.searchValue)?.subscribe(
-    //     (res) => {
-    //       if (res?.code == 200) {
-    //         this.paymentsList = res?.data;
-    //         this.isLoading = false;
-    //       } else {
-    //         this.isLoading = false;
-    //         if (res?.message) {
-    //           this.alertsService?.openSweetalert("info", res?.message);
-    //         }
-    //       }
-    //     },
-    //     (err) => {
-    //       if (err?.message) {
-    //         this.alertsService?.openSweetalert("error", err?.message);
-    //       }
-    //     }
-    //   );
-    //  } else {
-    //   this.policyService?.getPaymentsList(this.currentPage, this.pageSize)?.subscribe(
-    //     (res) => {
-    //       if (res?.code == 200) {
-    //         this.paymentsList = res?.data;
-    //         this.isLoading = false;
-    //       } else {
-    //         this.isLoading = false;
-    //         if (res?.message) {
-    //           this.alertsService?.openSweetalert("info", res?.message);
-    //         }
-    //       }
-    //     },
-    //     (err) => {
-    //       if (err?.message) {
-    //         this.alertsService?.openSweetalert("error", err?.message);
-    //       }
-    //     }
-    //   );
-    //  }
-    this.cdr.detectChanges();
+    let items = [
+      {
+        id: 1,
+        esablishDate: this.date,
+        class: "success",
+        amount: "150",
+        description: "there is a description for this policy",
+        status: this.status[0]
+      },
+      {
+
+        id: 2,
+        client: 'Eslam Afify Barakat',
+        esablishDate: this.date,
+        class: "confirm",
+        amount: "50",
+        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
+        status: this.status[1]
+      },
+      {
+
+        id: 3,
+        esablishDate: this.date,
+        class: "rejected",
+        amount: "150",
+        description: "there is a description for this policy",
+        status: this.status[2]
+      },
+      {
+
+        id: 4,
+        client: 'Eslam Afify Barakat',
+        esablishDate: this.date,
+        class: "warning",
+        amount: "50",
+        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
+        status: this.status[3]
+      },
+      {
+
+        id: 5,
+        esablishDate: this.date,
+        class: "success",
+        amount: "150",
+        description: "there is a description for this policy",
+        status: this.status[0]
+      },
+      {
+
+        id: 6,
+        client: 'Eslam Afify Barakat',
+        esablishDate: this.date,
+        class: "confirm",
+        amount: "50",
+        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
+        status: this.status[1]
+      },
+      {
+
+        id: 7,
+        esablishDate: this.date,
+        class: "rejected",
+        amount: "150",
+        description: "there is a description for this policy",
+        status: this.status[2]
+      },
+      {
+
+        id: 8,
+        client: 'Eslam Afify Barakat',
+        esablishDate: this.date,
+        class: "warning",
+        amount: "50",
+        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
+        status: this.status[3]
+      },
+      {
+
+        id: 9,
+        client: 'Eslam Afify Barakat',
+        esablishDate: this.date,
+        class: "warning",
+        amount: "50",
+        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
+        status: this.status[3]
+      }
+    ];
+    this.paymentsList = items;
   }
 
   applyFilter(type: any): void {
     this.currentPage = 1;
     if (type !== this.filterValue) {
       this.filterValue = type;
-      this.getAllPloicies();
+      this.getAllPayments();
     } else {
       this.filterValue = '';
     }
@@ -192,29 +181,62 @@ export class PaymentsComponent implements OnInit {
   }
   clearSearch(): void {
     this.searchValue = '';
-    this.getAllPloicies();
-    this.cdr.detectChanges();
+    this.getAllPayments();
+    this.cdr?.detectChanges();
   }
   applySearch(event: Event): void {
+    this.isSearch = true;
     let applyFilter = (event.target as HTMLInputElement).value;
-    console.log(applyFilter);
-    console.log(this.searchValue);
-    this.getAllPloicies();
+    this.searchValue = applyFilter;
+    this.getAllPayments();
     this.cdr.detectChanges();
 
+  }
+
+  showDetails(data: any): void {
+    console.log(data);
+    let dialogRef = this.dialog?.open(PolicyPaymentDetailsModalComponent, {
+      width: "35%",
+      data: {
+        details: data
+      }
+    });
+    dialogRef?.afterClosed()?.subscribe((result: any) => {
+      console.log(result);
+    });
   }
 
   onChange(page: any): void {
-    this.getAllPloicies();
-
+    this.getAllPayments();
   }
   loadPage(page: number): void {
-    this.getAllPloicies();
+    this.getAllPayments();
+  }
 
+  clearTable(event: any): void {
+    this.currentPage = 1;
+    this.searchValue = null;
+    this.sortObj = null;
+    event?.isClear ? this.getAllPayments() : '';
+  }
+  sortItems(event: any): void {
+    if (event?.order == 1) {
+      this.sortObj = {
+        column: event?.field,
+        order: 'asc'
+      }
+      this.getAllPayments();
+    } else if (event?.order == -1) {
+      this.sortObj = {
+        column: event?.field,
+        order: 'desc'
+      }
+      this.getAllPayments();
+    }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 
 }

@@ -12,6 +12,7 @@ import { PublicService } from '../../../../services/public.service';
 export class DynamicTableComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
+  @Input() showCaption: boolean = false;
   @Input() showSearch: boolean = false;
   @Input() isLoadingSearch: boolean = false;
 
@@ -218,7 +219,7 @@ export class DynamicTableComponent implements OnInit {
     this.toggleStatusHandler?.emit(item)
   }
   detailsHandlerEmit(item: any): void {
-    this.detailsHandler.emit({ id: item?.id });
+    this.detailsHandler.emit(item);
   }
   reportHandlerEmit(item: any): void {
     this.reportHandler.emit({ item: item });

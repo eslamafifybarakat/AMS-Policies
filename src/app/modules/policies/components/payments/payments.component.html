@@ -30,26 +30,26 @@
         <div class="row d-flex  py-2">
           <div class="col-xl-1 col-md-0 col-sm-0 col-0"></div>
           <div class="col-xl-5 col-md-12 col-sm-12 col-12 my-xl-4 my-md-2 my-sm-2 my-2">
-            <a (click)="applyFilter('paypal')">
-              <div class="card-item d-flex justify-content-center align-items-center">
-                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
-                  src="assets/image/payments/paypal.png" alt="">
-              </div>
-            </a>
+            <!-- <a (click)="applyFilter('paypal')"> -->
+            <div class="card-item d-flex justify-content-center align-items-center">
+              <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
+                src="assets/image/payments/visa.png" alt="">
+            </div>
+            <!-- </a> -->
           </div>
           <div class="col-xl-5 col-md-12 col-sm-12 col-12 my-xl-4 my-md-2 my-sm-2 my-2">
-            <a (click)="applyFilter('mastercard')">
-              <div class="card-item d-flex justify-content-center align-items-center">
-                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'mastercard'?'selected-card':''"
-                  src="assets/image/payments/mastercard.png" alt="">
-              </div>
-            </a>
+            <!-- <a (click)="applyFilter('mastercard')"> -->
+            <div class="card-item d-flex justify-content-center align-items-center">
+              <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'mastercard'?'selected-card':''"
+                src="assets/image/payments/mastercard.png" alt="">
+            </div>
+            <!-- </a> -->
           </div>
           <div class="col-xl-1 col-md-0 col-sm-0 col-0"></div>
         </div>
       </div>
       <div class="data-table">
-        <div class="content-table mt-4">
+        <!-- <div class="content-table mt-4">
           <table class="table color-grey-400 w-100">
             <thead class="bg-secondary-color text-white-color">
               <tr>
@@ -84,24 +84,31 @@
                   {{item?.description |slice:1:40}} ...
                 </td>
                 <td>
-                  <button class="btn p-0 btn-outline-main-header py-1 px-3" (click)="openModal(item)">
+                  <button class="btn p-0 btn-outline-main-header py-1 px-3" (click)="showDetails(item)">
                     {{'general.details' | translate}}
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="d-flex justify-content-center mt-5 mb-2">
-          <ngb-pagination [collectionSize]="items.length" [pageSize]="pageSize" [(page)]="currentPage" [maxSize]="3"
-            (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+        </div> -->
+        <app-dynamic-table [isLoading]="isLoading" [showCaption]="false" [showClear]="true"
+          (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders"
+          [tableData]="paymentsList" [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'"
+          [showActions]="true" [showDetails]="true" (detailsHandler)="showDetails($event)"
+          (customSortHandler)="enableSortFilter?sortItems($event):''" [isSearch]="isSearch"
+          [arrayChildKey]="'name'"></app-dynamic-table>
+        <div class="d-flex justify-content-center mt-5 mb-4">
+          <ngb-pagination [collectionSize]="paymentsList.length" [pageSize]="pageSize" [(page)]="currentPage"
+            [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
           </ngb-pagination>
         </div>
       </div>
+
     </div>
   </div>
 
-  <ng-container *ngIf="isLoading">
+  <!-- <ng-container *ngIf="isLoading">
     <div class="spinner d-flex justify-content-center align-items-center h-100">
       <div class="spinner-grow text-secondary" role="status">
         <span class="visually-hidden">Loading...</span>
@@ -113,5 +120,5 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-  </ng-container>
-  </div>
+  </ng-container> -->
+</div>

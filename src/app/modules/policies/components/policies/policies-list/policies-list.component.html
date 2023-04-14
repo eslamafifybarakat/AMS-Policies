@@ -350,12 +350,13 @@
         </table>
       </div> -->
 
-      <app-dynamic-table [isLoading]="isLoading" [showClear]="true" [isLoadingSearch]="isLoadingSearch"
-        (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders" [tableData]="policiesList"
-        [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'" [showActions]="true" [showEdit]="true"
-        [showDelete]="true" [showPrint]="true" (editHandler)="goToDetails($event)" (printHandler)="print($event)"
+      <app-dynamic-table [isLoading]="isLoading" [showCaption]="true" [showClear]="true"
+        [isLoadingSearch]="isLoadingSearch" (clearHandler)="enableSortFilter?clearTable($event):''"
+        [tableHeaders]="tableHeaders" [tableData]="policiesList" [enableDateFormate]="true"
+        [dateFormateString]="'EE | dd/MM/YYYY'" [showActions]="true" [showEdit]="true" [showDelete]="true"
+        [showPrint]="true" (editHandler)="goToDetails($event)" (printHandler)="print($event)"
         (deleteHandler)="onaDeleteItem($event)" (customSortHandler)="enableSortFilter?sortItems($event):''"
-        [results]="usersCount" [isSearch]="isSearch" [arrayChildKey]="'name'" (printTableHandler)="printTable($event)"
+        [isSearch]="isSearch" [arrayChildKey]="'name'" (printTableHandler)="printTable($event)"
         (downloadFileHandler)="downloadFile()"></app-dynamic-table>
 
       <ng-container *ngIf="policiesList?.length>pageSize">

@@ -33,19 +33,11 @@ export class PoliciesListComponent implements OnInit {
   isSearch: boolean = false;
   isLoadingFileDownload: boolean = false;
 
-  loadingIndicator: boolean = false;
-  usersList$!: Observable<any>;
-  usersCount: number = 0;
   tableHeaders: any = [];
 
-  page: number = 1;
-  perPage: number = 5;
-  pagesCount: number = 0;
-  rowsOptions: number[] = [5, 10, 15, 30];
-
   enableSortFilter: boolean = true;
-  filtersArray: any = [];
   sortObj: any = {};
+
   constructor(
     private policyService: PolicyService,
     private alertsService: AlertsService,
@@ -126,6 +118,20 @@ export class PoliciesListComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  applySearch(event: Event): void {
+    this.currentPage = 1;
+    this.isSearch = true;
+    let applyFilter = (event.target as HTMLInputElement).value;
+    this.searchValue = applyFilter;
+    this.getAllPloicies(false);
+    this.cdr.detectChanges();
+  }
+  clearSearch(): void {
+    this.searchValue = '';
+    this.getAllPloicies(false);
+    this.cdr.detectChanges();
+  }
+
   printTable(tableData: any): void {
     let data = tableData;
     let properties: any = [];
@@ -134,7 +140,25 @@ export class PoliciesListComponent implements OnInit {
     });
     this.printService?.printJson(data, properties);
   }
+  downloadFile(): void {
+    this.isLoadingFileDownload = true;
+    this.publicService?.downloadExampleFn(roots?.home?.downloadFile)?.subscribe(
+      (response: Blob) => {
+        // saveAs(response, 'users.xlsx');
+      },
+      (err: any) => {
+        err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+        this.isLoadingFileDownload = false;
+      });
+    this.cdr.detectChanges();
+  }
 
+  print(item?: any): void {
+    this.printService?.printPdf('assets/image/async-awit.pdf');
+  }
+  goToDetails(item?: any): void {
+    this.router.navigate(['/home/policies/policy-data', { id: this.selectedItem?.id || item?.id }]);
+  }
   onaDeleteItem(item?: any): void {
     console.log(item);
 
@@ -170,40 +194,6 @@ export class PoliciesListComponent implements OnInit {
     });
   }
 
-  print(item?: any): void {
-    this.printService?.printPdf('../../../../../../assets/image/async-awit.pdf');
-  }
-
-  downloadFile(): void {
-    this.isLoadingFileDownload = true;
-    this.publicService?.downloadExampleFn(roots?.home?.downloadFile)?.subscribe(
-      (response: Blob) => {
-        // saveAs(response, 'users.xlsx');
-      },
-      (err: any) => {
-        err?.message ? this.alertsService.openSnackBar(err?.message) : '';
-        this.isLoadingFileDownload = false;
-      });
-    this.cdr.detectChanges();
-  }
-
-  clearSearch(): void {
-    this.searchValue = '';
-    this.getAllPloicies(false);
-    this.cdr.detectChanges();
-  }
-  applySearch(event: Event): void {
-    this.isSearch = true;
-    let applyFilter = (event.target as HTMLInputElement).value;
-    this.searchValue = applyFilter;
-    this.getAllPloicies(false);
-    this.cdr.detectChanges();
-  }
-
-  goToDetails(item?: any): void {
-    this.router.navigate(['/home/policies/policy-data', { id: this.selectedItem?.id || item?.id }]);
-  }
-
   onChange(page: any): void {
     this.getAllPloicies();
   }
@@ -211,39 +201,8 @@ export class PoliciesListComponent implements OnInit {
     this.getAllPloicies();
   }
 
-  selected(item: any, e?: any): any {
-    //   this.policiesList.forEach((e: any) => {
-    //     e.isSelected = false;
-    //   });
-    //   this.policiesList[e - 1].isSelected = true;
-    //   this.isSelect = true;
-    // }
-    this.selectedItem = item;
-    this.policiesList.forEach((e: any) => {
-      e.isSelect = false;
-      console.log(e);
-
-    });
-    console.log(item);
-
-    // this.selectedItem = item;
-    this.isSelect = true;
-    item.isSelect = !item.isSelect;
-  }
-  clearAllSelected(): void {
-    this.policiesList.forEach((e: any) => {
-      e.isSelect = false;
-    });
-    this.isSelect = false;
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
-  }
-
   clearTable(event: any): void {
     this.sortObj = null;
-    this.filtersArray = [];
     event?.isClear ? this.getAllPloicies(false) : '';
   }
   sortItems(event: any): void {
@@ -260,5 +219,35 @@ export class PoliciesListComponent implements OnInit {
       }
       this.getAllPloicies(false);
     }
+  }
+
+  // selected(item: any, e?: any): any {
+  //   //   this.policiesList.forEach((e: any) => {
+  //   //     e.isSelected = false;
+  //   //   });
+  //   //   this.policiesList[e - 1].isSelected = true;
+  //   //   this.isSelect = true;
+  //   // }
+  //   this.selectedItem = item;
+  //   this.policiesList.forEach((e: any) => {
+  //     e.isSelect = false;
+  //     console.log(e);
+
+  //   });
+  //   console.log(item);
+
+  //   // this.selectedItem = item;
+  //   this.isSelect = true;
+  //   item.isSelect = !item.isSelect;
+  // }
+  // clearAllSelected(): void {
+  //   this.policiesList.forEach((e: any) => {
+  //     e.isSelect = false;
+  //   });
+  //   this.isSelect = false;
+  // }
+
+  ngOnDestroy(): void {
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 }
