@@ -2,7 +2,7 @@
   <div class="container px-0">
     <div class="card-style rounded-25 px-4 py-3">
       <div
-        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2 p-1 mt-3">
+        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2 p-1 mt-3 mb-4">
         <h1 class="fs-5 text-main-color">
           <span>
             {{'policies.policies' | translate}}
@@ -32,26 +32,28 @@
           {{'polices_list.new_policy' | translate}}
         </button>
       </div>
-      <hr class="color-grey-400" />
+      <!-- <hr class="color-grey-400" /> -->
       <div class="d-lg-flex d-md-block d-sm-flex align-items-center justify-content-end gap-2">
-        <div class="d-flex justify-content-end gap-2">
+        <!-- <div class="d-flex justify-content-end gap-2">
           <button type="button"
-            class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.export'
+            class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"
+            (click)="downloadFile()"><span>{{'general.export'
               | translate}}</span> <i class="fas fa-file-export"></i></button>
-          <button type="button"
+          <button type="button" (click)="printTable()"
             class="btn btn-outline-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
               | translate}}</span> <i class="fas fa-print"></i></button>
-        </div>
-        <div class="d-flex justify-content-end gap-2 mt-lg-0 mt-2">
+        </div> -->
+        <!-- <div class="d-flex justify-content-end gap-2 mt-lg-0 mt-2">
           <button type="button" class="btn btn-success btn-sm d-flex justify-content-between align-items-center"
             (click)="isWaitingAction?'':goToDetails()" [disabled]="!isSelect"><span>{{'general.edit' |
               translate}}</span> <i class="fas fa-pen"></i></button>
           <button type="button" class="btn btn-danger btn-sm d-flex justify-content-between align-items-center"
             (click)="isWaitingAction?'':onaDeleteItem()" [disabled]="!isSelect"><span>{{'general.delete' |
               translate}}</span> <i class="fas fa-close"></i></button>
-        </div>
+        </div> -->
       </div>
-      <div class="content-table mt-4">
+
+      <!-- <div class="content-table mt-4">
         <table class="table color-grey-400 w-100">
           <thead class="bg-secondary-color text-white-color">
             <tr>
@@ -288,6 +290,7 @@
                   </div>
                 </span>
               </th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -323,6 +326,13 @@
                       </span>
                     </span>
                   </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <span (click)="goToDetails(item?.id)"><i class="fas fa-pen edit"></i></span>
+                      <span (click)="onaDeleteItem(item?.id)"><i class="fas fa-trash-alt remove"></i></span>
+                      <span (click)="print()"><i class="fas fa-print print"></i></span>
+                    </div>
+                  </td>
                 </tr>
               </ng-container>
 
@@ -338,12 +348,24 @@
             </ng-template>
           </tbody>
         </table>
-      </div>
-      <div *ngIf="policiesList?.length>pageSize" class="d-flex justify-content-center mt-5 mb-2">
-        <ngb-pagination [collectionSize]="policiesList?.length" [pageSize]="pageSize" [(page)]="currentPage"
-          [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
-        </ngb-pagination>
-      </div>
+      </div> -->
+
+      <app-dynamic-table [isLoading]="isLoading" [showClear]="true" [isLoadingSearch]="isLoadingSearch"
+        (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders" [tableData]="policiesList"
+        [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'" [showActions]="true" [showEdit]="true"
+        [showDelete]="true" [showPrint]="true" (editHandler)="goToDetails($event)" (printHandler)="print($event)"
+        (deleteHandler)="onaDeleteItem($event)" (customSortHandler)="enableSortFilter?sortItems($event):''"
+        [results]="usersCount" [isSearch]="isSearch" [arrayChildKey]="'name'" (printTableHandler)="printTable($event)"
+        (downloadFileHandler)="downloadFile()"></app-dynamic-table>
+
+      <ng-container *ngIf="policiesList?.length>pageSize">
+        <div class="d-flex justify-content-center mt-5 mb-2">
+          <ngb-pagination [collectionSize]="policiesList?.length" [pageSize]="pageSize" [(page)]="currentPage"
+            [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+          </ngb-pagination>
+        </div>
+      </ng-container>
+
     </div>
   </div>
   <ng-container *ngIf="isLoading">

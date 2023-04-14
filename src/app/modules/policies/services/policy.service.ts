@@ -16,7 +16,7 @@ export class PolicyService {
 
   constructor(private http: HttpClient) { }
 
-  getPoliciesList(page?: any, per_page?: any, search?: any): Observable<any> {
+  getPoliciesList(page?: any, per_page?: any, search?: any, sort?: any): Observable<any> {
     let params = new HttpParams();
     if (page) {
       params = params.append("page", page);
@@ -26,6 +26,9 @@ export class PolicyService {
     }
     if (search) {
       params = params.append("search", search);
+    }
+    if (sort) {
+      params = params.append("sort", sort);
     }
     return this.http.get<any>(this.apiUrl + '/api/site/policies', { params: params });
   }

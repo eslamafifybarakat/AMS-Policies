@@ -1,16 +1,19 @@
 /* START Variables */
 :root {
-  --text-main-color: #0098fe;
-  --bg-main-color: #0098fe;
+  --text-main-color: #fb2119;
+  --bg-main-color: #fb2119;
+  // 0098fe
 
-  --text-secondary-color: #718295;
-  --bg-secondary-color: #718295;
+  // 718295
+  --text-secondary-color: #070a52;
+  --bg-secondary-color: #070a52;
 
   --bg-dashboard-body: #f4f7fa;
   --bg-form-control-profile: #f2f4f8;
 
-  --text-second-color: #cdf0ff;
-  --bg-second-color: #cdf0ff;
+  // cdf0ff
+  --text-second-color: #f0f0f0;
+  --bg-second-color: #f0f0f0;
 
   --bg-page-card-color: #f6f6f6;
 
@@ -42,6 +45,7 @@
   --dd: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   --nav-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --round: 0.5rem;
+  --dashboard-border-radius: 6px;
 }
 
 // ======CLASSES COLOR=============
@@ -743,7 +747,7 @@ input:-webkit-autofill {
 
 .btn-outline-main {
   color: var(--text-main-color);
-  background-color: var(--text-white-color);
+  background-color: transparent;
   border-color: var(--text-main-color);
   border-radius: 0.5rem;
   padding: 0.65rem 1.25rem;

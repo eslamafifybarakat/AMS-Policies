@@ -33,6 +33,9 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { NgbPaginationModule, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CropperImageDialogComponent } from '../component/cropper-image-dialog/cropper-image-dialog.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { DynamicTableComponent } from '../component/dynamic-table/dynamic-table.component';
+import { SkeletonComponent } from '../component/skeleton/skeleton.component';
 
 const allShared = [
   FormsModule,
@@ -50,7 +53,8 @@ const allShared = [
   NgbPaginationModule,
   NgbAlertModule,
   NgxIntlTelInputModule,
-  NgbModule
+  NgbModule,
+  PrimeNgModule
 ];
 
 const alyleUi = [
@@ -64,10 +68,12 @@ const alyleUi = [
 ];
 
 const components = [
-  LanguageSelectorComponent,
+  ConfirmDeleteModalComponent,
   CropperImageDialogComponent,
+  LanguageSelectorComponent,
+  DynamicTableComponent,
   CountdownComponent,
-  ConfirmDeleteModalComponent
+  SkeletonComponent,
 ];
 
 @NgModule({

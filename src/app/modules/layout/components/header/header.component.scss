@@ -2,7 +2,6 @@
   .navbar-brand {
     width: 4rem;
     height: 4rem;
-
   }
 
   .btn {
@@ -14,7 +13,8 @@
   }
 
   .navbar {
-    background-color: rgb(251, 33, 25);
+    // background-color: rgb(251, 33, 25);
+    background-color: var(--bg-main-color);
 
     .navbar-nav {
       .active {

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 html,
 body {
@@ -22,6 +22,8 @@ body {
 [dir="rtl"] {
   @import "~bootstrap/dist/css/bootstrap.min.css";
   @import "assets/scss/cust-style-rtl.scss";
+  @import "assets/scss/primeng/prime-ng-rtl-icons.scss";
+  @import "assets/scss/primeng/prim-ng-rtl.scss";
 }
 
 html,
@@ -31,7 +33,7 @@ body {
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 html,
@@ -41,5 +43,5 @@ body {
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }

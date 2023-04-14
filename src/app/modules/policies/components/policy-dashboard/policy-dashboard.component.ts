@@ -92,16 +92,16 @@ export class PolicyDashboardComponent implements OnInit {
         if (res?.code == 200) {
           this.homeData = res?.data ? res?.data : null;
           this.yourTransactions = {
-            purchased_policies: this.homeData?.your_transactions?.purchased_policies ? this.homeData?.your_transactions?.purchased_policies : 0,
-            refunded_policies: this.homeData?.your_transactions?.refunded_policies ? this.homeData?.your_transactions?.refunded_policies : 0,
-            bounce_rate: this.homeData?.your_transactions?.bounce_rate ? this.homeData?.your_transactions?.bounce_rate : 0,
+            purchased_policies: this.homeData?.your_transactions?.purchased_policies,
+            refunded_policies: this.homeData?.your_transactions?.refunded_policies,
+            bounce_rate: this.homeData?.your_transactions?.bounce_rate,
           }
           this.policies = {
-            active: this.homeData?.policies?.active ? this.homeData?.policies?.active : 0,
-            pending: this.homeData?.policies?.pending ? this.homeData?.policies?.pending : 0,
-            canceled: this.homeData?.policies?.canceled ? this.homeData?.policies?.canceled : 0,
-            expired: this.homeData?.policies?.expired ? this.homeData?.policies?.expired : 0,
-            under_review: this.homeData?.policies?.under_review ? this.homeData?.policies?.under_review : 0,
+            active: this.homeData?.policies?.active,
+            pending: this.homeData?.policies?.pending,
+            canceled: this.homeData?.policies?.canceled,
+            expired: this.homeData?.policies?.expired,
+            under_review: this.homeData?.policies?.under_review,
           }
         } else {
           res?.message ? this.alertsService?.openSnackBar(res?.message) : '';

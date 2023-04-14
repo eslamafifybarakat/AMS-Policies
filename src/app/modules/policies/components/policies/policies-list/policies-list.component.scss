@@ -22,7 +22,7 @@
     }
   }
 
-  table> :not(caption)>*>* {
+  table > :not(caption) > * > * {
     padding: 1rem !important;
     font-size: 0.95rem;
     height: 3rem;
@@ -92,7 +92,7 @@
     vertical-align: super !important;
   }
 }
-.spinner{
+.spinner {
   height: calc(100vh - 142px) !important;
   .spinner-grow {
     width: 1.2rem !important;

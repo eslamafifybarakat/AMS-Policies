@@ -74,7 +74,12 @@
     "account": "الحساب",
     "unnammed": "بدون إسم",
     "no_item_founded": "لا يوجد أي عنصر",
-    "loggin_Success": "تم تسجيل الدخول بنجاح"
+    "loggin_Success": "تم تسجيل الدخول بنجاح",
+    "settings":"الاعدادات",
+    "reset":"إعادة ضبط",
+    "go_now": "اذهب الآن",
+    "no_search_result": "لا يوجد نتائج للبحث",
+    "no_records_found": "لا يوجد سجلات"
   },
   "validations": {
     "validation_size_file": "يجب ان يكون حجم الملف اقل من 5 ميجا",

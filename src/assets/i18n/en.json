@@ -74,7 +74,11 @@
     "account": "Account",
     "unnammed": "unnammed",
     "no_item_founded": "no item is founded",
-    "loggin_Success": "Login is successfully"
+    "loggin_Success": "Login is successfully",
+    "settings":"Settings",
+    "reset":"Reset",
+    "no_search_result": "No search results",
+    "no_records_found": "No record found"
   },
   "validations": {
     "validation_size_file": "The file size must be less than 5MB",

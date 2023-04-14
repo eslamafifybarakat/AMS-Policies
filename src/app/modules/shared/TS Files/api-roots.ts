@@ -1,5 +1,6 @@
 export const roots = {
   home: {
-    getHomeData: '/api/get_home_data'
+    getHomeData: '/api/get_home_data',
+    downloadFile: 'download-users',
   }
 }
