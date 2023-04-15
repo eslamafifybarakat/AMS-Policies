@@ -35,22 +35,23 @@
                   </div>
 
                   <div>
-                    <div class="element d-flex justify-content-between align-items-center border-bottom-el py-3">
-                      <h2 class="text-muted">
-                        Basic
-                      </h2>
-                      <h2 class="text-muted">
-                        25
-                      </h2>
-                    </div>
-                    <div class="element d-flex justify-content-between align-items-center border-bottom-el py-3">
-                      <h2 class="text-muted">
-                        Shipping
-                      </h2>
-                      <h2 class="text-muted">
-                        free
-                      </h2>
-                    </div>
+                    <ng-container *ngIf="paymentOrder; else noData">
+                      <ng-container *ngFor="let item of paymentOrder?.item">
+                        <div class="element d-flex justify-content-between align-items-center border-bottom-el py-3">
+                          <h2 class="text-muted">
+                            {{item?.name||''}}
+                          </h2>
+                          <h2 class="text-muted">
+                            {{item?.count||''}}
+                          </h2>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-template #noData>
+                      <p class="text-muted p-2">
+                        {{'general.no_item_founded'| translate}}
+                      </p>
+                    </ng-template>
                   </div>
 
                   <div class="element d-flex justify-content-between align-items-center py-3">
@@ -58,7 +59,7 @@
                       {{'general.total' | translate}}
                     </h2>
                     <h2 class="fw-bold">
-                      120
+                      {{paymentOrder?.total || ''}}
                     </h2>
                   </div>
                 </div>
@@ -73,21 +74,20 @@
           </h1>
           <div class="row mt-4">
             <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <a (click)="check('mastercard')">
-                <div class="card-item d-flex justify-content-center align-items-center">
-                  <img class="item-img rounded-25 fit-contain"
-                    [ngClass]="filterValue == 'mastercard'?'selected-card':''"
-                    src="assets/image/payments/mastercard.png" alt="">
-                </div>
-              </a>
+              <!-- <a (click)="check('mastercard')"> -->
+              <div class="card-item d-flex justify-content-center align-items-center">
+                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'mastercard'?'selected-card':''"
+                  src="assets/image/payments/mastercard.png" alt="">
+              </div>
+              <!-- </a> -->
             </div>
             <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <a (click)="check('paypal')">
-                <div class="card-item d-flex justify-content-center align-items-center">
-                  <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
-                    src="assets/image/payments/paypal.png" alt="">
-                </div>
-              </a>
+              <!-- <a (click)="check('paypal')"> -->
+              <div class="card-item d-flex justify-content-center align-items-center">
+                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
+                  src="assets/image/payments/visa.png" alt="">
+              </div>
+              <!-- </a> -->
             </div>
           </div>
         </div>

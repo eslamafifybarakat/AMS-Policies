@@ -18,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   policyData: any;
 
   filterValue: any = '';
+  paymentOrder: any;
 
   constructor(
     // private policyService: PolicyService,
@@ -31,7 +32,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.policyData = JSON.parse(this.activatedRoute?.snapshot?.params['data'] || '{}');
     this.isEdit = this.activatedRoute?.snapshot?.params['isEdit'];
-    console.log(this.policyData, this.isEdit);
+    this.paymentOrder = JSON.parse(this.activatedRoute?.snapshot?.params['paymentOrder'] || '{}');
   }
 
   submit(): void {

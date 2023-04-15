@@ -1,0 +1,14 @@
+<div id="modal">
+  <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
+    <button type="button" class="btn btn-outline-main d-flex align-items-center justify-content-center gap-2"
+      (click)="backToList()">
+      <span>{{"general.backToList"|translate}}</span>
+      <!-- <i class="pi pi-times"></i> -->
+    </button>
+    <button (click)="payment()" class="btn btn-outline-main d-flex align-items-center justify-content-center gap-2"
+      type="submit">
+      <span>{{"general.payNow"|translate}}</span>
+      <!-- <i class="pi pi-download"></i> -->
+    </button>
+  </div>
+</div>

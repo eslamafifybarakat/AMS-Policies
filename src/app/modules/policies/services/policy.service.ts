@@ -16,7 +16,7 @@ export class PolicyService {
 
   constructor(private http: HttpClient) { }
 
-  getPoliciesList(page?: any, per_page?: any, search?: any, sort?: any): Observable<any> {
+  getPoliciesList(page?: any, per_page?: any, search?: any, sort?: any, paginate?: any): Observable<any> {
     let params = new HttpParams();
     if (page) {
       params = params.append("page", page);
@@ -29,6 +29,9 @@ export class PolicyService {
     }
     if (sort && Object.keys(sort)?.length > 0) {
       params = params.append("sort", JSON.stringify(sort));
+    }
+    if (paginate !== null && paginate !== undefined) {
+      params = params.append("paginate", paginate);
     }
     return this.http.get<any>(this.apiUrl + '/api/site/policies', { params: params });
   }

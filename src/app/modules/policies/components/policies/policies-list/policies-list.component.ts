@@ -60,7 +60,7 @@ export class PoliciesListComponent implements OnInit {
     ];
   }
 
-  getAllPloicies(activeLoading?: boolean): void {
+  getAllPloicies(activeLoading?: boolean, paginate?: boolean): void {
     activeLoading == false ? this.isLoading = false : this.isLoading = true;
     this.currentPage = 1;
     this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
@@ -103,13 +103,35 @@ export class PoliciesListComponent implements OnInit {
     this.cdr?.detectChanges();
   }
 
-  printTable(tableData: any): void {
-    let data = tableData;
-    let properties: any = [];
-    this.tableHeaders?.forEach((item: any) => {
-      properties?.push(item?.field)
-    });
-    this.printService?.printJson(data, properties);
+  printTable(data: any): void {
+    this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null, false)?.subscribe(
+      (res) => {
+        if (res?.code == 200) {
+          this.policiesList = res?.data;
+          let data = this.policiesList;
+          let properties: any = [];
+          this.tableHeaders?.forEach((item: any) => {
+            properties?.push(item?.field)
+          });
+          this.printService?.printJson(data, properties);
+          this.isLoading = false;
+          this.isWaitingAction = false;
+        } else {
+          if (res?.message) {
+            this.alertsService?.openSweetAlert("info", res?.message);
+          }
+          this.isLoading = false;
+          this.isWaitingAction = false;
+        }
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetAlert("error", err?.message);
+        }
+        this.isLoading = false;
+        this.isWaitingAction = false;
+      }
+    );
   }
   downloadFile(): void {
     this.isLoadingFileDownload = true;

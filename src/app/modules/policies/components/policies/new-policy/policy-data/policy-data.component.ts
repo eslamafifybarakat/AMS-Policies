@@ -8,11 +8,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import { DialogService } from 'primeng/dynamicdialog';
+import { WantToPayModalComponent } from '../want-to-pay-modal/want-to-pay-modal.component';
 
 @Component({
   selector: 'app-policy-data',
   templateUrl: './policy-data.component.html',
-  styleUrls: ['./policy-data.component.scss']
+  styleUrls: ['./policy-data.component.scss'],
+  providers: [DialogService]
 })
 export class PolicyDataComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
@@ -45,6 +48,7 @@ export class PolicyDataComponent implements OnInit {
     private policyService: PolicyService,
     private alertsService: AlertsService,
     private publicService: PublicService,
+    private dialogService: DialogService,
     private cdr: ChangeDetectorRef,
     private location: Location,
     public datePipe: DatePipe,
@@ -249,8 +253,33 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            this.alertsService.openSweetAlert('success', res?.message);
-            this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            if (res?.data?.payment_status) {
+              this.alertsService.openSweetAlert('success', res?.message);
+              this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            } else {
+              const ref = this.dialogService?.open(WantToPayModalComponent, {
+                dismissableMask: false,
+                width: '65%'
+              });
+              ref.onClose.subscribe((res: any) => {
+                this.alertsService.openSweetAlert('success', res?.message);
+                if (res?.list) {
+                  this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+                }
+                if (res?.payment) {
+                  // this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value),paymentOrder:res?.data?.payment_order ,isEdit: this.isEdit }]);
+                  this.router.navigate(['/home/policies/checkout', {
+                    data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify({
+                      item: [{
+                        name: 'ss',
+                        count: '20'
+                      }],
+                      total: 10
+                    }), isEdit: this.isEdit
+                  }]);
+                }
+              });
+            }
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           } else {
