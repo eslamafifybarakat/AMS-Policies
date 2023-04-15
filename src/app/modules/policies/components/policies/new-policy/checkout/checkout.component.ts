@@ -68,17 +68,17 @@ export class CheckoutComponent implements OnInit {
   //   this.policyService?.addPolicy(policyDataObj)?.subscribe(
   //     (res: any) => {
   //       if (res?.code === 200) {
-  //         this.alertsService.openSweetalert('success', res?.message);
+  //         this.alertsService.openSweetAlert('success', res?.message);
   //         this.router.navigate(['/home/policies/list']);
   //         this.isLoading = false;
   //       } else {
-  //         this.alertsService.openSweetalert('info', res?.message);
+  //         this.alertsService.openSweetAlert('info', res?.message);
   //         this.isLoading = false;
   //       }
   //     },
   //     (err) => {
   //       if (err?.message) {
-  //         this.alertsService.openSweetalert('error', err?.message);
+  //         this.alertsService.openSweetAlert('error', err?.message);
   //       }
   //       this.isLoading = false;
   //     });

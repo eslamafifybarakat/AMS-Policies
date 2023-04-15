@@ -104,12 +104,12 @@ export class PolicyDataComponent implements OnInit {
             this.isLoading = false;
           }
         } else {
-          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+          res?.message ? this.alertsService?.openSweetAlert("info", res?.message) : '';
           this.isLoading = false;
         }
       },
       (err) => {
-        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+        err?.message ? this.alertsService?.openSweetAlert("error", err?.message) : '';
         this.isLoading = false;
       }
     );
@@ -154,11 +154,11 @@ export class PolicyDataComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
-          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+          res?.message ? this.alertsService?.openSweetAlert("info", res?.message) : '';
         }
       },
       (err) => {
-        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+        err?.message ? this.alertsService?.openSweetAlert("error", err?.message) : '';
         this.isLoading = false;
       }
     );
@@ -249,19 +249,19 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            this.alertsService.openSweetalert('success', res?.message);
+            this.alertsService.openSweetAlert('success', res?.message);
             this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           } else {
-            this.alertsService.openSweetalert('info', res?.message);
+            this.alertsService.openSweetAlert('info', res?.message);
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           }
         },
         (err) => {
           if (err?.message) {
-            this.alertsService.openSweetalert('error', err?.message);
+            this.alertsService.openSweetAlert('error', err?.message);
           }
           this.isLoadingBtn = false;
           this.publicService?.show_loader?.next(false);
@@ -270,19 +270,19 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.addPolicy(formData)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            this.alertsService.openSweetalert('success', res?.message);
+            this.alertsService.openSweetAlert('success', res?.message);
             this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           } else {
-            this.alertsService.openSweetalert('info', res?.message);
+            this.alertsService.openSweetAlert('info', res?.message);
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           }
         },
         (err) => {
           if (err?.message) {
-            this.alertsService.openSweetalert('error', err?.message);
+            this.alertsService.openSweetAlert('error', err?.message);
           }
           this.isLoadingBtn = false;
           this.publicService?.show_loader?.next(false);

@@ -98,12 +98,12 @@ export class PersonalInfoComponent implements OnInit {
           this.cdr.detectChanges();
         } else {
           this.publicService.show_loader.next(false);
-          res?.message ? this.alertsService?.openSweetalert("info", res?.message) : '';
+          res?.message ? this.alertsService?.openSweetAlert("info", res?.message) : '';
         }
       },
       (err) => {
         this.publicService.show_loader.next(false);
-        err?.message ? this.alertsService?.openSweetalert("error", err?.message) : '';
+        err?.message ? this.alertsService?.openSweetAlert("error", err?.message) : '';
       }
     );
   }

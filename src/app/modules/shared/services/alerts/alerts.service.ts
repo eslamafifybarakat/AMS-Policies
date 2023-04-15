@@ -13,7 +13,7 @@ export class AlertsService {
     private _snackBar: MatSnackBar
   ) { }
 
-  openSweetalert(sweetAlertIcon: any, sweetAlertMsg: any) {
+  openSweetAlert(sweetAlertIcon: any, sweetAlertMsg: any) {
     Swal.fire({
       // icon [error , info , success , warning , question]
       // position [top-end , bottom-end , bottom-start , top-start]

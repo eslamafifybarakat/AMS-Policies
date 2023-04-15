@@ -73,7 +73,7 @@ export class PoliciesListComponent implements OnInit {
           this.isWaitingAction = false;
         } else {
           if (res?.message) {
-            this.alertsService?.openSweetalert("info", res?.message);
+            this.alertsService?.openSweetAlert("info", res?.message);
           }
           this.isLoading = false;
           this.isWaitingAction = false;
@@ -81,7 +81,7 @@ export class PoliciesListComponent implements OnInit {
       },
       (err) => {
         if (err?.message) {
-          this.alertsService?.openSweetalert("error", err?.message);
+          this.alertsService?.openSweetAlert("error", err?.message);
         }
         this.isLoading = false;
         this.isWaitingAction = false;
@@ -144,18 +144,18 @@ export class PoliciesListComponent implements OnInit {
           (res: any) => {
             if (res?.code == "200") {
               if (res?.message) {
-                this.alertsService?.openSweetalert("success", res?.message);
+                this.alertsService?.openSweetAlert("success", res?.message);
               }
               this.getAllPloicies(false);
             } else {
               if (res?.message) {
-                this.alertsService?.openSweetalert("info", res?.message);
+                this.alertsService?.openSweetAlert("info", res?.message);
               }
             }
           },
           (err: any) => {
             if (err?.message) {
-              this.alertsService?.openSweetalert("error", err?.message);
+              this.alertsService?.openSweetAlert("error", err?.message);
             }
           });
       }

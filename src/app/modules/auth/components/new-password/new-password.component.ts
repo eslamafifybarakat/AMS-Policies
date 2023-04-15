@@ -80,7 +80,7 @@ export class NewPasswordComponent implements OnInit {
     this.authUserService?.resetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.code == 200) {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
           this.publicService.show_loader.next(false);
           window.localStorage.removeItem(keys?.forgetPassoedToken);
           this.router.navigate(['/auth/login']);

@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
     this.authUserService?.register(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
           this.router.navigate(['/auth/login']);
           this.isLoadingBtn = false;
           this.registerForm.reset();

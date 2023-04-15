@@ -124,7 +124,7 @@ export class LogInComponent implements OnInit {
             }]);
           }
           // if (res?.data?.token !== null) {
-          //   res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          //   res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
           //   this.loginForm.reset();
           //   this.router.navigate(['/home']);
           //   this.isLoadingBtn = false;

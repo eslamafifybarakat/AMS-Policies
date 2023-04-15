@@ -63,13 +63,13 @@ export class PaymentsComponent implements OnInit {
         } else {
           this.isLoading = false;
           if (res?.message) {
-            this.alertsService?.openSweetalert("info", res?.message);
+            this.alertsService?.openSweetAlert("info", res?.message);
           }
         }
       },
       (err) => {
         if (err?.message) {
-          this.alertsService?.openSweetalert("error", err?.message);
+          this.alertsService?.openSweetAlert("error", err?.message);
           this.isLoading = false;
         }
       }

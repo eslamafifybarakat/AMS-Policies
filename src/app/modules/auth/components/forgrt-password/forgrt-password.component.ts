@@ -56,7 +56,7 @@ export class ForgrtPasswordComponent implements OnInit {
     this.authUserService?.forgetPassword(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetalert('info', res?.message) : '';
+          res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
           this.isloadingBtn = false;
           this.router.navigate(['/auth/email-verification', { email: this.email }]);
         } else {
