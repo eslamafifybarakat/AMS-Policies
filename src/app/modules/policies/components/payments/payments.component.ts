@@ -52,8 +52,6 @@ export class PaymentsComponent implements OnInit {
     ];
   }
 
-
-
   getAllPayments(): void {
     this.isLoading = true;
     this.currentPage = 1;
@@ -179,6 +177,7 @@ export class PaymentsComponent implements OnInit {
     console.log(this.filterValue);
     this.cdr.detectChanges();
   }
+
   clearSearch(): void {
     this.searchValue = '';
     this.getAllPayments();
@@ -207,9 +206,6 @@ export class PaymentsComponent implements OnInit {
   }
 
   onChange(page: any): void {
-    this.getAllPayments();
-  }
-  loadPage(page: number): void {
     this.getAllPayments();
   }
 

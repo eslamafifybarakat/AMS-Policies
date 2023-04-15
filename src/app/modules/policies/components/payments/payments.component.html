@@ -49,76 +49,21 @@
         </div>
       </div>
       <div class="data-table">
-        <!-- <div class="content-table mt-4">
-          <table class="table color-grey-400 w-100">
-            <thead class="bg-secondary-color text-white-color">
-              <tr>
-                <th scope="col">{{'general.id' | translate}}</th>
-                <th scope="col">{{'general.status' | translate}}</th>
-                <th scope="col">{{'polices_list.amount' | translate}}</th>
-                <th scope="col">{{'polices_list.establish_date' | translate}}</th>
-                <th scope="col">{{'polices_list.description' | translate}}</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of items | slice: (currentPage-1) * pageSize : currentPage * pageSize">
-                <td>
-                  {{item?.id}}
-                </td>
-                <td>
-                  <span class="d-inline-block w-100">
-                    <i class="fas fa-circle fs-dot-status" [class]="item?.class"></i>
-                    <span class="px-1">
-                      {{item?.status}}
-                    </span>
-                  </span>
-                </td>
-                <td>
-                  {{item?.amount}}
-                </td>
-                <td>
-                  {{item?.esablishDate | date}}
-                </td>
-                <td>
-                  {{item?.description |slice:1:40}} ...
-                </td>
-                <td>
-                  <button class="btn p-0 btn-outline-main-header py-1 px-3" (click)="showDetails(item)">
-                    {{'general.details' | translate}}
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
         <app-dynamic-table [isLoading]="isLoading" [showCaption]="false" [showClear]="true"
           (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders"
           [tableData]="paymentsList" [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'"
           [showActions]="true" [showDetails]="true" (detailsHandler)="showDetails($event)"
           (customSortHandler)="enableSortFilter?sortItems($event):''" [isSearch]="isSearch"
           [arrayChildKey]="'name'"></app-dynamic-table>
-        <div class="d-flex justify-content-center mt-5 mb-4">
-          <ngb-pagination [collectionSize]="paymentsList.length" [pageSize]="pageSize" [(page)]="currentPage"
-            [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
-          </ngb-pagination>
-        </div>
+        <ng-container *ngIf="paymentsList?.length>pageSize">
+          <div class="d-flex justify-content-center mt-5 mb-4">
+            <ngb-pagination [collectionSize]="paymentsList.length" [pageSize]="pageSize" [(page)]="currentPage"
+              [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+            </ngb-pagination>
+          </div>
+        </ng-container>
       </div>
 
     </div>
   </div>
-
-  <!-- <ng-container *ngIf="isLoading">
-    <div class="spinner d-flex justify-content-center align-items-center h-100">
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-  </ng-container> -->
 </div>
