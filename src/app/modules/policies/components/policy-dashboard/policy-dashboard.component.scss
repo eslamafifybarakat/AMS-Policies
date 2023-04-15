@@ -1,9 +1,9 @@
 .dashboard {
-
   .dashboard-card {
     border: 1px solid var(--text-white-color);
     background: var(--bg-white-color);
     border-radius: 10px;
+    min-height: 300px;
   }
 
   .card {
@@ -43,5 +43,4 @@
     padding-inline-end: 1rem;
     overflow-y: scroll;
   }
-
 }

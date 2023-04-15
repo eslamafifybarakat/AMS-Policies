@@ -91,7 +91,7 @@ export class PolicyDataComponent implements OnInit {
   }
 
   getPloicyFormData(): void {
-    this.isLoading = true;
+    this.policyId ? this.isLoading = true : '';
     this.policyService?.getPolicyFormData()?.subscribe(
       (res) => {
         if (res?.code == "200") {
@@ -117,7 +117,6 @@ export class PolicyDataComponent implements OnInit {
 
   getPloicyData(id: any): void {
     this.policyService?.getPolicyById(id)?.subscribe(
-
       (res) => {
         if (res?.code == "200") {
           this.isLoading = false;

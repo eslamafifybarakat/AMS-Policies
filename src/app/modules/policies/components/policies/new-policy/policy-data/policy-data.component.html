@@ -1,39 +1,99 @@
 <div class="policy-data">
-  <div class="policy-data-card p-4">
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="fs-5 text-center-small text-muted">
-        {{'policies.policy_data' | translate}}
-      </h1>
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6c757d"
-          class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path
-            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-        </svg>
-      </span>
-    </div>
-    <hr class="text-secondary-color mt-3" />
-    <form [formGroup]="policyForm" class="py-4" (ngSubmit)="submit()">
-      <div class="user-info">
-        <div class="row">
+  <ng-container *ngIf="!isLoading">
+    <div class="policy-data-card p-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="fs-5 text-center-small text-muted">
+          {{'policies.policy_data' | translate}}
+        </h1>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6c757d"
+            class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+              d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+        </span>
+      </div>
+      <hr class="text-secondary-color mt-3" />
+      <form [formGroup]="policyForm" class="py-4" (ngSubmit)="submit()">
+        <div class="user-info">
+          <div class="row">
 
-          <ng-container *ngIf="isEdit">
+            <ng-container *ngIf="isEdit">
+              <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+                <div class="mb-4">
+                  <div>
+                    <label class="form-label">
+                      {{'form.policy_id'|translate}}
+                    </label>
+                    <input type="text" class="form-control" formControlName="policy_id" [disabled]="true"
+                      placeholder="{{'placeholder.id' | translate}}"
+                      [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
+                      [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">
+                  </div>
+                  <div class="mt-2">
+                    <div
+                      *ngIf="(formControls?.policy_id?.touched || formControls?.policy_id?.dirty) && formControls?.policy_id?.invalid">
+                      <div *ngIf="formControls?.policy_id?.errors?.['required']">
+                        <span class="text-danger fs-6">
+                          {{'validations.reuired_field'|translate}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-112 col-sm-12 col-12"></div>
+            </ng-container>
+
             <div class="col-xl-6 col-md-112 col-sm-12 col-12">
               <div class="mb-4">
                 <div>
-                  <label class="form-label">
-                    {{'form.policy_id'|translate}}
+                  <label class="form-label required">
+                    {{'form.name'|translate}}
                   </label>
-                  <input type="text" class="form-control" formControlName="policy_id" [disabled]="true"
-                    placeholder="{{'placeholder.id' | translate}}"
-                    [class.is-invalid]="(formControls?.['policy_id']?.touched ||formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.invalid"
-                    [class.is-valid]="(formControls?.['policy_id']?.dirty) && formControls?.['policy_id']?.valid">
+                  <input type="text" class="form-control" formControlName="name"
+                    placeholder="{{'placeholder.name' | translate}}"
+                    [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
+                    [class.is-valid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.valid">
                 </div>
                 <div class="mt-2">
                   <div
-                    *ngIf="(formControls?.policy_id?.touched || formControls?.policy_id?.dirty) && formControls?.policy_id?.invalid">
-                    <div *ngIf="formControls?.policy_id?.errors?.['required']">
+                    *ngIf="(formControls?.name?.touched || formControls?.name?.dirty) && formControls?.name?.invalid">
+                    <div *ngIf="formControls?.name?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                    <div *ngIf="formControls?.name?.errors?.['minlength'] || formControls?.name?.errors?.['maxlength']">
+                      <span class="text-danger fs-6">
+                        {{'validations.name_length'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label for="exampleFormControlInput1" class="form-label required">
+                    {{"form.date_of_birth"|translate}}
+                  </label>
+                  <div class="d-flex border rounded"
+                    [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
+                    [class.border-green]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
+                    <input matInput class="form-control border-0"
+                      placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" pickerBirthdate"
+                      formControlName="birthdate" [max]="maxDob">
+                    <mat-datepicker-toggle matSuffix [for]="pickerBirthdate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerBirthdate></mat-datepicker>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid ">
+                    <div *ngIf="formControls?.birthdate?.errors?.['required']">
                       <span class="text-danger fs-6">
                         {{'validations.reuired_field'|translate}}
                       </span>
@@ -42,557 +102,503 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 col-md-112 col-sm-12 col-12"></div>
-          </ng-container>
 
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.name'|translate}}
-                </label>
-                <input type="text" class="form-control" formControlName="name"
-                  placeholder="{{'placeholder.name' | translate}}"
-                  [class.is-invalid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.invalid"
-                  [class.is-valid]="(formControls?.['name']?.touched ||formControls?.['name']?.dirty) && formControls?.['name']?.valid">
-              </div>
-              <div class="mt-2">
-                <div *ngIf="(formControls?.name?.touched || formControls?.name?.dirty) && formControls?.name?.invalid">
-                  <div *ngIf="formControls?.name?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                  <div *ngIf="formControls?.name?.errors?.['minlength'] || formControls?.name?.errors?.['maxlength']">
-                    <span class="text-danger fs-6">
-                      {{'validations.name_length'|translate}}
-                    </span>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label for="exampleFormControlInput1" class="form-label required">
+                    {{"general.start_date"|translate}}
+                  </label>
+                  <div class="d-flex border rounded overflow-hidden"
+                    [class.border-red]="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid"
+                    [class.border-green]="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.valid">
+                    <input matInput class="form-control border-0" [matDatepicker]=" picker" [min]="todayDate"
+                      placeholder="{{'placeholder.start_date' | translate}}" formControlName="start_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label for="exampleFormControlInput1" class="form-label required">
-                  {{"form.date_of_birth"|translate}}
-                </label>
-                <div class="d-flex border rounded"
-                  [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
-                  [class.border-green]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
-                  <input matInput class="form-control border-0"
-                    placeholder="{{'placeholder.date_of_birth' | translate}}" [matDatepicker]=" pickerBirthdate"
-                    formControlName="birthdate" [max]="maxDob">
-                  <mat-datepicker-toggle matSuffix [for]="pickerBirthdate"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerBirthdate></mat-datepicker>
-                </div>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid ">
-                  <div *ngIf="formControls?.birthdate?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label for="exampleFormControlInput1" class="form-label required">
-                  {{"general.start_date"|translate}}
-                </label>
-                <div class="d-flex border rounded overflow-hidden"
-                  [class.border-red]="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid"
-                  [class.border-green]="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.valid">
-                  <input matInput class="form-control border-0" [matDatepicker]=" picker" [min]="todayDate"
-                    placeholder="{{'placeholder.start_date' | translate}}" formControlName="start_date">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </div>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid">
-                  <div *ngIf="formControls?.start_date?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.duration'|translate}}
-                </label>
-                <div class="input-group"
-                  [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
-                  [class.border-green]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.valid">
-                  <ng-container
-                    *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month' && policyForm?.value?.duration_type !== 'year'; else elseEnable">
-                    <input class="form-control" type="number" placeholder="{{'placeholder.duration' | translate}}"
-                      [disabled]="true">
-                  </ng-container>
-                  <ng-template #elseEnable>
-                    <input type="number" min="1" class="form-control" formControlName="duration"
-                      placeholder="{{'placeholder.duration' | translate}}">
-                  </ng-template>
-                  <div class="input-group-text">
-                    <div class="dropdown mx-1">
-                      <button
-                        class="btn dropdown-toggle color-grey-400 p-0 d-flex justify-content-center align-items-center gap-2"
-                        type="button" id="select-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="text-capitalize">
-                          {{policyForm?.value?.duration_type || 'general.type'|translate}}
-                        </span><i class="fas fa-chevron-down"></i>
-                      </button>
-                      <ul class="dropdown-menu shadow border-0 mt-2 px-1">
-                        <mat-radio-group class="d-flex flex-column px-2 gap-3" formControlName="duration_type">
-                          <mat-radio-button value="day">
-                            {{'general.day' | translate}}
-                          </mat-radio-button>
-                          <mat-radio-button value="month">
-                            {{'general.month' | translate}}
-                          </mat-radio-button>
-                          <mat-radio-button value="year">
-                            {{'general.year' | translate}}
-                          </mat-radio-button>
-                        </mat-radio-group>
-                      </ul>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['start_date']?.touched ||formControls?.['start_date']?.dirty) && formControls?.['start_date']?.invalid">
+                    <div *ngIf="formControls?.start_date?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid">
-                  <div *ngIf="formControls?.duration?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-                <div
-                  *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'&& policyForm?.value?.duration_type !== 'year'">
-                  <span>
-                    <i class="fas fa-info-circle text-info"></i>
-                    <span class="text-muted fs-6 px-1">
-                      {{'validations.must_choose_duration_type'|translate}}
-                    </span>
-                  </span>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label">
-                  {{'form.passport_image'|translate}}
-                </label>
-                <div class="specific-file-input">
-                  <div>
-                    <label class="file-label w-100">
-                      <input class="file-input" type="file" formControlName="passport_image"
-                        accept=".jpeg, .jpg, .png, .doc, .docx, .pdf" (change)="passportImageFileChangeEvent($event)">
-                      <span class="d-flex align-items-center justify-content-center form-control text-muted"
-                        [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty) && (formControls?.['passport_image']?.invalid)"
-                        [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid">
-                        <span>
-                          {{'general.upload' | translate}}
-                        </span>
-                        <i class=" fas fa-cloud-upload-alt fs-5 mx-2"></i>
-                      </span>
-                    </label>
-                    <ng-container *ngFor="let item of passportImageFile">
-                      <ng-container *ngIf="passportImageFile.length>0">
-                        <div class="file-name mt-2 mb-0">
-                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
-                            <span class="d-flex justify-content-center align-items-baseline">
-                              <i class="fas fa-file mx-1 text-main-color"></i>
-                              {{item?.name}}
-                            </span>
-                            <div class="d-flex gap-2">
-                              <a><i class="far fa-eye"></i></a>
-                              <button type="button" class="btn-delete" (click)="onRemovePassportImage(item?.name)">
-                                X
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </ng-container>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.duration'|translate}}
+                  </label>
+                  <div class="input-group"
+                    [class.border-red]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid"
+                    [class.border-green]="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.valid">
+                    <ng-container
+                      *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month' && policyForm?.value?.duration_type !== 'year'; else elseEnable">
+                      <input class="form-control" type="number" placeholder="{{'placeholder.duration' | translate}}"
+                        [disabled]="true">
                     </ng-container>
-                    <ng-container *ngIf="isMaxImage">
-                      <div class="alert alert-danger" role="alert">
-                        {{'validations.validation_size_file' | translate}}
+                    <ng-template #elseEnable>
+                      <input type="number" min="1" class="form-control" formControlName="duration"
+                        placeholder="{{'placeholder.duration' | translate}}">
+                    </ng-template>
+                    <div class="input-group-text">
+                      <div class="dropdown mx-1">
+                        <button
+                          class="btn dropdown-toggle color-grey-400 p-0 d-flex justify-content-center align-items-center gap-2"
+                          type="button" id="select-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="text-capitalize">
+                            {{policyForm?.value?.duration_type || 'general.type'|translate}}
+                          </span><i class="fas fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow border-0 mt-2 px-1">
+                          <mat-radio-group class="d-flex flex-column px-2 gap-3" formControlName="duration_type">
+                            <mat-radio-button value="day">
+                              {{'general.day' | translate}}
+                            </mat-radio-button>
+                            <mat-radio-button value="month">
+                              {{'general.month' | translate}}
+                            </mat-radio-button>
+                            <mat-radio-button value="year">
+                              {{'general.year' | translate}}
+                            </mat-radio-button>
+                          </mat-radio-group>
+                        </ul>
                       </div>
-                    </ng-container>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.passport_num'|translate}}
-                </label>
-                <input type="text" min="1" class="form-control" formControlName="pass_num"
-                  [class.is-invalid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.invalid"
-                  [class.is-valid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.valid"
-                  placeholder="{{'placeholder.pass_num' | translate}}">
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.invalid">
-                  <div *ngIf="formControls?.['pass_num']?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                  <ng-container *ngIf="formControls?.['pass_num']?.errors?.['pattern']">
-                    <span class="text-danger fs-6">
-                      {{'validations.pass_num_pattern'|translate}}
-                    </span>
-                  </ng-container>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label">
-                  {{'form.profile_image'|translate}}
-                </label>
-                <div class="specific-file-input">
-                  <div>
-                    <label class="file-label w-100">
-                      <input class="file-input" type="file" formControlName="profile_image" accept=".jpeg, .jpg, .png"
-                        (change)="profileImageFileChangeEvent($event)">
-                      <span class="d-flex align-items-center justify-content-center form-control text-muted"
-                        [class.border-red]="(formControls?.['profile_image']?.touched ||formControls?.['profile_image']?.dirty) && (formControls?.['profile_image']?.invalid)"
-                        [class.border-green]="(formControls?.['profile_image']?.touched || formControls?.['profile_image']?.dirty) && formControls?.['profile_image']?.valid">
-                        <span class="me-2">
-                          {{'general.upload' | translate}}
-                        </span>
-                        <i class=" fas fa-cloud-upload-alt fs-5"></i>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['duration']?.touched ||formControls?.['duration']?.dirty) && formControls?.['duration']?.invalid">
+                    <div *ngIf="formControls?.duration?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
                       </span>
-                    </label>
-                    <ng-container *ngIf="profileImageFile.length>0">
-                      <ng-container *ngFor="let item of profileImageFile">
-                        <div class="file-name mt-2 mb-0">
-                          <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
-                            <span class="d-flex justify-content-center align-items-baseline">
-                              <i class="fas fa-file mx-1 text-main-color"></i>
-                              {{item?.name}}
-                            </span>
-                            <div class="d-flex gap-2">
-                              <a><i class="far fa-eye"></i></a>
-                              <button type="button" class="btn-delete" (click)="onRemoveProfileImage(item?.name)">
-                                X
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </ng-container>
-                    </ng-container>
-                    <ng-container *ngIf="isMaxImage">
-                      <div class="alert alert-danger" role="alert">
-                        {{'validations.validation_size_file' | translate}}
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.nationality'|translate}}
-                </label>
-                <ng-select class="rounded" [items]="pageData?.countries" [closeOnSelect]="true" [searchable]="true"
-                  [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="nationality"
-                  placeholder="{{'general.select' | translate}}"
-                  [class.border-red]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.invalid"
-                  [class.border-green]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.valid">
-                </ng-select>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.nationality?.touched || formControls?.nationality?.dirty) && formControls?.nationality?.invalid">
-                  <div *ngIf="formControls?.nationality?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.phone'|translate}}
-                </label>
-                <ngx-intl-tel-input class="form-control"
-                  [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
-                  [enablePlaceholder]="true" [searchCountryFlag]="true"
-                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
-                  [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true" name="phone"
-                  formControlName="phone"
-                  [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
-                  [class.is-valid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.valid">
-                </ngx-intl-tel-input>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid">
-                  <div *ngIf="formControls?.['phone']?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.alt_phone'|translate}}
-                </label>
-                <ngx-intl-tel-input class="form-control"
-                  [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
-                  [enablePlaceholder]="true" [searchCountryFlag]="true"
-                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
-                  [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true" name="alt_phone"
-                  formControlName="alt_phone"
-                  [class.is-invalid]="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid"
-                  [class.is-valid]="formControls?.['alt_phone']?.dirty && formControls?.['alt_phone']?.valid">
-                </ngx-intl-tel-input>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid">
-                  <div *ngIf="formControls?.['alt_phone']?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.email'|translate}}
-                </label>
-                <input type="email" class="form-control" formControlName="email"
-                  placeholder="{{'placeholder.email' | translate}}"
-                  [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
-                  [class.is-valid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.valid">
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid ">
-                  <div *ngIf="formControls?.email?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
-                  </div>
-                  <div *ngIf="formControls?.email?.errors?.['email']">
-                    <span class="text-danger fs-6">
-                      {{'validations.not_valid'|translate}}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'form.address'|translate}}
-                </label>
-                <input type="text" class="form-control" formControlName="address"
-                  placeholder="{{'placeholder.address' | translate}}"
-                  [class.is-invalid]="(formControls?.['address']?.touched ||formControls?.['address']?.dirty) && formControls?.['address']?.invalid"
-                  [class.is-valid]="(formControls?.['address']?.touched ||formControls?.['address']?.dirty) && formControls?.['address']?.valid">
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.address?.touched || formControls?.address?.dirty) && formControls?.address?.invalid">
-                  <div *ngIf="formControls?.address?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
+                    </div>
                   </div>
                   <div
-                    *ngIf="formControls?.address?.errors?.['minlength'] || formControls?.address?.errors?.['maxlength']">
-                    <span class="text-danger fs-6">
-                      {{'validations.address_length'|translate}}
+                    *ngIf="policyForm?.value?.duration_type !== 'day' && policyForm?.value?.duration_type !== 'month'&& policyForm?.value?.duration_type !== 'year'">
+                    <span>
+                      <i class="fas fa-info-circle text-info"></i>
+                      <span class="text-muted fs-6 px-1">
+                        {{'validations.must_choose_duration_type'|translate}}
+                      </span>
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'general.gender'|translate}}
-                </label>
-                <ng-select [closeOnSelect]="true" notFoundText="{{'general.no_item_founded'|translate}}" class="rounded"
-                  formControlName="gender" placeholder="{{'general.select' | translate}}"
-                  [class.border-red]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.invalid"
-                  [class.border-green]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.valid">
-                  <ng-option value="male">{{'general.male' | translate}}</ng-option>
-                  <ng-option value="female">{{'general.female' | translate}}</ng-option>
-                </ng-select>
-              </div>
-              <div class="mt-2">
-                <div
-                  *ngIf="(formControls?.gender?.touched || formControls?.gender?.dirty) && formControls?.gender?.invalid">
-                  <div *ngIf="formControls?.gender?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label">
+                    {{'form.passport_image'|translate}}
+                  </label>
+                  <div class="specific-file-input">
+                    <div>
+                      <label class="file-label w-100">
+                        <input class="file-input" type="file" formControlName="passport_image"
+                          accept=".jpeg, .jpg, .png, .doc, .docx, .pdf" (change)="passportImageFileChangeEvent($event)">
+                        <span class="d-flex align-items-center justify-content-center form-control text-muted"
+                          [class.border-red]="(formControls?.['passport_image']?.touched ||formControls?.['passport_image']?.dirty) && (formControls?.['passport_image']?.invalid)"
+                          [class.border-green]="(formControls?.['passport_image']?.touched || formControls?.['passport_image']?.dirty) && formControls?.['passport_image']?.valid">
+                          <span>
+                            {{'general.upload' | translate}}
+                          </span>
+                          <i class=" fas fa-cloud-upload-alt fs-5 mx-2"></i>
+                        </span>
+                      </label>
+                      <ng-container *ngFor="let item of passportImageFile">
+                        <ng-container *ngIf="passportImageFile.length>0">
+                          <div class="file-name mt-2 mb-0">
+                            <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
+                              <span class="d-flex justify-content-center align-items-baseline">
+                                <i class="fas fa-file mx-1 text-main-color"></i>
+                                {{item?.name}}
+                              </span>
+                              <div class="d-flex gap-2">
+                                <a><i class="far fa-eye"></i></a>
+                                <button type="button" class="btn-delete" (click)="onRemovePassportImage(item?.name)">
+                                  X
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="isMaxImage">
+                        <div class="alert alert-danger" role="alert">
+                          {{'validations.validation_size_file' | translate}}
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-6 col-md-112 col-sm-12 col-12">
-            <div class="mb-4">
-              <div>
-                <label class="form-label required">
-                  {{'general.job'|translate}}
-                </label>
-                <ng-select class="rounded" [items]="pageData?.jobs" [closeOnSelect]="true" [searchable]="true"
-                  [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="job"
-                  placeholder="{{'general.select' | translate}}"
-                  [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
-                  [class.border-green]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.valid">
-                </ng-select>
-              </div>
-              <div class="mt-2">
-                <div *ngIf="(formControls?.job?.touched || formControls?.job?.dirty) && formControls?.job?.invalid">
-                  <div *ngIf="formControls?.job?.errors?.['required']">
-                    <span class="text-danger fs-6">
-                      {{'validations.reuired_field'|translate}}
-                    </span>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.passport_num'|translate}}
+                  </label>
+                  <input type="text" min="1" class="form-control" formControlName="pass_num"
+                    [class.is-invalid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.invalid"
+                    [class.is-valid]="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.valid"
+                    placeholder="{{'placeholder.pass_num' | translate}}">
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['pass_num']?.touched || formControls?.['pass_num']?.dirty) && formControls?.['pass_num']?.invalid">
+                    <div *ngIf="formControls?.['pass_num']?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                    <ng-container *ngIf="formControls?.['pass_num']?.errors?.['pattern']">
+                      <span class="text-danger fs-6">
+                        {{'validations.pass_num_pattern'|translate}}
+                      </span>
+                    </ng-container>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label">
+                    {{'form.profile_image'|translate}}
+                  </label>
+                  <div class="specific-file-input">
+                    <div>
+                      <label class="file-label w-100">
+                        <input class="file-input" type="file" formControlName="profile_image" accept=".jpeg, .jpg, .png"
+                          (change)="profileImageFileChangeEvent($event)">
+                        <span class="d-flex align-items-center justify-content-center form-control text-muted"
+                          [class.border-red]="(formControls?.['profile_image']?.touched ||formControls?.['profile_image']?.dirty) && (formControls?.['profile_image']?.invalid)"
+                          [class.border-green]="(formControls?.['profile_image']?.touched || formControls?.['profile_image']?.dirty) && formControls?.['profile_image']?.valid">
+                          <span class="me-2">
+                            {{'general.upload' | translate}}
+                          </span>
+                          <i class=" fas fa-cloud-upload-alt fs-5"></i>
+                        </span>
+                      </label>
+                      <ng-container *ngIf="profileImageFile.length>0">
+                        <ng-container *ngFor="let item of profileImageFile">
+                          <div class="file-name mt-2 mb-0">
+                            <div class="d-flex justify-content-between align-items-center mb-0 text-muted image-name">
+                              <span class="d-flex justify-content-center align-items-baseline">
+                                <i class="fas fa-file mx-1 text-main-color"></i>
+                                {{item?.name}}
+                              </span>
+                              <div class="d-flex gap-2">
+                                <a><i class="far fa-eye"></i></a>
+                                <button type="button" class="btn-delete" (click)="onRemoveProfileImage(item?.name)">
+                                  X
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="isMaxImage">
+                        <div class="alert alert-danger" role="alert">
+                          {{'validations.validation_size_file' | translate}}
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.nationality'|translate}}
+                  </label>
+                  <ng-select class="rounded" [items]="pageData?.countries" [closeOnSelect]="true" [searchable]="true"
+                    [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="nationality"
+                    placeholder="{{'general.select' | translate}}"
+                    [class.border-red]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.invalid"
+                    [class.border-green]="(formControls?.['nationality']?.touched ||formControls?.['nationality']?.dirty) && formControls?.['nationality']?.valid">
+                  </ng-select>
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.nationality?.touched || formControls?.nationality?.dirty) && formControls?.nationality?.invalid">
+                    <div *ngIf="formControls?.nationality?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.phone'|translate}}
+                  </label>
+                  <ngx-intl-tel-input class="form-control"
+                    [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
+                    [phoneValidation]="true" name="phone" formControlName="phone"
+                    [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
+                    [class.is-valid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.valid">
+                  </ngx-intl-tel-input>
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid">
+                    <div *ngIf="formControls?.['phone']?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.alt_phone'|translate}}
+                  </label>
+                  <ngx-intl-tel-input class="form-control"
+                    [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
+                    [phoneValidation]="true" name="alt_phone" formControlName="alt_phone"
+                    [class.is-invalid]="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid"
+                    [class.is-valid]="formControls?.['alt_phone']?.dirty && formControls?.['alt_phone']?.valid">
+                  </ngx-intl-tel-input>
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['alt_phone']?.touched || formControls?.['alt_phone']?.dirty) && formControls?.['alt_phone']?.invalid">
+                    <div *ngIf="formControls?.['alt_phone']?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.email'|translate}}
+                  </label>
+                  <input type="email" class="form-control" formControlName="email"
+                    placeholder="{{'placeholder.email' | translate}}"
+                    [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
+                    [class.is-valid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.valid">
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid ">
+                    <div *ngIf="formControls?.email?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                    <div *ngIf="formControls?.email?.errors?.['email']">
+                      <span class="text-danger fs-6">
+                        {{'validations.not_valid'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'form.address'|translate}}
+                  </label>
+                  <input type="text" class="form-control" formControlName="address"
+                    placeholder="{{'placeholder.address' | translate}}"
+                    [class.is-invalid]="(formControls?.['address']?.touched ||formControls?.['address']?.dirty) && formControls?.['address']?.invalid"
+                    [class.is-valid]="(formControls?.['address']?.touched ||formControls?.['address']?.dirty) && formControls?.['address']?.valid">
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.address?.touched || formControls?.address?.dirty) && formControls?.address?.invalid">
+                    <div *ngIf="formControls?.address?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                    <div
+                      *ngIf="formControls?.address?.errors?.['minlength'] || formControls?.address?.errors?.['maxlength']">
+                      <span class="text-danger fs-6">
+                        {{'validations.address_length'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'general.gender'|translate}}
+                  </label>
+                  <ng-select [closeOnSelect]="true" notFoundText="{{'general.no_item_founded'|translate}}"
+                    class="rounded" formControlName="gender" placeholder="{{'general.select' | translate}}"
+                    [class.border-red]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.invalid"
+                    [class.border-green]="(formControls?.['gender']?.touched ||formControls?.['gender']?.dirty) && formControls?.['gender']?.valid">
+                    <ng-option value="male">{{'general.male' | translate}}</ng-option>
+                    <ng-option value="female">{{'general.female' | translate}}</ng-option>
+                  </ng-select>
+                </div>
+                <div class="mt-2">
+                  <div
+                    *ngIf="(formControls?.gender?.touched || formControls?.gender?.dirty) && formControls?.gender?.invalid">
+                    <div *ngIf="formControls?.gender?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-112 col-sm-12 col-12">
+              <div class="mb-4">
+                <div>
+                  <label class="form-label required">
+                    {{'general.job'|translate}}
+                  </label>
+                  <ng-select class="rounded" [items]="pageData?.jobs" [closeOnSelect]="true" [searchable]="true"
+                    [clearSearchOnAdd]="true" bindLabel="name" bindValue="id" formControlName="job"
+                    placeholder="{{'general.select' | translate}}"
+                    [class.border-red]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.invalid"
+                    [class.border-green]="(formControls?.['job']?.touched ||formControls?.['job']?.dirty) && formControls?.['job']?.valid">
+                  </ng-select>
+                </div>
+                <div class="mt-2">
+                  <div *ngIf="(formControls?.job?.touched || formControls?.job?.dirty) && formControls?.job?.invalid">
+                    <div *ngIf="formControls?.job?.errors?.['required']">
+                      <span class="text-danger fs-6">
+                        {{'validations.reuired_field'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
-          <hr class="text-secondary-color my-4" />
+            <hr class="text-secondary-color my-4" />
 
-          <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2 required">
-              {{'form.virus_c'|translate}}
-            </label>
-            <mat-radio-group formControlName="virus_c">
-              <mat-radio-button [value]="1" class="me-2">
-                {{'general.yes' | translate}}
-              </mat-radio-button>
-              <mat-radio-button [value]="0">
-                {{'general.no' | translate}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2 required">
-              {{'form.virus_corona'|translate}}
-            </label>
-            <mat-radio-group formControlName="virus_corona">
-              <mat-radio-button [value]="1" class="me-2">
-                {{'general.yes' | translate}}
-              </mat-radio-button>
-              <mat-radio-button [value]="0">
-                {{'general.no' | translate}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2 required">
-              {{'form.suffer'|translate}}
-            </label>
-            <mat-radio-group formControlName="suffer">
-              <mat-radio-button [value]="1" class="me-2">
-                {{'general.yes' | translate}}
-              </mat-radio-button>
-              <mat-radio-button [value]="0">
-                {{'general.no' | translate}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
-            <label class="form-label mb-2 required">
-              {{'form.poor_hearing'|translate}}
-            </label>
-            <mat-radio-group formControlName="poor_hearing">
-              <mat-radio-button [value]="1" class="me-2">
-                {{'general.yes' | translate}}
-              </mat-radio-button>
-              <mat-radio-button [value]="0">
-                {{'general.no' | translate}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
+            <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
+              <label class="form-label mb-2 required">
+                {{'form.virus_c'|translate}}
+              </label>
+              <mat-radio-group formControlName="virus_c">
+                <mat-radio-button [value]="1" class="me-2">
+                  {{'general.yes' | translate}}
+                </mat-radio-button>
+                <mat-radio-button [value]="0">
+                  {{'general.no' | translate}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
+              <label class="form-label mb-2 required">
+                {{'form.virus_corona'|translate}}
+              </label>
+              <mat-radio-group formControlName="virus_corona">
+                <mat-radio-button [value]="1" class="me-2">
+                  {{'general.yes' | translate}}
+                </mat-radio-button>
+                <mat-radio-button [value]="0">
+                  {{'general.no' | translate}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
+              <label class="form-label mb-2 required">
+                {{'form.suffer'|translate}}
+              </label>
+              <mat-radio-group formControlName="suffer">
+                <mat-radio-button [value]="1" class="me-2">
+                  {{'general.yes' | translate}}
+                </mat-radio-button>
+                <mat-radio-button [value]="0">
+                  {{'general.no' | translate}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="d-flex flex-column gap-2 p-3 border-dashed rounded-25 mb-3">
+              <label class="form-label mb-2 required">
+                {{'form.poor_hearing'|translate}}
+              </label>
+              <mat-radio-group formControlName="poor_hearing">
+                <mat-radio-button [value]="1" class="me-2">
+                  {{'general.yes' | translate}}
+                </mat-radio-button>
+                <mat-radio-button [value]="0">
+                  {{'general.no' | translate}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
 
-          <div class="d-flex align-items-center justify-content-end mt-5">
-            <div class="d-flex align-items-center">
-              <button class="btn btn-solid-second me-2" (click)="back()">
-                {{'general.cancel' | translate}}
-              </button>
-              <ng-container *ngIf="isEdit; else elseTemplate">
-                <button class="btn btn-solid-main me-2" type="submit">
-                  {{'general.update' | translate}}
+            <div class="d-flex align-items-center justify-content-end mt-5">
+              <div class="d-flex align-items-center">
+                <button class="btn btn-solid-second me-2" (click)="back()">
+                  {{'general.cancel' | translate}}
                 </button>
-              </ng-container>
-              <ng-template #elseTemplate>
-                <button class="btn btn-solid-main me-2" type="submit" [disabled]="policyForm.invalid || isLoadingBtn">
-                  {{'general.next' | translate}}
-                </button>
-              </ng-template>
+                <ng-container *ngIf="isEdit; else elseTemplate">
+                  <button class="btn btn-solid-main me-2" type="submit">
+                    {{'general.update' | translate}}
+                  </button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <button class="btn btn-solid-main me-2" type="submit" [disabled]="policyForm.invalid || isLoadingBtn">
+                    {{'general.next' | translate}}
+                  </button>
+                </ng-template>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
-    </form>
-  </div>
-</div>
-<ng-container *ngIf="isLoading">
-  <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
-    <div class="spinner-grow" role="status">
+      </form>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
+  <ng-container *ngIf="isLoading">
+    <!-- <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
+      <div class="spinner-grow" role="status">
+      </div>
+    </div> -->
+    <div class="policy-data-card d-flex justify-content-center align-items-center">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    </div>
+  </ng-container>
+</div>

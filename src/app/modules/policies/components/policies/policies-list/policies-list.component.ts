@@ -26,9 +26,6 @@ export class PoliciesListComponent implements OnInit {
   pageSize = 6;
   policiesList: any = [];
 
-  isSelect: boolean = false;
-  selectedItem: any;
-
   isLoadingSearch: boolean = false;
   isSearch: boolean = false;
   isLoadingFileDownload: boolean = false;
@@ -36,7 +33,7 @@ export class PoliciesListComponent implements OnInit {
   tableHeaders: any = [];
 
   enableSortFilter: boolean = true;
-  sortObj: any = {};
+  sortObj: any;
 
   constructor(
     private policyService: PolicyService,
@@ -66,56 +63,31 @@ export class PoliciesListComponent implements OnInit {
 
   getAllPloicies(activeLoading?: boolean): void {
     activeLoading == false ? this.isLoading = false : this.isLoading = true;
-    if (this.searchValue !== '') {
-      this.currentPage = 1;
-      this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue, this.sortObj ? this.sortObj : null)?.subscribe(
-        (res) => {
-          if (res?.code == 200) {
-            this.policiesList = res?.data;
-            console.log(res?.data);
-            this.isLoading = false;
-            this.isWaitingAction = false;
-          } else {
-            if (res?.message) {
-              this.alertsService?.openSweetalert("info", res?.message);
-            }
-            this.isLoading = false;
-            this.isWaitingAction = false;
-          }
-        },
-        (err) => {
-          if (err?.message) {
-            this.alertsService?.openSweetalert("error", err?.message);
+    this.currentPage = 1;
+    this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
+      (res) => {
+        if (res?.code == 200) {
+          this.policiesList = res?.data;
+          console.log(res?.data);
+          this.isLoading = false;
+          this.isWaitingAction = false;
+        } else {
+          if (res?.message) {
+            this.alertsService?.openSweetalert("info", res?.message);
           }
           this.isLoading = false;
           this.isWaitingAction = false;
         }
-      );
-    } else {
-      this.policyService?.getPoliciesList(this.currentPage, this.pageSize, null, this.sortObj ? this.sortObj : null)?.subscribe(
-        (res) => {
-          if (res?.code == 200) {
-            this.policiesList = res?.data;
-            this.isLoading = false;
-            this.isWaitingAction = false;
-          } else {
-            if (res?.message) {
-              this.alertsService?.openSweetalert("info", res?.message);
-            }
-            this.isLoading = false;
-            this.isWaitingAction = false;
-          }
-        },
-        (err) => {
-          if (err?.message) {
-            this.alertsService?.openSweetalert("error", err?.message);
-          }
-          this.isLoading = false;
-          this.isWaitingAction = false;
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetalert("error", err?.message);
         }
-      );
-    }
-    this.cdr.detectChanges();
+        this.isLoading = false;
+        this.isWaitingAction = false;
+      }
+    );
+    this.cdr?.detectChanges();
   }
 
   applySearch(event: Event): void {
@@ -124,12 +96,12 @@ export class PoliciesListComponent implements OnInit {
     let applyFilter = (event.target as HTMLInputElement).value;
     this.searchValue = applyFilter;
     this.getAllPloicies(false);
-    this.cdr.detectChanges();
+    this.cdr?.detectChanges();
   }
   clearSearch(): void {
     this.searchValue = '';
     this.getAllPloicies(false);
-    this.cdr.detectChanges();
+    this.cdr?.detectChanges();
   }
 
   printTable(tableData: any): void {
@@ -157,21 +129,18 @@ export class PoliciesListComponent implements OnInit {
     this.printService?.printPdf('assets/image/async-awit.pdf');
   }
   goToDetails(item?: any): void {
-    this.router.navigate(['/home/policies/policy-data', { id: this.selectedItem?.id || item?.id }]);
+    this.router?.navigate(['/home/policies/policy-data', { id: item?.id }]);
   }
   onaDeleteItem(item?: any): void {
-    console.log(item);
-
-    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+    const dialogRef = this.dialog?.open(ConfirmDeleteModalComponent, {
       width: "40%",
-      // data: this.selectedItem?.name
       data: item?.item?.name
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result?.confirm === true) {
         console.log(result);
         this.isWaitingAction = true;
-        this.policyService?.deletePolicy(this.selectedItem?.id || item?.item?.id)?.subscribe(
+        this.policyService?.deletePolicy(item?.item?.id)?.subscribe(
           (res: any) => {
             if (res?.code == "200") {
               if (res?.message) {
@@ -190,18 +159,16 @@ export class PoliciesListComponent implements OnInit {
             }
           });
       }
-      this.cdr.detectChanges();
+      this.cdr?.detectChanges();
     });
   }
 
   onChange(page: any): void {
     this.getAllPloicies();
   }
-  loadPage(page: number): void {
-    this.getAllPloicies();
-  }
 
   clearTable(event: any): void {
+    this.searchValue = '';
     this.sortObj = null;
     event?.isClear ? this.getAllPloicies(false) : '';
   }
@@ -220,32 +187,6 @@ export class PoliciesListComponent implements OnInit {
       this.getAllPloicies(false);
     }
   }
-
-  // selected(item: any, e?: any): any {
-  //   //   this.policiesList.forEach((e: any) => {
-  //   //     e.isSelected = false;
-  //   //   });
-  //   //   this.policiesList[e - 1].isSelected = true;
-  //   //   this.isSelect = true;
-  //   // }
-  //   this.selectedItem = item;
-  //   this.policiesList.forEach((e: any) => {
-  //     e.isSelect = false;
-  //     console.log(e);
-
-  //   });
-  //   console.log(item);
-
-  //   // this.selectedItem = item;
-  //   this.isSelect = true;
-  //   item.isSelect = !item.isSelect;
-  // }
-  // clearAllSelected(): void {
-  //   this.policiesList.forEach((e: any) => {
-  //     e.isSelect = false;
-  //   });
-  //   this.isSelect = false;
-  // }
 
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
