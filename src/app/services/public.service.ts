@@ -35,14 +35,14 @@ export class PublicService {
   }
 
   translateTextFromJson(text: string): any {
-    return this.translate.instant(text);
+    return this.translate?.instant(text);
   }
 
-  downloadExampleFn(urlRoot: any): Observable<Blob> {
+  downloadExample(urlRoot: any): Observable<Blob> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       responseType: 'blob' as 'json'
     };
-    return this.http.get<any>(`${this.apiUrl}/${urlRoot}`, httpOptions);
+    return this.http?.get<any>(`${this.apiUrl}/${urlRoot}`, httpOptions);
   }
 }

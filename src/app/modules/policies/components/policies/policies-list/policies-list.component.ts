@@ -6,10 +6,9 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { PolicyService } from '../../../services/policy.service';
 import { roots } from '../../../../shared/TS Files/api-roots';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import * as printJS from 'print-js';
-// import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-policies-list',
@@ -114,15 +113,15 @@ export class PoliciesListComponent implements OnInit {
   }
   downloadFile(): void {
     this.isLoadingFileDownload = true;
-    this.publicService?.downloadExampleFn(roots?.home?.downloadFile)?.subscribe(
+    this.publicService?.downloadExample(roots?.home?.downloadFile)?.subscribe(
       (response: Blob) => {
-        // saveAs(response, 'users.xlsx');
+        saveAs(response, 'policies.xlsx');
       },
       (err: any) => {
         err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         this.isLoadingFileDownload = false;
       });
-    this.cdr.detectChanges();
+    this.cdr?.detectChanges();
   }
 
   print(item?: any): void {
