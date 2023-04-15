@@ -112,25 +112,6 @@ export class PolicyDashboardComponent implements OnInit {
         err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
         this.isFullLoading = false;
       });
-
-    let data: any = {
-      your_transactions: {
-        purchased_policies: 5,
-        refunded_policies: 5,
-        bounce_rate: 5,
-      },
-      policies: {
-        active: 10,
-        pending: 10,
-        canceled: 10,
-        expired: 10,
-        under_review: 10
-      }
-    };
-
-    this.homeData = data;
-    this.yourTransactions = this.homeData?.your_transactions;
-    this.policies = this.homeData?.policies;
   }
 
 }

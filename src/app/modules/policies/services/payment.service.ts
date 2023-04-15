@@ -26,8 +26,8 @@ export class PaymentService {
     if (search) {
       params = params.append("search", search);
     }
-    if (sort) {
-      params = params.append("sort", sort);
+    if (sort && Object.keys(sort)?.length > 0) {
+      params = params.append("sort", JSON.stringify(sort));
     }
     return this.http?.get<any>(this.apiUrl + roots?.payments?.getPayments, { params: params });
   }

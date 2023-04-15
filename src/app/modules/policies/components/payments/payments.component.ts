@@ -22,7 +22,7 @@ export class PaymentsComponent implements OnInit {
   paymentsList: any = [];
 
   date = new Date("10/10/1996");
-  status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
+  // status: any = ["Active", "Not Specified", "Cancled", "Under Review"];
 
   tableHeaders: any = [];
   isSearch: boolean = false;
@@ -59,6 +59,15 @@ export class PaymentsComponent implements OnInit {
       (res) => {
         if (res?.code == 200) {
           this.paymentsList = res?.data;
+          res?.data ? res?.data?.forEach((element: any) => {
+            this.paymentsList?.push({
+              id: element?.id,
+              class: element?.class ? element?.class : '',
+              amount: element?.amount ? element?.amount : '',
+              description: element?.description ? element?.description : '',
+              status: element?.status ? element?.status : '',
+            });
+          }) : '';
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -75,95 +84,6 @@ export class PaymentsComponent implements OnInit {
       }
     );
     this.cdr?.detectChanges();
-
-    let items = [
-      {
-        id: 1,
-        esablishDate: this.date,
-        class: "success",
-        amount: "150",
-        description: "there is a description for this policy",
-        status: this.status[0]
-      },
-      {
-
-        id: 2,
-        client: 'Eslam Afify Barakat',
-        esablishDate: this.date,
-        class: "confirm",
-        amount: "50",
-        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-        status: this.status[1]
-      },
-      {
-
-        id: 3,
-        esablishDate: this.date,
-        class: "rejected",
-        amount: "150",
-        description: "there is a description for this policy",
-        status: this.status[2]
-      },
-      {
-
-        id: 4,
-        client: 'Eslam Afify Barakat',
-        esablishDate: this.date,
-        class: "warning",
-        amount: "50",
-        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-        status: this.status[3]
-      },
-      {
-
-        id: 5,
-        esablishDate: this.date,
-        class: "success",
-        amount: "150",
-        description: "there is a description for this policy",
-        status: this.status[0]
-      },
-      {
-
-        id: 6,
-        client: 'Eslam Afify Barakat',
-        esablishDate: this.date,
-        class: "confirm",
-        amount: "50",
-        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-        status: this.status[1]
-      },
-      {
-
-        id: 7,
-        esablishDate: this.date,
-        class: "rejected",
-        amount: "150",
-        description: "there is a description for this policy",
-        status: this.status[2]
-      },
-      {
-
-        id: 8,
-        client: 'Eslam Afify Barakat',
-        esablishDate: this.date,
-        class: "warning",
-        amount: "50",
-        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-        status: this.status[3]
-      },
-      {
-
-        id: 9,
-        client: 'Eslam Afify Barakat',
-        esablishDate: this.date,
-        class: "warning",
-        amount: "50",
-        description: "there is a description for this policy there is a description for this policy there is a description for this policy",
-        status: this.status[3]
-      }
-    ];
-    this.paymentsList = items;
   }
 
   applyFilter(type: any): void {

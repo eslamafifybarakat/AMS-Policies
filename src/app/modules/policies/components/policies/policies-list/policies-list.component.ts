@@ -113,7 +113,7 @@ export class PoliciesListComponent implements OnInit {
   }
   downloadFile(): void {
     this.isLoadingFileDownload = true;
-    this.publicService?.downloadExample(roots?.home?.downloadFile)?.subscribe(
+    this.publicService?.downloadExample(roots?.home?.exportFile)?.subscribe(
       (response: Blob) => {
         saveAs(response, 'policies.xlsx');
       },
@@ -125,7 +125,7 @@ export class PoliciesListComponent implements OnInit {
   }
 
   print(item?: any): void {
-    this.printService?.printPdf('assets/image/async-awit.pdf');
+    this.printService?.printPdf(item?.pdf);
   }
   goToDetails(item?: any): void {
     this.router?.navigate(['/home/policies/policy-data', { id: item?.id }]);
