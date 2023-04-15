@@ -259,6 +259,7 @@ export class PolicyDataComponent implements OnInit {
             } else {
               const ref = this.dialogService?.open(WantToPayModalComponent, {
                 dismissableMask: false,
+                closable: false,
                 width: '65%'
               });
               ref.onClose.subscribe((res: any) => {
@@ -267,16 +268,16 @@ export class PolicyDataComponent implements OnInit {
                   this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
                 }
                 if (res?.payment) {
-                  // this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value),paymentOrder:res?.data?.payment_order ,isEdit: this.isEdit }]);
-                  this.router.navigate(['/home/policies/checkout', {
-                    data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify({
-                      item: [{
-                        name: 'ss',
-                        count: '20'
-                      }],
-                      total: 10
-                    }), isEdit: this.isEdit
-                  }]);
+                  this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify(res?.data?.payment_order), isEdit: this.isEdit }]);
+                  // this.router.navigate(['/home/policies/checkout', {
+                  //   data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify({
+                  //     item: [{
+                  //       name: 'ss',
+                  //       count: '20'
+                  //     }],
+                  //     total: 10
+                  //   }), isEdit: this.isEdit
+                  // }]);
                 }
               });
             }
