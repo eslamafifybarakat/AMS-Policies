@@ -253,14 +253,15 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            if (res?.data?.payment_status) {
+            if (res?.data?.payment_status !== '0') {
               this.alertsService.openSweetAlert('success', res?.message);
               this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             } else {
               const ref = this.dialogService?.open(WantToPayModalComponent, {
                 dismissableMask: false,
                 closable: false,
-                width: '65%'
+                width: '45%',
+                styleClass: 'pay-modal'
               });
               ref.onClose.subscribe((res: any) => {
                 this.alertsService.openSweetAlert('success', res?.message);

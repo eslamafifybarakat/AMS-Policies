@@ -99,10 +99,11 @@ export class PolicyDashboardComponent implements OnInit {
           this.policies = {
             active: this.homeData?.policies?.active,
             pending: this.homeData?.policies?.pending,
-            canceled: this.homeData?.policies?.canceled,
+            cancelled: this.homeData?.policies?.cancelled,
             expired: this.homeData?.policies?.expired,
             under_review: this.homeData?.policies?.under_review,
           }
+          this.isFullLoading = false;
         } else {
           res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
           this.isFullLoading = false;

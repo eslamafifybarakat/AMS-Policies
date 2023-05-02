@@ -1,9 +1,9 @@
 export const roots = {
   home: {
-    getHomeData: '/api/get_home_data',
+    getHomeData: '/api/site/get-home-data',
     exportFile: 'export_policies',
   },
   payments: {
-    getPayments: '/payments'
+    getPayments: '/api/site/payments'
   }
 }

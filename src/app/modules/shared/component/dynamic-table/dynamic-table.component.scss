@@ -174,7 +174,8 @@
     &.Cancled {
       background-color: var(--danger-color);
     }
-    &.Active {
+    &.Active,
+    &.success {
       background-color: var(--success-color);
     }
     &.Specified {

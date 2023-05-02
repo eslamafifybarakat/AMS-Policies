@@ -1,6 +1,5 @@
 // ---- Owl-Carousel Media Queries ----//
 @media (max-width: 767px) {
-
   .owl-carousel .owl-nav .owl-next,
   .owl-carousel .owl-nav .owl-prev {
     display: none !important;
@@ -9,7 +8,6 @@
 
 //----- Components -----//
 @media (max-width: 767px) {
-
   .mat-dialog-container,
   .cdk-overlay-pane {
     width: 100% !important;
@@ -127,26 +125,22 @@
   }
 }
 
-@media (max-width: 425px) {}
+@media (max-width: 425px) {
+}
 
 @media (min-width: 1200px) {
-
   .header-button {
     left: 10rem !important;
   }
-
 }
 
 @media (max-width: 1200px) {
-
   .d-medium-none {
     display: none !important;
   }
-
 }
 
 @media (min-width: 991px) {
-
   .min-vheight-100 {
     min-height: 100vh !important;
     padding: 0 !important;
@@ -173,7 +167,9 @@
 }
 
 @media (max-width: 991px) {
-
+  .pay-modal {
+    width: 80% !important;
+  }
   .mat-dialog-container,
   .cdk-overlay-pane {
     width: auto !important;
@@ -297,7 +293,8 @@
   }
 }
 
-@media (max-width: 375px) {}
+@media (max-width: 375px) {
+}
 
 @media (max-width: 350px) {
   .dropdown-theme .dropdown-menu {
