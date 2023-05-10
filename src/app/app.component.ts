@@ -1,13 +1,13 @@
-import { keys } from './modules/shared/TS Files/localstorage-key';
-import { DeviceLocationService } from './services/device-location.service';
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import * as AOS from 'aos';
 import { TranslationService } from './modules/shared/services/i18n/translation.service';
 import { ThemeService } from './modules/shared/services/themes/theme.service';
-import { Title } from '@angular/platform-browser';
+import { DeviceLocationService } from './services/device-location.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { keys } from './modules/shared/TS Files/localstorage-key';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs';
+import * as AOS from 'aos';
 
 
 @Component({

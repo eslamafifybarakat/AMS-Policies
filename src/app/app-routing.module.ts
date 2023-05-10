@@ -11,19 +11,19 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/layout/layout.module')
       .then(m => m.LayoutModule)
   },
   {
     path: 'auth',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/auth/auth.module')
       .then(m => m.AuthModule)
   },
   {
     path: 'payment-result',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: PaymentResultComponent,
     data: {
       title: 'titles.payments'
