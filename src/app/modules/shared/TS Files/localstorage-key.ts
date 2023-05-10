@@ -5,6 +5,7 @@ export const keys = {
   userData: 'AMSPolicieUserData',
   userLoginData: 'AMSPolicieUserLoginData',
   theme: 'AMSPolicietheme',
+  policyPayId: 'AMSPoliciePolicyPayId',
   token: 'AMSPolicieToken',
   deviceLocation: 'amsdeviceLocation',
   forgetPassoedToken: 'AMSPolicieForgetPasswordToken'

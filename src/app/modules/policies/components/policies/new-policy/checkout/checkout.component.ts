@@ -1,3 +1,5 @@
+import { keys } from './../../../../../shared/TS Files/localstorage-key';
+import { PaymentService } from './../../../../services/payment.service';
 // import { PolicyService } from 'src/app/modules/policies/services/policy.service';
 import { AlertsService } from './../../../../../shared/services/alerts/alerts.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -25,6 +27,7 @@ export class CheckoutComponent implements OnInit {
     private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute,
     private location: Location,
+    private paymentService: PaymentService,
     public router: Router,
     private cdr: ChangeDetectorRef
   ) { }
@@ -32,60 +35,36 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.policyData = JSON.parse(this.activatedRoute?.snapshot?.params['data'] || '{}');
     this.isEdit = this.activatedRoute?.snapshot?.params['isEdit'];
+
     this.paymentOrder = JSON.parse(this.activatedRoute?.snapshot?.params['paymentOrder'] || '{}');
   }
 
   submit(): void {
     this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-      this.router.navigate(['/home/policies/list']);
-    }, 2000);
+    this.paymentService?.payNow(this.policyData?.id)?.subscribe(
+      (res) => {
+        if (res?.code == "200") {
+          console.log(res?.data);
+          let url = res?.data?.payment_url;
+          window.open(url, "_self");
+          window.localStorage.setItem(keys?.policyPayId, this.policyData?.id);
+          this.isLoading = false;
+        } else {
+          if (res?.message) {
+            this.alertsService?.openSweetAlert("info", res?.message);
+          }
+          this.isLoading = false;
+        }
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetAlert("error", err?.message);
+        }
+        this.isLoading = false;
+      }
+    );
+    this.cdr?.detectChanges();
   }
-
-  // onSubmit(): void {
-  //   this.isLoading = true;
-
-  //   let policyDataObj: any;
-  //   policyDataObj = {
-  //     name: this.policyData?.name,
-  //     start_date: this.policyData?.start_date,
-  //     end_date: this.policyData?.end_date,
-  //     birthdate: this.policyData?.birthdate,
-  //     email: this.policyData?.email,
-  //     phone: this.policyData?.phone,
-  //     duration: this.policyData?.duration,
-  //     duration_type: this.policyData?.duration_type,
-  //     passport_image: this.policyData?.passport_image,
-  //     job: this.policyData?.job,
-  //     gender: this.policyData?.gender,
-  //     nationality: this.policyData?.nationality,
-  //     address: this.policyData?.address,
-  //     virus_c: this.policyData?.virus_c,
-  //     virus_corona: this.policyData?.virus_corona,
-  //     suffer: this.policyData?.suffer,
-  //     poor_hearing: this.policyData?.poor_hearing
-  //   }
-  //   this.policyService?.addPolicy(policyDataObj)?.subscribe(
-  //     (res: any) => {
-  //       if (res?.code === 200) {
-  //         this.alertsService.openSweetAlert('success', res?.message);
-  //         this.router.navigate(['/home/policies/list']);
-  //         this.isLoading = false;
-  //       } else {
-  //         this.alertsService.openSweetAlert('info', res?.message);
-  //         this.isLoading = false;
-  //       }
-  //     },
-  //     (err) => {
-  //       if (err?.message) {
-  //         this.alertsService.openSweetAlert('error', err?.message);
-  //       }
-  //       this.isLoading = false;
-  //     });
-
-  //   this.cdr.detectChanges();
-  // }
 
   check(type: any): void {
     if (type !== this.filterValue) {

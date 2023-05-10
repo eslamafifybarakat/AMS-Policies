@@ -95,7 +95,6 @@ export class PaymentsComponent implements OnInit {
     } else {
       this.filterValue = '';
     }
-    console.log(this.filterValue);
     this.cdr.detectChanges();
   }
 

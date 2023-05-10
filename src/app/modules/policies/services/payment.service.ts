@@ -31,4 +31,10 @@ export class PaymentService {
     }
     return this.http?.get<any>(this.apiUrl + roots?.payments?.getPayments, { params: params });
   }
+  payNow(id?: number): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.payments?.payNow + '/' + id);
+  }
+  checkPaymentStatus(id?: number): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.payments?.checkPaymentStatus + '/' + id);
+  }
 }

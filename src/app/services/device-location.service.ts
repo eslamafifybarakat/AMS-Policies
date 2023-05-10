@@ -16,8 +16,6 @@ export class DeviceLocationService {
 
 
   getUserLocation(): any {
-    console.log('dddd');
-
     this.http.get<any>(`https://ipapi.co/json`).subscribe((res: any) => {
       var expire = new Date();
       var time = Date.now() + ((3600 * 1000) * 24); // current time + 24 hours ///
@@ -27,7 +25,7 @@ export class DeviceLocationService {
       device_location_obj = Object.assign(res, this.device);
 
       Cookie.set("userLocationData", JSON.stringify(res), expire);
-      window.localStorage.setItem(keys.deviceLocation, JSON.stringify(device_location_obj));
+      window.localStorage.setItem(keys?.deviceLocation, JSON.stringify(device_location_obj));
     });
   }
 

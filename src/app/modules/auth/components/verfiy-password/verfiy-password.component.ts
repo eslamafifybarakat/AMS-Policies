@@ -44,7 +44,6 @@ export class VerfiyPasswordComponent implements OnInit {
     this.currentLanguage = window.localStorage.getItem(keys.language);
     this.minute = this.time;
     this.urlData = this.activateRoute.snapshot.params;
-    console.log(this.urlData);
     if (this.urlData?.email) {
       this.emailVerification.patchValue({
         email: this.urlData?.email
@@ -57,15 +56,12 @@ export class VerfiyPasswordComponent implements OnInit {
   })
   // this called every time when user changed the code
   onCodeChanged(code: string): void {
-    console.log(code);
     this.codeLength = code;
   }
 
   // this called only if user entered full code
   onCodeCompleted(code: string): void {
-    console.log(code);
     this.codeLength = code;
-    console.log(this.codeLength);
   }
 
   resendCode(): void {

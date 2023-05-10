@@ -45,11 +45,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedin = this.authUserService.isLoggedIn();
-    console.log(this.isLoggedin);
 
     // Get Current URL Routing
     this.currentUrl = this.router.url.split(/[?#]/)[0];
-    console.log(this.currentUrl);
     this.cdr.detectChanges();
   }
 

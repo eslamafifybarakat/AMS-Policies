@@ -11,6 +11,7 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { PolicyDataComponent } from './components/policies/new-policy/policy-data/policy-data.component';
 import { PolicyPaymentDetailsModalComponent } from './components/payments/policy-payment-details-modal/policy-payment-details-modal.component';
 import { WantToPayModalComponent } from './components/policies/new-policy/want-to-pay-modal/want-to-pay-modal.component';
+import { PaymentResultComponent } from './components/policies/new-policy/checkout/payment-result/payment-result.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { WantToPayModalComponent } from './components/policies/new-policy/want-t
     PolicyDataComponent,
     CheckoutComponent,
     PolicyPaymentDetailsModalComponent,
-    WantToPayModalComponent
+    WantToPayModalComponent,
+    PaymentResultComponent
   ],
   imports: [
     CommonModule,

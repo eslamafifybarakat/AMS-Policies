@@ -104,7 +104,6 @@ export class RegisterComponent implements OnInit {
         os_version: this.deviceLocationData?.os_version
       }
     }
-    console.log(data);
     this.authUserService?.register(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {

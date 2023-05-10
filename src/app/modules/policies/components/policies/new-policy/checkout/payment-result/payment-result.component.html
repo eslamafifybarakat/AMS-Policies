@@ -1,0 +1,17 @@
+<div id="modal" class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+  <div class="d-flex justify-content-center w-100">
+    <img src="assets/image/policy/pay.svg" class="w-50" alt="">
+  </div>
+  <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+    <button type="button" class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
+      (click)="backTo('/home/policies/payments')">
+      <span>{{"policies.payments"|translate}}</span>
+      <!-- <i class="pi pi-times"></i> -->
+    </button>
+    <button (click)="backTo('/home/policies/dashboard')"
+      class="btn btn-outline-main d-flex align-items-center justify-content-center gap-2" type="submit">
+      <span>{{"policies.dashboard"|translate}}</span>
+      <!-- <i class="pi pi-download"></i> -->
+    </button>
+  </div>
+</div>

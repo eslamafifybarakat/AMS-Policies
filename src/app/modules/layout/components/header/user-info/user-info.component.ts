@@ -26,7 +26,6 @@ export class UserInfoComponent implements OnInit {
     this.userdata = JSON.parse(window.localStorage.getItem(keys.userData) || " {}");
     this.publicService.recallUserDataFn.subscribe((res) => {
       if (res) {
-        console.log('enter');
         this.getUserData();
       }
     });
@@ -35,10 +34,8 @@ export class UserInfoComponent implements OnInit {
     this._AuthUserser?.getUserData()?.subscribe(
       (res: any) => {
         if (res?.code == 200) {
-          console.log('success');
           window.localStorage.setItem(keys.userData, JSON.stringify(res?.data) || '{}');
           this.userdata = res?.data;
-          console.log(this.userdata);
           this.publicService.recallUserDataStorage.next(true);
           this.cdr.detectChanges();
         } else {

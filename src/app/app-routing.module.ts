@@ -1,6 +1,7 @@
 import { AuthGuard } from './modules/shared/services/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PaymentResultComponent } from './modules/policies/components/policies/new-policy/checkout/payment-result/payment-result.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,14 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/auth/auth.module')
       .then(m => m.AuthModule)
+  },
+  {
+    path: 'payment-result',
+    // canActivate: [AuthGuard],
+    component: PaymentResultComponent,
+    data: {
+      title: 'titles.payments'
+    }
   },
   {
     path: 'error',

@@ -253,34 +253,25 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            if (res?.data?.payment_status !== '0') {
-              this.alertsService.openSweetAlert('success', res?.message);
-              this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
-            } else {
+            if (res?.data?.policy?.payment_status == '0') {
               const ref = this.dialogService?.open(WantToPayModalComponent, {
                 dismissableMask: false,
                 closable: false,
                 width: '45%',
                 styleClass: 'pay-modal'
               });
-              ref.onClose.subscribe((res: any) => {
+              ref.onClose.subscribe((resModal: any) => {
                 this.alertsService.openSweetAlert('success', res?.message);
-                if (res?.list) {
+                if (resModal?.list) {
                   this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
                 }
-                if (res?.payment) {
-                  this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify(res?.data?.payment_order), isEdit: this.isEdit }]);
-                  // this.router.navigate(['/home/policies/checkout', {
-                  //   data: JSON.stringify(this.policyForm?.value), paymentOrder: JSON.stringify({
-                  //     item: [{
-                  //       name: 'ss',
-                  //       count: '20'
-                  //     }],
-                  //     total: 10
-                  //   }), isEdit: this.isEdit
-                  // }]);
+                if (resModal?.payment) {
+                  this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(res?.data?.policy), paymentOrder: JSON.stringify(res?.data?.payment), isEdit: this.isEdit }]);
                 }
               });
+            } else {
+              this.alertsService.openSweetAlert('success', res?.message);
+              this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
             }
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
