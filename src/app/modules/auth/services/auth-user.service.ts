@@ -61,8 +61,8 @@ export class AuthUserService {
   }
 
   isLoggedIn(): boolean {
-    return window.localStorage.getItem(keys?.logged) ? true : false;
-    // return window.localStorage.getItem(keys?.token) ? true : false;
+    // return window.localStorage.getItem(keys?.logged) ? true : false;
+    return window.localStorage.getItem(keys.token) ? true : false;
   }
 
   isLoggedOut(): boolean {
@@ -70,6 +70,7 @@ export class AuthUserService {
   }
 
   signOut(): void {
+    window.localStorage.removeItem(keys.policyPayId);
     window.localStorage.removeItem(keys.forgetPassoedToken);
     window.localStorage.removeItem(keys.logged);
     window.localStorage.removeItem(keys.userData);
