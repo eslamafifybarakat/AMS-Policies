@@ -292,8 +292,26 @@ export class PolicyDataComponent implements OnInit {
       this.policyService?.addPolicy(formData)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
-            this.alertsService.openSweetAlert('success', res?.message);
-            this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            if (res?.data?.policy?.payment_status == '0') {
+              const ref = this.dialogService?.open(WantToPayModalComponent, {
+                dismissableMask: false,
+                closable: false,
+                width: '45%',
+                styleClass: 'pay-modal'
+              });
+              ref.onClose.subscribe((resModal: any) => {
+                this.alertsService.openSweetAlert('success', res?.message);
+                if (resModal?.list) {
+                  this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+                }
+                if (resModal?.payment) {
+                  this.router.navigate(['/home/policies/checkout', { data: JSON.stringify(res?.data?.policy), paymentOrder: JSON.stringify(res?.data?.payment), isEdit: this.isEdit }]);
+                }
+              });
+            } else {
+              this.alertsService.openSweetAlert('success', res?.message);
+              this.router.navigate(['/home/policies/list', { data: JSON.stringify(this.policyForm?.value), isEdit: this.isEdit }]);
+            }
             this.isLoadingBtn = false;
             this.publicService?.show_loader?.next(false);
           } else {
