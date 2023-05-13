@@ -34,6 +34,7 @@
                       </label>
                       <input type="text" class="form-control" formControlName="firstName"
                         placeholder="{{ 'placeholder.firstName' | translate }}"
+                        (input)="publicService?.clearValidationErrors(formControls?.firstName)"
                         [class.is-invalid]="(formControls?.['firstName']?.touched ||formControls?.['firstName']?.dirty) && formControls?.['firstName']?.invalid"
                         [class.is-valid]="(formControls?.['firstName']?.dirty) && formControls?.['firstName']?.valid" />
                     </div>
@@ -66,6 +67,7 @@
                       </label>
                       <input type="text" class="form-control" formControlName="lastName"
                         placeholder="{{ 'placeholder.lastName' | translate }}"
+                        (input)="publicService?.clearValidationErrors(formControls?.lastName)"
                         [class.is-invalid]="(formControls?.['lastName']?.touched ||formControls?.['lastName']?.dirty) && formControls?.['lastName']?.invalid"
                         [class.is-valid]="(formControls?.['lastName']?.dirty) && formControls?.['lastName']?.valid" />
                     </div>
@@ -98,6 +100,7 @@
                   </label>
                   <input type="email" class="form-control" formControlName="email"
                     placeholder="{{ 'placeholder.email' | translate }}"
+                    (input)="publicService?.clearValidationErrors(formControls?.email)"
                     [class.is-invalid]="(formControls?.['email']?.touched ||formControls?.['email']?.dirty) && formControls?.['email']?.invalid"
                     [class.is-valid]="(formControls?.['email']?.dirty) && formControls?.['email']?.valid" />
                 </div>
@@ -132,6 +135,7 @@
                       SearchCountryField.Name
                     ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
                     [phoneValidation]="true" name="phone" formControlName="phone"
+                    (input)="publicService?.clearValidationErrors(formControls?.phone)"
                     [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
                     [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid">
                   </ngx-intl-tel-input>
@@ -184,13 +188,14 @@
                   [class.border-green]="(formControls?.['password']?.touched||formControls?.['password']?.dirty)&&formControls?.['password']?.valid">
                   <input [type]="showeye ? 'text' : 'password'"
                     class="login-password-form form-control  form-control-single"
-                    placeholder="{{ 'placeholder.password' | translate }}" id="exampleInputPassword1"
+                    placeholder="{{ 'placeholder.password' | translate }}"
+                    (input)="publicService?.clearValidationErrors(formControls?.password)" id="exampleInputPassword1"
                     formControlName="password" name="txtPassword" compare-password="txtConfirmPassword" />
                   <span class="togglepassword bg-white-color input-group-text input-group-text-right" id="basic-addon1"
                     (click)="togglepassword()"><i class="bg-white-color"
                       [class]="showeye ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
                 </div>
-                <div class="mt-2">
+                <div class="lh-sm">
                   <div *ngIf="
                       (formControls?.password?.touched ||
                         formControls?.password?.dirty) &&
@@ -203,7 +208,7 @@
                     </div>
                     <ng-container *ngIf="formControls?.password?.errors?.['pattern']">
                       <span class="text-danger fs-6">
-                        {{ "validations.reuired_field" | translate }}
+                        {{ "validations.passwordPattern" | translate }}
                       </span>
                     </ng-container>
                     <!-- <div
@@ -232,6 +237,7 @@
                   <input [type]="showeye ? 'text' : 'password'"
                     class="login-password-form form-control form-control-single"
                     placeholder="{{ 'placeholder.confirm_password' | translate }}" id="exampleInputPassword2"
+                    (input)="publicService?.clearValidationErrors(formControls?.confirmPassword)"
                     formControlName="confirmPassword" />
                   <span class="togglepassword input-group-text bg-white-color input-group-text-right" id="basic-addon1"
                     (click)="togglepassword()"><i class="bg-white-color"
@@ -254,7 +260,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn w-100 btn-solid-main mt-2" [disabled]="registerForm.invalid || isResend">
+              <button type="submit" class="btn w-100 btn-solid-main mt-2" [disabled]="  isResend">
                 {{ "form.confirm" | translate }}
               </button>
 

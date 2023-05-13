@@ -1,3 +1,4 @@
+import { AbstractControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -44,5 +45,8 @@ export class PublicService {
       responseType: 'blob' as 'json'
     };
     return this.http?.get<any>(`${this.apiUrl}/${urlRoot}`, httpOptions);
+  }
+  clearValidationErrors(control: AbstractControl): void {
+    control.markAsPending();
   }
 }

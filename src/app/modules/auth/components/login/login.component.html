@@ -41,6 +41,7 @@
                   </label>
                   <input type="email" class="form-control" formControlName="email"
                     placeholder="{{'placeholder.email' | translate}}"
+                    (input)="publicService?.clearValidationErrors(formControls?.email)"
                     [class.is-invalid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.invalid"
                     [class.is-valid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.valid">
                 </div>
@@ -75,6 +76,7 @@
                   [class.border-green]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.valid">
                   <input [type]="showeye?'text':'password'" class="login-password-form form-control form-control-single"
                     id="exampleInputPassword1" formControlName="password"
+                    (input)="publicService?.clearValidationErrors(formControls?.password)"
                     placeholder="{{'placeholder.password' | translate}}">
                   <span class="togglepassword input-group-text bg-white-color input-group-text-right"
                     (click)="togglepassword()">
@@ -103,7 +105,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn w-100 btn-solid-main mb-3" [disabled]="loginForm.invalid">
+              <button type="submit" class="btn w-100 btn-solid-main mb-3">
                 {{'form.login'|translate}}
               </button>
 

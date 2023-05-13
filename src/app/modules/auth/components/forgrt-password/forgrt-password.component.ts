@@ -61,12 +61,12 @@ export class ForgrtPasswordComponent implements OnInit {
           this.router.navigate(['/auth/email-verification', { email: this.email }]);
         } else {
           this.isloadingBtn = false;
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          res?.message ? this.alertsService.openSweetAlert('error', res?.message) : '';
         }
       },
       (err: any) => {
         if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          err?.message ? this.alertsService.openSweetAlert('error', err?.message) : '';
         }
         this.isloadingBtn = false;
       }

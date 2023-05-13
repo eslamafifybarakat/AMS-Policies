@@ -1,3 +1,5 @@
+import { PublicService } from './../../../../services/public.service';
+import { CheckValidityService } from './../../../../services/check-validity.service';
 import { patterns } from './../../../shared/TS Files/patternValidation';
 
 import { Subscription } from 'rxjs';
@@ -36,9 +38,11 @@ export class RegisterComponent implements OnInit {
   ];
 
   constructor(
+    private checkValidityService: CheckValidityService,
     public tanslationService: TranslationService,
     public translateService: TranslateService,
     public authUserService: AuthUserService,
+    public publicService: PublicService,
     public alertsService: AlertsService,
     private location: Location,
     public datePipe: DatePipe,
@@ -62,7 +66,7 @@ export class RegisterComponent implements OnInit {
       Validators.maxLength(20)]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      birth_date: ['', []],
+      birth_date: ['', [Validators.required]],
       password: ['', [Validators.compose([Validators.required,
       Validators.pattern(patterns?.password)])]],
       confirmPassword: ['', [Validators.compose([Validators.required,
@@ -70,7 +74,7 @@ export class RegisterComponent implements OnInit {
       Validators.maxLength(20)])]]
     },
     {
-      validators: [Validation.match("password", "confirmPassword")],
+      validators: [Validation.match("password", "confirmPassword")], updateOn: 'blur'
     }
   );
   get formControls(): any {
@@ -84,46 +88,52 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    this.isLoadingBtn = true;
-    this.isResend = false;
-    let data = {
-      name: this.registerForm?.value?.firstName + ' ' + this.registerForm?.value?.lastName,
-      email: this.registerForm?.value?.email,
-      phone: this.registerForm?.value?.phone,
-      birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
-      password: this.registerForm?.value?.password,
-      password_confirmation: this.registerForm?.value?.confirmPassword,
-      location_device_info: {
-        country_name: this.deviceLocationData?.country_name,
-        region: this.deviceLocationData?.region,
-        city: this.deviceLocationData?.city,
-        browser: this.deviceLocationData?.browser,
-        browser_version: this.deviceLocationData?.browser_version,
-        device_type: this.deviceLocationData?.deviceType,
-        os: this.deviceLocationData?.os,
-        os_version: this.deviceLocationData?.os_version
+    if (this.registerForm?.valid) {
+      this.isLoadingBtn = true;
+      this.isResend = false;
+      let data = {
+        name: this.registerForm?.value?.firstName + ' ' + this.registerForm?.value?.lastName,
+        email: this.registerForm?.value?.email,
+        phone: this.registerForm?.value?.phone,
+        birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
+        password: this.registerForm?.value?.password,
+        password_confirmation: this.registerForm?.value?.confirmPassword,
+        location_device_info: {
+          country_name: this.deviceLocationData?.country_name,
+          region: this.deviceLocationData?.region,
+          city: this.deviceLocationData?.city,
+          browser: this.deviceLocationData?.browser,
+          browser_version: this.deviceLocationData?.browser_version,
+          device_type: this.deviceLocationData?.deviceType,
+          os: this.deviceLocationData?.os,
+          os_version: this.deviceLocationData?.os_version
+        }
       }
+      this.authUserService?.register(data)?.subscribe(
+        (res: any) => {
+          if (res?.status == 'success') {
+            res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
+            this.router.navigate(['/auth/login']);
+            this.isLoadingBtn = false;
+            this.registerForm.reset();
+            this.isResend = true;
+          } else {
+            this.isLoadingBtn = false;
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          }
+        },
+        (err: any) => {
+          console.log(err);
+
+          if (err) {
+            err ? this.alertsService.openSweetAlert('error', err) : '';
+          }
+          this.isLoadingBtn = false;
+        }
+      );
+    } else {
+      this.checkValidityService?.validateAllFormFields(this.registerForm);
     }
-    this.authUserService?.register(data)?.subscribe(
-      (res: any) => {
-        if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
-          this.router.navigate(['/auth/login']);
-          this.isLoadingBtn = false;
-          this.registerForm.reset();
-          this.isResend = true;
-        } else {
-          this.isLoadingBtn = false;
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-        }
-      },
-      (err: any) => {
-        if (err?.error) {
-          err?.error ? this.alertsService.openSnackBar(err?.error) : '';
-        }
-        this.isLoadingBtn = false;
-      }
-    );
   }
   resend(): void {
     this.isLoadingResend = true;
@@ -136,12 +146,12 @@ export class RegisterComponent implements OnInit {
           res?.message ? this.alertsService.openSnackBar(res?.message) : '';
           this.isLoadingResend = false;
         } else {
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          // res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
       (err: any) => {
         if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          // err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
         this.isLoadingResend = false;
       }

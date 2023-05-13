@@ -1,3 +1,4 @@
+import { CheckValidityService } from './../../../../services/check-validity.service';
 import { patterns } from './../../../shared/TS Files/patternValidation';
 import { PublicService } from './../../../../services/public.service';
 import { AuthUserService } from './../../services/auth-user.service';
@@ -27,12 +28,13 @@ export class NewPasswordComponent implements OnInit {
   urlData: any;
 
   constructor(
+    private checkValidityService: CheckValidityService,
     public tanslationService: TranslationService,
     public translateService: TranslateService,
     public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
     private alertsService: AlertsService,
-    private publicService: PublicService,
+    public publicService: PublicService,
     private location: Location,
     public fb: FormBuilder,
     public router: Router,
@@ -51,7 +53,7 @@ export class NewPasswordComponent implements OnInit {
     confirmpassword: ['', Validators.required]
   },
     {
-      validators: [Validation.match("newpassword", "confirmpassword")],
+      validators: [Validation.match("newpassword", "confirmpassword")], updateOn: 'blur'
     }
   )
   get formControls(): any {
@@ -69,33 +71,38 @@ export class NewPasswordComponent implements OnInit {
   }
 
   submit(): void {
-    this.publicService.show_loader.next(true);
-    let data = {
-      email: this.urlData?.email,
-      password: this.newPasswordForm?.value?.newpassword,
-      password_confirmation: this.newPasswordForm?.value?.confirmpassword,
-      token: window.localStorage.getItem(keys?.forgetPassoedToken)
+    if (this.newPasswordForm?.valid) {
+      this.publicService.show_loader.next(true);
+      let data = {
+        email: this.urlData?.email,
+        password: this.newPasswordForm?.value?.newpassword,
+        password_confirmation: this.newPasswordForm?.value?.confirmpassword,
+        token: window.localStorage.getItem(keys?.forgetPassoedToken)
+      }
+
+      this.authUserService?.resetPassword(data)?.subscribe(
+        (res: any) => {
+          if (res?.code == 200) {
+            res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
+            this.publicService.show_loader.next(false);
+            window.localStorage.removeItem(keys?.forgetPassoedToken);
+            this.router.navigate(['/auth/login']);
+          } else {
+            this.publicService.show_loader.next(false);
+            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          }
+        },
+        (err: any) => {
+          if (err?.message) {
+            err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          }
+          this.publicService.show_loader.next(false);
+        }
+      );
+    } else {
+      this.checkValidityService?.validateAllFormFields(this.newPasswordForm);
     }
 
-    this.authUserService?.resetPassword(data)?.subscribe(
-      (res: any) => {
-        if (res?.code == 200) {
-          res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
-          this.publicService.show_loader.next(false);
-          window.localStorage.removeItem(keys?.forgetPassoedToken);
-          this.router.navigate(['/auth/login']);
-        } else {
-          this.publicService.show_loader.next(false);
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-        }
-      },
-      (err: any) => {
-        if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
-        }
-        this.publicService.show_loader.next(false);
-      }
-    );
   }
 
   ngOnDestroy(): void {
