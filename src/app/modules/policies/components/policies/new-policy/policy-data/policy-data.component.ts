@@ -249,7 +249,6 @@ export class PolicyDataComponent implements OnInit {
     );
     formData.append("phone_code", formValue?.phone_number?.dialCode);
     if (this.policyId) {
-
       this.policyService?.updatePolicy(formData, this.policyId)?.subscribe(
         (res: any) => {
           if (res?.code === "200") {
@@ -291,7 +290,7 @@ export class PolicyDataComponent implements OnInit {
     } else {
       this.policyService?.addPolicy(formData)?.subscribe(
         (res: any) => {
-          if (res?.code === "200") {
+          if (res?.code == "200") {
             if (res?.data?.policy?.payment_status == '0') {
               const ref = this.dialogService?.open(WantToPayModalComponent, {
                 dismissableMask: false,
