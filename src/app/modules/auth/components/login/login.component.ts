@@ -58,7 +58,7 @@ export class LogInComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [
       Validators.required,
-      // Validators.pattern(patterns?.password)
+      Validators.pattern(patterns?.password)
     ]]
   }, { updateOn: 'blur' });
   get formControls(): any {
@@ -78,6 +78,7 @@ export class LogInComponent implements OnInit {
   submit(): void {
     if (this.loginForm?.valid) {
       this.isLoadingBtn = true;
+      this.publicService.show_loader.next(true);
       let data = {
         email: this.loginForm?.value?.email,
         password: this.loginForm?.value?.password,
@@ -104,8 +105,10 @@ export class LogInComponent implements OnInit {
                     window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
                     this.router.navigate(['/home']);
                     this.isLoadingBtn = false;
+                    this.publicService.show_loader.next(false);
                   } else {
                     this.isLoadingBtn = false;
+                    this.publicService.show_loader.next(false);
                     res?.message ? this.alertsService.openSnackBar(res?.message) : '';
                   }
                 },
@@ -114,6 +117,7 @@ export class LogInComponent implements OnInit {
                     err?.message ? this.alertsService.openSnackBar(err?.message) : '';
                   }
                   this.isLoadingBtn = false;
+                  this.publicService.show_loader.next(false);
                 }
               );
             } else {
@@ -141,6 +145,7 @@ export class LogInComponent implements OnInit {
             console.log(res?.status);
 
             this.isLoadingBtn = false;
+            this.publicService.show_loader.next(false);
             res?.message ? this.alertsService.openSnackBar(res?.message) : '';
           }
         },
@@ -153,6 +158,7 @@ export class LogInComponent implements OnInit {
           err ? this.alertsService.openSweetAlert('error', err) : '';
           // }
           this.isLoadingBtn = false;
+          this.publicService.show_loader.next(false);
         }
       );
     } else {

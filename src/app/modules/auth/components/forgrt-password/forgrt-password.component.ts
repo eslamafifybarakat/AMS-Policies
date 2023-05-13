@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -37,6 +38,7 @@ export class ForgrtPasswordComponent implements OnInit {
     public authUserService: AuthUserService,
     private activateRoute: ActivatedRoute,
     public alertsService: AlertsService,
+    public publicService: PublicService,
     private location: Location,
     public dialog: MatDialog,
     public fb: FormBuilder,
@@ -49,7 +51,7 @@ export class ForgrtPasswordComponent implements OnInit {
   }
 
   submit(): void {
-    this.isloadingBtn = true;
+    this.publicService.show_loader.next(true);
     let data = {
       email: this.email
     }
@@ -57,10 +59,10 @@ export class ForgrtPasswordComponent implements OnInit {
       (res: any) => {
         if (res?.status == 'success') {
           res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           this.router.navigate(['/auth/email-verification', { email: this.email }]);
         } else {
-          this.isloadingBtn = false;
+          this.publicService.show_loader.next(false);
           res?.message ? this.alertsService.openSweetAlert('error', res?.message) : '';
         }
       },
@@ -68,7 +70,7 @@ export class ForgrtPasswordComponent implements OnInit {
         if (err?.message) {
           err?.message ? this.alertsService.openSweetAlert('error', err?.message) : '';
         }
-        this.isloadingBtn = false;
+        this.publicService.show_loader.next(false);
       }
     );
   }

@@ -89,7 +89,7 @@ export class RegisterComponent implements OnInit {
 
   submit(): void {
     if (this.registerForm?.valid) {
-      this.isLoadingBtn = true;
+      this.publicService.show_loader.next(true);
       this.isResend = false;
       let data = {
         name: this.registerForm?.value?.firstName + ' ' + this.registerForm?.value?.lastName,
@@ -114,11 +114,11 @@ export class RegisterComponent implements OnInit {
           if (res?.status == 'success') {
             res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
             this.router.navigate(['/auth/login']);
-            this.isLoadingBtn = false;
+            this.publicService.show_loader.next(false);
             this.registerForm.reset();
             this.isResend = true;
           } else {
-            this.isLoadingBtn = false;
+            this.publicService.show_loader.next(false);
             res?.message ? this.alertsService.openSnackBar(res?.message) : '';
           }
         },
@@ -128,7 +128,7 @@ export class RegisterComponent implements OnInit {
           if (err) {
             err ? this.alertsService.openSweetAlert('error', err) : '';
           }
-          this.isLoadingBtn = false;
+          this.publicService.show_loader.next(false);
         }
       );
     } else {
