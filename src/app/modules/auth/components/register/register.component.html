@@ -251,7 +251,7 @@
                         {{ "validations.reuired_field" | translate }}
                       </span>
                     </div>
-                    <div *ngIf="formControls?.['confirmPassword']?.errors?.['ConfirmPassword']">
+                    <div *ngIf="formControls?.['confirmPassword']?.errors?.['matching']">
                       <span class="text-danger fs-6">
                         {{ "validations.not_match" | translate }}
                       </span>

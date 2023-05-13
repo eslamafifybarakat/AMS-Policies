@@ -69,9 +69,7 @@ export class RegisterComponent implements OnInit {
       birth_date: ['', [Validators.required]],
       password: ['', [Validators.compose([Validators.required,
       Validators.pattern(patterns?.password)])]],
-      confirmPassword: ['', [Validators.compose([Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(20)])]]
+      confirmPassword: ['', [Validators.compose([Validators.required])]]
     },
     {
       validators: [Validation.match("password", "confirmPassword")], updateOn: 'blur'
