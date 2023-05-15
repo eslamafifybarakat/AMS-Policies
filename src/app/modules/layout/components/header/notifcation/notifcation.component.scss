@@ -35,11 +35,27 @@
 
   .alerts-content,
   .logs-content {
-    overflow-y: scroll;
-    max-height: 70vh !important;
+    overflow-y: auto;
+    max-height: 60vh !important;
+    // margin: 5px;
+  }
+  ::-o-scrollbar-track {
+    background: #f1f1f1;
   }
 
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--bg-main-color) !important;
+    opacity: 0.7;
+    border-radius: 10px;
+  }
   .notifcation-header {
-    background-image: linear-gradient(45deg, var(--bg-main-color), var(--bg-second-color));
+    // background-image: linear-gradient(45deg, var(--bg-main-color), var(--bg-second-color));
+    background-color: var(--bg-second-color);
+  }
+  .badge-main {
+    background-color: #fb211926;
+    width: 25px;
+    height: 25px;
   }
 }

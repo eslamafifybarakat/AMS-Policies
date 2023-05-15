@@ -127,6 +127,7 @@ export class LogInComponent implements OnInit {
                 email: this.loginForm?.value?.email,
                 password: this.loginForm?.value?.password
               }]);
+              this.publicService.show_loader.next(false);
             }
             // if (res?.data?.token !== null) {
             //   res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';

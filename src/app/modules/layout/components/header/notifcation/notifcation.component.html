@@ -11,25 +11,28 @@
     </button>
     <ul class="dropdown-menu p-0 shadow border-0 rounded-25" aria-labelledby="dropdownMenuButton1"
       [class.show]="collapse">
-      <div class="notifcation-header px-3">
-        <h1 class="fs-4 text-white py-3 text-dir">{{'notifcation.not-title'|translate }}
-          <span class="gray-light fs-6 mx-1">
-            {{items?.length}} {{'notifcation.not-title'|translate }}
+      <div class="notifcation-header px-3 ">
+        <h1 class="fs-4 text-main-color py-3 text-dir d-flex justify-content-between align-items-center">
+          <span>{{'notifcation.not-title'|translate }}</span>
+          <span class="gray-light fs-6 d-flex justify-content-center align-items-center badge-main rounded-circle">
+            {{notificationsList?.length}}
           </span>
+          <!-- {{'notifcation.not-title'|translate }}/ -->
         </h1>
       </div>
 
-      <div class="logs-content pb-5">
+      <div class="logs-content ">
         <div class="list-group">
-          <ng-container *ngFor="let item of items">
-            <a class="list-group-item list-group-item-action lh-lg p-3" aria-current="true">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small>
+          <ng-container *ngFor="let item of notificationsList">
+            <a class="border-bottom lh-lg p-3" aria-current="true">
+              <div class="d-flex w-100  gap-2">
+                <!-- <h5 class="mb-1">List group item heading</h5> -->
+                <!-- <small>
                   {{time | timeago}}
-                </small>
+                </small> -->
+                <i class="pi pi-info-circle text-secondary-color mt-1"></i>
+                <p class="text-muted lh-base">{{item?.title}}</p>
               </div>
-              <p class="text-muted lh-base">Some placeholder content in a paragraph.</p>
             </a>
           </ng-container>
         </div>

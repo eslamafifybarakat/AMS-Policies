@@ -1,10 +1,11 @@
-import { AbstractControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { roots } from './../modules/shared/TS Files/api-roots';
+import { environment } from '../../environments/environment';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { AbstractControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import * as printJS from 'print-js';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class PublicService {
   }
   clearValidationErrors(control: AbstractControl): void {
     control.markAsPending();
+  }
+
+  getAllNotifications(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.home?.getNotifications);
   }
 }
