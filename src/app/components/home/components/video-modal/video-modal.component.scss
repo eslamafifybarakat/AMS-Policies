@@ -1,0 +1,31 @@
+iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+img {
+  object-fit: cover;
+}
+
+.overlay-img-course {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d64a148a;
+}
+
+.close-icon-modal {
+  position: absolute;
+  top: -1rem;
+  right: -15px;
+  color: var(--text-main-color);
+  border: none;
+  width: 15px;
+  height: 15px;
+  background: #fb211938;
+}
+.play-icon {
+  z-index: 888;
+}

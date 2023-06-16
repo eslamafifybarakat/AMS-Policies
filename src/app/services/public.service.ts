@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import * as printJS from 'print-js';
 
@@ -37,7 +37,7 @@ export class PublicService {
   }
 
   translateTextFromJson(text: string): any {
-    return this.translate?.instant(text);
+    return this.translate.instant(text);
   }
 
   downloadExample(urlRoot: any): Observable<Blob> {
@@ -53,5 +53,16 @@ export class PublicService {
 
   getAllNotifications(): Observable<any> {
     return this.http.get<any>(this.apiUrl + roots?.home?.getNotifications);
+  }
+
+  validateAllFormFields(form: any): void {
+    Object.keys(form.controls).forEach(field => {
+      const control = form.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
   }
 }

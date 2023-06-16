@@ -4,6 +4,7 @@ import { DeviceLocationService } from './services/device-location.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { keys } from './modules/shared/TS Files/localstorage-key';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { PublicService } from './services/public.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs';
@@ -16,24 +17,23 @@ import * as AOS from 'aos';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'structure';
   languages = ["en", "ar"];
   browserLang: any;
-  currenttheme: any;
+  currentTheme: any;
   favIcon: HTMLLinkElement | any = document.querySelector("#appIcon");
+  showSpinner: boolean = true;
 
   constructor(
-    private translate: TranslateService,
+    private deviceLocationService: DeviceLocationService,
     public translationService: TranslationService,
     public translateService: TranslateService,
-    public _ThemeService: ThemeService,
-    private deviceLocationService: DeviceLocationService,
-    private titleService: Title,
-    private cdr: ChangeDetectorRef,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
+    private publicService: PublicService,
+    private translate: TranslateService,
+    public _ThemeService: ThemeService,
+    private titleService: Title,
+    private router: Router,
   ) {
-
     this.translate.addLangs(this.languages);
     const currentLang = localStorage.getItem(
       keys.language
@@ -66,12 +66,12 @@ export class AppComponent {
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         map(() => {
-          let child = this.activatedRoute.firstChild;
+          let child = this.activatedRoute?.firstChild;
           while (child) {
-            if (child.firstChild) {
+            if (child?.firstChild) {
               child = child.firstChild;
-            } else if (child.snapshot.data && child.snapshot.data["title"]) {
-              return child.snapshot.data["title"];
+            } else if (child?.snapshot?.data) {
+              return child.snapshot.data;
             } else {
               return null;
             }
@@ -81,14 +81,17 @@ export class AppComponent {
       )
       .subscribe((data: any) => {
         if (data) {
-          this.titleService.setTitle(
-            this.translateService.instant(data) +
-            " | " +
-            this.translateService.instant("general.sitename")
-          );
+          if (data["title"]) {
+            console.log(data["title"]);
+            this.titleService.setTitle(
+              this.publicService.translateTextFromJson("general.siteName") +
+              " | " +
+              this.publicService.translateTextFromJson(data["title"])
+            );
+          }
         } else {
           this.titleService.setTitle(
-            this.translateService.instant("general.sitename")
+            this.publicService.translateTextFromJson("general.siteName")
           );
         }
       });
@@ -96,20 +99,22 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-    this.favIcon.href = "https://img.icons8.com/material-rounded/2x/autodesk-autocad.png";
+    this.favIcon.href = "../assets/image/logo/sm-logo.png";
     this.deviceLocationService.getUserLocation();
     AOS.init();
-    this.currenttheme = window.localStorage.getItem(keys?.theme);
-    if (this.currenttheme == "light") {
+    this.currentTheme = window.localStorage.getItem(keys?.theme);
+    if (this.currentTheme == "light") {
       this._ThemeService.setLightTheme();
     }
-    if (this.currenttheme == "dark") {
+    if (this.currentTheme == "dark") {
       this._ThemeService.setDarkTheme();
     }
     else {
       this._ThemeService.setLightTheme();
     }
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 3000);
   }
-
 }
 

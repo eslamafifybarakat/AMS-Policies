@@ -1,11 +1,8 @@
-.register-img {
-  height: 75%;
-  min-height: 65vh;
-  border-radius: 1rem 0 0 1rem;
+:host::ng-deep {
+  .p-input-icon-right > i:last-of-type {
+    transform: translate(0, 0) !important;
+  }
 }
-.signUp-img {
-  height: 100vh !important;
-  position: fixed;
-  top: 0;
-  width: 40%;
+.disabled {
+  pointer-events: none;
 }

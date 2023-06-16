@@ -7,13 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  carouselItems: any = [{
+    title: 'Search for best policy',
+    desc: 'Find the best policy for you and make your appointment easily.'
+  },
+  {
+    title: 'Search for best policy2',
+    desc: 'Find the best policy for you and make your appointment easily.2'
+  },
+  {
+    title: 'Search for best policy3',
+    desc: 'Find the best policy for you and make your appointment easily.3'
+  }];
 
   constructor(
     private deviceLocationService: DeviceLocationService
   ) { }
 
   ngOnInit(): void {
-    this.deviceLocationService.getUserLocation();
+    this.deviceLocationService?.getUserLocation();
   }
 
 }

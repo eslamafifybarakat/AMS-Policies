@@ -1,128 +1,87 @@
-<div class="auth-form">
-  <!-- <ng-container *ngIf="isLoadingBtn">
-    <div class="overlay-spinner-loading d-flex justify-content-center align-items-center">
-      <div class="spinner-grow" role="status">
-      </div>
-    </div>
-  </ng-container> -->
-
-  <div class="login overflow-hidden">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-6 d-medium-none h-100">
-        <div class="h-100 d-flex justify-content-center align-items-center">
-          <!-- <img class="login-img img-fluid fit-object-cover" src="assets/image/policy/online-policy.jpg" alt="login-omg"> -->
-          <img class="login-img img-fluid fit-object-cover w-75" src="../../../../../assets/image/login.svg" alt="">
-        </div>
-      </div>
-
-      <div class="col-xl-5 col-md-6 col-sm-8 col-12 h-100">
-        <div class="d-flex flex-column justify-content-center align-items-center min-vh-100 mx-5">
-          <div class="d-flex justify-content-between align-items-center select-language w-100 mt-3">
-            <img *ngIf="currentLanguage=='ar'" src="assets/image/us.svg" class="fit-contain lang"
-              (click)="translationService?.changeLang('en')">
-            <img *ngIf="currentLanguage=='en'" src="assets/image/eg.svg" class="fit-contain lang"
-              (click)="translationService?.changeLang('ar')">
-            <i class="fa fa-arrow-left scaleX-rtl" style="font-size: 1.5rem" (click)="back()"></i>
-          </div>
-
-          <img src="assets/image/login.svg" width="250" class="d-xl-none d-block" alt="login">
-
-          <h2 class="text-black-color mt-3 fs-3">
-            {{'form.login' | translate}}
-          </h2>
-
-          <div class="d-flex justify-content-between align-items-center w-100">
-            <form [formGroup]="loginForm" (ngSubmit)="submit()" class="form-content py-5 w-100">
-
-              <div class="mb-5">
-                <div>
-                  <label class="form-label">
-                    {{'form.email'|translate}}
-                  </label>
-                  <input type="email" class="form-control" formControlName="email"
-                    placeholder="{{'placeholder.email' | translate}}"
-                    (input)="publicService?.clearValidationErrors(formControls?.email)"
-                    [class.is-invalid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.invalid"
-                    [class.is-valid]="(formControls.email.touched||formControls.email.dirty)&&formControls.email.valid">
-                </div>
-                <div class="mt-2">
-                  <div
-                    *ngIf="(formControls?.email?.touched || formControls?.email?.dirty) && formControls?.email?.invalid">
-                    <div *ngIf="formControls?.email?.errors?.['required']">
-                      <span class="text-danger fs-6">
-                        {{'validations.reuired_field'|translate}}
-                      </span>
-                    </div>
-                    <div *ngIf="formControls?.email?.errors?.['email']">
-                      <span class="text-danger fs-6">
-                        {{'validations.not_valid'|translate}}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-5">
-                <div class="d-flex justify-content-between">
-                  <label for="exampleInputPassword1" class="form-label">
-                    {{'form.password'|translate}}
-                  </label>
-                  <a (click)="forgetPassword()" class="text-secondary-color">
-                    {{'form.forget_password'|translate}}
-                  </a>
-                </div>
-                <div class="input-group"
-                  [class.border-red]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.invalid"
-                  [class.border-green]="(formControls.password.touched||formControls.password.dirty)&&formControls.password.valid">
-                  <input [type]="showeye?'text':'password'" class="login-password-form form-control form-control-single"
-                    id="exampleInputPassword1" formControlName="password"
-                    (input)="publicService?.clearValidationErrors(formControls?.password)"
-                    placeholder="{{'placeholder.password' | translate}}">
-                  <span class="togglepassword input-group-text bg-white-color input-group-text-right"
-                    (click)="togglepassword()">
-                    <i class="bg-white-color" [class]="showeye?'fas fa-eye':'fas fa-eye-slash'"></i></span>
-                </div>
-                <div class="mt-2">
-                  <div
-                    *ngIf="(formControls?.password?.touched || formControls?.password?.dirty) && formControls?.password?.invalid">
-                    <div *ngIf="formControls?.password?.errors?.['required']">
-                      <span class="text-danger fs-6">
-                        {{'validations.reuired_field'|translate}}
-                      </span>
-                    </div>
-                    <ng-container *ngIf="formControls?.password?.errors?.['pattern']">
-                      <span class="text-danger fs-6 lh-sm">
-                        {{'validations.passwordPattern'|translate}}
-                      </span>
-                    </ng-container>
-                    <!-- <div
-                      *ngIf="formControls?.password?.errors?.['minlength'] || formControls?.password?.errors?.['maxlength']">
-                      <span class="text-danger fs-6">
-                        {{'validations.pass_length'|translate}}
-                      </span>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-
-              <button type="submit" class="btn w-100 btn-solid-main mb-3">
-                {{'form.login'|translate}}
-              </button>
-
-              <div class="d-flex justify-content-start align-items-center">
-                <h1 class="text-secondary-color fw-bold">
-                  {{'form.no_account'|translate}}
-                  <a routerLink="/auth/register">{{'form.registeration'|translate}}</a>
-                </h1>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-1 d-medium-none"></div>
+<div id="login" class="py-4 auth-form bg-transparent">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-md-4 mb-2">
+    <a class="d-lg-none d-flex align-items-center gap-2 text-dark-color" [routerLink]="['/home']">
+      <i class="fas fa-arrow-left scaleX-rtl"></i>
+      <span>{{'general.backToHome'|translate}}</span>
+    </a>
+    <div class="justify-content-end d-flex me-auto">
+      <app-language-selector></app-language-selector>
     </div>
   </div>
-
+  <div class="d-lg-none d-flex justify-content-center align-items-center gap-3 flex-wrap mb-3">
+    <img src="assets/image/logo/logo.png" class="form-logo mb-2" alt="logo" [routerLink]="['/home']">
+    <!-- <img src="assets/image/logo/logo.png" class="form-logo mb-2" alt="logo" [routerLink]="['/home']"> -->
+  </div>
+  <h2 class="fs-1 text-sm-center">{{'form.welcome'|translate}}</h2>
+  <p class="mt-2 text-sm-center lh-sm">{{'form.insertEmailAndPassword'|translate}}</p>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()" class="py-5">
+    <div class="mb-4">
+      <input type="text" class="form-control" formControlName="email" autocomplete="cc-name"
+        (input)="publicService?.clearValidationErrors(formControls?.email)"
+        [class.is-invalid]="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)"
+        placeholder="{{'placeholder.email' | translate}}">
+      <div class="mt-2">
+        <ng-container
+          *ngIf="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)">
+          <ng-container
+            *ngIf="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)">
+            <ng-container *ngIf="formControls?.email?.errors?.['required']">
+              <span class="text-danger fs-8">
+                {{'validations.requiredField'|translate}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formControls?.email?.errors?.pattern">
+              <span class="text-danger fs-8 d-block lh-base">
+                {{'validations.notValid'|translate}}
+              </span>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="rounded-input p-mask"
+        [class.border-red]="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched)"
+        [class.is-valid]="formControls?.password?.valid && (formControls?.password?.dirty || formControls?.password?.touched)">
+        <p-password [toggleMask]="true" formControlName="password" placeholder="{{'placeholder.password' | translate}}"
+          class="position-relative" autocomplete="cc-name" [feedback]="false">
+        </p-password>
+      </div>
+      <div class="mt-2">
+        <ng-container
+          *ngIf="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched) ">
+          <ng-container *ngIf="formControls?.password?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{'validations.requiredField'|translate}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="formControls?.password?.errors?.['pattern']">
+            <span class="text-danger fs-8 lh-sm">
+              {{'validations.passwordPattern'|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+      <u class="text-main-color">
+        <a class="fs-8 text-main-color" (click)="forgetPassword()">
+          {{'form.forget_password'|translate}}
+        </a>
+      </u>
+    </div>
+    <button type="submit" class="btn w-100 btn-solid-main form-btn mt-4" [disabled]="isLoadingBtn">
+      <span>
+        {{'form.login'|translate}}
+      </span>
+    </button>
+  </form>
+  <div class=" mt-5">
+    <p class="d-flex justify-content-center align-items-center gap-2">
+      <span>{{'form.notMember'|translate}}</span>
+      <a class="text-main-color ps-1" [routerLink]="['/auth/register']">
+        {{'form.registration'|translate}}
+      </a>
+    </p>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="header" (clickOutside)="collapsed == true ? collapsed = false : collapsed = false">
+<!-- <div class="header" (clickOutside)="collapsed == true ? collapsed = false : collapsed = false">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light py-2 px-3 rounded">
       <a class="d-flex" [routerLink]="['/home/policies/dashboard']">
@@ -36,4 +36,61 @@
       </div>
     </nav>
   </div>
-</div>
+</div> -->
+<nav class="navbar navbar-expand-lg position-fixed w-100"
+  (clickOutside)="collapsedMenu == true ? collapsedMenu = false :''">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2">
+      <img src="assets/image/logo/logo.png" alt="logo" class="logo h-100">
+      <!-- <img src="assets/image/logo/logo.png" alt="logo" class="logo h-100"> -->
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      [attr.aria-expanded]="!collapsedMenu" (click)="collapsedMenu = !collapsedMenu" aria-label="Toggle navigation">
+      <div class="menu-icon d-flex justify-content-between flex-column align-items-end">
+        <span class="line"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </div>
+    </button>
+    <div class="collapse navbar-collapse m-auto" id="navbarSupportedContent" [class.show]="collapsedMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="['/home']">{{'nav.home'|translate}}</a>
+        </li>
+        <ng-container *ngIf="isLoggedIn; else noLogged">
+          <li class="nav-item">
+            <a class="nav-link">{{'nav.statistic'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">{{'nav.policies'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">{{'nav.payments'|translate}}</a>
+          </li>
+        </ng-container>
+        <ng-template #noLogged>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/pricing']">{{'nav.pricing'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about-us']">{{'nav.about'|translate}}</a>
+          </li>
+        </ng-template>
+
+      </ul>
+      <div class="d-flex align-items-center justify-content-md-center gap-4 py-lg-0 py-3">
+        <ng-container *ngIf="!isLoggedIn">
+          <button class="btn btn-outline-main" [routerLink]="'/auth/login'">{{'form.login'|translate}}</button>
+          <button class="btn btn-solid-main">{{'general.bookDemo'|translate}}</button>
+        </ng-container>
+        <app-theme></app-theme>
+        <app-language-selector></app-language-selector>
+        <ng-container *ngIf="isLoggedIn">
+          <app-user-info></app-user-info>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</nav>

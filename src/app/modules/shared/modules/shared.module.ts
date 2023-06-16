@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { ConfirmDeleteModalComponent } from './../component/confirm-delete-modal/confirm-delete-modal.component';
 import { TranslationChildModule } from './translation-child/translation-child.module';
 import { CountdownComponent } from './../component/countdown/countdown.component';
@@ -36,6 +37,10 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { DynamicTableComponent } from '../component/dynamic-table/dynamic-table.component';
 import { SkeletonComponent } from '../component/skeleton/skeleton.component';
+import { HeaderComponent } from '../../layout/components/header/header.component';
+import { FooterComponent } from '../../layout/components/footer/footer.component';
+import { UserInfoComponent } from '../../layout/components/header/user-info/user-info.component';
+import { ThemeComponent } from '../../layout/components/header/theme/theme.component';
 
 const allShared = [
   FormsModule,
@@ -54,7 +59,8 @@ const allShared = [
   NgbAlertModule,
   NgxIntlTelInputModule,
   NgbModule,
-  PrimeNgModule
+  PrimeNgModule,
+  RouterModule
 ];
 
 const alyleUi = [
@@ -74,6 +80,10 @@ const components = [
   DynamicTableComponent,
   CountdownComponent,
   SkeletonComponent,
+  HeaderComponent,
+  FooterComponent,
+  UserInfoComponent,
+  ThemeComponent
 ];
 
 @NgModule({

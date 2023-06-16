@@ -20,21 +20,18 @@ export class ThemeService {
     return this.active;
   }
 
-  setDarkTheme(): void {
-    this.setActiveTheme(dark);
-    localStorage.setItem(keys?.theme, "dark");
-    localStorage.setItem("xsitethemevalue", "false");
-  }
-
   setLightTheme(): void {
     this.setActiveTheme(light);
-    localStorage.setItem(keys?.theme, "light");
-    localStorage.setItem("xsitethemevalue", "true");
+    localStorage.setItem(keys?.theme, 'light');
+  }
+  setDarkTheme(): void {
+    this.setActiveTheme(dark);
+    localStorage.setItem(keys?.theme, 'dark');
   }
 
   setColorTheme(color: any): void {
     Object.keys(this.active.properties).forEach((property) => {
-      if (property == "--text-main-color" || property == "--bg-main-color") {
+      if (property == '--text-main-color' || property == '--bg-main-color') {
         this.active.properties[property] = color;
       }
       document.documentElement.style.setProperty(
@@ -42,6 +39,7 @@ export class ThemeService {
         this.active.properties[property]
       );
     });
+    localStorage.setItem(keys?.theme, 'light');
   }
 
   setActiveTheme(theme: Theme): void {

@@ -8,6 +8,12 @@
 
 //----- Components -----//
 @media (max-width: 767px) {
+  .hero-layer {
+    scale: 0.75 !important;
+  }
+  .w-sm-100 {
+    width: 100% !important;
+  }
   .mat-dialog-container,
   .cdk-overlay-pane {
     width: 100% !important;
@@ -126,6 +132,9 @@
 }
 
 @media (max-width: 425px) {
+  .hero-layer {
+    scale: 0.65 !important;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -167,6 +176,9 @@
 }
 
 @media (max-width: 991px) {
+  .hero-layer {
+    scale: 0.85;
+  }
   .pay-modal {
     width: 80% !important;
   }
@@ -280,8 +292,28 @@
     min-height: calc(100vh - 142px) !important;
   }
 }
-
+@media (min-width: 551px) {
+  .otp-code {
+    input {
+      font-size: 25px !important;
+      height: 3.9rem !important;
+      width: 5rem !important;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .otp-code {
+    input {
+      width: 4rem !important;
+    }
+  }
+}
 @media (max-width: 565px) {
+  .otp-code {
+    input {
+      width: 4rem !important;
+    }
+  }
   .scroll-to-top {
     width: 40px !important;
     height: 40px !important;
@@ -292,12 +324,32 @@
     transform: translate3d(-17px, 38px, 0px) !important;
   }
 }
-
+@media (max-width: 425px) {
+  .otp-code {
+    input {
+      width: 3.5rem !important;
+      font-size: 21px !important;
+      height: 3.3rem !important;
+    }
+  }
+}
 @media (max-width: 375px) {
+  .otp-code {
+    input {
+      width: 2.5rem !important;
+      font-size: 20px !important;
+    }
+  }
 }
 
 @media (max-width: 350px) {
   .dropdown-theme .dropdown-menu {
     right: -4rem !important;
+  }
+  .otp-code {
+    input {
+      width: 2.3rem !important;
+      font-size: 20px !important;
+    }
   }
 }

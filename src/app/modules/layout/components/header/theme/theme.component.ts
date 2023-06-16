@@ -8,21 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme.component.scss']
 })
 export class ThemeComponent implements OnInit {
-  currenttheme = window.localStorage.getItem(keys?.theme);
+  currentTheme = window?.localStorage?.getItem(keys?.theme);
   theme: any = "true";
 
   constructor(
-    public _ThemeService: ThemeService
+    public themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
-    this.theme = window.localStorage.getItem("xsitethemevalue");
-  }
-  light(): void {
-    this.theme = window.localStorage.getItem("xsitethemevalue");
-  }
-  dark(): void {
-    this.theme = window.localStorage.getItem("xsitethemevalue");
+    this.theme = window?.localStorage?.getItem(keys?.theme);
+
   }
 
+  light(): void {
+    this.themeService?.setLightTheme();
+    this.currentTheme = window?.localStorage?.getItem(keys?.theme);
+  }
+  dark(): void {
+    this.themeService?.setDarkTheme();
+    this.currentTheme = window?.localStorage?.getItem(keys?.theme);
+  }
+  color(color: string): void {
+    this.themeService?.setColorTheme(color);
+    this.currentTheme = window?.localStorage?.getItem(keys?.theme);
+  }
 }

@@ -7,7 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmLoginCodeComponent } from './components/confirm-login-code/confirm-login-code.component';
-import { ForgrtPasswordComponent } from './components/forgrt-password/forgrt-password.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { LogInComponent } from './components/login/login.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -20,7 +20,7 @@ import { CodeInputModule } from 'angular-code-input';
     AuthComponent,
     LogInComponent,
     RegisterComponent,
-    ForgrtPasswordComponent,
+    ForgetPasswordComponent,
     VerfiyPasswordComponent,
     NewPasswordComponent,
     ConfirmLoginCodeComponent,

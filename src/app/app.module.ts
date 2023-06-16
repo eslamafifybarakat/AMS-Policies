@@ -14,10 +14,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { interceptorProviders } from './modules/shared/TS Files/interceptors';
 import { SharedModule } from './modules/shared/modules/shared.module';
 import { OverlayLoadingComponent } from './modules/shared/component/overlay-loading/overlay-loading.component';
+import { HomeComponent } from './components/home/home.component';
+import { VideoModalComponent } from './components/home/components/video-modal/video-modal.component';
+import { ScrollToTopComponent } from './modules/shared/component/scroll-to-top/scroll-to-top.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 @NgModule({
   declarations: [
     AppComponent,
     OverlayLoadingComponent,
+    HomeComponent,
+    VideoModalComponent,
+    ScrollToTopComponent,
+    PricingComponent,
+    ContactUsComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

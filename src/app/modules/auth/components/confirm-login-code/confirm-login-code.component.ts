@@ -1,15 +1,14 @@
-import { PublicService } from './../../../../services/public.service';
-import { AlertsService } from './../../../shared/services/alerts/alerts.service';
-import { AuthUserService } from './../../services/auth-user.service';
-import { Subscription } from 'rxjs';
-import { userInfo } from './../../auth-user';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
+import { PublicService } from './../../../../services/public.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { AuthUserService } from './../../services/auth-user.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
-import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { userInfo } from './../../auth-user';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-confirm-login-code',
   templateUrl: './confirm-login-code.component.html',
@@ -18,15 +17,16 @@ import { Location } from '@angular/common';
 export class ConfirmLoginCodeComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
-  isloading: boolean = false;
-  isloadingBtn: boolean = false;
+  isLoading: boolean = false;
+  isLoadingBtn: boolean = false;
   isWaiting: boolean = false;
   urlData: any;
-  time: any = Date.now() + ((60 * 1000) * 0.1); // current time + 1 minute ///
+  time: any = Date.now() + ((60 * 1000) * 0.1);
   minute: any;
   currentLanguage: any;
   codeLength: any;
   deviceLocationData: any;
+  email: any;
 
   constructor(
     public translationService: TranslationService,
@@ -34,17 +34,17 @@ export class ConfirmLoginCodeComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private publicService: PublicService,
     public alertsService: AlertsService,
-    private cdr: ChangeDetectorRef,
     public _location: Location,
     public fb: FormBuilder,
     public router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(keys.language);
+    this.currentLanguage = window?.localStorage?.getItem(keys.language);
     this.minute = this.time;
-    this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
-    this.urlData = this.activateRoute.snapshot.params;
+    this.deviceLocationData = JSON.parse(window?.localStorage?.getItem(keys?.deviceLocation) || '{}');
+    this.urlData = this.activateRoute?.snapshot?.params;
+    this.email = this.urlData?.email;
   }
 
   confirmLoginForm = this.fb.group({
@@ -53,7 +53,7 @@ export class ConfirmLoginCodeComponent implements OnInit {
   })
 
   resendCode(): void {
-    this.publicService.show_loader.next(true);
+    this.publicService?.show_loader?.next(true);
     this.isWaiting = true;
     let data = {
       email: this.urlData?.email,
@@ -73,28 +73,28 @@ export class ConfirmLoginCodeComponent implements OnInit {
       (res: any) => {
         if (res?.code == 200) {
           this.codeLength = '';
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-          this.publicService.show_loader.next(false);
+          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
+          this.publicService?.show_loader?.next(false);
           this.minute = Date.now() + ((60 * 1000) * 1);
           this.isWaiting = false;
         } else {
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
-          this.publicService.show_loader.next(false);
+          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
+          this.publicService?.show_loader?.next(false);
         }
       },
       (err: any) => {
         if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
-          this.publicService.show_loader.next(false);
+          err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
+          this.publicService?.show_loader?.next(false);
         }
       }
     );
   }
   confirm(): void {
-    this.publicService.show_loader.next(true);
+    this.publicService?.show_loader?.next(true);
     let data = {
-      email: this.urlData.email,
-      password: this.urlData.password,
+      email: this.urlData?.email,
+      password: this.urlData?.password,
       code: this.codeLength
     }
     this.authUserService?.verificationCode(data)?.subscribe(
@@ -104,33 +104,33 @@ export class ConfirmLoginCodeComponent implements OnInit {
           this.authUserService?.getUserData()?.subscribe(
             (res: any) => {
               if (res?.code == 200) {
-                window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
+                window.localStorage?.setItem(keys?.userData, JSON?.stringify(res?.data));
                 this.router.navigate(['/home']);
-                this.publicService.show_loader.next(false);
+                this.publicService?.show_loader?.next(false);
               } else {
-                this.publicService.show_loader.next(false);
-                res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+                this.publicService?.show_loader?.next(false);
+                res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
               }
             },
             (err: any) => {
               if (err?.message) {
-                err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+                err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
               }
-              this.publicService.show_loader.next(false);
+              this.publicService?.show_loader?.next(false);
             }
           );
-          this.publicService.show_loader.next(false);
+          this.publicService?.show_loader?.next(false);
           this.confirmLoginForm.reset();
         } else {
-          this.publicService.show_loader.next(false);
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          this.publicService?.show_loader?.next(false);
+          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
         }
       },
       (err: any) => {
         if (err?.message) {
-          err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+          err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
         }
-        this.publicService.show_loader.next(false);
+        this.publicService?.show_loader?.next(false);
       }
     );
   }
@@ -140,8 +140,9 @@ export class ConfirmLoginCodeComponent implements OnInit {
       this.isWaiting = true;
     }
   }
+
   back(): void {
-    this._location.back();
+    this._location?.back();
   }
 
   onCodeChanged(code: string): void {
@@ -152,6 +153,6 @@ export class ConfirmLoginCodeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 }

@@ -1,23 +1,50 @@
+import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './modules/shared/services/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaymentResultComponent } from './modules/policies/components/policies/new-policy/checkout/payment-result/payment-result.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "auth",
-    pathMatch: "full",
+    path: 'home',
+    component: HomeComponent,
+    data: {
+      title: 'titles.home'
+    }
   },
   {
-    path: 'home',
+    path: 'about-us',
+    component: AboutUsComponent,
+    data: {
+      title: 'titles.aboutUs'
+    }
+  },
+  {
+    path: 'pricing',
+    component: PricingComponent,
+    data: {
+      title: 'titles.pricing'
+    }
+  },
+  {
+    path: 'contact-us',
+    component: ContactUsComponent,
+    data: {
+      title: 'titles.contactUs'
+    }
+  },
+  {
+    path: '',
     canActivate: [AuthGuard],
     loadChildren: () => import('./modules/layout/layout.module')
       .then(m => m.LayoutModule)
   },
   {
     path: 'auth',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/auth/auth.module')
       .then(m => m.AuthModule)
   },
@@ -28,6 +55,11 @@ const routes: Routes = [
     data: {
       title: 'titles.payments'
     }
+  },
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
   },
   {
     path: 'error',

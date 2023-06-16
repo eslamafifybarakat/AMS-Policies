@@ -1,3 +1,26 @@
-<app-overlay-loading></app-overlay-loading>
-<router-outlet></router-outlet>
+<ng-container *ngIf="showSpinner;else noSpinner">
+  <div class="context">
+    <div class="spinner d-flex justify-content-center align-items-center">
+      <img src="assets/image/logo/sm-logo.png" class="logo" alt="logo">
+    </div>
+  </div>
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 
+</ng-container>
+<ng-template #noSpinner>
+  <app-overlay-loading></app-overlay-loading>
+  <router-outlet></router-outlet>
+</ng-template>

@@ -1,21 +1,18 @@
-import { PublicService } from './../../../../services/public.service';
-import { CheckValidityService } from './../../../../services/check-validity.service';
-import { patterns } from './../../../shared/TS Files/patternValidation';
-
-import { Subscription } from 'rxjs';
-import { keys } from './../../../shared/TS Files/localstorage-key';
-import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
-import { Router } from '@angular/router';
+import { CheckValidityService } from './../../../../services/check-validity.service';
+import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { ConfirmPasswordValidator } from './confirm-password-validator';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-
-import { Location, DatePipe } from '@angular/common';
+import { patterns } from './../../../shared/TS Files/patternValidation';
+import { PublicService } from './../../../../services/public.service';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import { keys } from './../../../shared/TS Files/localstorage-key';
 import { AuthUserService } from '../../services/auth-user.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import Validation from "../../../shared/utils/validation";
+import { Location, DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +23,6 @@ export class RegisterComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   isLoadingBtn: boolean = false;
   isLoadingResend: boolean = false;
-  showeye: boolean = false;
   currentLanguage: any;
   deviceLocationData: any;
   isResend: boolean = false;
@@ -39,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private checkValidityService: CheckValidityService,
-    public tanslationService: TranslationService,
     public translateService: TranslateService,
     public authUserService: AuthUserService,
     public publicService: PublicService,
@@ -58,31 +53,38 @@ export class RegisterComponent implements OnInit {
 
   registerForm = this.fb.group(
     {
-      firstName: ['', [Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20)]],
-      lastName: ['', [Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20)]],
-      phone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', {
+        validators: [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)], updateOn: 'blur'
+      }],
+      lastName: ['', {
+        validators: [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)], updateOn: 'blur'
+      }],
+      phone: ['', { validators: [Validators.required], updateOn: 'blur' }],
+      email: ['', { validators: [Validators.required, Validators.pattern(patterns?.email)], updateOn: 'blur' }],
       birth_date: ['', [Validators.required]],
-      password: ['', [Validators.compose([Validators.required,
-      Validators.pattern(patterns?.password)])]],
-      confirmPassword: ['', [Validators.compose([Validators.required])]]
+      password: ['', {
+        validators: [Validators.required,
+        Validators.pattern(patterns?.password)], updateOn: 'blur'
+      }],
+      confirmPassword: ['', {
+        validators: [Validators.required,
+        Validators.pattern(patterns?.password)], updateOn: 'blur'
+      }]
     },
     {
-      validators: [Validation.match("password", "confirmPassword")], updateOn: 'blur'
+      validator: ConfirmPasswordValidator.MatchPassword
     }
   );
   get formControls(): any {
     return this.registerForm?.controls;
   }
-  togglepassword(): void {
-    this.showeye = !this.showeye;
-  }
+
   back(): void {
-    this.location.back();
+    this.location?.back();
   }
 
   submit(): void {
@@ -110,23 +112,21 @@ export class RegisterComponent implements OnInit {
       this.authUserService?.register(data)?.subscribe(
         (res: any) => {
           if (res?.status == 'success') {
-            res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
-            this.router.navigate(['/auth/login']);
-            this.publicService.show_loader.next(false);
-            this.registerForm.reset();
+            res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+            this.router?.navigate(['/auth/login']);
+            this.publicService?.show_loader?.next(false);
+            this.registerForm?.reset();
             this.isResend = true;
           } else {
-            this.publicService.show_loader.next(false);
-            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+            this.publicService?.show_loader?.next(false);
+            res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
           }
         },
         (err: any) => {
-          console.log(err);
-
           if (err) {
-            err ? this.alertsService.openSweetAlert('error', err) : '';
+            err ? this.alertsService?.openSweetAlert('error', err) : '';
           }
-          this.publicService.show_loader.next(false);
+          this.publicService?.show_loader?.next(false);
         }
       );
     } else {
@@ -141,15 +141,13 @@ export class RegisterComponent implements OnInit {
     this.authUserService?.resendEmail(data)?.subscribe(
       (res: any) => {
         if (res?.status == 'success') {
-          res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+          res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
           this.isLoadingResend = false;
         } else {
-          // res?.message ? this.alertsService.openSnackBar(res?.message) : '';
         }
       },
       (err: any) => {
         if (err?.message) {
-          // err?.message ? this.alertsService.openSnackBar(err?.message) : '';
         }
         this.isLoadingResend = false;
       }
@@ -157,6 +155,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 }

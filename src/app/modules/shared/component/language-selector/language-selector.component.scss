@@ -1,22 +1,22 @@
 .dropdown-language {
   .dropdown .dropdown-menu {
-    top: 3.5rem !important;
+    top: 0.7rem !important;
   }
 
-  // .dropdown-toggle::after {
-  //   display: inline-block !important;
-  //   position: relative;
-  //   top: -0.4rem;
-  // }
+  .dropdown-toggle::after {
+    display: inline-block !important;
+    //   position: relative;
+    //   top: -0.4rem;
+  }
 
   .dropdown-lang-select {
     width: 3rem;
-    height: 3rem
+    height: 3rem;
   }
 
   .dropdown-flag {
     width: 3rem;
-    height: 3rem
+    height: 3rem;
   }
 
   .drop-img {
@@ -24,8 +24,9 @@
   }
 
   .drop-select {
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
+    border-radius: 5px;
   }
 
   .drop-select:hover {

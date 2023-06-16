@@ -1,10 +1,9 @@
-import { PublicService } from './../../../../services/public.service';
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
 import { CheckValidityService } from '../../../../services/check-validity.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { patterns } from '../../../shared/TS Files/patternValidation';
+import { PublicService } from './../../../../services/public.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
-import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { AuthUserService } from '../../services/auth-user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -20,20 +19,11 @@ import { Subscription } from 'rxjs';
 })
 export class LogInComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
-  showeye: boolean = false;
   currentLanguage: any;
   deviceLocationData: any;
 
   loginData: any;
-  separateDialCode = false;
-  SearchCountryField = SearchCountryField;
-  CountryISO = CountryISO;
-  preferredCountries: CountryISO[] = [
-    CountryISO.Egypt,
-    CountryISO.UnitedKingdom
-  ];
-
-  isLoggedin?: boolean;
+  isLoggedIn?: boolean;
   userData: any = userInfo;
   isLoadingBtn: boolean = false;
 
@@ -50,12 +40,12 @@ export class LogInComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(keys.language);
-    this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
+    this.currentLanguage = window?.localStorage?.getItem(keys.language);
+    this.deviceLocationData = JSON?.parse(window?.localStorage?.getItem(keys?.deviceLocation) || '{}');
   }
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern(patterns?.email)]],
     password: ['', [
       Validators.required,
       Validators.pattern(patterns?.password)
@@ -65,9 +55,6 @@ export class LogInComponent implements OnInit {
     return this.loginForm?.controls;
   }
 
-  togglepassword(): void {
-    this.showeye = !this.showeye;
-  }
   forgetPassword(): void {
     this.router.navigate(['/auth/forget-password'])
   }
@@ -96,70 +83,48 @@ export class LogInComponent implements OnInit {
       this.authUserService?.login(data)?.subscribe(
         (res: any) => {
           if (res?.code == 200) {
-            window.localStorage.setItem(keys.token, res?.data?.token);
-            window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data));
+            window?.localStorage?.setItem(keys?.token, res?.data?.token);
+            window?.localStorage?.setItem(keys?.userLoginData, JSON.stringify(res?.data));
             if (res?.data?.verified == true) {
               this.authUserService?.getUserData()?.subscribe(
                 (res: any) => {
                   if (res?.code == 200) {
-                    window.localStorage.setItem(keys.userData, JSON.stringify(res?.data));
+                    window?.localStorage?.setItem(keys?.userData, JSON?.stringify(res?.data));
                     this.router.navigate(['/home']);
                     this.isLoadingBtn = false;
                     this.publicService.show_loader.next(false);
                   } else {
                     this.isLoadingBtn = false;
-                    this.publicService.show_loader.next(false);
-                    res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+                    this.publicService?.show_loader?.next(false);
+                    res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
                   }
                 },
                 (err: any) => {
                   if (err?.message) {
-                    err?.message ? this.alertsService.openSnackBar(err?.message) : '';
+                    err?.message ? this.alertsService?.openSnackBar(err?.message) : '';
                   }
                   this.isLoadingBtn = false;
-                  this.publicService.show_loader.next(false);
+                  this.publicService?.show_loader?.next(false);
                 }
               );
             } else {
-              // res?.message ? this.alertsService.openSnackBar(res?.message) : '';
               this.router.navigate(['/auth/confirm-login-code', {
                 user_id: res?.data?.id,
                 email: this.loginForm?.value?.email,
                 password: this.loginForm?.value?.password
               }]);
-              this.publicService.show_loader.next(false);
+              this.publicService?.show_loader?.next(false);
             }
-            // if (res?.data?.token !== null) {
-            //   res?.message ? this.alertsService.openSweetAlert('info', res?.message) : '';
-            //   this.loginForm.reset();
-            //   this.router.navigate(['/home']);
-            //   this.isLoadingBtn = false;
-            // } else {
-            //   this.router.navigate(['/auth/confirm-login-code', {
-            //     user_id: res?.data?.id,
-            //     email: this.loginForm?.value?.email,
-            //     password: this.loginForm?.value?.password
-            //   }])
-            // }
-
           } else {
-            console.log(res?.status);
-
             this.isLoadingBtn = false;
-            this.publicService.show_loader.next(false);
-            res?.message ? this.alertsService.openSnackBar(res?.message) : '';
+            this.publicService?.show_loader?.next(false);
+            res?.message ? this.alertsService?.openSnackBar(res?.message) : '';
           }
         },
         (err: any) => {
-          console.log(err);
-          // console.log(err?.error?.message[0]?.email[0]);
-          // console.log(err?.status);
-
-          // if (err) {
-          err ? this.alertsService.openSweetAlert('error', err) : '';
-          // }
+          err ? this.alertsService?.openSweetAlert('error', err) : '';
           this.isLoadingBtn = false;
-          this.publicService.show_loader.next(false);
+          this.publicService?.show_loader?.next(false);
         }
       );
     } else {
@@ -168,7 +133,7 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 }
 

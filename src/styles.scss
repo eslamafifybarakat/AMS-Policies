@@ -16,19 +16,29 @@ body {
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "assets/scss/variables.scss";
+@import "assets/scss/buttons.scss";
+@import "assets/scss/global-rules.scss";
 @import "assets/scss/cust-style.scss";
+@import "assets/scss/form-field.scss";
+@import "assets/scss/primeng/p-form-field.scss";
+@import "assets/scss/primeng/p-calender.scss";
+@import "assets/scss/tel-intel.scss";
 @import "~ngx-photo-editor/photo-editor.css";
-
+@import "animate.css";
 [dir="rtl"] {
   @import "~bootstrap/dist/css/bootstrap.min.css";
   @import "assets/scss/cust-style-rtl.scss";
   @import "assets/scss/primeng/prime-ng-rtl-icons.scss";
   @import "assets/scss/primeng/prim-ng-rtl.scss";
+  @import "assets/scss/rtl-style/p-form-field-rtl.scss";
+  @import "assets/scss/rtl-style/tel-intel-rtl.scss";
 }
 
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {

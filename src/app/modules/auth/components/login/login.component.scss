@@ -1,8 +1,14 @@
-.login-img {
-  height: 75%;
-  min-height: 65vh;
-  border-radius: 0 1rem 1rem 0;
+.form-logo {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  object-fit: contain;
 }
-.login {
-  // background-image: url(../../../../../assets/image/bg.svg);
+.border-red {
+  border-radius: var(--border-input-radius) !important;
+}
+:host::ng-deep {
+  .p-input-icon-right > i:last-of-type {
+    transform: translate(0, 0) !important;
+  }
 }

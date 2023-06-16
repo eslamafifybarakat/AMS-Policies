@@ -23,12 +23,12 @@
         <div *ngIf="(formControls?.email?.touched || formControls?.email?.dirty) && formControls?.email?.invalid">
           <div *ngIf="formControls?.email?.errors?.['required']">
             <span class="text-danger fs-6">
-              {{'validations.reuired_field'|translate}}
+              {{'validations.requiredField'|translate}}
             </span>
           </div>
           <div *ngIf="formControls?.email?.errors?.['email']">
             <span class="text-danger fs-6">
-              {{'validations.not_valid'|translate}}
+              {{'validations.notValid'|translate}}
             </span>
           </div>
         </div>
@@ -94,7 +94,7 @@
           *ngIf="(formControls?.password?.touched || formControls?.password?.dirty) && formControls?.password?.invalid">
           <div *ngIf="formControls?.password?.errors?.['required']">
             <span class="text-danger fs-6">
-              {{'validations.reuired_field'|translate}}
+              {{'validations.requiredField'|translate}}
             </span>
           </div>
           <div *ngIf="formControls?.password?.errors?.['minlength'] || formControls?.password?.errors?.['maxlength']">

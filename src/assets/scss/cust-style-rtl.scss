@@ -169,26 +169,26 @@ owl-carousel-o
 }
 
 /*tel-input*/
-.iti--allow-dropdown .iti__flag-container,
-.iti--separate-dial-code .iti__flag-container {
-  right: 0;
-  left: auto;
-}
+// .iti--allow-dropdown .iti__flag-container,
+// .iti--separate-dial-code .iti__flag-container {
+//   right: 0;
+//   left: auto;
+// }
 
-.iti--allow-dropdown input,
-.iti--allow-dropdown input[type="text"],
-.iti--allow-dropdown input[type="tel"],
-.iti--separate-dial-code input,
-.iti--separate-dial-code input[type="text"],
-.iti--separate-dial-code input[type="tel"] {
-  padding-left: 6px;
-  padding-right: 52px !important;
-  width: 94%;
-}
+// .iti--allow-dropdown input,
+// .iti--allow-dropdown input[type="text"],
+// .iti--allow-dropdown input[type="tel"],
+// .iti--separate-dial-code input,
+// .iti--separate-dial-code input[type="text"],
+// .iti--separate-dial-code input[type="tel"] {
+//   padding-left: 6px;
+//   padding-right: 52px !important;
+//   width: 94%;
+// }
 
-.iti__arrow {
-  margin-right: 6px;
-}
+// .iti__arrow {
+//   margin-right: 6px;
+// }
 
 .togglepassword {
   border-right: none !important;
@@ -246,8 +246,8 @@ owl-carousel-o
 .form-control.is-invalid,
 .form-control:invalid {
   background-position: left calc(0.375em + 0.1875rem) center;
-  padding-right: 1rem !important;
-  border-right: 1px solid #dc3545 !important;
+  // padding-right: 1rem !important;
+  // border-right: 1px solid #dc3545 !important;
 }
 
 .me-2 {

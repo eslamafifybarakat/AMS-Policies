@@ -1,0 +1,58 @@
+.p-inputtext,
+.p-dropdown,
+.p-multiselect,
+p-inputnumber,
+.p-inputnumber,
+.p-password,
+.p-calendar-w-btn .p-inputtext {
+  width: 100% !important;
+}
+p-password {
+  .pi-eye {
+    position: absolute;
+    top: 50%;
+    transform: translate(-25px, -49%);
+    color: #6c757d;
+  }
+}
+
+p-inputmask.ng-dirty.ng-valid > .p-inputtext,
+.p-inputtext:enabled:focus,
+.p-calendar-w-btn .p-inputtext:enabled:hover {
+  border: 1px solid var(--bg-input-color) !important;
+  border-left: 0 !important;
+}
+.p-inputtext:enabled:focus,
+.p-inputtext:enabled:hover {
+  border: 1px solid var(--bg-input-color) !important;
+}
+p-inputmask.ng-dirty.ng-valid.is-valid > .p-inputtext {
+  border: 1px solid #198754 !important;
+}
+
+p-inputmask.ng-dirty.ng-valid.is-invalid > .p-inputtext {
+  border: 1px solid #dc3545 !important;
+}
+.p-input-icon-right > i:last-of-type {
+  z-index: 3 !important;
+}
+.p-mask {
+  .p-inputtext:enabled:focus,
+  .p-inputtext:enabled:hover {
+    border: transparent !important;
+  }
+}
+.p-inputmask:enabled:focus,
+.p-inputmask:enabled:hover {
+  border: transparent !important;
+}
+.p-mask.border-red {
+  .p-inputmask .p-inputtext,
+  .p-inputnumber-input,
+  .p-password > .p-inputtext {
+    border: 0 !important;
+  }
+}
+p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
+  border: 0 !important;
+}

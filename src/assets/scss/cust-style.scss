@@ -1,53 +1,3 @@
-/* START Variables */
-:root {
-  --text-main-color: #fb2119;
-  --bg-main-color: #fb2119;
-  // 0098fe
-
-  // 718295
-  --text-secondary-color: #070a52;
-  --bg-secondary-color: #070a52;
-
-  --bg-dashboard-body: #f4f7fa;
-  --bg-form-control-profile: #f2f4f8;
-
-  // cdf0ff
-  --text-second-color: #f0f0f0;
-  --bg-second-color: #f0f0f0;
-
-  --bg-page-card-color: #f6f6f6;
-
-  --border-input-color: #ebebeb;
-
-  --text-dark-color: #111;
-  --bg-dark-color: #111;
-  --text-white-color: #fff;
-  --bg-white-color: #fff;
-  --primary-color: #ccc;
-  --border-color: #707070;
-  --warning-color: #ffc700;
-  --warning-bg: #fff8dd;
-  --success-color: #50cd89;
-  --success-light: #e8fff3;
-  --danger-color: #f1416c;
-  --danger-bg: #fff5f8;
-  --confirm-color: #009ef7;
-  --confirm-bg: #f1faff;
-  --grey-900: #101010;
-  --grey-700: #484848;
-  --grey-400: #999999;
-  --grey-100: #9c9c9c;
-  --icon-color: #999999;
-  --muted: #9b9b9b;
-  // shadow and raduis
-  --header-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
-  --shadow2: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
-  --dd: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-  --nav-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  --round: 0.5rem;
-  --dashboard-border-radius: 6px;
-}
-
 // ======CLASSES COLOR=============
 
 .text-main-color {
@@ -546,42 +496,42 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
 }
 
-.input-group {
-  .form-control-double,
-  .form-control-double:focus,
-  .form-control-double:focus-within,
-  .form-control-double:focus-visible {
-    border-radius: 0;
-    border-left: transparent !important;
-    border-right: transparent !important;
-  }
+// .input-group {
+//   .form-control-double,
+//   .form-control-double:focus,
+//   .form-control-double:focus-within,
+//   .form-control-double:focus-visible {
+//     border-radius: 0;
+//     border-left: transparent !important;
+//     border-right: transparent !important;
+//   }
 
-  .form-control-single,
-  .form-control-single:focus,
-  .form-control-single:focus-within,
-  .form-control-single:focus-visible {
-    border-radius: 0.25rem 0 0 0.25rem !important;
-    border-right: transparent;
-  }
+//   .form-control-single,
+//   .form-control-single:focus,
+//   .form-control-single:focus-within,
+//   .form-control-single:focus-visible {
+//     border-radius: 0.25rem 0 0 0.25rem !important;
+//     border-right: transparent;
+//   }
 
-  .input-group-text-left {
-    border-radius: 0.25rem 0 0 0.25rem !important;
-    border-right: transparent !important;
-  }
+//   .input-group-text-left {
+//     border-radius: 0.25rem 0 0 0.25rem !important;
+//     border-right: transparent !important;
+//   }
 
-  .input-group-text-right {
-    border-radius: 0 0.25rem 0.25rem 0 !important;
-    border-left: transparent !important;
-  }
-  &.border-green,
-  &.border-red {
-    border-radius: 0.25rem !important;
-    .input-group-text-right,
-    .form-control {
-      border: 0 !important;
-    }
-  }
-}
+//   .input-group-text-right {
+//     border-radius: 0 0.25rem 0.25rem 0 !important;
+//     border-left: transparent !important;
+//   }
+//   &.border-green,
+//   &.border-red {
+//     border-radius: 0.25rem !important;
+//     .input-group-text-right,
+//     .form-control {
+//       border: 0 !important;
+//     }
+//   }
+// }
 .mat-datepicker-toggle {
   background-color: var(--bg-white-color) !important;
   border-radius: 4px !important;
@@ -951,25 +901,25 @@ input:-webkit-autofill {
   padding: 1rem !important;
 }
 
-.iti {
-  width: 100% !important;
-}
+// .iti {
+//   width: 100% !important;
+// }
 
-.iti:focus,
-.iti:focus-visible {
-  border: none;
-}
+// .iti:focus,
+// .iti:focus-visible {
+//   border: none;
+// }
 
-.iti--allow-dropdown input,
-.iti--allow-dropdown input[type="text"],
-.iti--allow-dropdown input[type="tel"],
-.iti--separate-dial-code input,
-.iti--separate-dial-code input[type="text"],
-.iti--separate-dial-code input[type="tel"] {
-  border: 0;
-  width: 100%;
-  height: 100%;
-}
+// .iti--allow-dropdown input,
+// .iti--allow-dropdown input[type="text"],
+// .iti--allow-dropdown input[type="tel"],
+// .iti--separate-dial-code input,
+// .iti--separate-dial-code input[type="text"],
+// .iti--separate-dial-code input[type="tel"] {
+//   border: 0;
+//   width: 100%;
+//   height: 100%;
+// }
 
 input[type]::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder,
@@ -1202,27 +1152,11 @@ li.view-hover:hover {
 /*END HEADER*/
 
 /*START AUTH FORM*/
-.auth-form {
-  background-color: #fafafa;
-  // background-color: #fcf7f7;
-  // background-image: linear-gradient(
-  //   to right top,
-  //   #ffa1a1,
-  //   #ffb2b2,
-  //   #ffc3c3,
-  //   #ffd3d3,
-  //   #ffe4e4,
-  //   #ffeced,
-  //   #fff3f5,
-  //   #fffbfc,
-  //   #fffcfd,
-  //   #fefdfe,
-  //   #fffeff,
-  //   #ffffff
-  // );
-  .btn-solid-main {
-    height: 3.1rem;
-  }
+.form-logo {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  object-fit: contain;
 }
 .lang {
   width: 2rem;

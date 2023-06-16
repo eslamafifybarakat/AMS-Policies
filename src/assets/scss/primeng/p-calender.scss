@@ -1,0 +1,23 @@
+.p-calendar-w-btn .p-inputtext {
+  border-color: var(--border-input-color) !important;
+}
+.p-calendar-w-btn .p-inputtext:enabled:hover,
+.p-calendar-w-btn .p-inputtext:enabled:focus {
+  border-color: var(--bg-input-color) !important;
+}
+.p-calendar {
+  width: 100% !important;
+}
+.p-calendar .p-button,
+.p-calendar .p-button:hover {
+  background-color: var(--bg-input-color);
+  border-color: var(--border-input-color);
+  border-left: 0;
+  color: #6c757d;
+}
+.p-calendar-w-btn .p-datepicker-trigger {
+  border-radius: 0 10px 10px 0 !important;
+  .pi-calendar {
+    font-size: 1.2rem !important;
+  }
+}
