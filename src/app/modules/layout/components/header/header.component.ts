@@ -17,24 +17,20 @@ export class HeaderComponent implements OnInit {
   currentUrl: string = '';
   title: any = '';
 
-  // @HostListener("window:scroll", ["$event"])
-  // handleKeyDown() {
-  //   console.log('skkkkkkkk');
-  //   let element = document.querySelector(".navbar") as HTMLElement;
-  //   if (window.pageYOffset > 30) {
-  //     element.classList.add("headerScroll");
-  //     this.scrollDown = true;
-  //   } else {
-  //     element.classList.remove("headerScroll");
-  //     this.scrollDown = false;
-  //   }
-  // }
-
   @HostListener("window:scroll", ["$event"])
   handleKeyDown() {
-    console.log('kkkk');
-
+    console.log('skkkkkkkk');
+    let element = document.querySelector(".navbar") as HTMLElement;
+    if (window.pageYOffset > 30) {
+      element.classList.add("headerScroll");
+      this.scrollDown = true;
+    } else {
+      element.classList.remove("headerScroll");
+      this.scrollDown = false;
+    }
   }
+
+
   constructor(
     private authUserService: AuthUserService,
     private activatedRoute: ActivatedRoute,

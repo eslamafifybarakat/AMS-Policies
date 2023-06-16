@@ -13,9 +13,12 @@
 
 .btn-solid-main:hover,
 .btn-solid-main:focus {
-  color: var(--text-white-color) !important;
+  // color: var(--text-white-color) !important;
 }
-
+.btn-solid-main::after,
+.btn-solid-main:hover {
+  // background-color: var(--bg-main-color) !important;
+}
 .btn-solid-main:before {
   content: "";
   background: linear-gradient(

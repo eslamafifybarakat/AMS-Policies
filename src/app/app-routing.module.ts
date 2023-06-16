@@ -74,7 +74,6 @@ const routes: Routes = [
       {
         useHash: true,
         scrollPositionRestoration: 'top',
-        // scrollPositionRestoration: "enabled",
       }),
   ],
   exports: [RouterModule]

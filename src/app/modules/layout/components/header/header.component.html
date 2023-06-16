@@ -76,13 +76,19 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/about-us']">{{'nav.about'|translate}}</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/contact-us']">{{'nav.contactUs'|translate}}</a>
+          </li>
         </ng-template>
 
       </ul>
       <div class="d-flex align-items-center justify-content-md-center gap-4 py-lg-0 py-3">
         <ng-container *ngIf="!isLoggedIn">
-          <button class="btn btn-outline-main" [routerLink]="'/auth/login'">{{'form.login'|translate}}</button>
-          <button class="btn btn-solid-main">{{'general.bookDemo'|translate}}</button>
+          <a [routerLink]="'/auth/login'">
+            <app-alt-button [text]="'form.login'|translate"></app-alt-button>
+          </a>
+          <!-- <button class="btn btn-outline-main" [routerLink]="'/auth/login'">{{'form.login'|translate}}</button> -->
+          <button [routerLink]="'/auth/register'" class="btn btn-solid-main">{{'form.registration'|translate}}</button>
         </ng-container>
         <app-theme></app-theme>
         <app-language-selector></app-language-selector>

@@ -41,6 +41,7 @@ import { HeaderComponent } from '../../layout/components/header/header.component
 import { FooterComponent } from '../../layout/components/footer/footer.component';
 import { UserInfoComponent } from '../../layout/components/header/user-info/user-info.component';
 import { ThemeComponent } from '../../layout/components/header/theme/theme.component';
+import { AltButtonComponent } from '../component/alt-button/alt-button.component';
 
 const allShared = [
   FormsModule,
@@ -79,11 +80,12 @@ const components = [
   LanguageSelectorComponent,
   DynamicTableComponent,
   CountdownComponent,
+  AltButtonComponent,
+  UserInfoComponent,
   SkeletonComponent,
   HeaderComponent,
   FooterComponent,
-  UserInfoComponent,
-  ThemeComponent
+  ThemeComponent,
 ];
 
 @NgModule({
