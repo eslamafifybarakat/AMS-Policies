@@ -1,7 +1,8 @@
-<div [ngClass]="{'show-scrollTop': windowScrolled}"
-  class="active position-fixed scroll-to-top text-center d-flex justify-content-center align-items-center"
-  data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
-  <div class="arrow d-flex justify-content-center align-item-center">
-    <i class="fas fa-chevron-up color-main"></i>
+<ng-container *ngIf="windowScrolled">
+  <div class="active position-fixed scroll-to-top text-center d-flex justify-content-center align-items-center"
+    data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+    <div class="arrow d-flex justify-content-center align-item-center">
+      <i class="fas fa-chevron-up color-main"></i>
+    </div>
   </div>
-</div>
+</ng-container>
