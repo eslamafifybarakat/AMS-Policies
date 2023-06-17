@@ -23,8 +23,6 @@ export class LanguageSelectorComponent implements OnInit {
     this.publicService.pushUrlData.subscribe((res: any) => {
       this.typeModule = res?.type;
       this.cdr.detectChanges();
-      console.log(res);
-
     });
   }
 
