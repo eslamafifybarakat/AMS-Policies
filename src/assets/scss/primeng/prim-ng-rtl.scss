@@ -113,14 +113,15 @@ p-multiselect.p-multiselect-clearable .p-multiselect-clear-icon,
 }
 .p-calendar .p-button {
   border-right: 0 !important;
-  border-left: 1px solid #ced4da !important;
+  // border-left: 1px solid #ced4da !important;
   border-radius: 6px 0 0 6px !important;
 }
 .p-calendar-w-btn .p-inputtext {
   border-left: 0 !important;
-  border-right: 1px solid #ced4da !important;
+  // border-right: 1px solid #ced4da !important;
   border-radius: 0 6px 6px 0 !important;
 }
+
 // COMPONENTS
 #modal {
   .select-label {

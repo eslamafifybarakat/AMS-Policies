@@ -28,33 +28,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
   constructor(
     private authUserService: AuthUserService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
-    this.router?.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => {
-          let child = this.activatedRoute.firstChild;
-          while (child) {
-            if (child.firstChild) {
-              child = child.firstChild;
-            } else if (child.snapshot.data && child.snapshot.data["title"]) {
-              return child.snapshot.data["title"];
-            } else {
-              return null;
-            }
-          }
-          return null;
-        })
-      )
-      .subscribe((data: any) => {
-        this.title = data;
-      });
   }
 
   ngOnInit(): void {

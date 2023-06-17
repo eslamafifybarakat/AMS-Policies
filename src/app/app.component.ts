@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { filter, map } from 'rxjs';
 import * as AOS from 'aos';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class AppComponent {
     public translateService: TranslateService,
     private activatedRoute: ActivatedRoute,
     private publicService: PublicService,
+    private primengConfig: PrimeNGConfig,
     private translate: TranslateService,
     public _ThemeService: ThemeService,
     private titleService: Title,
@@ -51,6 +53,9 @@ export class AppComponent {
       let getMain = document.getElementsByTagName("html")[0];
       getMain.setAttribute("lang", currentLang);
       getMain.setAttribute("class", currentLang);
+      this.translateService?.stream('primeng')?.subscribe(data => {
+        this.primengConfig?.setTranslation(data);
+      });
     } else {
       this.browserLang = this.translate.getBrowserLang();
       localStorage.setItem(
@@ -98,6 +103,7 @@ export class AppComponent {
 
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.favIcon.href = "../assets/image/logo/sm-logo.png";
     this.deviceLocationService.getUserLocation();
     AOS.init();

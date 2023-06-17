@@ -152,5 +152,7 @@
 .form-btn {
   height: 3.9rem !important;
   border-radius: 10px !important;
-  overflow: hidden;
+}
+.form-btn::after {
+  border-radius: 10px !important;
 }

@@ -1,4 +1,6 @@
+import { authSliderAr, authSliderEn } from './../../ams-policy-data/auth-slider';
 import { DeviceLocationService } from './../../services/device-location.service';
+import { keys } from '../shared/TS Files/localstorage-key';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,25 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  carouselItems: any = [{
-    title: 'Search for best policy',
-    desc: 'Find the best policy for you and make your appointment easily.'
-  },
-  {
-    title: 'Search for best policy2',
-    desc: 'Find the best policy for you and make your appointment easily.2'
-  },
-  {
-    title: 'Search for best policy3',
-    desc: 'Find the best policy for you and make your appointment easily.3'
-  }];
-
+  currentLanguage: any;
+  carouselItems: any = [];
   constructor(
     private deviceLocationService: DeviceLocationService
   ) { }
 
   ngOnInit(): void {
     this.deviceLocationService?.getUserLocation();
+    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
+
+    this.carouselItems = this.currentLanguage == 'ar' ? authSliderAr?.sliderData : authSliderEn?.sliderData;
   }
 
 }

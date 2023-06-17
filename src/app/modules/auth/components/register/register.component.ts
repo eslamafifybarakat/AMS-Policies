@@ -1,6 +1,5 @@
-import { TranslationService } from './../../../shared/services/i18n/translation.service';
-import { CheckValidityService } from './../../../../services/check-validity.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
+import { CheckValidityService } from './../../../../services/check-validity.service';
 import { ConfirmPasswordValidator } from './confirm-password-validator';
 import { patterns } from './../../../shared/TS Files/patternValidation';
 import { PublicService } from './../../../../services/public.service';
@@ -47,8 +46,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.deviceLocationData = JSON.parse(window.localStorage.getItem(keys?.deviceLocation) || '{}');
-    this.currentLanguage = window.localStorage.getItem(keys.language);
+    this.deviceLocationData = JSON?.parse(window?.localStorage?.getItem(keys?.deviceLocation) || '{}');
+    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
   registerForm = this.fb.group(
@@ -89,13 +88,13 @@ export class RegisterComponent implements OnInit {
 
   submit(): void {
     if (this.registerForm?.valid) {
-      this.publicService.show_loader.next(true);
+      this.publicService?.show_loader?.next(true);
       this.isResend = false;
       let data = {
         name: this.registerForm?.value?.firstName + ' ' + this.registerForm?.value?.lastName,
         email: this.registerForm?.value?.email,
         phone: this.registerForm?.value?.phone,
-        birth_date: this.datePipe.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
+        birth_date: this.datePipe?.transform(this.registerForm?.value?.birth_date, "yyyy-MM-dd"),
         password: this.registerForm?.value?.password,
         password_confirmation: this.registerForm?.value?.confirmPassword,
         location_device_info: {

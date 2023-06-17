@@ -137,7 +137,7 @@
       <div
         [class.border-red]="formControls?.birth_date?.invalid && (formControls?.birth_date?.dirty || formControls?.birth_date?.touched)">
         <p-calendar formControlName="birth_date" [showIcon]="true" inputId="icon" placeholder="DD/MM/YYYY"
-          [showButtonBar]="true" dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+          appendTo="body" [showButtonBar]="true" dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
       </div>
       <ng-container
         *ngIf="(formControls?.['birth_date']?.touched ||formControls?.['birth_date']?.dirty) && formControls?.['birth_date']?.invalid ">

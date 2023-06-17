@@ -56,3 +56,7 @@ p-inputmask.ng-dirty.ng-valid.is-invalid > .p-inputtext {
 p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
   border: 0 !important;
 }
+
+.p-button-label {
+  color: var(--text-main-color) !important;
+}

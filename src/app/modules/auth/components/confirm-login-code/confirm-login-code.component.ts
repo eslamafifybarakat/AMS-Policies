@@ -1,7 +1,7 @@
 import { TranslationService } from './../../../shared/services/i18n/translation.service';
 import { AlertsService } from './../../../shared/services/alerts/alerts.service';
 import { PublicService } from './../../../../services/public.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthUserService } from './../../services/auth-user.service';
 import { keys } from './../../../shared/TS Files/localstorage-key';
 import { FormBuilder, Validators } from '@angular/forms';
