@@ -42,26 +42,27 @@ import { FooterComponent } from '../../layout/components/footer/footer.component
 import { UserInfoComponent } from '../../layout/components/header/user-info/user-info.component';
 import { ThemeComponent } from '../../layout/components/header/theme/theme.component';
 import { AltButtonComponent } from '../component/alt-button/alt-button.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 const allShared = [
-  FormsModule,
   ReactiveFormsModule,
-  AngMaterialModule,
   TranslationChildModule,
-  TranslateModule,
-  TimeagoModule,
-  Ng2SearchPipeModule,
-  FormsModule,
-  ClipboardModule,
-  NgxStarRatingModule,
-  NgSelectModule,
-  SweetAlert2Module,
-  NgbPaginationModule,
-  NgbAlertModule,
   NgxIntlTelInputModule,
-  NgbModule,
+  NgxStarRatingModule,
+  NgbPaginationModule,
+  ClickOutsideModule,
+  Ng2SearchPipeModule,
+  AngMaterialModule,
+  SweetAlert2Module,
+  TranslateModule,
+  ClipboardModule,
+  NgSelectModule,
+  NgbAlertModule,
   PrimeNgModule,
-  RouterModule
+  TimeagoModule,
+  RouterModule,
+  FormsModule,
+  NgbModule,
 ];
 
 const alyleUi = [

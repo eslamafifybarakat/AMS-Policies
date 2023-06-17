@@ -82,7 +82,6 @@ export class AppComponent {
       .subscribe((data: any) => {
         if (data) {
           if (data["title"]) {
-            console.log(data["title"]);
             this.titleService.setTitle(
               this.publicService.translateTextFromJson("general.siteName") +
               " | " +

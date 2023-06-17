@@ -38,7 +38,9 @@
 .footer .btn-submit {
   left: 0 !important;
   right: inherit !important;
+  transform: translate(10%, -50%) !important;
 }
+
 .close-icon-modal {
   left: 1rem !important;
   right: inherit !important;
@@ -61,4 +63,12 @@
     left: -9rem !important;
     right: inherit !important;
   }
+  .carousel-control-next {
+    left: 0 !important;
+    right: inherit !important;
+  }
+}
+.scroll-to-top {
+  left: 2rem !important;
+  right: inherit !important;
 }

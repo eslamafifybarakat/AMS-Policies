@@ -1,4 +1,3 @@
-import { PublicService } from './../../../../services/public.service';
 import { AuthUserService } from './../../../auth/services/auth-user.service';
 import { ChangeDetectorRef, Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -19,13 +18,12 @@ export class HeaderComponent implements OnInit {
 
   @HostListener("window:scroll", ["$event"])
   handleKeyDown() {
-    console.log('skkkkkkkk');
-    let element = document.querySelector(".navbar") as HTMLElement;
+    let element = document?.querySelector(".navbar") as HTMLElement;
     if (window.pageYOffset > 30) {
-      element.classList.add("headerScroll");
+      element?.classList?.add("headerScroll");
       this.scrollDown = true;
     } else {
-      element.classList.remove("headerScroll");
+      element?.classList?.remove("headerScroll");
       this.scrollDown = false;
     }
   }
@@ -37,7 +35,7 @@ export class HeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
-    this.router.events
+    this.router?.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         map(() => {

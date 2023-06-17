@@ -168,8 +168,8 @@
     left: inherit;
   }
   .carousel-control-next {
-    left: 0 !important;
-    right: inherit !important;
+    left: inherit;
+    right: 0;
   }
   .arrow {
     position: absolute;

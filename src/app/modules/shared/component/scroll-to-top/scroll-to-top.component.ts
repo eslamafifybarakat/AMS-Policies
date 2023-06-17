@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -14,15 +14,15 @@ export class ScrollToTopComponent implements OnInit {
   @HostListener("window:scroll", [])
   onWindowScroll(): void {
     if (
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop > 200
+      window.pageYOffset > 200 ||
+      document?.documentElement?.scrollTop ||
+      document?.body.scrollTop > 200
     ) {
       this.windowScrolled = true;
     } else if (
-      (this.windowScrolled && window.pageYOffset) ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop < 10
+      (this.windowScrolled && window?.pageYOffset) ||
+      document?.documentElement?.scrollTop ||
+      document?.body?.scrollTop < 10
     ) {
       this.windowScrolled = false;
     }
@@ -30,9 +30,9 @@ export class ScrollToTopComponent implements OnInit {
   scrollToTop(): void {
     (function smoothscroll() {
       var currentScroll =
-        document.documentElement.scrollTop || document.body.scrollTop;
+        document?.documentElement?.scrollTop || document?.body?.scrollTop;
       if (currentScroll > 0) {
-        window.scrollTo(0, 0);
+        window?.scrollTo(0, 0);
       }
     })();
   }
