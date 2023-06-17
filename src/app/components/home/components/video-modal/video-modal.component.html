@@ -3,23 +3,20 @@
     <i class="pi pi-times"></i>
   </button>
   <div class="position-relative overflow-hidden rounded">
-
     <video id="videoPlayer" #videoPlayer width="100%" height="100%" controls>
       <source [src]="url" poster="" type="video/mp4">
     </video>
-
     <ng-container *ngIf="!isPlay">
       <div class="position-absolute w-100 h-100 top-0 start-0">
-        <img [src]="data?.image_video" class=" w-100 h-100" onerror="this.src='assets/image/userprofile.jpg'"
+        <img [src]="data?.image_video" class=" w-100 h-100" onerror="this.src='assets/image/not-found/no-img.svg'"
           alt="image">
         <div class="overlay-img-course" (click)="playVideo()" role="button">
-          <h5 class="mb-0 text-white-color pt-2 px-3">{{'title' | translate}}</h5>
-          <div class="d-flex align-items-center justify-content-center w-100 h-75">
+          <h5 class="mb-0 text-white-color pt-3 px-4">{{'title' | translate}}</h5>
+          <div class="d-flex align-items-center justify-content-center w-100 play">
             <img src="assets/image/home/Icon-play.svg" class="play-icon" alt="">
           </div>
         </div>
       </div>
     </ng-container>
   </div>
-
 </div>

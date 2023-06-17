@@ -34,10 +34,6 @@
     background-color: #fb21192b;
   }
 }
-.min-h-100 {
-  // min-height: 100vh;
-  // padding-top: 70px;
-}
 
 .bg-name {
   clip-path: polygon(0 100%, 100% 0%, 100% 100%, 0% 100%);
@@ -49,7 +45,7 @@
   z-index: -1;
   position: relative;
   color: #f6f6f6;
-  height: 5rem;
+  height: 2rem;
 }
 // }
 #feature {
@@ -75,7 +71,7 @@
 }
 .feature-content {
   position: relative;
-  bottom: -40px;
+  bottom: -50px;
 }
 .number-bg {
   background-color: #74747414;

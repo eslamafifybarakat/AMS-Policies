@@ -191,7 +191,10 @@
   },
   "home": {
     "tryFreeTrial": "Try free trial",
-    "watchDemo": "Watch Demo"
+    "watchDemo": "Watch Demo",
+    "features":"features",
+    "realPolicy":"It's a real policy view!",
+    "policy":"Policy"
   },
   "language": {
     "english": "English",
@@ -279,6 +282,18 @@
     "statistic": "Statistic",
     "contactUs": "Contact Us"
   },
+  "dummy":{
+    "title":"Get all of your Assist's needs safely",
+    "desc":"Euro Assist offers the best and most affordable medical procedures worldwide.",
+    "features":{
+      "title":"Euro Assist Services",
+      "euroClub":"EURO CLUB",
+      "clubWorks":"Is an auto club works according to the European standards",
+      "travel":"TRAVEL ASSISTANCE",
+      "travelAssistance":"Travel Assistance Covering All over the World",
+      "euroConsulting":"EURO CONSULTING",
+      "euroConsultingSpecial":"Euro Consulting specialized in Human Resources"
+    }  },
   "primeng": {
     "startsWith": "Starts with",
     "contains": "Contains",

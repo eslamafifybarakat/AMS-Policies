@@ -1,20 +1,16 @@
 <div id="home">
   <app-header></app-header>
-
   <section id="hero-section" class="d-flex align-items-center justify-content-center position-relative">
     <div class="container ">
       <div class="right-bg" data-aos="fade-down" data-aos-easing="ease-in-out"> </div>
       <div class="row min-h-100 w-100 align-items-center">
         <div class="col-md-6 d-flex align-items-center order-md-1 order-2">
           <div>
-            <h1 class="fs-1 w-75 title text-dark-color fw-bold" data-aos="fade-right" data-aos-easing="ease-in-out"
-              data-aos-duration="900">Case studies made easy easy</h1>
+            <h1 class="fs-1 title text-dark-color fw-bold lh-sm" data-aos="fade-right" data-aos-easing="ease-in-out"
+              data-aos-duration="900">{{homeData?.title|translate}}</h1>
             <p class="mt-4 fs-5-1 lh-base description ps-2" data-aos="fade-right" data-aos-easing="ease-in-out"
               data-aos-duration="1200">
-              Lorem ipsum dolor sit,
-              amet consectetur adipisicing elit. Quisquam
-              dolor
-              velit provident, explicabo sit numquam rerum corrupti. Quidem veritatis similique culpa dolor a ipsam
+              {{homeData?.description|translate}}
             </p>
             <div class="d-flex align-items-center flex-wrap gap-sm-5 gap-3 mt-5">
               <button class="btn btn-solid-main" data-aos="fade-up" data-aos-easing="ease-in-out"
@@ -30,8 +26,7 @@
           </div>
         </div>
         <div class="col-md-6 order-md-2 order-1">
-          <div class="d-flex justify-content-center position-relative hero-layer">
-
+          <div class="d-flex justify-content-lg-end justify-content-center position-relative hero-layer">
             <div class="layer1" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="800">
               <img src="../../../assets/image/home/dots.svg" class="dots" alt="dot" data-aos="fade-zoom-in"
                 data-aos-easing="ease-in-back" data-aos-delay="500" data-aos-offset="0">
@@ -49,34 +44,41 @@
         </div>
       </div>
       <div class="w-100 name" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="500"
-        data-aos-offset="0">Policy</div>
+        data-aos-offset="0">
+        {{'home.policy'|translate}}
+      </div>
     </div>
   </section>
-
-
-  <div class="">
+  <div class="" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
     <div class="bg-name"></div>
     <section id="feature" class="pt-4  mb-5 d-flex align-items-center justify-content-center position-relative">
-      <!-- <div class="position-absolute number-bg"></div> -->
       <div class="vector-bg">
         <div class="container ">
-          <h5 class="fs-5 animate__animated animate__fadeInLeft animate__slow	 2s">Feature</h5>
-          <h2 class="fs-2 w-75 title text-white-color fw-bold">Case
-            studies made easy easy</h2>
+          <h5 class="fs-5" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800">
+            {{'home.features'|translate}}
+          </h5>
+          <h2 data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900"
+            class="fs-2 w-75 title text-white-color fw-bold">
+            {{homeData?.featureTitle|translate}}
+          </h2>
           <div class="row">
-            <ng-container *ngFor="let item of [9,8,9];let i=index">
+            <ng-container *ngFor="let item of homeData?.features;let i=index">
               <div class="col-md-4 mb-md-0 mb-3">
-                <div class="global-card feature-content position-relative">
+                <div class="global-card feature-content position-relative h-100" data-aos="fade-up"
+                  data-aos-easing="ease-in-out" [attr.data-aos-duration]="((i+1)*200)+800">
                   <div class="position-absolute number-bg"></div>
                   <div class="d-flex justify-content-between align-items-center">
                     <h1 class="fs-lg dark-main-color">
-                      01
+                      0{{i+1}}
                     </h1>
                     <i class="pi pi-chart-bar fs-4 text-main-color"></i>
                   </div>
-                  <h3 class="fs-4 mb-2">Easily Create</h3>
-                  <p class="text-muted lh-base fs-5-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga
-                    consequuntur</p>
+                  <h3 class="fs-4 mb-2">
+                    {{item?.title|translate}}
+                  </h3>
+                  <p class="text-muted lh-base fs-5-1">
+                    {{item?.description|translate}}
+                  </p>
                 </div>
               </div>
 
@@ -87,13 +89,11 @@
     </section>
   </div>
 
-
-
-
   <section id="article" class="position-relative">
     <div class="container">
       <h5 class="article-title pt-5 fs-4 ps-5">
-        It's a real Airtcle view!</h5>
+        {{'home.realPolicy'|translate}}
+      </h5>
       <div class="article-view d-flex justify-content-center">
         <img src="assets/image/home/policy.jfif" class="w-90" alt="article-view">
       </div>

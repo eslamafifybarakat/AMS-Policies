@@ -3,10 +3,10 @@ import { ThemeService } from './modules/shared/services/themes/theme.service';
 import { DeviceLocationService } from './services/device-location.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { keys } from './modules/shared/TS Files/localstorage-key';
-import { ChangeDetectorRef, Component } from '@angular/core';
 import { PublicService } from './services/public.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { filter, map } from 'rxjs';
 import * as AOS from 'aos';
 

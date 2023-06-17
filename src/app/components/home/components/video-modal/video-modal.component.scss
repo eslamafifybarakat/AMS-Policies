@@ -1,12 +1,6 @@
-iframe {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 img {
   object-fit: cover;
 }
-
 .overlay-img-course {
   position: absolute;
   left: 0;
@@ -15,17 +9,21 @@ img {
   height: 100%;
   background-color: #d64a148a;
 }
-
 .close-icon-modal {
   position: absolute;
-  top: -1rem;
-  right: -15px;
-  color: var(--text-main-color);
+  top: 1rem;
+  right: 1rem;
+  color: var(--text-white-color);
   border: none;
-  width: 15px;
-  height: 15px;
-  background: #fb211938;
+  width: 30px;
+  height: 30px;
+  background-color: var(--bg-main-color) !important;
+  z-index: 7;
+  border-radius: 50%;
 }
 .play-icon {
   z-index: 888;
+}
+.play {
+  height: calc(100% - 25px);
 }

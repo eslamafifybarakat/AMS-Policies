@@ -24,8 +24,9 @@ body {
 @import "assets/scss/primeng/p-form-field.scss";
 @import "assets/scss/primeng/p-calender.scss";
 @import "assets/scss/tel-intel.scss";
+@import "assets/scss/dialog.scss";
 @import "~ngx-photo-editor/photo-editor.css";
-@import "animate.css";
+
 [dir="rtl"] {
   @import "~bootstrap/dist/css/bootstrap.min.css";
   @import "assets/scss/cust-style-rtl.scss";
@@ -33,6 +34,7 @@ body {
   @import "assets/scss/primeng/prim-ng-rtl.scss";
   @import "assets/scss/rtl-style/p-form-field-rtl.scss";
   @import "assets/scss/rtl-style/tel-intel-rtl.scss";
+  @import "assets/scss/rtl-style/style-rtl.scss";
 }
 
 html,

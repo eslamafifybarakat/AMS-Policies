@@ -1,0 +1,15 @@
+{
+  "title":"dummy.title",
+  "description":"dummy.desc",
+  "videoLink": "https://v4.cdnpk.net/videvo_files/video/free/video0466/large_watermarked/_import_614eddf5b968a8.24723971_FPpreview.mp4",
+  "thumbnailImage": "../../../assets/image/home/slider2.jpg",
+  "featureTitle":"dummy.title",
+  "features":[
+  {  "title":"dummy.features.euroClub",
+    "description":"dummy.features.clubWorks"},
+  {  "title":"dummy.features.travel",
+    "description":"dummy.features.travelAssistance"},
+  {  "title":"dummy.features.euroConsulting",
+    "description":"dummy.features.euroConsultingSpecial"}
+  ]
+}

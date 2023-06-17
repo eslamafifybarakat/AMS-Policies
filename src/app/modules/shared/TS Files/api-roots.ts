@@ -1,4 +1,5 @@
 export const roots = {
+  homeData: '../data/data.json',
   home: {
     getHomeData: '/api/site/get-home-data',
     exportFile: 'export_policies',

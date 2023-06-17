@@ -8,9 +8,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./video-modal.component.scss']
 })
 export class VideoModalComponent implements OnInit {
-  @ViewChild("videoPlayer") videoplayer: ElementRef | undefined;
-  url: any = '';
+  @ViewChild("videoPlayer") videoPlayer: ElementRef | undefined;
   isPlay: boolean = false;
+  url: any = '';
 
   constructor(
     public dialogRef: MatDialogRef<VideoModalComponent>,
@@ -25,10 +25,10 @@ export class VideoModalComponent implements OnInit {
 
   playVideo(): void {
     this.isPlay = true;
-    this.videoplayer?.nativeElement.play();
-  }
-  onNoClick(): void {
-    this.dialogRef.close();
+    this.videoPlayer?.nativeElement?.play();
   }
 
+  onNoClick(): void {
+    this.dialogRef?.close();
+  }
 }

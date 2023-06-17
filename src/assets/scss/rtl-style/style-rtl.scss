@@ -1,0 +1,37 @@
+.ps-2 {
+  padding-right: 0.5rem !important;
+  padding-left: inherit !important;
+}
+#hero-section {
+  .layer1 {
+    rotate: -5deg !important;
+  }
+  .dots {
+    right: -50px !important;
+    left: inherit !important;
+    rotate: 8deg !important;
+  }
+  .layer2 {
+    rotate: 10deg !important;
+  }
+  .layer3 {
+    rotate: -70deg;
+    left: -9px !important;
+    right: inherit !important;
+  }
+
+  .description::before {
+    right: 0 !important;
+    left: inherit !important;
+  }
+  .right-bg {
+    left: 0 !important;
+    right: inherit !important;
+  }
+}
+.bg-name {
+  clip-path: polygon(0 0, 100% 100%, 100% 100%, 0% 100%) !important;
+}
+#feature .vector-bg {
+  background-position: left !important;
+}
