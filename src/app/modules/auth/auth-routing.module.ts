@@ -17,42 +17,48 @@ const routes: Routes = [
         path: 'login',
         component: LogInComponent,
         data: {
-          title: 'titles.login'
+          title: 'titles.login',
+          type: 'auth'
         }
       },
       {
         path: 'register',
         component: RegisterComponent,
         data: {
-          title: 'titles.register'
+          title: 'titles.register',
+          type: 'auth'
         }
       },
       {
         path: 'forget-password',
         component: ForgetPasswordComponent,
         data: {
-          title: 'titles.forget_password'
+          title: 'titles.forget_password',
+          type: 'auth'
         }
       },
       {
         path: 'new-password',
         component: NewPasswordComponent,
         data: {
-          title: 'titles.new_password'
+          title: 'titles.new_password',
+          type: 'auth'
         }
       },
       {
         path: 'confirm-login-code',
         component: ConfirmLoginCodeComponent,
         data: {
-          title: ''
+          title: '',
+          type: 'auth'
         }
       },
       {
         path: 'email-verification',
         component: VerfiyPasswordComponent,
         data: {
-          title: ''
+          title: '',
+          type: 'auth'
         }
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' },

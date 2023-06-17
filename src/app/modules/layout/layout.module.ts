@@ -17,8 +17,6 @@ import { NotifcationComponent } from './components/header/notifcation/notifcatio
     LayoutRoutingModule,
     SharedModule,
     ClickOutsideModule,
-
-
   ]
 })
 export class LayoutModule { }

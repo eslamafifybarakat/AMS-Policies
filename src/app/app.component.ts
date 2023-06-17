@@ -86,6 +86,7 @@ export class AppComponent {
       )
       .subscribe((data: any) => {
         if (data) {
+          this.publicService.pushUrlData.next(data);
           if (data["title"]) {
             this.titleService.setTitle(
               this.publicService.translateTextFromJson("general.siteName") +

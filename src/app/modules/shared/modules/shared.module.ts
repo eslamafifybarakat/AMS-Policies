@@ -43,6 +43,7 @@ import { UserInfoComponent } from '../../layout/components/header/user-info/user
 import { ThemeComponent } from '../../layout/components/header/theme/theme.component';
 import { AltButtonComponent } from '../component/alt-button/alt-button.component';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { ScrollToTopComponent } from '../component/scroll-to-top/scroll-to-top.component';
 
 const allShared = [
   ReactiveFormsModule,
@@ -80,6 +81,7 @@ const components = [
   CropperImageDialogComponent,
   LanguageSelectorComponent,
   DynamicTableComponent,
+  ScrollToTopComponent,
   CountdownComponent,
   AltButtonComponent,
   UserInfoComponent,

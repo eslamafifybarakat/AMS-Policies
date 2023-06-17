@@ -14,6 +14,7 @@ export class PublicService {
   recallUserDataStorage = new BehaviorSubject<boolean>(false);
   recallUserDataFn = new BehaviorSubject<boolean>(false);
   show_loader = new Subject<boolean>();
+  pushUrlData = new BehaviorSubject<boolean>(false);
 
   apiUrl = environment.apiUrl;
 

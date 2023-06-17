@@ -1,5 +1,4 @@
 <div id="home">
-  <app-header></app-header>
   <section id="hero-section" class="d-flex align-items-center justify-content-center position-relative">
     <div class="container ">
       <div class="right-bg" data-aos="fade-down" data-aos-easing="ease-in-out"> </div>
@@ -7,10 +6,10 @@
         <div class="col-md-6 d-flex align-items-center order-md-1 order-2">
           <div>
             <h1 class="fs-1 title text-dark-color fw-bold lh-sm" data-aos="fade-right" data-aos-easing="ease-in-out"
-              data-aos-duration="900">{{homeData?.title|translate}}</h1>
+              data-aos-duration="900">{{homeData?.title}}</h1>
             <p class="mt-4 fs-5-1 lh-base description ps-2" data-aos="fade-right" data-aos-easing="ease-in-out"
               data-aos-duration="1200">
-              {{homeData?.description|translate}}
+              {{homeData?.description}}
             </p>
             <div class="d-flex align-items-center flex-wrap gap-sm-5 gap-3 mt-5">
               <button class="btn btn-solid-main" data-aos="fade-up" data-aos-easing="ease-in-out"
@@ -59,7 +58,7 @@
           </h5>
           <h2 data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800"
             class="fs-2 w-75 title text-white-color fw-bold">
-            {{homeData?.featureTitle|translate}}
+            {{homeData?.featureTitle}}
           </h2>
           <div class="row">
             <ng-container *ngFor="let item of homeData?.features;let i=index">
@@ -74,10 +73,10 @@
                     <i class="pi pi-chart-bar fs-4 text-main-color"></i>
                   </div>
                   <h3 class="fs-4 mb-2">
-                    {{item?.title|translate}}
+                    {{item?.title}}
                   </h3>
                   <p class="text-muted lh-base fs-5-1">
-                    {{item?.description|translate}}
+                    {{item?.description}}
                   </p>
                 </div>
               </div>
@@ -119,7 +118,5 @@
     </div>
   </section>
   <div class="mt-4">
-    <app-footer></app-footer>
   </div>
 </div>
-<app-scroll-to-top></app-scroll-to-top>

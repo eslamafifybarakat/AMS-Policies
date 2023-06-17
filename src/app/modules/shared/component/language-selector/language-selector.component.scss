@@ -1,9 +1,11 @@
 .dropdown-language {
   .dropdown .dropdown-menu {
-    top: 1rem !important;
+    top: 3rem;
     min-width: 11rem;
   }
-
+  .dropdown-top {
+    top: 1rem !important;
+  }
   .dropdown-toggle::after {
     display: inline-block !important;
   }

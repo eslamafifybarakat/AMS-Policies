@@ -296,18 +296,6 @@
     "privacy":"Privacy policy",
     "desc":"Assistance Services operating 24 hours a day, 7 days a week, 365 days a year"
   },
-  "dummy":{
-    "title":"Get all of your Assist's needs safely",
-    "desc":"Euro Assist offers the best and most affordable medical procedures worldwide.",
-    "features":{
-      "title":"Euro Assist Services",
-      "euroClub":"EURO CLUB",
-      "clubWorks":"Is an auto club works according to the European standards",
-      "travel":"TRAVEL ASSISTANCE",
-      "travelAssistance":"Travel Assistance Covering All over the World",
-      "euroConsulting":"EURO CONSULTING",
-      "euroConsultingSpecial":"Euro Consulting specialized in Human Resources"
-    }  },
   "primeng": {
     "startsWith": "Starts with",
     "contains": "Contains",

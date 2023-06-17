@@ -91,7 +91,9 @@
           <button [routerLink]="'/auth/register'" class="btn btn-solid-main">{{'form.registration'|translate}}</button>
         </ng-container>
         <app-theme></app-theme>
-        <app-language-selector></app-language-selector>
+        <div>
+          <app-language-selector></app-language-selector>
+        </div>
         <ng-container *ngIf="isLoggedIn">
           <app-user-info></app-user-info>
         </ng-container>

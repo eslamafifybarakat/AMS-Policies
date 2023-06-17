@@ -1,20 +1,22 @@
-import { AlertsService } from './../../modules/shared/services/alerts/alerts.service';
+import { homeDataAr, homeDataEn } from './../../../../ams-policy-data/home-data';
+import { AlertsService } from './../../../../modules/shared/services/alerts/alerts.service';
 import { VideoModalComponent } from './components/video-modal/video-modal.component';
-import { PublicService } from './../../services/public.service';
-import { HomeService } from './../../services/home.service';
+import { keys } from './../../../shared/TS Files/localstorage-key';
+import { PublicService } from '../../../../services/public.service';
+import { HomeService } from './../../../../services/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import * as Aos from 'aos';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   homeData: any;
+  currentLanguage: any;
 
   constructor(
     private alertsService: AlertsService,
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
     Aos.init();
     this.getHomeData();
   }
@@ -45,28 +48,8 @@ export class HomeComponent implements OnInit {
     //     this.publicService?.show_loader?.next(false);
     //   }
     // )
+    this.homeData = this.currentLanguage == 'ar' ? homeDataAr : homeDataEn;
 
-    this.homeData = {
-      "title": "dummy.title",
-      "description": "dummy.desc",
-      "videoLink": "../../../assets/image/videos/policy.mp4",
-      "thumbnailImage": "../../../assets/image/home/slider2.jpg",
-      "featureTitle": "dummy.title",
-      "features": [
-        {
-          "title": "dummy.features.euroClub",
-          "description": "dummy.features.clubWorks"
-        },
-        {
-          "title": "dummy.features.travel",
-          "description": "dummy.features.travelAssistance"
-        },
-        {
-          "title": "dummy.features.euroConsulting",
-          "description": "dummy.features.euroConsultingSpecial"
-        }
-      ]
-    };
 
   }
 

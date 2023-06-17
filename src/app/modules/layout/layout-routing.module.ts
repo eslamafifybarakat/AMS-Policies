@@ -7,6 +7,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      { path: '', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
       {
         path: 'policies',
         loadChildren: () => import('../../modules/policies/policies.module')
@@ -19,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: "",
-        redirectTo: "policies",
+        redirectTo: "",
         pathMatch: "full",
       },
     ]

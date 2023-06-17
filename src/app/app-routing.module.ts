@@ -1,52 +1,21 @@
-import { HomeComponent } from './components/home/home.component';
-import { AuthGuard } from './modules/shared/services/guards/auth.guard';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { PaymentResultComponent } from './modules/policies/components/policies/new-policy/checkout/payment-result/payment-result.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { PricingComponent } from './components/pricing/pricing.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AuthGuard } from './modules/shared/services/guards/auth.guard';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+
 
 const routes: Routes = [
-  {
-    path: 'home',
-    component: HomeComponent,
-    data: {
-      title: 'titles.home'
-    }
-  },
-  {
-    path: 'about-us',
-    component: AboutUsComponent,
-    data: {
-      title: 'titles.aboutUs'
-    }
-  },
-  {
-    path: 'pricing',
-    component: PricingComponent,
-    data: {
-      title: 'titles.pricing'
-    }
-  },
-  {
-    path: 'contact-us',
-    component: ContactUsComponent,
-    data: {
-      title: 'titles.contactUs'
-    }
-  },
-  {
-    path: '',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/layout/layout.module')
-      .then(m => m.LayoutModule)
-  },
   {
     path: 'auth',
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/auth/auth.module')
       .then(m => m.AuthModule)
+  },
+  {
+    path: '',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/layout/layout.module')
+      .then(m => m.LayoutModule)
   },
   {
     path: 'payment-result',
@@ -57,8 +26,8 @@ const routes: Routes = [
     }
   },
   {
-    path: " ",
-    redirectTo: "home",
+    path: "",
+    redirectTo: "",
     pathMatch: "full",
   },
   {
@@ -66,6 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/error/error.module')
       .then(m => m.ErrorModule)
   },
+
   { path: "**", redirectTo: "error" }
 ];
 @NgModule({
