@@ -4,11 +4,14 @@
       <div class="col-lg-4 col-md-6">
         <div class="mb-4">
           <div>
-            <img src="assets/image/logo/logo.png" alt="logo" class="logo">
+            <img src="assets/image/logo/logo.png" alt="logo" class="logo" data-aos="fade-right"
+              data-aos-easing="ease-in-out" data-aos-duration="1000">
           </div>
-          <p class="w-75 w-sm-100 lh-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat placeat ipsum
-            commodi soluta ullam nulla </p>
-          <div class="mt-4 d-flex align-items-center gap-3">
+          <p class="w-75 w-sm-100 lh-base" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1100">
+            {{'footer.desc'|translate}}
+          </p>
+          <div class="mt-4 d-flex align-items-center gap-3" data-aos="fade-down" data-aos-easing="ease-in-out"
+            data-aos-duration="1200">
             <div>
               <i class="pi pi-facebook fs-4"></i>
             </div>
@@ -25,42 +28,57 @@
         </div>
       </div>
       <div class="col-lg-2 col-md-3">
-        <div>
-          <h4 class="fs-5 my-4 title">
-            Quick Links
+        <div data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <h4 class="fs-5 my-4 title fw-bold">
+            {{'footer.quick'|translate}}
           </h4>
           <ul class="p-0">
-            <li class="pb-3"><a>Home</a></li>
-            <li class="pb-3"><a>About</a></li>
-            <li class="pb-3"><a>Login</a></li>
-            <li class="pb-3"><a>Join as a provider</a></li>
+            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/home']">{{'nav.home'|translate}}</a></li>
+            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/about-us']">{{'nav.about'|translate}}</a></li>
+            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/auth/login']">{{'form.login'|translate}}</a>
+            </li>
+            <li class="pb-3"><a class="text-dark-color"
+                [routerLink]="['/auth/register']">{{'form.registration'|translate}}</a></li>
           </ul>
         </div>
       </div>
       <div class="col-lg-2 col-md-3">
-        <div>
-          <h4 class="fs-5 my-4 title">
-            Quick Links
+        <div data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <h4 class="fs-5 my-4 title fw-bold">
+            {{'footer.resource'|translate}}
           </h4>
           <ul class="p-0">
-            <li class="pb-3"><a>Contact</a></li>
-            <li class="pb-3"><a>Terms & Conditions</a></li>
-            <li class="pb-3"><a>Privacy policy</a></li>
+            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/contact-us']">{{'nav.contactUs'|translate}}</a>
+            </li>
+            <li class="pb-3"><a class="text-dark-color">
+                {{'footer.terms'|translate}}
+              </a></li>
+            <li class="pb-3"><a class="text-dark-color">
+                {{'footer.privacy'|translate}}
+              </a></li>
           </ul>
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
         <div>
-          <h5 class="fs-5 my-4 title">Subscribe Newsletter</h5>
-          <form class="d-flex position-relative" [formGroup]="form" (submit)="submit()">
-            <input class="form-control" type="email" placeholder="Email address" formControlName="email">
+          <h5 class="fs-5 my-4 title fw-bold" data-aos="fade-right" data-aos-easing="ease-in-out"
+            data-aos-duration="1000">
+            {{'footer.subscribe'|translate}}
+          </h5>
+          <form class="d-flex position-relative" [formGroup]="form" (submit)="submit()" data-aos="fade-right"
+            data-aos-easing="ease-in-out" data-aos-duration="1200">
+            <input class="form-control" type="email" placeholder="{{'placeholder.emailAddress'|translate}}"
+              formControlName="email">
             <button class="btn btn-solid-main p-2 btn-submit position-absolute" type="submit"
-              [disabled]="form?.invalid">Submit</button>
+              [disabled]="form?.invalid">
+              {{'general.submit'|translate}}</button>
           </form>
         </div>
       </div>
     </div>
     <hr class="m-0 mt-4">
-    <p class="mb-0 text-center py-4">© 2022 Ams. All Rights Reserved</p>
+    <p class="mb-0 text-center py-4" data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="1000">
+      {{'footer.allRights'|translate}}
+    </p>
   </div>
 </div>

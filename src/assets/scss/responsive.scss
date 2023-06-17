@@ -8,6 +8,14 @@
 
 //----- Components -----//
 @media (max-width: 767px) {
+  .error .title {
+    font-size: 200px !important;
+    letter-spacing: -20px !important;
+
+    .fs-lg {
+      font-size: 2.5rem !important;
+    }
+  }
   .hero-layer {
     scale: 0.75 !important;
   }
@@ -309,6 +317,10 @@
   }
 }
 @media (max-width: 565px) {
+  .error .title {
+    font-size: 150px !important;
+    letter-spacing: -20px !important;
+  }
   .otp-code {
     input {
       width: 4rem !important;

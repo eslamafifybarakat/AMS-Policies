@@ -1,22 +1,3 @@
-<!-- <div class="dropdown-language general-dropdown">
-  <div class="dropdown">
-    <button class="dropdown-toggle btn p-0 dropdown-lang-select" type="button" id="dropdownMenuButton1"
-      data-bs-toggle="dropdown" aria-expanded="false">
-      <img *ngIf="currentLanguage =='en'"
-        class="dropdown-flag rounded-circle p-1 bg-white-color border-icon-menu fit-object-cover"
-        src="assets/image/us.svg">
-      <img *ngIf="currentLanguage =='ar'"
-        class="dropdown-flag rounded-circle p-1 bg-white-color border-icon-menu fit-object-cover"
-        src="assets/image/eg.svg">
-    </button>
-    <ul class="dropdown-menu rounded-25 border-0 shadow" aria-labelledby="dropdownMenuButton1">
-      <li class="drop-select d-flex align-items-center px-2 py-3" (click)="tanslationService?.changeLang('en')"><img
-          class="drop-img me-2" src="assets/image/us.svg"> {{'language.english' |translate}}</li>
-      <li class="drop-select d-flex align-items-center px-2 py-3" (click)="tanslationService?.changeLang('ar')"><img
-          class="drop-img me-2" src="assets/image/eg.svg"> {{'language.arabic' |translate}}</li>
-    </ul>
-  </div>
-</div> -->
 <div class="dropdown-language general-dropdown">
   <div class="dropdown">
     <button class="dropdown-toggle btn p-0 text-capitalize  d-flex align-items-center " type="button"
@@ -25,9 +6,9 @@
       {{'general.Language' | translate}}
     </button>
     <ul class="dropdown-menu rounded-25 border-0 shadow" aria-labelledby="dropdownMenuButton1">
-      <li class="drop-select d-flex align-items-center px-2 py-3 m-1" (click)="tanslationService?.changeLang('en')"><img
+      <li class="drop-select d-flex align-items-center m-2" (click)="translationService?.changeLang('en')"><img
           class="drop-img me-2" src="assets/image/us.svg"> {{'language.english' |translate}}</li>
-      <li class="drop-select d-flex align-items-center px-2 py-3 m-1" (click)="tanslationService?.changeLang('ar')"><img
+      <li class="drop-select d-flex align-items-center m-2" (click)="translationService?.changeLang('ar')"><img
           class="drop-img me-2" src="assets/image/eg.svg"> {{'language.arabic' |translate}}</li>
     </ul>
   </div>

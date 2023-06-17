@@ -1,12 +1,11 @@
 .dropdown-language {
   .dropdown .dropdown-menu {
-    top: 0.7rem !important;
+    top: 3rem !important;
+    min-width: 11rem;
   }
 
   .dropdown-toggle::after {
     display: inline-block !important;
-    //   position: relative;
-    //   top: -0.4rem;
   }
 
   .dropdown-lang-select {
@@ -27,9 +26,11 @@
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border-radius: 5px;
+    padding: 12px;
   }
 
   .drop-select:hover {
     background: var(--bg-second-color);
+    color: var(--text-main-color);
   }
 }

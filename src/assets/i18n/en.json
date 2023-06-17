@@ -1,5 +1,9 @@
 {
   "general": {
+    "demoVideo":"Demonstration video",
+    "pageNotFound": "Page not found",
+    "serverError": "A server error has occurred",
+    "submit":"Submit",
     "default": "Default",
     "bookDemo": "Book a Policy",
     "Language": "English",
@@ -162,6 +166,7 @@
     "send": "Send"
   },
   "placeholder": {
+    "emailAddress":"Email address",
     "pass_num": "Enter passport number",
     "duration": "Enter duration",
     "company": "Enter company name",
@@ -281,6 +286,15 @@
     "aboutUs": "About Us",
     "statistic": "Statistic",
     "contactUs": "Contact Us"
+  },
+  "footer":{
+    "quick":"Quick Links",
+    "resource":"Resources",
+    "subscribe":"Subscribe Newsletter",
+    "allRights":"© 2022 Ams. All Rights Reserved",
+    "terms":"Terms & Conditions",
+    "privacy":"Privacy policy",
+    "desc":"Assistance Services operating 24 hours a day, 7 days a week, 365 days a year"
   },
   "dummy":{
     "title":"Get all of your Assist's needs safely",

@@ -35,3 +35,30 @@
 #feature .vector-bg {
   background-position: left !important;
 }
+.footer .btn-submit {
+  left: 0 !important;
+  right: inherit !important;
+}
+.close-icon-modal {
+  left: 1rem !important;
+  right: inherit !important;
+}
+#policy {
+  .arrow {
+    right: -10px !important;
+    left: inherit !important;
+  }
+  .carousel-indicators {
+    left: 35px !important;
+    right: inherit !important;
+  }
+  .carousel-control-prev-icon {
+    left: 9rem !important;
+    right: inherit !important;
+  }
+
+  .carousel-control-prev {
+    left: -9rem !important;
+    right: inherit !important;
+  }
+}

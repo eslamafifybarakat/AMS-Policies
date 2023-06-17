@@ -1,5 +1,5 @@
-import { keys } from './../../TS Files/localstorage-key';
 import { TranslationService } from './../../services/i18n/translation.service';
+import { keys } from './../../TS Files/localstorage-key';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,11 +11,11 @@ export class LanguageSelectorComponent implements OnInit {
   currentLanguage: any;
 
   constructor(
-    public tanslationService: TranslationService,
+    public translationService: TranslationService,
   ) { }
 
   ngOnInit(): void {
-    this.currentLanguage = window.localStorage.getItem(keys.language);
+    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
 }

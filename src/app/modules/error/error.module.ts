@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { Error500Component } from './components/error500/error500.component';
+import { Error404Component } from './components/error404/error404.component';
+import { SharedModule } from '../shared/modules/shared.module';
 import { ErrorRoutingModule } from './error-routing.module';
 import { ErrorComponent } from './error.component';
-import { Error404Component } from './components/error404/error404.component';
-import { Error500Component } from './components/error500/error500.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 
 @NgModule({
@@ -14,8 +15,9 @@ import { Error500Component } from './components/error500/error500.component';
     Error500Component
   ],
   imports: [
+    ErrorRoutingModule,
+    SharedModule,
     CommonModule,
-    ErrorRoutingModule
   ]
 })
 export class ErrorModule { }
