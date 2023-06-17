@@ -7,8 +7,12 @@
           <div class="p-5 d-flex justify-content-between flex-column min-vh-100">
             <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex gap-3">
-                <img src="assets/image/logo/logo.png" alt="logo" class="logo">
-                <!-- <img src="assets/image/logo/logo.png" alt="logo" class="logo"> -->
+                <a [routerLink]="['/home']">
+                  <img src="assets/image/logo/logo.png" alt="logo" class="logo">
+                </a>
+                <!-- <a [routerLink]="['/home']">
+                  <img src="assets/image/logo/logo.png" alt="logo" class="logo">
+                </a> -->
               </div>
               <div>
                 <a class="text-white-color d-flex gap-2 home" [routerLink]="['/home']"> <i
