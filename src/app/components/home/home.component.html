@@ -54,10 +54,10 @@
     <section id="feature" class="pt-4  mb-5 d-flex align-items-center justify-content-center position-relative">
       <div class="vector-bg">
         <div class="container ">
-          <h5 class="fs-5" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800">
+          <h5 class="fs-5" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="700">
             {{'home.features'|translate}}
           </h5>
-          <h2 data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900"
+          <h2 data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800"
             class="fs-2 w-75 title text-white-color fw-bold">
             {{homeData?.featureTitle|translate}}
           </h2>
@@ -65,7 +65,7 @@
             <ng-container *ngFor="let item of homeData?.features;let i=index">
               <div class="col-md-4 mb-md-0 mb-3">
                 <div class="global-card feature-content position-relative h-100" data-aos="fade-up"
-                  data-aos-easing="ease-in-out" [attr.data-aos-duration]="((i+1)*200)+800">
+                  data-aos-easing="ease-in-out" [attr.data-aos-duration]="((i+1)*200)+700">
                   <div class="position-absolute number-bg"></div>
                   <div class="d-flex justify-content-between align-items-center">
                     <h1 class="fs-lg dark-main-color">
@@ -81,21 +81,50 @@
                   </p>
                 </div>
               </div>
-
             </ng-container>
           </div>
         </div>
       </div>
     </section>
   </div>
-
-  <section id="article" class="position-relative">
+  <section id="policy" class="position-relative">
     <div class="container">
       <h5 class="article-title pt-5 fs-4 ps-5">
         {{'home.realPolicy'|translate}}
       </h5>
-      <div class="article-view d-flex justify-content-center">
-        <img src="assets/image/home/policy.jfif" class="w-90" alt="article-view">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1">
+            <span>01</span>
+          </button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">
+            <span>02</span>
+          </button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/image/home/policy1.png" class="w-90" alt="policy-view">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/image/home/policy2.png" class="w-90" alt="policy-view">
+          </div>
+        </div>
+
+        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button> -->
+      </div>
+      <div class="policy-view d-flex justify-content-center">
+        <!-- <img src="assets/image/home/policy.jfif" class="w-90" alt="policy-view"> -->
       </div>
     </div>
   </section>

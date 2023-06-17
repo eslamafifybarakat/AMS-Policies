@@ -1,8 +1,66 @@
-<footer class="bg-main-color text-center text-white-color text-lg-start py-2">
-  <!-- Copyright -->
-  <div class="text-center p-3">
-    © 2022 Copyright:
-    <a class="">X-Team</a>
+<div class="footer pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="mb-4">
+          <div>
+            <img src="assets/image/logo/logo.png" alt="logo" class="logo">
+          </div>
+          <p class="w-75 w-sm-100 lh-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat placeat ipsum
+            commodi soluta ullam nulla </p>
+          <div class="mt-4 d-flex align-items-center gap-3">
+            <div>
+              <i class="pi pi-facebook fs-4"></i>
+            </div>
+            <div>
+              <i class="pi pi-twitter fs-4"></i>
+            </div>
+            <div>
+              <i class="pi pi-linkedin fs-5"></i>
+            </div>
+            <div>
+              <i class="pi pi-youtube fs-4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <div>
+          <h4 class="fs-5 my-4 title">
+            Quick Links
+          </h4>
+          <ul class="p-0">
+            <li class="pb-3"><a>Home</a></li>
+            <li class="pb-3"><a>About</a></li>
+            <li class="pb-3"><a>Login</a></li>
+            <li class="pb-3"><a>Join as a provider</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <div>
+          <h4 class="fs-5 my-4 title">
+            Quick Links
+          </h4>
+          <ul class="p-0">
+            <li class="pb-3"><a>Contact</a></li>
+            <li class="pb-3"><a>Terms & Conditions</a></li>
+            <li class="pb-3"><a>Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div>
+          <h5 class="fs-5 my-4 title">Subscribe Newsletter</h5>
+          <form class="d-flex position-relative" [formGroup]="form" (submit)="submit()">
+            <input class="form-control" type="email" placeholder="Email address" formControlName="email">
+            <button class="btn btn-solid-main p-2 btn-submit position-absolute" type="submit"
+              [disabled]="form?.invalid">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <hr class="m-0 mt-4">
+    <p class="mb-0 text-center py-4">© 2022 Ams. All Rights Reserved</p>
   </div>
-  <!-- Copyright -->
-</footer>
+</div>

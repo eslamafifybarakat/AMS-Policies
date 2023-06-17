@@ -1,3 +1,5 @@
+import { patterns } from './../../../shared/TS Files/patternValidation';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    public fb: FormBuilder
+  ) { }
+  form = this.fb.group({
+    email: ['', [
+      Validators.required,
+      Validators.pattern(patterns?.email)]]
+  })
   ngOnInit(): void {
   }
-
+  submit(): void { }
 }

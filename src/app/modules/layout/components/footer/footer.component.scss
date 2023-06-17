@@ -1,0 +1,19 @@
+.footer {
+  background-color: rgb(152 152 152 / 12%);
+  .logo {
+    width: 170px;
+    height: 100px;
+    object-fit: contain;
+  }
+  .title {
+    color: #580906;
+  }
+  .btn-submit {
+    right: 0;
+    top: 50%;
+    transform: translate(-10%, -50%);
+  }
+  .browser {
+    width: 25px;
+  }
+}

@@ -88,16 +88,29 @@
   font-size: 3.5rem;
   font-weight: 900;
 }
-#article {
+#policy {
   margin-top: 4rem;
   .article-title {
     font-family: "Reenie Beanie", cursive;
   }
-  .article-view {
+  .policy-view {
     background-image: url(../../../assets/image/home/article-view-arrow.svg);
     background-repeat: no-repeat;
     background-position: 0% 0px;
     background-size: 40px;
+  }
+  .carousel-indicators {
+    right: 35px !important;
+    left: inherit !important;
+    top: 0% !important;
+    margin: 0 !important;
+    flex-direction: column !important;
+  }
+  .carousel-indicators [data-bs-target] {
+    background-color: var(--bg-main-color) !important;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
   }
 }
 .right-bg {
