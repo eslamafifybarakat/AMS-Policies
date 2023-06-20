@@ -134,49 +134,19 @@
 }
 #policy {
   padding-top: 5rem;
-  .policy-title {
-    font-family: "Reenie Beanie", cursive;
-  }
-  .policy-view {
-    background-repeat: no-repeat;
-    background-position: 0% 0px;
-    background-size: 40px;
-  }
-  .carousel-indicators {
-    right: 35px;
-    left: inherit;
-    top: 30% !important;
-    margin: 0 !important;
-    flex-direction: column !important;
-  }
-  .carousel-indicators [data-bs-target] {
-    background-color: var(--bg-main-color) !important;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-  .carousel-control-next-icon,
-  .carousel-control-prev-icon {
-    position: absolute !important;
-    top: 0;
+  .policy-bg {
+    width: 500px;
+    height: 500px;
     background-color: var(--bg-main-color);
-    border-radius: 4px;
-  }
-  .carousel-control-prev-icon {
-    right: 9rem;
-  }
-
-  .carousel-control-prev {
-    right: 0;
-    left: inherit;
-  }
-  .carousel-control-next {
-    left: inherit;
-    right: 0;
-  }
-  .arrow {
-    position: absolute;
+    z-index: 0;
     left: 0;
-    top: 24px;
+    border-radius: 4rem;
+    rotate: 318deg;
+    top: 0px;
+  }
+  .policy-img {
+    border-radius: 5rem 0;
+    z-index: 1;
+    position: relative;
   }
 }
