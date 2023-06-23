@@ -14,11 +14,6 @@ const routes: Routes = [
           .then(m => m.PoliciesModule)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('../../modules/profile/profile.module')
-          .then(m => m.ProfileModule)
-      },
-      {
         path: "",
         redirectTo: "",
         pathMatch: "full",

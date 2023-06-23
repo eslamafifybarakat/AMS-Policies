@@ -1,11 +1,10 @@
 .personal {
-
-  .form-control,
-  .mat-datepicker-toggle,
-  .mat-datepicker-content .mat-calendar-next-button,
-  .mat-datepicker-content .mat-calendar-previous-button {
-    background-color: var(--bg-form-control-profile) !important;
-  }
+  // .form-control,
+  // .mat-datepicker-toggle,
+  // .mat-datepicker-content .mat-calendar-next-button,
+  // .mat-datepicker-content .mat-calendar-previous-button {
+  //   background-color: var(--bg-form-control-profile) !important;
+  // }
 
   .border-red {
     border: 1px solid #dc3545 !important;
@@ -16,9 +15,9 @@
   }
 
   .setup-btn {
-    background: #E1F0FF;
+    background: #e1f0ff;
     color: #398cdf;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .setup-btn:hover {
@@ -29,11 +28,11 @@
   .deactive-btn {
     background: #f64e602e;
     color: #e92a40;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .deactive-btn:hover {
-    background: #F64E60;
+    background: #f64e60;
     color: white;
   }
   #spinner {
@@ -43,8 +42,8 @@
     border: 0.2rem solid var(--bg-white-color);
     border-radius: 100%;
     border-top-color: var(--bg-main-color);
-    width: .9rem;
-    height: .9rem;
+    width: 0.9rem;
+    height: 0.9rem;
     opacity: 0.6;
     padding: 0;
     z-index: 999;

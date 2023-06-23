@@ -63,15 +63,21 @@
               <label class="form-label">
                 {{'form.phone'|translate}}
               </label>
-              <ngx-intl-tel-input class="form-control"
-                [preferredCountries]="[CountryISO.UnitedStates, CountryISO.Egypt]" [enableAutoCountrySelect]="false"
-                [enablePlaceholder]="true" [searchCountryFlag]="true"
-                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
-                [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true" name="phone"
-                formControlName="phone"
-                [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
-                [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid">
-              </ngx-intl-tel-input>
+              <div [class.border-red-phone]="formControls?.phone?.invalid && (formControls?.phone?.dirty || formControls?.phone?.touched
+              )">
+                <ngx-intl-tel-input class="intel-tel-input px-1" [preferredCountries]="[
+                    CountryISO.UnitedStates,
+                    CountryISO.Egypt
+                  ]" [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="true"
+                  [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15" [phoneValidation]="true"
+                  [separateDialCode]="true" name="phone" (countryChange)="formControls?.phone?.reset()"
+                  formControlName="phone" (input)="publicService?.clearValidationErrors(formControls?.phone)"
+                  [class.is-invalid]="(formControls?.['phone']?.touched || formControls?.['phone']?.dirty) && formControls?.['phone']?.invalid"
+                  [class.is-valid]="formControls?.['phone']?.dirty && formControls?.['phone']?.valid"
+                  autocomplete="cc-name">
+                </ngx-intl-tel-input>
+              </div>
             </div>
             <div class="mt-2">
               <div
@@ -121,13 +127,10 @@
               <label for="exampleFormControlInput1" class="form-label">
                 {{"form.date_of_birth"|translate}}
               </label>
-              <div class="d-flex border rounded overflow-hidden"
-                [class.border-red]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.invalid"
-                [class.border-green]="(formControls?.['birthdate']?.touched ||formControls?.['birthdate']?.dirty) && formControls?.['birthdate']?.valid">
-                <input matInput class="form-control border-0" placeholder="{{'placeholder.date_of_birth' | translate}}"
-                  [matDatepicker]=" picker" formControlName="birthdate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+              <div
+                [class.border-red]="formControls?.birthdate?.invalid && (formControls?.birthdate?.dirty || formControls?.birthdate?.touched)">
+                <p-calendar formControlName="birthdate" [showIcon]="true" inputId="icon" placeholder="DD/MM/YYYY"
+                  appendTo="body" [showButtonBar]="true" dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
               </div>
             </div>
             <div class="mt-2">

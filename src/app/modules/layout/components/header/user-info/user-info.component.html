@@ -20,10 +20,10 @@
       </div>
       <hr class="text-secondary-color mt-3" />
       <ul>
-        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['profile']" (click)="collapse = false">
+        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['/profile']" (click)="collapse = false">
           {{'user_info.profile'|translate}}
         </li>
-        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['/home/profile/changepassword']"
+        <li class="py-3 color-grey-700 p-2 text-dir" [routerLink]="['/profile/changepassword']"
           (click)="collapse = false">
           {{'user_info.change_password'|translate}}
         </li>

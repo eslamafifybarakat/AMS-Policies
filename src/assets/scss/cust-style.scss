@@ -1196,7 +1196,8 @@ li.view-hover:hover {
   .iti--separate-dial-code input,
   .iti--separate-dial-code input[type="text"],
   .iti--separate-dial-code input[type="tel"] {
-    background: var(--bg-form-control-profile) !important;
+    background: var(--bg-input-color) !important;
+    // background: var(--bg-form-control-profile) !important;
   }
 
   .ng-select .ng-select-container {

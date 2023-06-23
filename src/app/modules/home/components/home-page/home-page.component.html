@@ -12,8 +12,8 @@
               {{homeData?.description}}
             </p>
             <div class="d-flex align-items-center flex-wrap gap-sm-5 gap-3 mt-5">
-              <button class="btn btn-solid-main" data-aos="fade-up" data-aos-easing="ease-in-out"
-                data-aos-duration="1200">{{'home.tryFreeTrial'|translate}}</button>
+              <a [routerLink]="'/auth/register'" class="btn btn-solid-main" data-aos="fade-up"
+                data-aos-easing="ease-in-out" data-aos-duration="1200">{{'home.tryFreeTrial'|translate}}</a>
               <div class="d-flex align-items-center gap-2  text-main-color " data-aos="fade-up"
                 data-aos-easing="ease-in-out" data-aos-duration="1300" (click)="openVideo()">
                 <div class="play-icon rounded-circle d-flex justify-content-center align-items-center">
@@ -48,7 +48,7 @@
       </div>
     </div>
   </section>
-  <div class="" data-aos="fade-up" data-aos-easing="ease-in-out">
+  <div data-aos="fade-up" data-aos-easing="ease-in-out">
     <div class="bg-name"></div>
     <section id="feature" class="pt-4  mb-5 d-flex align-items-center justify-content-center position-relative">
       <div class="vector-bg">
