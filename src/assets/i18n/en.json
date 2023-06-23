@@ -299,6 +299,9 @@
     "contactUs": "Contact Us"
   },
   "footer":{
+    "services":"Services",
+    "contact":"Contact Us",
+    "moreDetails":"More details",
     "quick":"Quick Links",
     "resource":"Resources",
     "subscribe":"Subscribe Newsletter",

@@ -190,13 +190,13 @@
   .p-button.p-button-text {
     background-color: var(--bg-white-color);
     color: #111 !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   }
   .active {
     .p-button.p-button-text {
       font-weight: 500;
       background-color: var(--bg-main-color) !important;
       color: var(--text-white-color) !important;
-      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     }
   }
 }

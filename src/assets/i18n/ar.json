@@ -301,6 +301,9 @@
     "emailVerification":"تأكيد بواسطة البريد الالكتروني"
   },
   "footer":{
+    "services":"الخدمات",
+    "contact":"تواصل معنا",
+    "moreDetails":"تفاصيل اكثر",
     "quick":"روابط سريعة",
     "resource":"موارد",
     "subscribe":"اشترك في النشرة الإخبارية",

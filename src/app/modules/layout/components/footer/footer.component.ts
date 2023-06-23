@@ -1,7 +1,10 @@
+import { keys } from '../../../../modules/shared/TS Files/localstorage-key';
+import { footerDataAr } from './../../../../ams-policy-data/footer-data';
 import { patterns } from './../../../shared/TS Files/patternValidation';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as Aos from 'aos';
+import { footerDataEn } from '../../.././../../app/ams-policy-data/footer-data';
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +12,8 @@ import * as Aos from 'aos';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  currentLanguage: any;
+  data: any;
 
   constructor(
     public fb: FormBuilder
@@ -22,6 +27,9 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     Aos?.init();
+    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
+
+    this.data = this.currentLanguage == 'ar' ? footerDataAr : footerDataEn;
   }
   submit(): void { }
 }
