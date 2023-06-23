@@ -1,8 +1,9 @@
 export const footerDataEn = {
+  "description": "Assistance Services operating 24 hours a day, 7 days a week, 365 days a year",
   facebookLink: 'https://www.facebook.com/EuroAssistEgypt',
   twitterLink: '',
   instagramLink: '',
-  whatsapLink: 'https://wa.me/201000048393',
+  whatsappLink: 'https://wa.me/201000048393',
   services: [
     'Euro Club',
     'Euro Med',
@@ -25,10 +26,11 @@ export const footerDataEn = {
   ]
 }
 export const footerDataAr = {
+  "description": "تعمل خدمات المساعدة على مدار 24 ساعة في اليوم ، 7 أيام في الأسبوع ، 365 يومًا في السنة",
   facebookLink: 'https://www.facebook.com/EuroAssistEgypt',
   twitterLink: '',
   instagramLink: '',
-  whatsapLink: 'https://wa.me/201000048393',
+  whatsappLink: 'https://wa.me/201000048393',
   services: [
     "يورو كلوب",
     "يورو ميد",

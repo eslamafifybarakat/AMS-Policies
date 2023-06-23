@@ -106,7 +106,7 @@
             <p class="fs-5-1 mt-1 text-black-50" data-aos="fade-down" data-aos-easing="ease-in-out"
               data-aos-duration="900">{{homeData?.news?.description||''}}</p>
             <button data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="950"
-              class="btn btn-solid-main d-flex align-items-center gap-3 mt-4">
+              class="btn btn-solid-main d-flex align-items-center gap-3 mt-4" [routerLink]="['/about-us']">
               {{'general.readMore'|translate}}
               <i class="pi pi-arrow-right scaleX-rtl"></i>
             </button>
@@ -172,7 +172,7 @@
                       <h2 class="fs-4" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
                         {{item?.service?.title}}
                       </h2>
-                      <p class="mt-3" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">Lorem
+                      <p class="mt-3" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
                         {{item?.service?.description}}
                       </p>
                       <div class="mt-4" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
@@ -184,7 +184,7 @@
                         </ng-container>
                       </div>
                       <button data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="900"
-                        class="btn btn-solid-main d-flex align-items-center gap-3 mt-4">
+                        class="btn btn-solid-main d-flex align-items-center gap-3 mt-4" [routerLink]="['/about-us']">
                         {{'general.moreDetails'|translate}}
                         <i class="pi pi-arrow-right scaleX-rtl"></i>
                       </button>

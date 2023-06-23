@@ -8,9 +8,11 @@
     <ul class="dropdown-menu rounded-25 border-0 shadow" aria-labelledby="dropdownMenuButton1"
       [class.dropdown-top]="typeModule=='auth'">
       <li class="drop-select d-flex align-items-center m-2" (click)="translationService?.changeLang('en')"><img
-          class="drop-img me-2" src="assets/image/us.svg"> {{'language.english' |translate}}</li>
+          class="drop-img me-2" src="assets/image/us.svg">
+        English
+      </li>
       <li class="drop-select d-flex align-items-center m-2" (click)="translationService?.changeLang('ar')"><img
-          class="drop-img me-2" src="assets/image/eg.svg"> {{'language.arabic' |translate}}</li>
+          class="drop-img me-2" src="assets/image/eg.svg"> عربي</li>
     </ul>
   </div>
 </div>

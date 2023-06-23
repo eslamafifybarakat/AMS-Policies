@@ -9,23 +9,24 @@
             <img src="assets/image/logo/logo2.png" alt="logo" class="logo" data-aos="fade-right"
               data-aos-easing="ease-in-out" data-aos-duration="1000">
           </div>
-          <p class="w-75 w-sm-100 lh-base" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1100">
-            {{'footer.desc'|translate}}
+          <p class="w-75 w-sm-100 lh-base mt-3" data-aos="fade-right" data-aos-easing="ease-in-out"
+            data-aos-duration="1100">
+            {{data?.description}}
           </p>
           <div class="mt-4 d-flex align-items-center gap-3" data-aos="fade-down" data-aos-easing="ease-in-out"
             data-aos-duration="1200">
-            <div>
+            <a [href]="data?.facebookLink" class="text-dark-color" target="_blank">
               <i class="pi pi-facebook fs-4"></i>
-            </div>
-            <div>
+            </a>
+            <a class="text-dark-color">
               <i class="pi pi-twitter fs-4"></i>
-            </div>
-            <div>
-              <i class="pi pi-linkedin fs-5"></i>
-            </div>
-            <div>
-              <i class="pi pi-youtube fs-4"></i>
-            </div>
+            </a>
+            <a class="text-dark-color">
+              <i class="pi pi-instagram fs-5"></i>
+            </a>
+            <a [href]="data?.whatsappLink" class="text-dark-color" target="_blank">
+              <i class="pi pi-whatsapp fs-4"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -35,12 +36,9 @@
             {{'footer.services'|translate}}
           </h4>
           <ul class="p-0">
-            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/home']">{{'nav.home'|translate}}</a></li>
-            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/about-us']">{{'nav.about'|translate}}</a></li>
-            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/auth/login']">{{'form.login'|translate}}</a>
-            </li>
-            <li class="pb-3"><a class="text-dark-color"
-                [routerLink]="['/auth/register']">{{'form.registration'|translate}}</a></li>
+            <ng-container *ngFor="let item of data?.services">
+              <li class="pb-3"><a class="text-dark-color">{{item}}</a></li>
+            </ng-container>
           </ul>
         </div>
       </div>
@@ -50,31 +48,23 @@
             {{'footer.moreDetails'|translate}}
           </h4>
           <ul class="p-0">
-            <li class="pb-3"><a class="text-dark-color" [routerLink]="['/contact-us']">{{'nav.contactUs'|translate}}</a>
-            </li>
-            <li class="pb-3"><a class="text-dark-color">
-                {{'footer.terms'|translate}}
-              </a></li>
-            <li class="pb-3"><a class="text-dark-color">
-                {{'footer.privacy'|translate}}
-              </a></li>
+            <ng-container *ngFor="let item of data?.moreDetails">
+              <li class="pb-3"><a class="text-dark-color" target="_blank" [routerLink]="[item?.link]">{{item?.name}}</a>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
-        <div>
-          <h5 class="fs-5 my-4 title fw-bold" data-aos="fade-right" data-aos-easing="ease-in-out"
-            data-aos-duration="1000">
+        <div data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <h5 class="fs-5 my-4 title fw-bold">
             {{'footer.contact'|translate}}
           </h5>
-          <form class="d-flex position-relative" [formGroup]="form" (submit)="submit()" data-aos="fade-right"
-            data-aos-easing="ease-in-out" data-aos-duration="1200">
-            <input class="form-control" type="email" placeholder="{{'placeholder.emailAddress'|translate}}"
-              formControlName="email">
-            <button class="btn btn-solid-main p-2 btn-submit position-absolute" type="submit"
-              [disabled]="form?.invalid">
-              {{'general.submit'|translate}}</button>
-          </form>
+          <div>
+            <ng-container *ngFor="let item of data?.contact">
+              <li class="pb-3"><a class="text-dark-color">{{item}}</a></li>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>

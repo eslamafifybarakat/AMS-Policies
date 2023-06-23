@@ -8,12 +8,12 @@
 
 //----- Components -----//
 @media (min-width: 768px) {
-  .text-sm-center {
+  #subscription .description {
     text-align: start !important;
   }
 }
 @media (max-width: 767px) {
-  .text-sm-center {
+  #subscription .description {
     text-align: center;
   }
   .error .title {
