@@ -296,7 +296,9 @@
     "solutions": "حلول",
     "pricing": "التسعير",
     "statistic": "الاحصاءيات",
-    "contactUs":"تواصل معنا"
+    "contactUs":"تواصل معنا",
+    "confirmLoginCode":"تأكيد رمز الدخول",
+    "emailVerification":"تأكيد بواسطة البريد الالكتروني"
   },
   "footer":{
     "quick":"روابط سريعة",

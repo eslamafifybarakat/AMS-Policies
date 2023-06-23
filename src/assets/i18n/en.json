@@ -288,6 +288,8 @@
     "register": "Registration",
     "forget_password": "Forget Password",
     "newPassword": "New Password",
+    "confirmLoginCode":"Confirm Login Code",
+    "emailVerification":"Email Verification",
     "exams": "Exams",
     "courses": "Courses",
     "solutions": "Solutions",

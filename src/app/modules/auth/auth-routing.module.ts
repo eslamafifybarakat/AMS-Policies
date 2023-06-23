@@ -49,7 +49,7 @@ const routes: Routes = [
         path: 'confirm-login-code',
         component: ConfirmLoginCodeComponent,
         data: {
-          title: '',
+          title: 'titles.confirmLoginCode',
           type: 'auth'
         }
       },
@@ -57,7 +57,7 @@ const routes: Routes = [
         path: 'email-verification',
         component: VerfiyPasswordComponent,
         data: {
-          title: '',
+          title: 'titles.emailVerification',
           type: 'auth'
         }
       },
