@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse m-auto" id="navbarSupportedContent" [class.show]="collapsedMenu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/home']">
+          <a class="nav-link " [routerLink]="['/home']" routerLinkActive="active">
             {{'nav.home'|translate}}
           </a>
         </li>
@@ -40,18 +40,18 @@
         </ng-container>
         <ng-template #noLogged>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/pricing']">
+            <a class="nav-link" [routerLink]="['/pricing']" routerLinkActive="active">
               {{'nav.pricing'|translate}}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/about-us']">
+            <a class="nav-link" [routerLink]="['/about-us']" routerLinkActive="active">
               {{'nav.about'|translate}}
             </a>
           </li>
         </ng-template>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact-us']">
+          <a class="nav-link" [routerLink]="['/contact-us']" routerLinkActive="active">
             {{'nav.contactUs'|translate}}
           </a>
         </li>
