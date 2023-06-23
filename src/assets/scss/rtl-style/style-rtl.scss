@@ -2,6 +2,10 @@
   padding-right: 0.5rem !important;
   padding-left: inherit !important;
 }
+.border-end {
+  border-left: 1px solid #dee2e6 !important;
+  border-right: 0 !important;
+}
 #hero-section {
   .layer1 {
     rotate: -5deg !important;
@@ -35,7 +39,8 @@
 #feature .vector-bg {
   background-position: left !important;
 }
-.footer .btn-submit {
+.footer .btn-submit,
+#subscription .btn-submit {
   left: 0 !important;
   right: inherit !important;
   transform: translate(10%, -50%) !important;
@@ -46,29 +51,15 @@
   right: inherit !important;
 }
 #policy {
-  .arrow {
-    right: -10px !important;
-    left: inherit !important;
-  }
-  .carousel-indicators {
-    left: 35px !important;
-    right: inherit !important;
-  }
-  .carousel-control-prev-icon {
-    left: 9rem !important;
-    right: inherit !important;
-  }
-
-  .carousel-control-prev {
-    left: -9rem !important;
-    right: inherit !important;
-  }
-  .carousel-control-next {
-    left: 0 !important;
-    right: inherit !important;
+  .policy-bg {
+    left: 30% !important;
   }
 }
 .scroll-to-top {
   left: 2rem !important;
+  right: inherit !important;
+}
+.service-layer {
+  left: -15px !important;
   right: inherit !important;
 }

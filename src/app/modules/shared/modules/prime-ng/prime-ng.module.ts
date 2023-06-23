@@ -26,6 +26,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ImageModule } from 'primeng/image';
+import { TabViewModule } from 'primeng/tabview';
+
 const primeNgModules = [
   DynamicDialogModule,
   ConfirmDialogModule,
@@ -48,6 +50,7 @@ const primeNgModules = [
   SkeletonModule,
   TooltipModule,
   DividerModule,
+  TabViewModule,
   ButtonModule,
   DialogModule,
   ToastModule,

@@ -1,5 +1,7 @@
 {
   "general": {
+    "moreDetails":"More details",
+    "readMore":"Read more",
     "demoVideo":"Demonstration video",
     "pageNotFound": "Page not found",
     "serverError": "A server error has occurred",
@@ -199,7 +201,14 @@
     "watchDemo": "Watch Demo",
     "features":"features",
     "realPolicy":"It's a real policy view!",
-    "policy":"Policy"
+    "policy":"Policy",
+    "projectsDone":"Projects Done",
+    "consultants":"Consultants",
+    "awardsWon":"Awards Won",
+    "happyClients":"Happy Clients",
+    "subscribe":"Subscribe Newsletter",
+    "subscribeDescription":" Sign up for Stegmann emails to be the first to see inspiring content, news,and exclusive offers.",
+    "services":"Our Services"
   },
   "language": {
     "english": "English",

@@ -133,20 +133,81 @@
   font-weight: 900;
 }
 #policy {
-  padding-top: 5rem;
+  background-image: url(../../../../../assets/image/home/policy-bg.svg);
+  background-size: cover;
+  margin-top: 7rem;
+  padding: 4rem 0 4rem;
   .policy-bg {
-    width: 500px;
-    height: 500px;
-    background-color: var(--bg-main-color);
-    z-index: 0;
-    left: 0;
-    border-radius: 4rem;
-    rotate: 318deg;
-    top: 0px;
+    left: -30%;
+    top: -11%;
+    rotate: 45deg;
   }
   .policy-img {
-    border-radius: 5rem 0;
+    border-radius: 2rem;
     z-index: 1;
     position: relative;
   }
+}
+#services {
+  margin: 4rem 0;
+  background-size: cover;
+}
+.service-bg {
+  background-image: url(../../../../../assets/image/home/services-bg.svg);
+}
+.service-bg-rtl {
+  background-image: url(../../../../../assets/image/home/service-bg-rtl.svg);
+}
+.btn-submit {
+  right: 0;
+  top: 50%;
+  transform: translate(-10%, -50%);
+}
+#subscription {
+  .content {
+    background: linear-gradient(
+      107.01deg,
+      #fb2119 -35.68%,
+      #f13932 35.16%,
+      #fb2119 54.87%,
+      #f19693 130.44%
+    );
+    border-radius: 15px;
+
+    .description {
+      color: rgba(255, 255, 255, 0.73);
+    }
+  }
+}
+:host::ng-deep {
+  .p-tabview .p-tabview-nav {
+    display: none !important;
+  }
+  .p-tabview .p-tabview-panels {
+    background-color: transparent !important;
+    padding: 0 !important;
+  }
+  .p-button.p-button-text {
+    background-color: var(--bg-white-color);
+    color: #111 !important;
+  }
+  .active {
+    .p-button.p-button-text {
+      font-weight: 500;
+      background-color: var(--bg-main-color) !important;
+      color: var(--text-white-color) !important;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    }
+  }
+}
+.service-img {
+  border-radius: 10px;
+  z-index: 1;
+}
+.service-layer {
+  background-color: var(--bg-main-color);
+  top: -15px;
+  right: -15px;
+  border-radius: 10px;
+  z-index: 0;
 }

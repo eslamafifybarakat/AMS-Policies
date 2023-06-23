@@ -86,22 +86,169 @@
       </div>
     </section>
   </div>
-  <!-- <section id="policy" class="position-relative">
+  <section id="policy" class="position-relative">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-md-6 position-relative">
           <div>
-            <div class="policy-bg position-absolute">
+            <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800">
+              <img src="../../../../../assets/image/home/bg-red.svg" alt="policy"
+                class="w-100 position-absolute policy-bg">
             </div>
-            <img src="../../../../../assets/image/home/main-policy.png" alt="policy" class="w-100 shadow policy-img">
+            <img data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="8s00"
+              src="../../../../../assets/image/home/main-policy.png" alt="policy" class="w-100 shadow policy-img">
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-5 col-md-6 mt-md-0 mt-5">
           <div>
-            desc
+            <h2 class="fs-2 pt-md-0 pt-4" data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="800">
+              {{homeData?.news?.title||''}}</h2>
+            <p class="fs-5-1 mt-1 text-black-50" data-aos="fade-down" data-aos-easing="ease-in-out"
+              data-aos-duration="900">{{homeData?.news?.description||''}}</p>
+            <button data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="950"
+              class="btn btn-solid-main d-flex align-items-center gap-3 mt-4">
+              {{'general.readMore'|translate}}
+              <i class="pi pi-arrow-right scaleX-rtl"></i>
+            </button>
+            <div class="mt-5 row gx-0 text-center" data-aos="fade-up" data-aos-easing="ease-in-out"
+              data-aos-duration="900">
+              <div class="col-6">
+                <div class="border-bottom border-end py-3 ">
+                  <h4 class="fs-1 warning-color">{{homeData?.news?.projectsDone||0}}</h4>
+                  <p class="fs-5">{{'home.projectsDone'|translate}}</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border-bottom py-3">
+                  <h4 class="fs-1 confirm-color">{{homeData?.news?.consultants||0}}</h4>
+                  <p class="fs-5">{{'home.consultants'|translate}}</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border-end py-3">
+                  <h4 class="fs-1 success-color">{{homeData?.news?.awardsWon||0}}</h4>
+                  <p class="fs-5">{{'home.awardsWon'|translate}}</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="py-3">
+                  <h4 class="fs-1 text-dark">{{homeData?.news?.happyClients||0}}</h4>
+                  <p class="fs-5">{{'home.happyClients'|translate}}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
+  <section id="services" ngClass="{{currentLanguage=='ar'?'service-bg-rtl':'service-bg'}}" class="py-5">
+    <div class="container">
+      <h5 class="fs-5 text-main-color" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="700">
+        {{'home.services'|translate}}
+      </h5>
+      <h2 data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="800"
+        class="fs-2 w-75 title text-dark-color fw-bold">
+        {{homeData?.featureTitle}}
+      </h2>
+      <div>
+        <div class="mt-5 d-flex flex-wrap gap-3" data-aos="fade-right" data-aos-easing="ease-in-out"
+          data-aos-duration="800">
+          <ng-container *ngFor="let item of homeData?.services?.content;let i=index">
+            <p-button (click)="activeIndex1 = i" styleClass="p-button-text d-flex align-items-center gap-2"
+              [class.active]="activeIndex1 == i">
+              <i class="pi pi-info-circle"></i>
+              {{item?.title}}
+            </p-button>
+          </ng-container>
+        </div>
+        <div class="global-card mt-4 p-5" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="900">
+          <p-tabView [(activeIndex)]="activeIndex1">
+            <ng-container *ngFor="let item of homeData?.services?.content;let i=index">
+              <p-tabPanel>
+                <div class="row align-items-center">
+                  <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-4">
+                    <div>
+                      <h2 class="fs-4" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
+                        {{item?.service?.title}}
+                      </h2>
+                      <p class="mt-3" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">Lorem
+                        {{item?.service?.description}}
+                      </p>
+                      <div class="mt-4" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
+                        <ng-container *ngFor="let item of item?.service?.details">
+                          <span class="d-flex align-items-center gap-2 mb-2">
+                            <i class="pi pi-check text-main-color"></i>
+                            <p class="mb-0">{{item}} </p>
+                          </span>
+                        </ng-container>
+                      </div>
+                      <button data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="900"
+                        class="btn btn-solid-main d-flex align-items-center gap-3 mt-4">
+                        {{'general.moreDetails'|translate}}
+                        <i class="pi pi-arrow-right scaleX-rtl"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-6 justify-content-end order-md-2 order-1">
+                    <div class="d-flex justify-content-md-end justify-content-center position-relative"
+                      data-aos="fade-left" data-aos-easing="ease-in-out" data-aos-duration="900">
+                      <div class="w-75  position-absolute service-layer h-100"></div>
+                      <img [src]="item?.service?.image" class="w-75 w-md-100 service-img shadow-sm" alt="">
+                    </div>
+                  </div>
+                </div>
+              </p-tabPanel>
+            </ng-container>
+
+            <!-- <p-tabPanel>
+              cccccccc
+            </p-tabPanel>
+            <p-tabPanel>
+              zzzzzzzzzz
+            </p-tabPanel>
+            <p-tabPanel>
+              zzzzzzzzzzzz
+            </p-tabPanel> -->
+          </p-tabView>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="subscription" class="mt-5">
+    <div class="container">
+      <div class="p-4 content">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-6 col-md-8">
+            <div class="mx-4">
+              <h5 class="fs-4 fw-bold text-white-color d-flex justify-content-md-start justify-content-center mb-2"
+                data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="800">
+                {{'home.subscribe'|translate}}
+              </h5>
+              <p class="description fs-6 d-flex justify-content-md-start justify-content-center text-sm-center "
+                data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="850">
+                {{'home.subscribeDescription'|translate}}
+              </p>
+              <form class="d-flex position-relative mt-4" [formGroup]="form" (submit)="submit()" data-aos="fade-up"
+                data-aos-easing="ease-in-out" data-aos-duration="900">
+                <input class="form-control" type="email" placeholder="{{'placeholder.emailAddress'|translate}}"
+                  formControlName="email">
+                <button class="btn btn-solid-main p-2 btn-submit position-absolute" type="submit"
+                  [disabled]="form?.invalid">
+                  {{'general.submit'|translate}}</button>
+              </form>
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-4 d-none d-md-block">
+            <div class="ps-5 d-flex justify-content-end subscription-img" data-aos="fade-left"
+              data-aos-easing="ease-in-out" data-aos-duration="900">
+              <img src="../../../../../assets/image/home/subscription.svg" class="w-50 w-md-100 sub-img" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

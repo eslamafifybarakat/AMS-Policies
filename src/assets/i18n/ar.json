@@ -1,5 +1,7 @@
 {
   "general": {
+    "moreDetails":" تفاصيل أكثر",
+    "readMore":"قراءة المزيد",
     "demoVideo":"فيديو تعريفي",
     "pageNotFound": "الصفحة غير موجوده",
     "serverError": "حدث خطأ في السيرفر",
@@ -202,7 +204,14 @@
     "watchDemo": "شاهد العرض التوضيحي",
     "features":"السمات",
     "realPolicy":"إنها وثيقة حقيقية!",
-    "policy":"وثيقة"
+    "policy":"وثيقة",
+    "projectsDone":"المشاريع المنجزة",
+    "consultants":"استشاريون",
+    "awardsWon":"فاز بالجوائز",
+    "happyClients":"عملاء سعداء",
+    "subscribe":"اشترك في النشرة الإخبارية",
+    "subscribeDescription":"اشترك في رسائل البريد الإلكتروني لـ Ams لتكون أول من يرى محتوى ملهمًا وأخبارًا وعروضًا حصرية.",
+    "services":"خدماتنا"
   },
   "language": {
     "english": " اللغة الإنجليزية",

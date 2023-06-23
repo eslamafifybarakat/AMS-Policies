@@ -1,3 +1,4 @@
+import { patterns } from './../../../shared/TS Files/patternValidation';
 import { homeDataAr, homeDataEn } from './../../../../ams-policy-data/home-data';
 import { AlertsService } from './../../../../modules/shared/services/alerts/alerts.service';
 import { VideoModalComponent } from './components/video-modal/video-modal.component';
@@ -8,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import * as Aos from 'aos';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -17,14 +19,20 @@ export class HomePageComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   homeData: any;
   currentLanguage: any;
+  activeIndex1: any = 0;
 
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,
     private homeService: HomeService,
     public dialog: MatDialog,
+    public fb: FormBuilder
   ) { }
-
+  form = this.fb.group({
+    email: ['', [
+      Validators.required,
+      Validators.pattern(patterns?.email)]]
+  })
   ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
     Aos.init();
@@ -63,6 +71,11 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
+  onClickTab(tab: any): void {
+    console.log(tab);
+
+  }
+  submit(): void { }
 
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
