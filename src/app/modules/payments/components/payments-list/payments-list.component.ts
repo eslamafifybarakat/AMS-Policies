@@ -20,6 +20,7 @@ export class PaymentsListComponent implements OnInit {
   currentPage = 1;
   pageSize = 6;
   paymentsList: any = [];
+  pageCount: any;
 
   date = new Date("10/10/1996");
 
@@ -54,12 +55,12 @@ export class PaymentsListComponent implements OnInit {
 
   getAllPayments(): void {
     this.isLoading = true;
-    this.currentPage = 1;
     this.paymentService?.getPaymentsList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
       (res) => {
         if (res?.code == 200) {
+          let arr: any = [];
           res?.data ? res?.data?.forEach((element: any) => {
-            this.paymentsList?.push({
+            arr?.push({
               id: element?.id,
               class: element?.class ? element?.class : '',
               amount: element?.amount ? element?.amount : '',
@@ -68,6 +69,8 @@ export class PaymentsListComponent implements OnInit {
               esablishDate: element?.esablishDate ? element?.esablishDate : '',
             });
           }) : '';
+          this.paymentsList = arr;
+          this.pageCount = res?.pageCount;
           this.isLoading = false;
           this.loadingSearch = false;
         } else {
@@ -101,12 +104,14 @@ export class PaymentsListComponent implements OnInit {
   }
 
   clearSearch(): void {
+    this.currentPage = 1;
     this.searchValue = '';
     this.getAllPayments();
     this.cdr?.detectChanges();
   }
   searchHandler(event: Event): void {
     this.isSearch = true;
+    // this.currentPage = 1;
     this.loadingSearch = true;
     let applyFilter = (event?.target as HTMLInputElement).value;
     this.searchValue = applyFilter;
@@ -127,6 +132,7 @@ export class PaymentsListComponent implements OnInit {
   }
 
   onChange(page: any): void {
+    this.currentPage = page;
     this.getAllPayments();
   }
 

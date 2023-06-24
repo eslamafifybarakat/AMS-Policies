@@ -64,7 +64,7 @@
           </ng-container>
 
           <ng-container *ngFor="let col of columns">
-            <ng-container *ngIf="col?.sort || col?.filter  ||col?.filterTime ||col?.filterTimes; else elseWithoutSort">
+            <!-- <ng-container *ngIf="col?.sort || col?.filter  ||col?.filterTime ||col?.filterTimes; else elseWithoutSort">
               <ng-container
                 *ngIf="col?.type=='text' ||col?.type== 'filterArray' || col?.type=='numeric' || col?.type=='date' || col?.type=='status' || col?.type=='boolean'|| col?.type=='time'">
                 <th>
@@ -203,15 +203,15 @@
                 </th>
               </ng-container>
             </ng-container>
-            <ng-template #elseWithoutSort>
-              <th>
-                {{ col?.header }}
-              </th>
-            </ng-template>
+            <ng-template #elseWithoutSort> -->
+            <th>
+              {{ col?.header }}
+            </th>
+            <!-- </ng-template> -->
           </ng-container>
 
           <ng-container *ngIf="showActions">
-            <th>{{"general.settings"|translate}}</th>
+            <th>{{"general.actions"|translate}}</th>
           </ng-container>
           <ng-container *ngIf="showReport">
             <th>{{"dashboard.tableHeader.report"|translate}}</th>
@@ -292,13 +292,15 @@
                     <td>
                       <ng-container *ngIf="col?.enableItemLink; else normalRecord">
                         <a (click)="itemActionEmitter(item)" class="text-decoration-underline link-color">
-                          <span [class.truncate-text]="col?.type=='text'" *ngIf="item && item[col.field]">
+                          <span class="truncate-text" [class.text-width]="col?.type=='text'"
+                            *ngIf="item && item[col.field]">
                             {{ item[col.field] }}
                           </span>
                         </a>
                       </ng-container>
                       <ng-template #normalRecord>
-                        <span [class.truncate-text]="col?.type=='text'" *ngIf="item && item[col.field]">
+                        <span class="truncate-text" [class.text-width]="col?.type=='text'"
+                          *ngIf="item && item[col.field]">
                           {{ item[col.field] }}
                         </span>
                         <ng-container *ngIf="col?.secondField">
@@ -322,7 +324,7 @@
                 </ng-container>
                 <ng-container *ngIf="col?.type=='status'">
                   <td>
-                    <span class="badge-item status-{{item?.status}}">
+                    <span class="badge-item status-{{item?.class}}">
                       <!-- <span class="item-badge status-{{item?.status}}"></span> -->
                       <span>{{item?.status}}</span>
                     </span>
@@ -346,11 +348,11 @@
               <td>
                 <div class="d-flex gap-2">
                   <ng-container *ngIf="showDetails">
-                    <button class="badge-item text-main-color d-flex align-items-center gap-2 details"
+                    <a class="badge-item text-main-color d-flex align-items-center gap-2 details"
                       (click)="detailsHandlerEmit(item)">
                       <i class="pi pi-eye"></i>
                       {{'general.details' | translate}}
-                    </button>
+                    </a>
                   </ng-container>
                   <ng-container *ngIf="showPrint">
                     <a class="d-flex align-items-center badge-item
@@ -570,7 +572,8 @@
                   </ng-container>
                   <ng-template #elseNoColEvent>
                     <td>
-                      <span [class.truncate-text]="col?.type=='text'" *ngIf="item && item[col.field]">
+                      <span class="text-truncate text-width" [class.truncate-text]="col?.type=='text'"
+                        *ngIf="item && item[col.field]">
                         {{ item[col.field] }}
                       </span>
                     </td>
@@ -666,7 +669,7 @@
   <ng-template pTemplate="emptymessage">
     <ng-container *ngIf="!isLoading">
       <tr>
-        <td [attr.colspan]="tableHeaders.length+1">
+        <td class="border" [attr.colspan]="tableHeaders.length+1">
           <div class="not-found d-flex flex-column justify-content-center align-items-center">
             <ng-container *ngIf="!isSearch">
               <img [src]="notFoundImage" onerror="this.src='assets/image/not-found/no-data.svg'"
@@ -683,8 +686,8 @@
       </tr>
     </ng-container>
     <ng-container *ngIf="isLoading && !isSearch">
-      <tr>
-        <td class="p-0" [attr.colspan]="showReport?tableHeaders?.length+2:tableHeaders?.length+1">
+      <tr class="border-0 bg-transparent">
+        <td class="p-0 border-0 " [attr.colspan]="showReport?tableHeaders?.length+2:tableHeaders?.length+1">
           <app-skeleton [type]="'table'" [tableItems]="skeletonItems"></app-skeleton>
         </td>
       </tr>

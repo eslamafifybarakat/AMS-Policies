@@ -3,7 +3,7 @@
   <div class="dropdown">
     <button class="btn dropdown-toggle p-0" type="button" [class.show]="collapse">
       <div (click)="collapse=!collapse" class="user-img-parent">
-        <img [src]='userdata?.photo' onerror="src='assets/image/nonuser.webp'"
+        <img [src]='userdata?.photo' onerror="src='assets/image/not-found/no-user.svg'"
           class="user-img rounded-circle w-100 h-100 p-1 bg-white-color border-icon-menu">
       </div>
     </button>
@@ -11,7 +11,8 @@
       [class.show]="collapse">
       <div class="d-flex align-items-center">
         <div>
-          <img [src]='userdata?.photo' onerror="src='assets/image/nonuser.webp'" class="user-img user-img-menu rounded">
+          <img [src]='userdata?.photo' onerror="src='assets/image/not-found/no-user.svg'"
+            class="user-img user-img-menu rounded">
         </div>
         <div class="px-3">
           <h1 class="fw-bold text-dir fs-6">{{userdata?.name}}</h1>

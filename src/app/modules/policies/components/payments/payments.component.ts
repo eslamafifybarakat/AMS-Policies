@@ -58,17 +58,17 @@ export class PaymentsComponent implements OnInit {
     this.paymentService?.getPaymentsList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
       (res) => {
         if (res?.code == 200) {
-          // this.paymentsList = res?.data;
-          res?.data ? res?.data?.forEach((element: any) => {
-            this.paymentsList?.push({
-              id: element?.id,
-              class: element?.class ? element?.class : '',
-              amount: element?.amount ? element?.amount : '',
-              description: element?.description ? element?.description : '',
-              status: element?.status ? element?.status : '',
-              esablishDate: element?.esablishDate ? element?.esablishDate : '',
-            });
-          }) : '';
+          this.paymentsList = [];
+          // res?.data ? res?.data?.forEach((element: any) => {
+          //   this.paymentsList?.push({
+          //     id: element?.id,
+          //     class: element?.class ? element?.class : '',
+          //     amount: element?.amount ? element?.amount : '',
+          //     description: element?.description ? element?.description : '',
+          //     status: element?.status ? element?.status : '',
+          //     esablishDate: element?.esablishDate ? element?.esablishDate : '',
+          //   });
+          // }) : '';
           this.isLoading = false;
         } else {
           this.isLoading = false;
