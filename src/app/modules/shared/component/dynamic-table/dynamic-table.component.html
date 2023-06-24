@@ -474,7 +474,7 @@
                               placeholder="Any">
                               <ng-template let-option pTemplate="item">
                                 <div class="d-flex align-items-center gap-2">
-                                  <span class="item-badge {{item?.status}}"></span>
+                                  <span class="item-badge {{item?.class}}"></span>
                                   <span>{{item?.status}}</span>
                                 </div>
                               </ng-template>
@@ -594,7 +594,7 @@
                 <ng-container *ngIf="col?.type=='status'">
                   <td>
                     <div class="d-flex align-items-center gap-2">
-                      <span class="item-badge {{item?.status}}"></span>
+                      <span class="item-badge {{item?.class}}"></span>
                       <span>{{item?.status}}</span>
                     </div>
                   </td>
