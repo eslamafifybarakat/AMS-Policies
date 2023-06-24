@@ -1,0 +1,32 @@
+.badge-item {
+  padding: 6px 10px;
+  text-align: center;
+  border-radius: 7px;
+  font-size: 15px;
+  width: auto;
+}
+.status-success,
+.status-bg-paid {
+  color: #32a071;
+  background-color: #32a07114;
+}
+.status-pending {
+  color: #f9bc61;
+  background-color: #f9bc6114;
+}
+.status-rejected {
+  color: #e55555;
+  background-color: #e5555514;
+}
+.status-bg-cancelled {
+  color: #8c95a3;
+  background-color: #8c95a314;
+}
+.status-bg-inReview {
+  color: #8c95a3;
+  background-color: #8c95a314;
+}
+.status-bg-confirmed {
+  color: #1071b8 !important;
+  background-color: #1071b814 !important;
+}

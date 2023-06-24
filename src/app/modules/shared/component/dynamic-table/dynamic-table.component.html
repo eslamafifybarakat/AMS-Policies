@@ -23,69 +23,10 @@
               </span>
             </ng-container>
             <div class="d-flex gap-2">
-              <ng-container *ngIf="enableArticleNoteStatusButton">
-                <div class="dropdown">
-                  <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                    class="p-button-outlined p-button-secondary clear px-2 fw-bold">
-                    <i class="pi pi-arrow-right-arrow-left"></i>
-                    <span class="lh-0 ps-1">
-                      {{'general.changeStatus'|translate}}
-                    </span>
-                  </button>
-                  <ul class="dropdown-menu border-0 p-3">
-                    <ng-container *ngFor="let item of articleStatusList">
-                      <li><a class="dropdown-item d-flex gap-1" (click)="itemChangeStatusActionEmitter(item)">
-                          {{item?.name}}
-                        </a>
-                      </li>
-                    </ng-container>
-
-                  </ul>
-                </div>
-              </ng-container>
-              <ng-container *ngIf="enableAssignToButton">
-                <div class="dropdown">
-                  <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                    class="p-button-outlined p-button-secondary clear px-2 fw-bold">
-                    <i class="pi pi-arrow-right scaleX-rtl"></i>
-                    <span class="lh-0 ps-1">
-                      {{'labels.assignTo'|translate}}
-                    </span>
-                  </button>
-                  <ul class="dropdown-menu border-0 p-3">
-                    <ng-container *ngFor="let item of assignedUsers">
-                      <li><a class="dropdown-item d-flex gap-1" (click)="itemAssignUserActionEmitter(item)">
-                          {{item?.name}}
-                        </a>
-                      </li>
-                    </ng-container>
-
-                  </ul>
-                </div>
-              </ng-container>
-
               <ng-container *ngIf="showClear">
                 <button pButton label="{{'general.reset'|translate}}" class="p-button-outlined p-button-secondary clear"
                   icon="pi pi-refresh" (click)="clear(dt1)">
                 </button>
-              </ng-container>
-
-              <ng-container *ngIf="enableAddNewQuestion">
-                <div class="dropdown">
-                  <!-- <button data-bs-toggle="dropdown" aria-expanded="false" pButton
-                    label="{{'dashboard.usersList.addNewQuestion'|translate}}"
-                    class="p-button-outlined p-button-secondary clear">
-                  </button> -->
-                  <ul class="dropdown-menu border-0 p-3">
-                    <ng-container *ngFor="let item of newQuestionList">
-                      <li><a class="dropdown-item d-flex gap-1">
-                          {{item?.name}}
-                        </a>
-                      </li>
-                    </ng-container>
-
-                  </ul>
-                </div>
               </ng-container>
               <ng-container *ngIf="enableDeleteButton">
                 <button (click)="deleteSelectedItems()" [disabled]="!selectedItems || !selectedItems?.length"
@@ -94,12 +35,11 @@
             </div>
 
             <div class="d-flex justify-content-end gap-2">
-              <button type="button"
-                class="btn btn-solid-main btn-sm d-flex justify-content-between align-items-center gap-2"
+              <button type="button" class="btn btn-solid-main  d-flex justify-content-between align-items-center gap-2"
                 (click)="downloadFileHandlerEmit()"><span>{{'general.export'
                   | translate}}</span> <i class="fas fa-file-export"></i></button>
               <button type="button" (click)="printTableHandlerEmit()"
-                class="btn btn-outline-main btn-sm d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
+                class="btn btn-outline-main d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
                   | translate}}</span> <i class="fas fa-print"></i></button>
             </div>
           </div>
@@ -382,10 +322,10 @@
                 </ng-container>
                 <ng-container *ngIf="col?.type=='status'">
                   <td>
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="item-badge {{item?.status}}"></span>
+                    <span class="badge-item status-{{item?.status}}">
+                      <!-- <span class="item-badge status-{{item?.status}}"></span> -->
                       <span>{{item?.status}}</span>
-                    </div>
+                    </span>
                   </td>
                 </ng-container>
                 <ng-container *ngIf="col?.type=='boolean'">
@@ -406,32 +346,35 @@
               <td>
                 <div class="d-flex gap-2">
                   <ng-container *ngIf="showDetails">
-                    <!-- <a class="fw-500" (click)="detailsHandlerEmit(item)">
-                      <i class="far fa-eye"></i>
-                    </a> -->
-                    <button class="btn p-0 btn-outline-main-header py-1 px-3" (click)="detailsHandlerEmit(item)">
+                    <button class="badge-item text-main-color d-flex align-items-center gap-2 details"
+                      (click)="detailsHandlerEmit(item)">
+                      <i class="pi pi-eye"></i>
                       {{'general.details' | translate}}
                     </button>
                   </ng-container>
                   <ng-container *ngIf="showPrint">
-                    <a class="d-flex align-items-center
-                      gap-2" (click)="printHandlerEmit(item)" pTooltip="{{'general.print'|translate}}"
+                    <a class="d-flex align-items-center badge-item
+                      gap-2 print-badge" (click)="printHandlerEmit(item)" pTooltip="{{'general.print'|translate}}"
                       tooltipPosition="top">
-                      <span><i class="fas fa-print text-black-50 print"></i></span>
+                      <i class="fas fa-print print"></i>
+                      {{'general.print'
+                      | translate}}
                     </a>
                   </ng-container>
                   <ng-container *ngIf="showEdit">
-                    <a class="d-flex align-items-center
+                    <a class="d-flex align-items-center badge-item badge-gray
                       gap-2" (click)="editHandlerEmit(item)" pTooltip="{{'general.edit'|translate}}"
                       tooltipPosition="top">
-                      <span><i class="fas fa-pen text-black-50 edit"></i></span>
+                      <i class="fas fa-pen text-black-50 edit"></i>
+                      {{'general.edit'|translate}}
                     </a>
                   </ng-container>
                   <ng-container *ngIf="showDelete">
-                    <a class="d-flex align-items-center
+                    <a class="d-flex align-items-center badge-item text-main-color delete
                       gap-2" (click)="deleteHandlerEmit(item)" pTooltip="{{'general.delete'|translate}}"
                       tooltipPosition="top">
-                      <span><i class="fas fa-trash-alt text-black-50 remove"></i></span>
+                      <i class="fas fa-trash-alt remove"></i>
+                      {{'general.delete'|translate}}
                     </a>
                   </ng-container>
                 </div>

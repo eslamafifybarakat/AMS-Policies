@@ -1,3 +1,4 @@
+import { PublicService } from './../../../../services/public.service';
 import { AuthUserService } from './../../../auth/services/auth-user.service';
 import { ChangeDetectorRef, Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   currentUrl: string = '';
   title: any = '';
+  typeModule: any;
 
   @HostListener("window:scroll", ["$event"])
   handleKeyDown() {
@@ -31,6 +33,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authUserService: AuthUserService,
     private activatedRoute: ActivatedRoute,
+    private publicService: PublicService,
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
@@ -40,6 +43,10 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.authUserService?.isLoggedIn();
     this.currentUrl = this.router?.url?.split(/[?#]/)[0];
     this.cdr?.detectChanges();
+    this.publicService.pushUrlData.subscribe((res: any) => {
+      this.typeModule = res?.type;
+      this.cdr.detectChanges();
+    });
   }
 
 }

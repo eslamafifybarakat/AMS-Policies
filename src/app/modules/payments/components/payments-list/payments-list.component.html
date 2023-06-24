@@ -1,0 +1,68 @@
+<div id="payments" class="pt-sec pb-4">
+  <div class="container">
+    <div class="payment-history py-small-2">
+      <div class="container px-0">
+        <div class="rounded-25 px-4">
+          <div
+            class="header-payment-history d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
+            <h1 class="fs-4">
+              <span>
+                {{'policies.payment_history' | translate}}
+              </span>
+            </h1>
+            <span class="p-input-icon-right">
+              <ng-container *ngIf="loadingSearch">
+                <i class="pi pi-spin pi-spinner"></i>
+              </ng-container>
+              <ng-container *ngIf="!loadingSearch&&searchValue !==''">
+                <i (click)="searchValue !==''?clearSearch():''" class="fa text-danger-color"
+                  [ngClass]="searchValue !==''?'fa-close':''"></i>
+              </ng-container>
+
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" [(ngModel)]="searchValue" class="search-input" #search
+                  (keyup.enter)="searchHandler($event)" placeholder="{{'general.search' | translate}}" />
+              </span>
+            </span>
+
+            <!-- <div class="search-table">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text input-group-text-L bg-white-color">
+                  <a (click)="applySearch($event)">
+                    <i class="fa fa-search fas fa-color"></i>
+                  </a>
+                </span>
+                <input type="text" class="form-control form-control-search-group" (keyup.enter)="applySearch($event)"
+                  [(ngModel)]="searchValue" placeholder="{{'general.search' | translate}}">
+                <span class="input-group-text bg-white-color input-group-text-R">
+                  <a (click)="searchValue !==''?clearSearch():''">
+                    <i class="fa text-danger-color" [ngClass]="searchValue !==''?'fa-close':''"></i>
+                  </a>
+                </span>
+              </div>
+            </div> -->
+          </div>
+          <hr class="color-grey-400" />
+          <div class="data-table">
+            <app-dynamic-table [isLoading]="isLoading" [showCaption]="false" [showClear]="true"
+              (clearHandler)="enableSortFilter?clearTable($event):''" [tableHeaders]="tableHeaders"
+              [tableData]="paymentsList" [enableDateFormate]="true" [dateFormateString]="'EE | dd/MM/YYYY'"
+              [showActions]="true" [showDetails]="true" (detailsHandler)="showDetails($event)"
+              (customSortHandler)="enableSortFilter?sortItems($event):''" [isSearch]="isSearch"
+              [arrayChildKey]="'name'"></app-dynamic-table>
+            <ng-container *ngIf="paymentsList?.length>pageSize">
+              <div class="d-flex justify-content-center mt-5 mb-4">
+                <ngb-pagination [collectionSize]="paymentsList.length" [pageSize]="pageSize" [(page)]="currentPage"
+                  [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true"
+                  [boundaryLinks]="true">
+                </ngb-pagination>
+              </div>
+            </ng-container>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.payment-history {
+  span.align-super {
+    vertical-align: super !important;
+  }
+
+  .card-filter {
+    border-radius: 1rem;
+    background-color: #d2eaf62d;
+    border-radius: 0.5rem !important;
+  }
+
+  .item-img {
+    width: 20rem;
+    height: 8rem;
+    background-color: var(--bg-white-color);
+  }
+
+  .selected-card {
+    border: 2px solid var(--bs-danger) !important;
+  }
+}
+.spinner {
+  height: calc(100vh - 142px) !important;
+  .spinner-grow {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    margin: 0 2px;
+  }
+}
+.search-input,
+.search-input:enabled:focus,
+.p-inputtext:enabled:hover {
+  height: 3rem !important;
+  border: 1px solid #dedede !important;
+  background-color: var(--bg-white-color) !important;
+}

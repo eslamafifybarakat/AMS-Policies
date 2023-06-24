@@ -13,14 +13,16 @@ const routes: Routes = [
         path: '',
         component: PersonalInfoComponent,
         data: {
-          title: 'titles.personal_info'
+          title: 'titles.personal_info',
+          type: 'profile'
         }
       },
       {
         path: 'changepassword',
         component: ChangePasswordComponent,
         data: {
-          title: 'titles.change_password'
+          title: 'titles.change_password',
+          type: 'profile'
         }
       }
     ]

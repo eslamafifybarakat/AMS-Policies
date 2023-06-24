@@ -9,11 +9,6 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
       {
-        path: 'policies',
-        loadChildren: () => import('../../modules/policies/policies.module')
-          .then(m => m.PoliciesModule)
-      },
-      {
         path: "",
         redirectTo: "",
         pathMatch: "full",

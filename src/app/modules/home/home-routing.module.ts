@@ -1,10 +1,10 @@
-import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { NgModule } from '@angular/core';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PricingComponent } from './components/pricing/pricing.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { PricingComponent } from './components/pricing/pricing.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -13,34 +13,44 @@ const routes: Routes = [
         path: 'home',
         component: HomePageComponent,
         data: {
-          title: 'titles.home'
+          title: 'titles.home',
+          type: 'home'
         }
       },
       {
         path: 'about-us',
         component: AboutUsComponent,
         data: {
-          title: 'titles.aboutUs'
+          title: 'titles.aboutUs',
+          type: 'home'
         }
       },
       {
         path: 'pricing',
         component: PricingComponent,
         data: {
-          title: 'titles.pricing'
+          title: 'titles.pricing',
+          type: 'home'
         }
       },
       {
         path: 'contact-us',
         component: ContactUsComponent,
         data: {
-          title: 'titles.contactUs'
+          title: 'titles.contactUs',
+          type: 'home'
         }
       },
       {
         path: 'profile',
         loadChildren: () => import('../../modules/profile/profile.module')
           .then(m => m.ProfileModule)
+      },
+      { path: 'payments', loadChildren: () => import('../../modules/payments/payments.module').then(m => m.PaymentsModule) },
+      {
+        path: 'policies',
+        loadChildren: () => import('../../modules/policies/policies.module')
+          .then(m => m.PoliciesModule)
       },
       {
         path: "",
@@ -52,7 +62,6 @@ const routes: Routes = [
         loadChildren: () => import('./../../modules/error/error.module')
           .then(m => m.ErrorModule)
       },
-
       { path: "**", redirectTo: "error" }
     ]
   }];

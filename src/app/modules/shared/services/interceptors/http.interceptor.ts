@@ -21,7 +21,7 @@ export class httpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.clear();
+    // console.clear();
     if (request.url.startsWith("https://ipapi.co/json")) {
       return next.handle(request);
     }
