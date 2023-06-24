@@ -44,6 +44,7 @@ import { ThemeComponent } from '../../layout/components/header/theme/theme.compo
 import { AltButtonComponent } from '../component/alt-button/alt-button.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ScrollToTopComponent } from '../component/scroll-to-top/scroll-to-top.component';
+import { UploadFileComponent } from '../component/upload-file/upload-file.component';
 
 const allShared = [
   ReactiveFormsModule,
@@ -82,6 +83,7 @@ const components = [
   LanguageSelectorComponent,
   DynamicTableComponent,
   ScrollToTopComponent,
+  UploadFileComponent,
   CountdownComponent,
   AltButtonComponent,
   UserInfoComponent,

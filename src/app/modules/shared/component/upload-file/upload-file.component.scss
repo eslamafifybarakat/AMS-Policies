@@ -1,0 +1,13 @@
+.uploader {
+  background: rgba(140, 149, 163, 0.09) !important;
+  border: 2px dashed rgba(140, 149, 163, 0.6) !important;
+  border-radius: var(--border-radius-card);
+  min-height: 100px;
+
+  .loaded {
+    height: 90px;
+    width: 90px;
+    border-radius: var(--border-radius-card) !important;
+    object-fit: contain !important;
+  }
+}

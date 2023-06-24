@@ -11,9 +11,7 @@
                   {{'policies.payment_history' | translate}}
                 </span>
               </h1>
-              <ng-container *ngIf="pageCount">
-                <span class="badge-main">{{pageCount}}</span>
-              </ng-container>
+              <span class="badge-main">{{paymentsListCount}}</span>
             </div>
             <span class="p-input-icon-right">
               <ng-container *ngIf="loadingSearch">
@@ -39,9 +37,9 @@
               [showActions]="true" [showDetails]="true" (detailsHandler)="showDetails($event)"
               (customSortHandler)="enableSortFilter?sortItems($event):''" [isSearch]="isSearch"
               [arrayChildKey]="'name'"></app-dynamic-table>
-            <ng-container *ngIf="paymentsList?.length>pageSize">
+            <ng-container *ngIf="paymentsListCount>pageSize">
               <div class="d-flex justify-content-center mt-5 mb-4">
-                <ngb-pagination [collectionSize]="paymentsList.length" [pageSize]="pageSize" [(page)]="currentPage"
+                <ngb-pagination [collectionSize]="paymentsListCount" [pageSize]="pageSize" [(page)]="currentPage"
                   [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true"
                   [boundaryLinks]="true">
                 </ngb-pagination>

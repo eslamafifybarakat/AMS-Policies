@@ -17,12 +17,10 @@ export class PaymentsListComponent implements OnInit {
 
   searchValue: any = '';
   filterValue: any = '';
-  currentPage = 1;
-  pageSize = 6;
+  currentPage: any = 1;
+  pageSize: any = 6;
   paymentsList: any = [];
-  pageCount: any;
-
-  date = new Date("10/10/1996");
+  paymentsListCount: number = 0;
 
   tableHeaders: any = [];
   isSearch: boolean = false;
@@ -70,7 +68,7 @@ export class PaymentsListComponent implements OnInit {
             });
           }) : '';
           this.paymentsList = arr;
-          this.pageCount = res?.pageCount;
+          this.paymentsListCount = res?.total ? res?.total : 0;
           this.isLoading = false;
           this.loadingSearch = false;
         } else {
@@ -111,7 +109,7 @@ export class PaymentsListComponent implements OnInit {
   }
   searchHandler(event: Event): void {
     this.isSearch = true;
-    // this.currentPage = 1;
+    this.currentPage = 1;
     this.loadingSearch = true;
     let applyFilter = (event?.target as HTMLInputElement).value;
     this.searchValue = applyFilter;

@@ -1,4 +1,77 @@
-<div id="policy-data" class="pt-sec">
-  <p>add-edit-policy works!</p>
+<div id="add-edit-policy" class="pt-sec">
+  <div class="container pt-5">
+    <mat-stepper labelPosition="bottom" #stepper [linear]="!isEdit && stepper.selectedIndex==0 || !this.id"
+      ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}" (selectionChange)="onStepChange($event)">
+      <ng-template matStepperIcon="edit" let-index="index">
+        {{index+1}}
+      </ng-template>
+
+      <mat-step label="Step 1">
+        <!-- //[stepControl]="serviceLocationForm"  -->
+        <ng-template matStepLabel>Step 1</ng-template>
+        <ng-container *ngIf="!isLoading">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="global-card">
+                <h5 class="mb-3 fs-5">{{'form.profile_image'|translate}}</h5>
+                <app-upload-file></app-upload-file>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="global-card h-100">
+                <div class="policy-id h-100 p-4">
+                  id
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-step>
+
+      <mat-step label="Step 2" [completed]="true">
+        <ng-template matStepLabel>Step 2</ng-template>
+        <div class="providers-step">
+          saaaaaaaaaaa
+        </div>
+      </mat-step>
+      <mat-step label="Step 3" [completed]="true">
+        <ng-template matStepLabel>Step 3</ng-template>
+        <div class="services-step">
+          dddddddddd
+        </div>
+      </mat-step>
+      <ng-container *ngIf="!isEdit">
+        <mat-step label="Step 5" [completed]="true">
+          <ng-template matStepLabel>Success</ng-template>
+          <div id="successful">
+            <div class="row justify-content-center align-items-center successful-content">
+              <div class="col-lg-6 col-md-8 ">
+                <div
+                  class=" global-card mt-4 p-md-5 p-4 d-flex justify-content-between h-100 align-items-center flex-column text-center">
+                  <img class="successful-img mb-3" src="assets/images/icons/successful.svg" alt="successful">
+                  <h3 class="fw-bold">Success!</h3>
+                  <p>
+                    Your service location added successfully
+                  </p>
+
+                  <button class="btn btn-solid-main mt-4"
+                    [routerLink]="'/app/service-locations/create-location-service'">
+                    Add Another Service location
+                  </button>
+
+                  <u class="mt-2 text-main-color">
+                    <a [routerLink]="'/app/service-locations'">
+                      See all service locations
+                    </a>
+                  </u>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+      </ng-container>
+
+    </mat-stepper>
+  </div>
 
 </div>

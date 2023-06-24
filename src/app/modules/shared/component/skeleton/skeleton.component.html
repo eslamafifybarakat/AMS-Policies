@@ -9,3 +9,11 @@
     </ng-template>
   </p-table>
 </ng-container>
+
+<ng-container *ngIf="type=='uploadImage'">
+  <div class="m-auto upload-image">
+    <p-skeleton size="2rem" styleClass="mb-2"></p-skeleton>
+    <p-skeleton width="80%" styleClass="mb-2"></p-skeleton>
+    <p-skeleton width="40%" styleClass="mb-2"></p-skeleton>
+  </div>
+</ng-container>

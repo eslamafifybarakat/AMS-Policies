@@ -36,9 +36,10 @@
 
             <div class="d-flex align-items-center gap-3">
               <a class="icon" (click)="downloadFileHandlerEmit()">
-                <img src="assets/image/icons/xls.svg" alt="xls">
+                <img src="assets/image/icons/xls.svg" alt="xls" pTooltip="xls" tooltipPosition="top">
               </a>
-              <a (click)="printTableHandlerEmit()" class="icon">
+              <a (click)="printTableHandlerEmit()" class="icon" pTooltip="{{'general.print'|translate}}"
+                tooltipPosition="top">
                 <img src="assets/image/icons/print.svg" alt="print">
               </a>
             </div>
@@ -687,7 +688,7 @@
     </ng-container>
     <ng-container *ngIf="isLoading && !isSearch">
       <tr class="border-0 bg-transparent">
-        <td class="p-0 border-0 " [attr.colspan]="showReport?tableHeaders?.length+2:tableHeaders?.length+1">
+        <td class="p-0 border-0" [attr.colspan]="showReport?tableHeaders?.length+2:tableHeaders?.length+1">
           <app-skeleton [type]="'table'" [tableItems]="skeletonItems"></app-skeleton>
         </td>
       </tr>

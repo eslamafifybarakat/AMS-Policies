@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-edit-policy.component.scss']
 })
 export class AddEditPolicyComponent implements OnInit {
-
+  isLoading: boolean = false;
+  isEdit: boolean = false;
+  id: any;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  onStepChange(event: any): void { }
 }

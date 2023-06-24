@@ -1,5 +1,8 @@
 {
   "general": {
+    "clickToUpload":"Click to upload or drag and drop",
+    "supports":"Supports",
+    "replace":"Replace",
     "noPolicy":"No image is available for this document",
     "paymentDetails":"Payment details",
     "moreDetails":"More details",

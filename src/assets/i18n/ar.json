@@ -1,5 +1,8 @@
 {
   "general": {
+    "clickToUpload":"انقر للتحميل أو السحب والإفلات",
+    "supports":"يدعم",
+    "replace":"تبديل",
     "noPolicy":"لا يتوفر صورة لهذه الوثيقة",
     "paymentDetails":"تفاصيل الدفع",
     "moreDetails":" تفاصيل أكثر",
