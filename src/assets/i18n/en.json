@@ -1,5 +1,6 @@
 {
   "general": {
+    "noPolicy":"No image is available for this document",
     "paymentDetails":"Payment details",
     "moreDetails":"More details",
     "readMore":"Read more",

@@ -20,12 +20,13 @@ export class PrintService {
     printJS(this.printJsConfig)
   }
 
-  printJson(printable?: any, properties?: any, header?: any, style?: any): void {
+  printJson(printable?: any, properties?: any, header?: any, style?: any, gridHeaderStyle?: any): void {
     this.printJsConfig.type = 'json',
       printable ? this.printJsConfig.printable = printable : '',
       header ? this.printJsConfig.header = header : '',
       properties ? this.printJsConfig.properties = properties : '',
       style ? this.printJsConfig.style = style : '',
+      gridHeaderStyle ? this.printJsConfig.gridHeaderStyle : 'color: red;  border: 2px solid #3971A5;',
       console.log(this.printJsConfig);
     printJS(this.printJsConfig)
 

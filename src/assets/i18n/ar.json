@@ -1,5 +1,6 @@
 {
   "general": {
+    "noPolicy":"لا يتوفر صورة لهذه الوثيقة",
     "paymentDetails":"تفاصيل الدفع",
     "moreDetails":" تفاصيل أكثر",
     "readMore":"قراءة المزيد",

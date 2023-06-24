@@ -120,7 +120,7 @@ export class PoliciesListComponent implements OnInit {
           this.tableHeaders?.forEach((item: any) => {
             properties?.push(item?.field)
           });
-          this.printService?.printJson(data, properties);
+          this.printService?.printJson(data, properties, null);
           this.isLoading = false;
           this.isWaitingAction = false;
         } else {
@@ -155,7 +155,11 @@ export class PoliciesListComponent implements OnInit {
   }
 
   print(item?: any): void {
-    this.printService?.printPdf(item?.pdf);
+    if (item?.pdf) {
+      this.printService?.printPdf(item?.pdf);
+    } else {
+      this.alertsService?.openSweetAlert('info', this.publicService?.translateTextFromJson('general.noPolicy'))
+    }
   }
   goToDetails(item?: any): void {
     this.router?.navigate(['/policies/add-edit-policy', { id: item?.id }]);
