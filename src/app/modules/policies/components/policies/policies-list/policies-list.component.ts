@@ -33,6 +33,7 @@ export class PoliciesListComponent implements OnInit {
 
   enableSortFilter: boolean = true;
   sortObj: any;
+  loadingSearch: boolean = false;
 
   constructor(
     private policyService: PolicyService,
@@ -62,20 +63,23 @@ export class PoliciesListComponent implements OnInit {
 
   getAllPloicies(activeLoading?: boolean, paginate?: boolean): void {
     activeLoading == false ? this.isLoading = false : this.isLoading = true;
-    this.currentPage = 1;
     this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
       (res) => {
         if (res?.code == 200) {
-          this.policiesList = res?.data;
+          let arr: any = [];
+          arr = res?.data;
+          this.policiesList = arr;
           console.log(res?.data);
           this.isLoading = false;
           this.isWaitingAction = false;
+          this.loadingSearch = false;
         } else {
           if (res?.message) {
             this.alertsService?.openSweetAlert("info", res?.message);
           }
           this.isLoading = false;
           this.isWaitingAction = false;
+          this.loadingSearch = false;
         }
       },
       (err) => {
@@ -84,6 +88,7 @@ export class PoliciesListComponent implements OnInit {
         }
         this.isLoading = false;
         this.isWaitingAction = false;
+        this.loadingSearch = false;
       }
     );
     this.cdr?.detectChanges();
@@ -92,12 +97,14 @@ export class PoliciesListComponent implements OnInit {
   applySearch(event: Event): void {
     this.currentPage = 1;
     this.isSearch = true;
+    this.loadingSearch = true;
     let applyFilter = (event.target as HTMLInputElement).value;
     this.searchValue = applyFilter;
     this.getAllPloicies(false);
     this.cdr?.detectChanges();
   }
   clearSearch(): void {
+    this.currentPage = 1;
     this.searchValue = '';
     this.getAllPloicies(false);
     this.cdr?.detectChanges();
@@ -133,6 +140,7 @@ export class PoliciesListComponent implements OnInit {
       }
     );
   }
+
   downloadFile(): void {
     this.isLoadingFileDownload = true;
     this.publicService?.downloadExample(roots?.home?.exportFile)?.subscribe(
@@ -150,7 +158,7 @@ export class PoliciesListComponent implements OnInit {
     this.printService?.printPdf(item?.pdf);
   }
   goToDetails(item?: any): void {
-    this.router?.navigate(['/home/policies/policy-data', { id: item?.id }]);
+    this.router?.navigate(['/policies/add-edit-policy', { id: item?.id }]);
   }
   onaDeleteItem(item?: any): void {
     const dialogRef = this.dialog?.open(ConfirmDeleteModalComponent, {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg position-fixed w-100" [class.header-bg]="typeModule=='payments'"
+<nav class="navbar navbar-expand-lg position-fixed w-100" [class.header-bg]="typeModule=='payments'||'policies'"
   (clickOutside)="collapsedMenu == true ? collapsedMenu = false :''">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="['/home']">

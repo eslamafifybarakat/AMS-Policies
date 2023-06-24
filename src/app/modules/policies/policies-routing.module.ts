@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PoliciesComponent } from './policies.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { AddEditPolicyComponent } from './components/add-edit-policy/add-edit-policy.component';
 
 const routes: Routes = [
   {
@@ -14,28 +15,39 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'list',
         pathMatch: 'full'
       },
       {
         path: 'dashboard',
         component: PolicyDashboardComponent,
         data: {
-          title: 'titles.dashboard'
+          title: 'titles.dashboard',
+
         }
       },
       {
         path: 'list',
         component: PoliciesListComponent,
         data: {
-          title: 'titles.policies'
+          title: 'titles.policies',
+          type: 'policies'
         }
       },
       {
         path: 'policy-data',
         component: PolicyDataComponent,
         data: {
-          title: 'titles.policy_data'
+          title: 'titles.policy_data',
+          type: 'policies'
+        }
+      },
+      {
+        path: 'add-edit-policy',
+        component: AddEditPolicyComponent,
+        data: {
+          title: 'titles.policy_data',
+          type: 'policies'
         }
       },
       {

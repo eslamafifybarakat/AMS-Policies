@@ -1,17 +1,21 @@
-<div class="polices-list py-small-2">
-  <div class="container px-0">
-    <div class="card-style rounded-25 px-4 py-3">
+<div class="polices-list py-small-2 pt-sec">
+  <div class="container pt-3">
+    <div class=" rounded-25 px-4 py-3">
       <div
-        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2 p-1 mt-3 mb-4">
-        <h1 class="fs-5 text-main-color">
-          <span>
-            {{'policies.policies' | translate}}
-          </span>
-          <span class="badge bg-second-color text-main-color rounded-pill">
-            {{policiesList?.length || 0}}
-          </span>
-        </h1>
-        <div class="search-table">
+        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2  mt-3 mb-4">
+        <div class="d-flex gap-2 align-items-center">
+          <h1 class=" fs-4">
+            <span>
+              {{'policies.policies' | translate}}
+            </span>
+          </h1>
+          <ng-container *ngIf="policiesList?.length">
+            <span class="badge-main">
+              {{policiesList?.length || 0}}
+            </span>
+          </ng-container>
+        </div>
+        <!-- <div class="search-table">
           <div class="input-group flex-nowrap">
             <span class="input-group-text input-group-text-L bg-white-color">
               <a (click)="applySearch($event)">
@@ -26,11 +30,30 @@
               </a>
             </span>
           </div>
+        </div> -->
+
+        <div class="d-flex gap-3">
+          <span class="p-input-icon-right">
+            <ng-container *ngIf="loadingSearch">
+              <i class="pi pi-spin pi-spinner"></i>
+            </ng-container>
+            <ng-container *ngIf="!loadingSearch&&searchValue !==''">
+              <i (click)="searchValue !==''?clearSearch():''" class="fa text-danger pointer"
+                [ngClass]="searchValue !==''?'fa-close':''"></i>
+            </ng-container>
+
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" [(ngModel)]="searchValue" class="search-input" #search
+                (keyup.enter)="applySearch($event)" placeholder="{{'general.search' | translate}}" />
+            </span>
+          </span>
+          <button class="btn btn-solid-main d-flex align-items-center gap-2"
+            [routerLink]="['/policies/add-edit-policy']">
+            <i class="fas fa-plus"></i>
+            {{'polices_list.new_policy' | translate}}
+          </button>
         </div>
-        <button class="btn btn-outline-main-header" [routerLink]="['/home/policies/policy-data']">
-          <i class="fas fa-plus me-1"></i>
-          {{'polices_list.new_policy' | translate}}
-        </button>
       </div>
       <app-dynamic-table [isLoading]="isLoading" [showCaption]="true" [showClear]="true"
         [isLoadingSearch]="isLoadingSearch" (clearHandler)="enableSortFilter?clearTable($event):''"

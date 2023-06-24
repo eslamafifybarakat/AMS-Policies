@@ -1,7 +1,8 @@
 <div class="general-modal">
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="text-capitalize fs-5">
-      {{'general.details' | translate}}
+      {{'general.paymentDetails' | translate}}
+      <span>({{details?.id}})</span>
     </h1>
     <a (click)="closeDialog()">
       <i class="fas fa-close btn-modal-close"></i>

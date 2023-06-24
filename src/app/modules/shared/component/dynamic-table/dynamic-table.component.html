@@ -34,13 +34,13 @@
               </ng-container>
             </div>
 
-            <div class="d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-solid-main  d-flex justify-content-between align-items-center gap-2"
-                (click)="downloadFileHandlerEmit()"><span>{{'general.export'
-                  | translate}}</span> <i class="fas fa-file-export"></i></button>
-              <button type="button" (click)="printTableHandlerEmit()"
-                class="btn btn-outline-main d-flex justify-content-between align-items-center gap-2"><span>{{'general.print'
-                  | translate}}</span> <i class="fas fa-print"></i></button>
+            <div class="d-flex align-items-center gap-3">
+              <a class="icon" (click)="downloadFileHandlerEmit()">
+                <img src="assets/image/icons/xls.svg" alt="xls">
+              </a>
+              <a (click)="printTableHandlerEmit()" class="icon">
+                <img src="assets/image/icons/print.svg" alt="print">
+              </a>
             </div>
           </div>
         </ng-template>

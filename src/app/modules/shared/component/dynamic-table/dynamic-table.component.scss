@@ -285,6 +285,9 @@
       color: var(--text-main-color);
     }
   }
+  .p-datatable .p-datatable-header {
+    padding: 1rem 0 !important;
+  }
 }
 .not-found {
   min-height: 30rem;
@@ -323,4 +326,8 @@
 .text-width {
   max-width: 8rem !important;
   display: block;
+}
+.icon {
+  width: 30px;
+  height: 30px;
 }

@@ -1,7 +1,6 @@
 .polices-list {
-  border: 1px solid var(--text-white-color);
-  background: var(--bg-white-color);
-  border-radius: 10px;
+  min-height: 100vh;
+  background-color: #fb211905;
 
   table {
     border-radius: 0.3rem !important;
@@ -99,4 +98,11 @@
     height: 1.2rem !important;
     margin: 0 2px;
   }
+}
+.search-input,
+.search-input:enabled:focus,
+.p-inputtext:enabled:hover {
+  height: 3rem !important;
+  border: 1px solid #dedede !important;
+  background-color: var(--bg-white-color) !important;
 }
