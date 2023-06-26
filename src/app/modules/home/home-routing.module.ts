@@ -52,7 +52,7 @@ const routes: Routes = [
         loadChildren: () => import('../../modules/policies/policies.module')
           .then(m => m.PoliciesModule)
       },
-      { path: 'statistic', loadChildren: () => import('../../modules/statistic/statistic.module').then(m => m.StatisticModule) },
+      { path: 'statistics', loadChildren: () => import('../statistics/statistics.module').then(m => m.StatisticsModule) },
       {
         path: "",
         redirectTo: "home",
