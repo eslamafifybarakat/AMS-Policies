@@ -46,6 +46,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { ScrollToTopComponent } from '../component/scroll-to-top/scroll-to-top.component';
 import { UploadFileComponent } from '../component/upload-file/upload-file.component';
 import { ComingSoonComponent } from '../component/coming-soon/coming-soon.component';
+import { NotifcationComponent } from '../../layout/components/header/notifcation/notifcation.component';
 
 const allShared = [
   ReactiveFormsModule,
@@ -86,6 +87,7 @@ const components = [
   ScrollToTopComponent,
   UploadFileComponent,
   ComingSoonComponent,
+  NotifcationComponent,
   CountdownComponent,
   AltButtonComponent,
   UserInfoComponent,

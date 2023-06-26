@@ -431,5 +431,28 @@
     "passwordPrompt": "أدخل كلمة المرور",
     "emptyMessage": "لم يتم العثور على نتائج",
     "emptyFilterMessage": "لم يتم العثور على نتائج"
+  },
+  "notification": {
+    "new_notification": "لديك إشعار جديد",
+    "no_notifications_founded": "لا إخطارات حتى الآن",
+    "no_notifications_founded_alert": "سنخطرك عندما يصل شيء ما!",
+    "view_all_notification": "عرض جميع الإشعارات",
+    "show_notifications": "عرض الاشعارات",
+    "notification_details": "تفاصيل الإشعار",
+    "make_read": "جعل الجميع مقرؤه",
+    "description": "يحتوي النص المربع على نمطين ، بما في ذلك خلفية سوداء وخلفية بيضاء.",
+    "accept": "قبول",
+    "confirmed_exam": "اختبار تأكيد الإطلاع و الفهم",
+    "confirmed": "تم تأكيد الإطلاع",
+    "not_confirmed": "لم يتم تأكيد الإطلاع",
+    "success": "إشعار ناجح",
+    "info": "إشعار معلومة",
+    "warning": "إشعار تحذير",
+    "danger": "إشعار خطر",
+    "reject": "رفض",
+    "confirm": "تأكيد الإطلاع",
+    "details": "تفاصيل",
+    "view_details": "عرض التفاصيل",
+    "View_not_confirmed": "لم يتم تأكيد الإطلاع"
   }
 }

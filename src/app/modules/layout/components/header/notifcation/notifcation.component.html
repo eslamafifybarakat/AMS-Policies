@@ -11,33 +11,41 @@
     </button>
     <ul class="dropdown-menu p-0 shadow border-0 rounded-25" aria-labelledby="dropdownMenuButton1"
       [class.show]="collapse">
-      <div class="notifcation-header px-3 ">
-        <h1 class="fs-4 text-main-color py-3 text-dir d-flex justify-content-between align-items-center">
-          <span>{{'notifcation.not-title'|translate }}</span>
-          <span class="gray-light fs-6 d-flex justify-content-center align-items-center badge-main rounded-circle">
-            {{notificationsList?.length}}
-          </span>
-          <!-- {{'notifcation.not-title'|translate }}/ -->
-        </h1>
-      </div>
-
-      <div class="logs-content ">
-        <div class="list-group">
-          <ng-container *ngFor="let item of notificationsList">
-            <a class="border-bottom lh-lg p-3" aria-current="true">
-              <div class="d-flex w-100  gap-2">
-                <!-- <h5 class="mb-1">List group item heading</h5> -->
-                <!-- <small>
-                  {{time | timeago}}
-                </small> -->
-                <i class="pi pi-info-circle text-secondary-color mt-1"></i>
-                <p class="text-muted lh-base">{{item?.title}}</p>
-              </div>
-            </a>
-          </ng-container>
+      <ng-container *ngIf="notificationsList?.length>0; else noNotifications">
+        <div class="notifcation-header px-3 ">
+          <h1 class="fs-4 text-main-color py-3 text-dir d-flex justify-content-between align-items-center">
+            <span>{{'notifcation.not-title'|translate }}</span>
+            <span class="gray-light fs-6 d-flex justify-content-center align-items-center badge-main rounded-circle">
+              {{notificationsList?.length}}
+            </span>
+          </h1>
         </div>
-      </div>
-
+        <div class="logs-content ">
+          <div class="list-group">
+            <ng-container *ngFor="let item of notificationsList">
+              <a class="border-bottom lh-lg p-3" aria-current="true">
+                <div class="d-flex w-100  gap-2">
+                  <!-- <h5 class="mb-1">List group item heading</h5> -->
+                  <!-- <small>
+                    {{time | timeago}}
+                  </small> -->
+                  <i class="pi pi-info-circle text-secondary-color mt-1"></i>
+                  <p class="text-muted lh-base">{{item?.title}}</p>
+                </div>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noNotifications>
+        <div class="no-notifications-founded py-5 text-center">
+          <h3 class="color-grey fw-bold fs-5">
+            {{'notification.no_notifications_founded' | translate}}</h3>
+          <img src="assets/image/icons/time-reminder.svg" class="rounded-circle w-25 p-4" alt="">
+          <h4 class="color-thrid fs-6">
+            "{{'notification.no_notifications_founded_alert' | translate}}"</h4>
+        </div>
+      </ng-template>
     </ul>
   </div>
 </div>

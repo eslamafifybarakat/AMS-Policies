@@ -5,12 +5,9 @@ import { CommonModule } from '@angular/common';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { NotifcationComponent } from './components/header/notifcation/notifcation.component';
-
 @NgModule({
   declarations: [
     LayoutComponent,
-    NotifcationComponent,
   ],
   imports: [
     CommonModule,

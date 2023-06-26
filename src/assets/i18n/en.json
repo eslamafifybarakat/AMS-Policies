@@ -413,6 +413,28 @@
     "passwordPrompt": "Enter a password",
     "emptyMessage": "No results found",
     "emptyFilterMessage": "No results found"
+  },
+  "notification": {
+    "new_notification": "new notification is founded",
+    "no_notifications_founded": "No notifications yet",
+    "no_notifications_founded_alert": "we'll notify you when something arrives!",
+    "view_all_notification": "View All Notifications",
+    "show_notifications": "Show Notifications",
+    "notification_details": "Notification Details",
+    "make_read": "Mark All",
+    "description": "Square text has two styles, including a black background and a white background.",
+    "accept": "Accept",
+    "confirmed": "Confirmed",
+    "confirmed_exam": "Confirm and understanding exam",
+    "not_confirmed": "Not Confirmed",
+    "success": "Success",
+    "info": "Info",
+    "warning": "Warning",
+    "danger": "Danger",
+    "reject": "Reject",
+    "confirm": "Confirm viewing",
+    "details": "Details",
+    "view_details": "View details",
+    "View_not_confirmed": "Not Confirmed"
   }
-
 }

@@ -12,7 +12,7 @@ import * as moment from 'moment';
 export class NotifcationComponent implements OnInit {
   isLoading: boolean = false;
   collapse: boolean = false;
-  notificationsList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  notificationsList: any = [];
   time: any = moment('2022-10-13:16:30:00');
 
   constructor(
