@@ -14,6 +14,27 @@
       </div>
       <div class="col-lg-4 col-md-6">
         <div>
+          <div class="global-card p-4 mb-4">
+            <h5 class="mb-4 fs-5">{{'welcome.targets'|translate}}</h5>
+            <ng-container *ngFor="let item of targets">
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <p>{{item?.title}}</p>
+                  <p>{{item?.percentage}}%</p>
+                </div>
+                <div class="progress {{item?.color}}">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="item?.percentage" [attr.aria-valuenow]="item?.percentage" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div>
           <ng-container *ngFor="let item of cardsData">
             <div class="global-card p-4 mb-3">
               <div class="d-flex justify-content-between align-items-center">
@@ -33,29 +54,6 @@
               </div>
             </div>
           </ng-container>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div>
-          <div class="global-card p-4 mb-4">
-            <h5 class="mb-4 fs-5">{{'welcome.targets'|translate}}</h5>
-            <ng-container *ngFor="let item of targets">
-              <div class="mb-3">
-                <div class="d-flex justify-content-between mb-2">
-                  <p>{{item?.title}}</p>
-                  <p>{{item?.percentage}}%</p>
-                </div>
-
-                <div class="progress {{item?.color}}">
-                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                    [style.width.%]="item?.percentage" [attr.aria-valuenow]="item?.percentage" aria-valuemin="0"
-                    aria-valuemax="100">
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-
-          </div>
         </div>
       </div>
     </div>

@@ -1,105 +1,110 @@
 <div class="profile pt-sec">
-  <div class="row">
-    <div class="col-lg-3 col-md-5 col-sm-12">
-      <div class="user position-relative p-3">
-        <div class="h-100">
-          <div class="d-flex justify-content-center align-items-center flex-column ">
-            <ng-container *ngIf="showCrop">
-              <div class="text-center crop w-100">
-                <div class="p-4 crop-content  bg-white-color">
-                  <h5 class="fs-4-1 mb-4 border-bottom pb-3 text-main-color">{{"profile.update_profile"|translate}}</h5>
-                  <image-cropper class="w-fit" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                    [aspectRatio]="4 / 4" [resizeToWidth]="300" format="png"
-                    (imageCropped)="imageCropped($event)"></image-cropper>
-                  <div class="d-flex gap-3 mt-4">
-                    <button
-                      class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2 text-capitalize"
-                      (click)="ok()">
-                      <span>{{"general.confirm"|translate}}</span>
-                      <ng-container *ngIf="isLoadingBtn">
-                        <div id="spinner"></div>
-                      </ng-container>
-                    </button>
-                    <button class="btn btn-outline-main-header"
-                      (click)="cancel()">{{"general.cancel"|translate}}</button>
+  <div class="container">
+    <div class="global-card my-4">
+      <div class="row">
+        <div class="col-lg-3 col-md-5 col-sm-12">
+          <div class="user position-relative p-3">
+            <div class="h-100">
+              <div class="d-flex justify-content-center align-items-center flex-column ">
+                <ng-container *ngIf="showCrop">
+                  <div class="text-center crop w-100">
+                    <div class="p-4 crop-content  bg-white-color">
+                      <h5 class="fs-4-1 mb-4 border-bottom pb-3 text-main-color">{{"profile.update_profile"|translate}}
+                      </h5>
+                      <image-cropper class="w-fit" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 4" [resizeToWidth]="300" format="png"
+                        (imageCropped)="imageCropped($event)"></image-cropper>
+                      <div class="d-flex gap-3 mt-4">
+                        <button
+                          class="btn btn-outline-main-header d-flex justify-content-center align-items-center gap-2 text-capitalize"
+                          (click)="ok()">
+                          <span>{{"general.confirm"|translate}}</span>
+                          <ng-container *ngIf="isLoadingBtn">
+                            <div id="spinner"></div>
+                          </ng-container>
+                        </button>
+                        <button class="btn btn-outline-main-header"
+                          (click)="cancel()">{{"general.cancel"|translate}}</button>
+                      </div>
+                    </div>
                   </div>
+                </ng-container>
+                <img class="img-user rounded p-1 shadow-lg" [src]="userdata?.photo || img" alt="profile-img">
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" accept="image" id="file">
+                <button type="button"
+                  class="btn btn-outline-main-header btn-img my-2 d-flex justify-content-center align-items-center gap-2"
+                  (click)="fileInput.click()">
+                  {{"general.update_image"|translate}}
+                </button>
+              </div>
+
+
+              <div class="d-flex align-items-center justify-content-center">
+                <div>
+                  <h1 class="text-center fs-6 mb-2">
+                    {{userdata?.name}}
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="green"
+                        class="bi bi-patch-check-fill ms-1" viewBox="0 0 16 16">
+                        <path
+                          d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                      </svg>
+                    </span>
+                  </h1>
                 </div>
               </div>
-            </ng-container>
-            <img class="img-user rounded p-1 shadow-lg" [src]="userdata?.photo || img" alt="profile-img">
-            <input hidden (change)="onFileSelected($event)" #fileInput type="file" accept="image" id="file">
-            <button type="button"
-              class="btn btn-outline-main-header btn-img my-2 d-flex justify-content-center align-items-center gap-2"
-              (click)="fileInput.click()">
-              {{"general.update_image"|translate}}
-            </button>
-          </div>
+              <hr class="text-secondary-color mt-3" />
+              <div class="user-data">
+                <ul class="userdata-list">
+                  <li class="p-3 mb-2" routerLink="/profile" routerLinkActive="active"
+                    [routerLinkActiveOptions]={exact:true}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-person  me-2" viewBox="0 0 16 16">
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+                    <span>
+                      {{'profile.perosnoal_info' | translate}}
+                    </span>
+                  </li>
+                  <li class="p-3 mb-2" routerLink="/profile/changepassword" routerLinkActive="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-lock  me-2" viewBox="0 0 16 16">
+                      <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                    </svg>
+                    <span>
+                      {{'form.change_password' | translate}}
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-
-          <div class="d-flex align-items-center justify-content-center">
-            <div>
-              <h1 class="text-center fs-6 mb-2">
-                {{userdata?.name}}
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="green"
-                    class="bi bi-patch-check-fill ms-1" viewBox="0 0 16 16">
-                    <path
-                      d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
-                  </svg>
-                </span>
-              </h1>
-            </div>
-          </div>
-          <hr class="text-secondary-color mt-3" />
-          <div class="user-data">
-            <ul class="userdata-list">
-              <li class="p-3 mb-2" routerLink="/profile" routerLinkActive="active"
-                [routerLinkActiveOptions]={exact:true}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                  class="bi bi-person  me-2" viewBox="0 0 16 16">
-                  <path
-                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                </svg>
-                <span>
-                  {{'profile.perosnoal_info' | translate}}
-                </span>
-              </li>
-              <li class="p-3 mb-2" routerLink="/profile/changepassword" routerLinkActive="active">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                  class="bi bi-lock  me-2" viewBox="0 0 16 16">
-                  <path
-                    d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                </svg>
-                <span>
-                  {{'form.change_password' | translate}}
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="logout w-100 mt-3 position-inherit-small">
-            <hr class="text-secondary-color my-0" />
-            <div class="d-flex justify-content-between align-items-center p-3 logout-box">
-              <span class="fw-bold">
-                {{'user_info.signout' | translate}}
-              </span>
-              <a (click)="signOut()" class="scaleX-rtl">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
-                  class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
-                  <path fill-rule="evenodd"
-                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                </svg>
-              </a>
+              <div class="logout w-100 mt-3 position-inherit-small">
+                <hr class="text-secondary-color my-0" />
+                <div class="d-flex justify-content-between align-items-center p-3 logout-box">
+                  <span class="fw-bold">
+                    {{'user_info.signout' | translate}}
+                  </span>
+                  <a (click)="signOut()" class="scaleX-rtl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
+                      class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                      <path fill-rule="evenodd"
+                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-9 col-md-7 col-sm-12">
-      <div class="user mt-small-1 h-100 p-3">
-        <router-outlet></router-outlet>
+        <div class="col-lg-9 col-md-7 col-sm-12">
+          <div class="user mt-small-1 h-100 p-3">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
       </div>
     </div>
   </div>

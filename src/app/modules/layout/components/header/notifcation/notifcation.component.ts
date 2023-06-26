@@ -14,7 +14,7 @@ export class NotifcationComponent implements OnInit {
   collapse: boolean = false;
   notificationsList: any = [];
   time: any = moment('2022-10-13:16:30:00');
-  unreadedNotification: any = 3;
+  totalCount: any = 0;
 
   constructor(
     private publicService: PublicService,
@@ -35,6 +35,7 @@ export class NotifcationComponent implements OnInit {
       (res) => {
         if (res?.code == '200') {
           this.notificationsList = res?.data;
+          this.totalCount = res?.total;
           console.log(res?.data);
           this.isLoading = false;
         } else {
@@ -52,41 +53,6 @@ export class NotifcationComponent implements OnInit {
       }
     );
     this.cdr?.detectChanges();
-
-    // this.notificationsList = [
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    //   { id: 1, title: 'Some placeholder content in a paragraph' },
-    // ]
   }
-  removeNotification(id: any): void {
-    // this.globalService?.removeNotification(id)?.subscribe(
-    //   (res: any) => {
-    //     if (res?.status) {
-    //       this.readNotify = res?.data;
-    //       this.preventOutSide = false;
-    //       this.getMyNotifications();
-    //       this.isLoadingMore = false;
-    //     }
-    //   },
-    //   (err) => {
-    //     if (err?.message) {
-    //       this.sweetAlertPopupService?.alertMessage(err?.message, "error");
-    //     }
-    //     this.preventOutSide = false;
-    //     this.isLoadingMore = false;
-    //     this.isLoading = false;
-    //   }
-    // );
-    // this.cdr.detectChanges();
-  }
-
 
 }

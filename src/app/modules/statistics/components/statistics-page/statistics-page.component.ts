@@ -30,7 +30,6 @@ export class StatisticsPageComponent implements OnInit {
       type: this.publicService?.translateTextFromJson('welcome.articles'),
       color: 'warning'
     },
-
   ]
 
   targets: any = [
@@ -43,6 +42,16 @@ export class StatisticsPageComponent implements OnInit {
       title: this.publicService?.translateTextFromJson('welcome.exams'),
       percentage: 60,
       color: 'exams'
+    },
+    {
+      title: this.publicService?.translateTextFromJson('welcome.articleNotes'),
+      percentage: 40,
+      color: 'articleNotes'
+    },
+    {
+      title: this.publicService?.translateTextFromJson('welcome.articleNotes'),
+      percentage: 40,
+      color: 'articleNotes'
     },
     {
       title: this.publicService?.translateTextFromJson('welcome.articleNotes'),
