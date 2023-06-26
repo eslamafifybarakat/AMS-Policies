@@ -644,32 +644,35 @@
       </ng-container>
 
     </mat-stepper>
-    <div class="d-flex justify-content-end gap-2 my-5">
-      <button class="btn btn-solid-second d-flex align-items-center justify-content-center gap-2"
-        (click)="goBack(stepper)">
-        <i class="pi pi-arrow-left scaleX-rtl"></i>
-        {{'general.back'|translate}}
-      </button>
-      <ng-container *ngIf="stepper.selectedIndex <2 ; else save">
-        <button class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
-          (click)="goForward(stepper)">
-          {{'general.next'|translate}}
-          <i class="pi pi-arrow-right scaleX-rtl"></i>
+    <ng-container *ngIf="stepper.selectedIndex<3">
+      <div class="d-flex justify-content-end gap-2 my-5">
+        <button class="btn btn-solid-second d-flex align-items-center justify-content-center gap-2"
+          (click)="goBack(stepper)">
+          <i class="pi pi-arrow-left scaleX-rtl"></i>
+          {{'general.back'|translate}}
         </button>
-      </ng-container>
-      <ng-template #save>
-        <button class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
-          (click)="submit(stepper)">
-          <ng-container *ngIf="isEdit; else savePolicy">
-            {{'general.edit'|translate}}
-            <i class="pi pi-pencil"></i>
-          </ng-container>
-          <ng-template #savePolicy>
-            {{'general.save'|translate}}
-            <i class="pi pi-save"></i>
-          </ng-template>
-        </button>
-      </ng-template>
-    </div>
+        <ng-container *ngIf="stepper.selectedIndex <2 ; else save">
+          <button class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
+            (click)="goForward(stepper)">
+            {{'general.next'|translate}}
+            <i class="pi pi-arrow-right scaleX-rtl"></i>
+          </button>
+        </ng-container>
+        <ng-template #save>
+          <button class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2"
+            (click)="submit(stepper)">
+            <ng-container *ngIf="isEdit; else savePolicy">
+              {{'general.edit'|translate}}
+              <i class="pi pi-pencil"></i>
+            </ng-container>
+            <ng-template #savePolicy>
+              {{'general.save'|translate}}
+              <i class="pi pi-save"></i>
+            </ng-template>
+          </button>
+        </ng-template>
+      </div>
+    </ng-container>
+
   </div>
 </div>

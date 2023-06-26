@@ -1,0 +1,29 @@
+<div class="coming-soon d-flex justify-content-center align-items-center my-4 global-card">
+  <div class="text-center">
+    <i class="pi pi-clock fs-clock-soon mb-md-5 mb-4 text-center text-white-color pi-spin"></i>
+    <ng-container *ngIf="currentLang=='en'; else ar">
+      <h2 class="title">
+        <span>C</span>
+        <span>O</span>
+        <span>M</span>
+        <span>i</span>
+        <span>n</span>
+        <span>g</span>
+        <span class="px-2"></span>
+        <span>s</span>
+        <span>o</span>
+        <span>o</span>
+        <span>n</span>
+      </h2>
+    </ng-container>
+    <ng-template #ar>
+      <h2 class="title ar-title">
+        <span>ق</span>
+        <span>ر</span>
+        <span>ي</span>
+        <span>ب</span>
+        <span>ا</span>
+      </h2>
+    </ng-template>
+  </div>
+</div>
