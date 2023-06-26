@@ -54,5 +54,4 @@ export class NotifcationComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
-
 }
