@@ -120,7 +120,7 @@ export class AppComponent {
     }
     setTimeout(() => {
       this.showSpinner = false;
-    }, 3000);
+    }, 1000);
   }
 }
 
