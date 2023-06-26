@@ -1,0 +1,63 @@
+<div id="statistics" class="pt-sec">
+  <div class="container pt-4">
+    <div class="row gy-4">
+      <div class="col-lg-4 col-md-6">
+        <div>
+          <h2 class="fs-4 text-capitalize text-main-color">{{'welcome.hi'|translate}}, <span
+              class="px-1">{{userName}}</span></h2>
+          <p class="fs-4 mt-3">{{'welcome.welcomeBack'|translate}}</p>
+          <p class="mt-4">{{'welcome.pageIsDesigned'|translate}}</p>
+          <div>
+            <img class="w-100" src="assets/image/Hello.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div>
+          <ng-container *ngFor="let item of cardsData">
+            <div class="global-card p-4 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle {{item?.color}}-bg">
+                    <i class="pi {{item?.icon}}"></i>
+                  </div>
+                  <div>
+                    <h5>{{item?.number}}</h5>
+                    <p class="text-black-50">{{item?.type}}</p>
+                  </div>
+                </div>
+                <div class="arrow">
+                  <i class="pi pi-angle-up {{item?.color}}-text"></i>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div>
+          <div class="global-card p-4 mb-4">
+            <h5 class="mb-4 fs-5">{{'welcome.targets'|translate}}</h5>
+            <ng-container *ngFor="let item of targets">
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <p>{{item?.title}}</p>
+                  <p>{{item?.percentage}}%</p>
+                </div>
+
+                <div class="progress {{item?.color}}">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="item?.percentage" [attr.aria-valuenow]="item?.percentage" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

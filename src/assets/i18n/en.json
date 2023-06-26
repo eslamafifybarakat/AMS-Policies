@@ -110,7 +110,7 @@
     "contactUs": "Contact Us",
     "payments": "Payments",
     "policies": "Policies",
-    "statistic": "Statistic"
+    "statistic": "Statistics"
   },
   "validations": {
     "validation_size_file": "The file size must be less than 5MB",
@@ -293,6 +293,7 @@
     "update_profile": "Update profile photo"
   },
   "titles": {
+    "statistics": "Statistics",
     "policy_data": "Policy Data",
     "checkout": "Checkout",
     "payments": "Payments",
@@ -315,7 +316,7 @@
     "solutions": "Solutions",
     "pricing": "Pricing",
     "aboutUs": "About Us",
-    "statistic": "Statistic",
+    "statistic": "Statistics",
     "contactUs": "Contact Us"
   },
   "footer":{
@@ -426,15 +427,26 @@
     "accept": "Accept",
     "confirmed": "Confirmed",
     "confirmed_exam": "Confirm and understanding exam",
-    "not_confirmed": "Not Confirmed",
-    "success": "Success",
-    "info": "Info",
-    "warning": "Warning",
-    "danger": "Danger",
-    "reject": "Reject",
-    "confirm": "Confirm viewing",
-    "details": "Details",
-    "view_details": "View details",
-    "View_not_confirmed": "Not Confirmed"
+    "not_confirmed": "Not Confirmed"
+  },
+  "welcome": {
+    "hi": "Hi",
+    "welcomeBack": "Welcome Back!",
+    "pageIsDesigned": "This page is designed to give some important information about the website. Let's make someting together!",
+    "congratulations": "Congratulations",
+    "youHavePermission": "You have permission to do more operation",
+    "viewProfile": "View profile",
+    "banks": "Banks",
+    "users": "Users",
+    "articles": "Articles",
+    "views": "Views",
+    "viewHome": "View home page",
+    "targets": "Targets",
+    "courses": "Courses Number",
+    "exams": "Exams",
+    "articleNotes": "Articles Notes",
+    "summary": "Summary",
+    "PercentageOfCourses": "Percentage % of courses",
+    "CoursesViewers": "Courses viewers"
   }
 }

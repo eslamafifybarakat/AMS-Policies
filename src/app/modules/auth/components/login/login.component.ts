@@ -47,8 +47,7 @@ export class LogInComponent implements OnInit {
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(patterns?.email)]],
     password: ['', [
-      Validators.required,
-      Validators.pattern(patterns?.password)
+      Validators.required
     ]]
   }, { updateOn: 'blur' });
   get formControls(): any {
