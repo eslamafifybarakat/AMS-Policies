@@ -355,7 +355,7 @@
                       <div class="d-flex align-items-center gap-3">
                         <div class="d-flex align-items-center gap-2">
                           <input class="form-check-input pointer" type="radio" value="day" id="durationType"
-                            formControlName="duration_type">
+                            (change)="changeDuration()" formControlName="duration_type">
                           <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
                             <span class="fs-7">
                               {{'general.day' | translate}}
@@ -364,7 +364,7 @@
                         </div>
                         <div class="d-flex align-items-center gap-2">
                           <input class="form-check-input pointer" type="radio" value="month" id="durationType"
-                            formControlName="duration_type">
+                            (change)="changeDuration()" formControlName="duration_type">
                           <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
                             <span class="fs-7">
                               {{'general.month' | translate}}
@@ -373,7 +373,7 @@
                         </div>
                         <div class="d-flex align-items-center gap-2">
                           <input class="form-check-input pointer" type="radio" value="year" id="durationType"
-                            formControlName="duration_type">
+                            (change)="changeDuration()" formControlName="duration_type">
                           <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
                             <span class="fs-7">
                               {{'general.year' | translate}}
@@ -404,7 +404,7 @@
                             [class.border-red]="(policyFormControls?.['duration']?.touched ||policyFormControls?.['duration']?.dirty) && policyFormControls?.['duration']?.invalid">
                             <p-inputNumber [min]="1" formControlName="duration"
                               placeholder="{{'placeholder.duration' | translate}}" inputId="mile"
-                              suffix=" {{policyForm?.value?.duration_type}}"
+                              suffix=" {{durationType}}"
                               (onInput)="publicService?.clearValidationErrors(policyFormControls?.duration)">
                             </p-inputNumber>
                           </div>
@@ -627,18 +627,18 @@
                     </label>
                     <div class="d-flex align-items-center gap-3">
                       <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input pointer" type="radio" [value]="1" id="poor_hearing"
-                          formControlName="poor_hearing">
-                        <label class="form-check-label mt-1 pointer lh-sm" for="poor_hearing">
+                        <input class="form-check-input pointer" type="radio" [value]="1" id="virus_c"
+                          formControlName="virus_c">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_c">
                           <span class="fs-7">
                             {{'general.yes' | translate}}
                           </span>
                         </label>
                       </div>
                       <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input pointer" type="radio" [value]="0" id="poor_hearing"
-                          formControlName="poor_hearing">
-                        <label class="form-check-label mt-1 pointer lh-sm" for="poor_hearing">
+                        <input class="form-check-input pointer" type="radio" [value]="0" id="virus_c"
+                          formControlName="virus_c">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_c">
                           <span class="fs-7">
                             {{'general.no' | translate}}
                           </span>

@@ -61,6 +61,7 @@ export class AddEditPolicyComponent implements OnInit {
     { title: this.publicService?.translateTextFromJson('general.male'), value: 'male' },
     { title: this.publicService?.translateTextFromJson('general.female'), value: 'female' },
   ];
+  durationType: any = '';
 
   constructor(
     private checkValidityService: CheckValidityService,
@@ -252,7 +253,6 @@ export class AddEditPolicyComponent implements OnInit {
               });
             }
           });
-          console.log(this.policyData?.alternative_phone);
 
           this.policyForm?.patchValue({
             start_date: start,
@@ -269,6 +269,7 @@ export class AddEditPolicyComponent implements OnInit {
             suffer: this.policyData?.deficiency_part_of_body,
             poor_hearing: this.policyData?.chronic_disease
           });
+          this.changeDuration();
         } else {
           this.isLoading = false;
           res?.message ? this.alertsService?.openSweetAlert("info", res?.message) : '';
@@ -279,6 +280,17 @@ export class AddEditPolicyComponent implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+  changeDuration(): void {
+    if (this.policyForm?.value?.duration_type == 'day') {
+      this.durationType = this.publicService?.translateTextFromJson('general.day');
+    }
+    if (this.policyForm?.value?.duration_type == 'month') {
+      this.durationType = this.publicService?.translateTextFromJson('general.month');
+    }
+    if (this.policyForm?.value?.duration_type == 'year') {
+      this.durationType = this.publicService?.translateTextFromJson('general.year');
+    }
   }
 
   uploadImage(event: any): void {
