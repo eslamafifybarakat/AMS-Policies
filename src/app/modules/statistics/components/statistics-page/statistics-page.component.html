@@ -109,7 +109,7 @@
             [routerLink]="['/profile']">{{'welcome.viewProfile'|translate}}</button>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-4 col-md-12">
         <div>
           <ng-container *ngIf="isFullLoading; else noCategory">
             <app-skeleton [type]="'categories'"></app-skeleton>
