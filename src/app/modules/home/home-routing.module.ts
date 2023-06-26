@@ -52,6 +52,7 @@ const routes: Routes = [
         loadChildren: () => import('../../modules/policies/policies.module')
           .then(m => m.PoliciesModule)
       },
+      { path: 'statistic', loadChildren: () => import('../../modules/statistic/statistic.module').then(m => m.StatisticModule) },
       {
         path: "",
         redirectTo: "home",

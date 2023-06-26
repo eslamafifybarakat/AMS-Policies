@@ -24,7 +24,7 @@
         </li>
         <ng-container *ngIf="isLoggedIn; else noLogged">
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" [routerLink]="['/statistic']" routerLinkActive="active">
               {{'nav.statistic'|translate}}
             </a>
           </li>
