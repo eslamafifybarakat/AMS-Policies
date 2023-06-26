@@ -78,7 +78,6 @@
     "female": "أنثي",
     "actions": "الإجراءات",
     "duration": "مدة الوثيقة",
-    "durationType": "نوع الفترة",
     "view": "عرض",
     "delete": "حذف",
     "update": "تحديث",
@@ -129,6 +128,7 @@
     "phoneNotCorrect": "رقم الهاتف غير صحيح"
   },
   "form": {
+    "durationType": "نوع الفترة",
     "checkYourEmail": "تحقق من بريدك ، لقد أرسلنا لك OTP إلى",
     "backToLogin": "الرجوع إلى تسجيل الدخول",
     "enterEmailToSendOtp": "لا تقلق! يحدث ذلك. يرجى إدخال بريدك الإلكتروني وسنقوم بذلك أرسل OTP إلى بريدك الإلكتروني",
@@ -255,6 +255,7 @@
     "signout": "تسجيل الخروج"
   },
   "policesList": {
+    "success":"نجاح",
     "amount": "رسوم الوثيقة",
     "description": "الوصف",
     "sale_id": "رقم",

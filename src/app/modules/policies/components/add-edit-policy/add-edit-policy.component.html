@@ -33,7 +33,7 @@
         <ng-template matStepLabel> {{'policesList.personalInfo'|translate}}
         </ng-template>
         <ng-container *ngIf="!isLoading;else loading">
-          <div class="row">
+          <div class="row mt-lg-0 mt-4">
             <div class="col-md-8" [class.col-md-12]="!isEdit">
               <div class="global-card">
                 <h5 class="mb-3 fs-5">{{'form.profile_image'|translate}}</h5>
@@ -242,7 +242,7 @@
       <mat-step label="Step 2" [stepControl]="policyForm">
         <ng-template matStepLabel> {{'policesList.policyInfo'|translate}}
         </ng-template>
-        <div class="policy-step">
+        <div class="policy-step mt-lg-0 mt-4">
           <form [formGroup]="policyForm">
             <div class="row">
               <div class="col-md-6">
@@ -342,17 +342,35 @@
                       <label class="form-label required">
                         {{'form.durationType'|translate}}
                       </label>
-                      <mat-radio-group class="d-flex gap-3" formControlName="duration_type">
-                        <mat-radio-button value="day">
-                          {{'general.day' | translate}}
-                        </mat-radio-button>
-                        <mat-radio-button value="month">
-                          {{'general.month' | translate}}
-                        </mat-radio-button>
-                        <mat-radio-button value="year">
-                          {{'general.year' | translate}}
-                        </mat-radio-button>
-                      </mat-radio-group>
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                          <input class="form-check-input pointer" type="radio" value="day" id="durationType"
+                            formControlName="duration_type">
+                          <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
+                            <span class="fs-7">
+                              {{'general.day' | translate}}
+                            </span>
+                          </label>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                          <input class="form-check-input pointer" type="radio" value="month" id="durationType"
+                            formControlName="duration_type">
+                          <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
+                            <span class="fs-7">
+                              {{'general.month' | translate}}
+                            </span>
+                          </label>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                          <input class="form-check-input pointer" type="radio" value="year" id="durationType"
+                            formControlName="duration_type">
+                          <label class="form-check-label mt-1 pointer lh-sm" for="durationType">
+                            <span class="fs-7">
+                              {{'general.year' | translate}}
+                            </span>
+                          </label>
+                        </div>
+                      </div>
                       <ng-container
                         *ngIf="(policyFormControls?.['duration_type']?.touched || policyFormControls?.['duration_type']?.dirty) && policyFormControls?.['duration_type']?.invalid">
                         <div class="mt-2">
@@ -479,7 +497,7 @@
       <mat-step label="Step 3" [stepControl]="medicalForm">
         <ng-template matStepLabel> {{'policesList.medicalReports'|translate}}
         </ng-template>
-        <div class="medical-step">
+        <div class="medical-step mt-lg-0 mt-4">
           <form [formGroup]="medicalForm">
             <div class="row">
               <div class="col-md-6">
@@ -588,7 +606,9 @@
       </mat-step>
       <ng-container>
         <mat-step label="Step 4">
-          <ng-template matStepLabel>Success</ng-template>
+          <ng-template matStepLabel>
+            {{'policesList.success'|translate}}
+          </ng-template>
           <div id="successful">
             <div class="row justify-content-center align-items-center successful-content">
               <div class="col-lg-6 col-md-8 ">

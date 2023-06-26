@@ -214,3 +214,24 @@
 .text-main-color:hover {
   color: var(--text-main-color) !important;
 }
+.form-check .form-check-input {
+  border-radius: 50% !important;
+  transform: scale(1.1);
+
+  &:checked {
+    background-color: #77a13b !important;
+    border-color: #77a13b !important;
+  }
+
+  &:focus {
+    border-color: var(--text-desc-color);
+  }
+}
+.form-check-input {
+  min-width: 1.25em !important;
+  min-height: 1.25rem !important;
+  box-shadow: none !important;
+}
+.form-check-input:checked[type="radio"] {
+  background-image: url(../../../../../assets/image/icons/check.svg) !important;
+}

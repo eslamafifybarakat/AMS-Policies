@@ -252,6 +252,7 @@
     "signout": "SignOut"
   },
   "policesList": {
+    "success":"Success",
     "amount": "Policy Fees",
     "description": "Description",
     "sale_id": "No.",

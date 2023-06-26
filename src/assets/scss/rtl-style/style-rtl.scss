@@ -69,7 +69,8 @@
     border: none;
     color: var(--text-desc-color);
   }
-  .p-datatable-tbody > tr > td {
+  .p-datatable-tbody > tr > td,
+  .p-datatable-thead > tr > th {
     border-color: rgba(140, 149, 163, 0.21);
     border-width: 1px 0 !important;
     padding: 1rem;
