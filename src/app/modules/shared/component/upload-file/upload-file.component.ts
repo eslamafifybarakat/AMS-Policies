@@ -14,6 +14,7 @@ export class UploadFileComponent implements OnInit {
   @Input() name: string = '';
 
   @Output() uploadHandler: EventEmitter<any> = new EventEmitter();
+  @Output() uploadFile: EventEmitter<any> = new EventEmitter();
 
   imageLoaded: boolean = false;
   dragging: boolean = false;
@@ -40,6 +41,7 @@ export class UploadFileComponent implements OnInit {
     formData.append('files', file);
     this.formatSizeUnits(file?.size);
     this.name = file?.name;
+    this.uploadFile?.emit(file);
     // this.isLoading = true;
     // this.providersService?.uploadImages(formData).subscribe((res: any) => {
     //   this.isLoading = false;

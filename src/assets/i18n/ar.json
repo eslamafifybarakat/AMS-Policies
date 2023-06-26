@@ -1,5 +1,6 @@
 {
   "general": {
+    "success":"نجاح!",
     "clickToUpload":"انقر للتحميل أو السحب والإفلات",
     "supports":"يدعم",
     "replace":"تبديل",
@@ -44,6 +45,8 @@
     "to_continue": "للإستمرار",
     "job": "الوظيفة",
     "next": "التالي",
+    "back": "السابق",
+    "save": "حفظ",
     "siteName": "AMS Policies",
     "start_date": "تاريخ البدأ",
     "end_date": "تاريخ الإنتهاء",
@@ -75,6 +78,7 @@
     "female": "أنثي",
     "actions": "الإجراءات",
     "duration": "مدة الوثيقة",
+    "durationType": "نوع الفترة",
     "view": "عرض",
     "delete": "حذف",
     "update": "تحديث",
@@ -250,7 +254,7 @@
     "change_password": "تغيير كلمة المرور",
     "signout": "تسجيل الخروج"
   },
-  "polices_list": {
+  "policesList": {
     "amount": "رسوم الوثيقة",
     "description": "الوصف",
     "sale_id": "رقم",
@@ -259,7 +263,17 @@
     "invoice_price": "رسوم الوثيقة",
     "establish_date": "تاريخ الإصدار",
     "new_policy": "وثيقة جديدة",
-    "clients": "العملاء"
+    "clients": "العملاء",
+    "addNewPolicy": "إضافة وثيقة جديدة",
+    "editPolicy": "تعديل الوثيقة",
+    "backToList":"العودة الي قائمة الوثائق",
+    "personalInfo":"معلومات شخصية",
+    "policyInfo":"معلومات الوثيقة",
+    "medicalReports":"التقارير الطبية",
+    "editSuccessfully":"تم تعديل الوثيقة بنجاح",
+    "addSuccessfully":"تم إضافة الوثيقة بنجاح",
+    "addAnotherPolicy":"إضافة وثيقة أخرى",
+    "seeAllPolicies":"عرض جميع الوثائق"
   },
   "profile": {
     "perosnoal_info": "المعلومات الشخصية",

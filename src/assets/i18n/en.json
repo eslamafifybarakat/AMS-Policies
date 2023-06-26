@@ -1,9 +1,10 @@
 {
   "general": {
+    "success":"Success!",
     "clickToUpload":"Click to upload or drag and drop",
     "supports":"Supports",
     "replace":"Replace",
-    "noPolicy":"No image is available for this document",
+    "noPolicy":"No policy image is available for this document",
     "paymentDetails":"Payment details",
     "moreDetails":"More details",
     "readMore":"Read more",
@@ -44,6 +45,8 @@
     "to_continue": "to continue",
     "job": "Job",
     "next": "Next",
+    "back": "Back",
+    "save": "Save",
     "siteName": "AMS Policies",
     "start_date": "Start Date",
     "end_date": "End Date",
@@ -71,8 +74,8 @@
     "language": "Language",
     "timezone": "Timeszone",
     "gender": "Gender",
-    "male": "Male",
-    "female": "Female",
+    "male": "male",
+    "female": "female",
     "actions": "Actions",
     "duration": "Duration",
     "view": "View",
@@ -141,6 +144,7 @@
     "passport_image": "Passport Image",
     "profile_image": "Profile Image",
     "duration": "Duration",
+    "durationType": "Duration Type",
     "changePasswordAttention": "Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!",
     "change_password": "Change Password",
     "change_password_text": "Change your account password",
@@ -247,7 +251,7 @@
     "change_password": "Change Password",
     "signout": "SignOut"
   },
-  "polices_list": {
+  "policesList": {
     "amount": "Policy Fees",
     "description": "Description",
     "sale_id": "No.",
@@ -255,8 +259,18 @@
     "customer_id": "Reference No",
     "invoice_price": "Fees",
     "establish_date": "Issue Date",
-    "new_policy": "New Ploicy",
-    "clients": "Clients"
+    "new_policy": "New Policy",
+    "addNewPolicy": "Add New Policy",
+    "editPolicy": "Update Policy",
+    "backToList":"Back to policies list",
+    "clients": "Clients",
+    "personalInfo":"Personal Information",
+    "policyInfo":"Policy Information",
+    "medicalReports":"Medical Reports",
+    "editSuccessfully":" Your policy updated successfully",
+    "addSuccessfully":"Your policy added successfully",
+    "addAnotherPolicy":"Add Another policy",
+    "seeAllPolicies":"See all policies"
   },
   "profile": {
     "perosnoal_info": "Perosonal Information",
@@ -399,4 +413,5 @@
     "emptyMessage": "No results found",
     "emptyFilterMessage": "No results found"
   }
+
 }

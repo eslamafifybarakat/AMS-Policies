@@ -1,17 +1,16 @@
 <div id="payments" class="pt-sec pb-4">
   <div class="container pt-3">
-    <div class="payment-history py-small-2">
+    <div class="payment-history">
       <div class="container px-0">
         <div class="rounded-25 px-4">
-          <div
-            class="header-payment-history d-flex align-items-center justify-content-between flex-column-small gap-small-2 p-1 mt-3">
+          <div class="header-payment-history d-flex align-items-center justify-content-between gap-3 flex-wrap mt-3">
             <div class="d-flex gap-2 align-items-center">
               <h1 class=" fs-4">
                 <span>
                   {{'policies.payment_history' | translate}}
                 </span>
               </h1>
-              <span class="badge-main">{{paymentsListCount}}</span>
+              <span class="badge-main fw-bold">{{paymentsListCount}}</span>
             </div>
             <span class="p-input-icon-right">
               <ng-container *ngIf="loadingSearch">

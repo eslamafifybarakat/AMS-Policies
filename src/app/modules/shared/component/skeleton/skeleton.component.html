@@ -17,3 +17,33 @@
     <p-skeleton width="40%" styleClass="mb-2"></p-skeleton>
   </div>
 </ng-container>
+
+
+<ng-container *ngIf="type=='add-edit-policy'">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="global-card">
+        <p-skeleton width="10rem" styleClass="mb-3" height="1rem"></p-skeleton>
+        <p-skeleton width="100%" height="6rem"></p-skeleton>
+      </div>
+    </div>
+    <div class="col-md-4 mt-md-0 mt-4">
+      <div class="global-card h-100">
+        <p-skeleton width="100%" styleClass="mb-2" height="7rem"></p-skeleton>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="global-card">
+        <div class="row">
+          <ng-container *ngFor="let item of [7,7,7,5,5,5]">
+            <div class="col-md-6 col-sm-12 col-12">
+              <p-skeleton width="100%" styleClass="mb-4" height="3rem"></p-skeleton>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

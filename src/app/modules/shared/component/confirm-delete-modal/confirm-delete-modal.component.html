@@ -17,11 +17,11 @@
   <ng-container *ngIf="showRoleNameInput; else noName">
 
     <div class="d-flex align-items-center justify-content-end flex-column-small  gap-small-2 mt-4">
-      <button type="button" class="btn btn-outline-main py-2 px-5 mx-1 w-50 fs-min-small w-small-100"
+      <button type="button" class="btn btn-outline-main px-5 mx-1 w-50 fs-min-small w-small-100"
         (click)="onClose(false)">
         {{'general.no' | translate}}, {{'general.keep' | translate}} {{textDelete}}
       </button>
-      <button type="submit" class="btn btn-danger py-2 px-5 mx-1 w-50 fs-min-small w-small-100"
+      <button type="submit" class="btn btn-danger px-5 mx-1 w-50 fs-min-small w-small-100"
         [disabled]="textDelete !== name" (click)="onClose(true)">
         {{'general.yes' | translate}}, {{'general.delete' | translate}} {{textDelete}}
       </button>

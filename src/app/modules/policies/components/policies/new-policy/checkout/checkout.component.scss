@@ -1,11 +1,13 @@
 .checkout {
-
+  background-color: #fb211905;
   .checkout-card {
     border: 1px solid var(--text-white-color);
-    background: var(--bg-white-color);
+    // background: var(--bg-white-color);
+    // border-radius: 10px;
+  }
+  .order {
     border-radius: 10px;
   }
-
   .border-bottom-el {
     border-bottom: 1px solid var(--border-input-color);
   }
@@ -20,5 +22,4 @@
     background-color: var(--bg-white-color);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
-
 }

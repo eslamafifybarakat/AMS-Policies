@@ -7,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AltButtonComponent implements OnInit {
   @Input() text: any = '';
+  @Input() icon: any = '';
+  @Input() hasIcon: any = false;
+
   constructor() { }
 
   ngOnInit(): void {

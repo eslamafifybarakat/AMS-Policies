@@ -189,81 +189,9 @@
     line-height: 0;
   }
 
-  .providers-step {
-    .p-listbox {
-      .btn {
-        padding: 0.5rem 1rem !important;
-      }
-    }
-  }
-
-  .services-step {
-    .p-listbox {
-      .btn {
-        padding: 0.5rem 1rem !important;
-      }
-
-      .p-listbox-item {
-        display: initial !important;
-      }
-
-      .p-listbox-list {
-        padding-right: 15px;
-      }
-
-      .price {
-        .p-inputtext {
-          height: 40px;
-          max-width: 5.5rem !important;
-          padding: 0.5rem;
-        }
-
-        .p-inputgroup-addon:first-child {
-          height: 40px;
-
-          .dollar {
-            width: 30px;
-            text-align: center;
-            border-radius: 9px;
-          }
-        }
-      }
-    }
-
-    .not-found,
-    .added-services {
-      min-height: 20rem;
-    }
-
-    .servicesPrice {
-      color: #77a13b;
-    }
-  }
-
-  .user-step {
-    .p-inputgroup {
-      &.border-red {
-        border-radius: var(--main-border-radius-shape);
-
-        .p-inputgroup-addon {
-          border: 0 !important;
-        }
-
-        .p-inputtext {
-          border: 0 !important;
-        }
-      }
-    }
-
-    .not-found,
-    .users {
-      min-height: 20rem;
-    }
-  }
-
   #successful {
     .successful-content {
-      min-height: calc(100vh - 301px);
+      min-height: calc(100vh - 350px);
     }
 
     .successful-img {
@@ -278,4 +206,11 @@
 .policy-id {
   border: 2px solid rgba(140, 149, 163, 0.6) !important;
   border-radius: var(--border-radius-card);
+}
+.border-dashed {
+  border: 3px dashed var(--border-input-color) !important;
+  border-radius: var(--border-radius-card);
+}
+.text-main-color:hover {
+  color: var(--text-main-color) !important;
 }

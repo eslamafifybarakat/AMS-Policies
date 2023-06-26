@@ -1,105 +1,110 @@
-<div class="checkout">
-  <div class="checkout-card p-4">
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="fs-5 text-center-small text-muted">
-        {{'policies.policy_data' | translate}}
-      </h1>
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6c757d"
-          class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path
-            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-        </svg>
-      </span>
-    </div>
-    <hr class="text-secondary-color mt-3" />
-    <div class="content">
-      <div class="row">
-        <div class="col-xl-5 col-md-12 col-sm-6 col-12">
-          <h1 class="text-main-color fs-5 mt-3 mb-4 header-underline">
-            {{'checkout.your_order' | translate}}
-          </h1>
-          <div class="order-details mt-4">
-            <div class="row">
-              <div class="col-12">
+<div class="checkout pt-sec">
+  <div class="container pt-5 pb-4">
+    <div class="checkout-card">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fs-4 text-center-small">
+          {{'policies.policy_data' | translate}}
+        </h1>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#6c757d"
+            class="scaleX-rtl bi bi-info-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+              d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+        </span>
+      </div>
+      <!-- <hr class="text-secondary-color mt-3" /> -->
+      <div class="content">
+        <div class="row">
+          <div class="col-xl-5 col-md-12 col-sm-6 col-12">
+            <div class="global-card h-100">
+              <h1 class="text-main-color fs-5 mt-3 mb-4 header-underline">
+                {{'checkout.your_order' | translate}}
+              </h1>
+              <div class="order-details mt-4">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="border order px-3">
+                      <div class="titles d-flex justify-content-between align-items-center border-bottom-el py-3">
+                        <h2 class="fw-bold">
+                          {{'general.item' | translate}}
+                        </h2>
+                        <h2 class="fw-bold">
+                          {{'general.count' | translate}}
+                        </h2>
+                      </div>
 
-                <div class="border rounded px-3">
-                  <div class="titles d-flex justify-content-between align-items-center border-bottom-el py-3">
-                    <h2 class="fw-bold">
-                      {{'general.item' | translate}}
-                    </h2>
-                    <h2 class="fw-bold">
-                      {{'general.count' | translate}}
-                    </h2>
-                  </div>
-
-                  <div>
-                    <ng-container *ngIf="paymentOrder; else noData">
-                      <ng-container *ngFor="let item of paymentOrder?.items">
-                        <div class="element d-flex justify-content-between align-items-center border-bottom-el py-3">
-                          <h2 class="text-muted">
-                            {{item?.name||''}}
-                          </h2>
-                          <h2 class="text-muted">
-                            {{item?.count||''}}
-                          </h2>
-                        </div>
-                      </ng-container>
-                    </ng-container>
-                    <ng-template #noData>
-                      <p class="text-muted p-2">
-                        {{'general.no_item_founded'| translate}}
-                      </p>
-                    </ng-template>
-                  </div>
-
-                  <div class="element d-flex justify-content-between align-items-center py-3">
-                    <h2 class="fw-bold">
-                      {{'general.total' | translate}}
-                    </h2>
-                    <h2 class="fw-bold">
-                      {{paymentOrder?.total || 0}}
-                    </h2>
+                      <div>
+                        <ng-container *ngIf="paymentOrder; else noData">
+                          <ng-container *ngFor="let item of paymentOrder?.items">
+                            <div
+                              class="element d-flex justify-content-between align-items-center border-bottom-el py-3">
+                              <h2 class="text-muted">
+                                {{item?.name||''}}
+                              </h2>
+                              <h2 class="text-muted">
+                                {{item?.count||''}}
+                              </h2>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                        <ng-template #noData>
+                          <p class="text-muted p-2">
+                            {{'general.no_item_founded'| translate}}
+                          </p>
+                        </ng-template>
+                      </div>
+                      <div class="element d-flex justify-content-between align-items-center py-3">
+                        <h2 class="fw-bold">
+                          {{'general.total' | translate}}
+                        </h2>
+                        <h2 class="fw-bold">
+                          {{paymentOrder?.total || 0}}
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 col-md-12 col-sm-6 col-12">
+            <div class="global-card h-100">
+              <h1 class="text-main-color fs-5 mt-3 mb-4 header-underline">
+                {{'checkout.payment_methods' | translate}}
+              </h1>
+              <div class="row mt-4">
+                <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
+                  <!-- <a (click)="check('mastercard')"> -->
+                  <div class="card-item d-flex justify-content-center align-items-center">
+                    <img class="item-img rounded-25 fit-contain"
+                      [ngClass]="filterValue == 'mastercard'?'selected-card':''"
+                      src="assets/image/payments/mastercard.png" alt="">
+                  </div>
+                  <!-- </a> -->
+                </div>
+                <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
+                  <!-- <a (click)="check('paypal')"> -->
+                  <div class="card-item d-flex justify-content-center align-items-center">
+                    <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
+                      src="assets/image/payments/visa.png" alt="">
+                  </div>
+                  <!-- </a> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-7 col-md-12 col-sm-6 col-12">
-          <h1 class="text-main-color fs-5 mt-3 mb-4 header-underline">
-            {{'checkout.payment_methods' | translate}}
-          </h1>
-          <div class="row mt-4">
-            <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <!-- <a (click)="check('mastercard')"> -->
-              <div class="card-item d-flex justify-content-center align-items-center">
-                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'mastercard'?'selected-card':''"
-                  src="assets/image/payments/mastercard.png" alt="">
-              </div>
-              <!-- </a> -->
-            </div>
-            <div class="col-xl-6 col-md-12 col-sm-12 col-12 mb-3">
-              <!-- <a (click)="check('paypal')"> -->
-              <div class="card-item d-flex justify-content-center align-items-center">
-                <img class="item-img rounded-25 fit-contain" [ngClass]="filterValue == 'paypal'?'selected-card':''"
-                  src="assets/image/payments/visa.png" alt="">
-              </div>
-              <!-- </a> -->
-            </div>
+        <div class="d-flex align-items-center justify-content-end mt-5">
+          <div class="d-flex align-items-center">
+            <button class="btn btn-solid-second me-2" (click)="back()">
+              {{'general.cancel' | translate}}
+            </button>
+            <button class="btn btn-solid-main me-2" type="button" (click)="submit()">
+              {{'general.place_order' | translate}}
+            </button>
           </div>
-        </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-end mt-5">
-        <div class="d-flex align-items-center">
-          <button class="btn btn-solid-second me-2" (click)="back()">
-            {{'general.cancel' | translate}}
-          </button>
-          <button class="btn btn-solid-main me-2" type="button" (click)="submit()">
-            {{'general.place_order' | translate}}
-          </button>
         </div>
       </div>
     </div>

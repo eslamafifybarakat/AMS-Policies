@@ -37,6 +37,10 @@ export class CheckoutComponent implements OnInit {
     this.isEdit = this.activatedRoute?.snapshot?.params['isEdit'];
 
     this.paymentOrder = JSON.parse(this.activatedRoute?.snapshot?.params['paymentOrder'] || '{}');
+    console.log(this.policyData);
+    console.log(this.isEdit);
+    console.log(this.paymentOrder);
+
   }
 
   submit(): void {

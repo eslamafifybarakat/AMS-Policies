@@ -2,37 +2,19 @@
   <div class="container pt-3">
     <div class=" rounded-25 px-4 py-3">
       <div
-        class="header-polices-list d-flex align-items-center justify-content-between flex-column-md gap-medium-2  mt-3 mb-4">
+        class="header-polices-list d-flex align-items-center justify-content-between gap-3 flex-wrap mt-md-3 mt-5 mb-4">
         <div class="d-flex gap-2 align-items-center">
           <h1 class=" fs-4">
             <span>
               {{'policies.policies' | translate}}
             </span>
           </h1>
-          <ng-container *ngIf="policiesList?.length">
-            <span class="badge-main">
-              {{policiesList?.length || 0}}
-            </span>
-          </ng-container>
+          <span class="badge-main fw-bold">
+            {{policiesListCount}}
+          </span>
         </div>
-        <!-- <div class="search-table">
-          <div class="input-group flex-nowrap">
-            <span class="input-group-text input-group-text-L bg-white-color">
-              <a (click)="applySearch($event)">
-                <i class="fa fa-search fas fa-color"></i>
-              </a>
-            </span>
-            <input type="text" class="form-control form-control-search-group" (keyup.enter)="applySearch($event)"
-              [(ngModel)]="searchValue" placeholder="{{'general.search' | translate}}">
-            <span class="input-group-text bg-white-color input-group-text-R">
-              <a (click)="searchValue !==''?clearSearch():''">
-                <i class="fa text-danger-color" [ngClass]="searchValue !==''?'fa-close':''"></i>
-              </a>
-            </span>
-          </div>
-        </div> -->
 
-        <div class="d-flex gap-3">
+        <div class="d-flex flex-wrap gap-3">
           <span class="p-input-icon-right">
             <ng-container *ngIf="loadingSearch">
               <i class="pi pi-spin pi-spinner"></i>
@@ -51,10 +33,11 @@
           <button class="btn btn-solid-main d-flex align-items-center gap-2"
             [routerLink]="['/policies/add-edit-policy']">
             <i class="fas fa-plus"></i>
-            {{'polices_list.new_policy' | translate}}
+            {{'policesList.new_policy' | translate}}
           </button>
         </div>
       </div>
+      <hr>
       <app-dynamic-table [isLoading]="isLoading" [showCaption]="true" [showClear]="true"
         [isLoadingSearch]="isLoadingSearch" (clearHandler)="enableSortFilter?clearTable($event):''"
         [tableHeaders]="tableHeaders" [tableData]="policiesList" [enableDateFormate]="true"
@@ -64,9 +47,9 @@
         [isSearch]="isSearch" [arrayChildKey]="'name'" (printTableHandler)="printTable($event)"
         (downloadFileHandler)="downloadFile()"></app-dynamic-table>
 
-      <ng-container *ngIf="policiesList?.length>pageSize">
+      <ng-container *ngIf="policiesListCount>pageSize">
         <div class="d-flex justify-content-center mt-5 mb-4">
-          <ngb-pagination [collectionSize]="policiesList?.length" [pageSize]="pageSize" [(page)]="currentPage"
+          <ngb-pagination [collectionSize]="policiesListCount" [pageSize]="pageSize" [(page)]="currentPage"
             [maxSize]="3" (pageChange)="onChange($event)" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
           </ngb-pagination>
         </div>

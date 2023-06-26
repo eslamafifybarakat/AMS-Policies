@@ -54,7 +54,8 @@ const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         data: {
-          title: 'titles.checkout'
+          title: 'titles.checkout',
+          type: 'policies'
         }
       },
       {

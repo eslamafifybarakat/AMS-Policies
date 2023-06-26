@@ -1,14 +1,14 @@
-import { PrintService } from './../../../../shared/services/print/print.service';
 import { ConfirmDeleteModalComponent } from './../../../../shared/component/confirm-delete-modal/confirm-delete-modal.component';
 import { AlertsService } from './../../../../shared/services/alerts/alerts.service';
+import { PrintService } from './../../../../shared/services/print/print.service';
 import { PublicService } from '../../../../../services/public.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { PolicyService } from '../../../services/policy.service';
 import { roots } from '../../../../shared/TS Files/api-roots';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { saveAs } from 'file-saver';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-policies-list',
@@ -21,9 +21,10 @@ export class PoliciesListComponent implements OnInit {
   isWaitingAction: boolean = false;
 
   searchValue: any = '';
-  currentPage = 1;
-  pageSize = 6;
+  currentPage: any = 1;
+  pageSize: any = 6;
   policiesList: any = [];
+  policiesListCount: number = 0;
 
   isLoadingSearch: boolean = false;
   isSearch: boolean = false;
@@ -46,22 +47,22 @@ export class PoliciesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllPloicies();
+    this.getAllPolicies();
     this.tableHeaders = [
       {
-        field: 'job_id', header: this.publicService?.translateTextFromJson('polices_list.sale_id'), title: this.publicService?.translateTextFromJson('polices_list.sale_id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false
+        field: 'job_id', header: this.publicService?.translateTextFromJson('policesList.sale_id'), title: this.publicService?.translateTextFromJson('policesList.sale_id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false
         , type: 'numeric'
       },
-      { field: 'name', header: this.publicService?.translateTextFromJson('polices_list.customer_name'), title: this.publicService?.translateTextFromJson('polices_list.customer_name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'text' },
-      { field: 'id', header: this.publicService?.translateTextFromJson('polices_list.customer_id'), title: this.publicService?.translateTextFromJson('polices_list.customer_id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'numeric' },
-      { field: 'start_date', header: this.publicService?.translateTextFromJson('polices_list.establish_date'), title: this.publicService?.translateTextFromJson('polices_list.establish_date'), sort: true, showDefaultSort: true, showAscSort: false, type: 'date' },
-      { field: 'fees', header: this.publicService?.translateTextFromJson('polices_list.invoice_price'), title: this.publicService?.translateTextFromJson('polices_list.invoice_price'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
+      { field: 'name', header: this.publicService?.translateTextFromJson('policesList.customer_name'), title: this.publicService?.translateTextFromJson('policesList.customer_name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'text' },
+      { field: 'id', header: this.publicService?.translateTextFromJson('policesList.customer_id'), title: this.publicService?.translateTextFromJson('policesList.customer_id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'numeric' },
+      { field: 'start_date', header: this.publicService?.translateTextFromJson('policesList.establish_date'), title: this.publicService?.translateTextFromJson('policesList.establish_date'), sort: true, showDefaultSort: true, showAscSort: false, type: 'date' },
+      { field: 'fees', header: this.publicService?.translateTextFromJson('policesList.invoice_price'), title: this.publicService?.translateTextFromJson('policesList.invoice_price'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
       { field: 'duration', secondField: 'duration_type', header: this.publicService?.translateTextFromJson('general.duration'), title: this.publicService?.translateTextFromJson('general.duration'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
       { field: 'status', header: this.publicService?.translateTextFromJson('general.status'), title: this.publicService?.translateTextFromJson('general.status'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'status' },
     ];
   }
 
-  getAllPloicies(activeLoading?: boolean, paginate?: boolean): void {
+  getAllPolicies(activeLoading?: boolean, paginate?: boolean): void {
     activeLoading == false ? this.isLoading = false : this.isLoading = true;
     this.policyService?.getPoliciesList(this.currentPage, this.pageSize, this.searchValue ? this.searchValue : null, this.sortObj ? this.sortObj : null)?.subscribe(
       (res) => {
@@ -69,7 +70,7 @@ export class PoliciesListComponent implements OnInit {
           let arr: any = [];
           arr = res?.data;
           this.policiesList = arr;
-          console.log(res?.data);
+          this.policiesListCount = res?.total ? res?.total : 0;
           this.isLoading = false;
           this.isWaitingAction = false;
           this.loadingSearch = false;
@@ -100,13 +101,13 @@ export class PoliciesListComponent implements OnInit {
     this.loadingSearch = true;
     let applyFilter = (event.target as HTMLInputElement).value;
     this.searchValue = applyFilter;
-    this.getAllPloicies(false);
+    this.getAllPolicies(false);
     this.cdr?.detectChanges();
   }
   clearSearch(): void {
     this.currentPage = 1;
     this.searchValue = '';
-    this.getAllPloicies(false);
+    this.getAllPolicies(false);
     this.cdr?.detectChanges();
   }
 
@@ -171,7 +172,6 @@ export class PoliciesListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result?.confirm === true) {
-        console.log(result);
         this.isWaitingAction = true;
         this.policyService?.deletePolicy(item?.item?.id)?.subscribe(
           (res: any) => {
@@ -179,7 +179,7 @@ export class PoliciesListComponent implements OnInit {
               if (res?.message) {
                 this.alertsService?.openSweetAlert("success", res?.message);
               }
-              this.getAllPloicies(false);
+              this.getAllPolicies(false);
             } else {
               if (res?.message) {
                 this.alertsService?.openSweetAlert("info", res?.message);
@@ -197,13 +197,15 @@ export class PoliciesListComponent implements OnInit {
   }
 
   onChange(page: any): void {
-    this.getAllPloicies();
+    this.currentPage = page;
+    this.getAllPolicies();
   }
 
   clearTable(event: any): void {
+    this.currentPage = 1;
     this.searchValue = '';
     this.sortObj = null;
-    event?.isClear ? this.getAllPloicies(false) : '';
+    event?.isClear ? this.getAllPolicies(false) : '';
   }
   sortItems(event: any): void {
     if (event?.order == 1) {
@@ -211,13 +213,13 @@ export class PoliciesListComponent implements OnInit {
         column: event?.field,
         order: 'asc'
       }
-      this.getAllPloicies(false);
+      this.getAllPolicies(false);
     } else if (event?.order == -1) {
       this.sortObj = {
         column: event?.field,
         order: 'desc'
       }
-      this.getAllPloicies(false);
+      this.getAllPolicies(false);
     }
   }
 

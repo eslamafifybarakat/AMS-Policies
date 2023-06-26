@@ -5,7 +5,7 @@
     <div class="col-sm-6 p-0">
       <div class="d-flex align-items-center gap-3 p-2">
         <img class="fit-object-cover loaded" [src]="isEdit?image:imageName" (load)="handleImageLoad()"
-          onerror="src='assets/images/notFound/noUser.svg'" alt="provider image" />
+          onerror="src='assets/image/not-found/no-user.svg'" alt="provider image" />
         <div class="text-truncate">
           <p class="fw-500 mb-2">{{name}}</p>
           <p class="mb-0 text-desc-color">{{imageSize}}</p>

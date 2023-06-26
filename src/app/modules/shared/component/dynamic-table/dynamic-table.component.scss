@@ -195,12 +195,18 @@
 
   .p-datatable {
     .p-datatable-thead > tr > th {
-      background-color: transparent;
-      border: none;
-      color: var(--text-desc-color);
-      text-align: inherit !important;
+      // background-color: transparent;
+      // border: none;
+      // color: var(--text-desc-color);
+      // text-align: inherit !important;
     }
-    .p-datatable-tbody > tr > td {
+    .p-datatable-thead > tr > th {
+      background-color: var(--bg-main-color) !important;
+      color: var(--text-white-color) !important;
+      padding: 1.5rem !important;
+    }
+    .p-datatable-tbody > tr > td,
+    .p-datatable-thead > tr > th {
       border-color: rgba(140, 149, 163, 0.21);
       border-width: 1px 0;
       padding: 1rem;
@@ -230,7 +236,7 @@
   }
   .p-paginator,
   .p-datatable .p-datatable-header {
-    border-top: 0 !important;
+    border: 0 !important;
     background-color: transparent;
   }
   .p-checkbox {
@@ -296,6 +302,9 @@
   background-color: #fb21191c;
   border: 0 !important;
   border-radius: 10px;
+}
+.delete:hover {
+  color: var(--text-main-color) !important;
 }
 .clear {
   border-radius: 0.5rem;

@@ -44,11 +44,11 @@ export class PaymentsComponent implements OnInit {
         field: 'id', header: this.publicService?.translateTextFromJson('general.id'), title: this.publicService?.translateTextFromJson('general.id'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false
         , type: 'numeric'
       },
-      // { field: 'client', header: this.publicService?.translateTextFromJson('polices_list.customer_name'), title: this.publicService?.translateTextFromJson('polices_list.customer_name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'text' },
+      // { field: 'client', header: this.publicService?.translateTextFromJson('policesList.customer_name'), title: this.publicService?.translateTextFromJson('policesList.customer_name'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'text' },
       { field: 'status', header: this.publicService?.translateTextFromJson('general.status'), title: this.publicService?.translateTextFromJson('general.status'), sort: true, showDefaultSort: true, showAscSort: false, showDesSort: false, type: 'status' },
-      { field: 'amount', header: this.publicService?.translateTextFromJson('polices_list.amount'), title: this.publicService?.translateTextFromJson('polices_list.amount'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
-      { field: 'esablishDate', header: this.publicService?.translateTextFromJson('polices_list.establish_date'), title: this.publicService?.translateTextFromJson('polices_list.establish_date'), sort: true, showDefaultSort: true, showAscSort: false, type: 'date' },
-      { field: 'description', header: this.publicService?.translateTextFromJson('polices_list.description'), title: this.publicService?.translateTextFromJson('polices_list.description'), sort: true, showDefaultSort: true, showAscSort: false, type: 'text' },
+      { field: 'amount', header: this.publicService?.translateTextFromJson('policesList.amount'), title: this.publicService?.translateTextFromJson('policesList.amount'), sort: true, showDefaultSort: true, showAscSort: false, type: 'numeric' },
+      { field: 'esablishDate', header: this.publicService?.translateTextFromJson('policesList.establish_date'), title: this.publicService?.translateTextFromJson('policesList.establish_date'), sort: true, showDefaultSort: true, showAscSort: false, type: 'date' },
+      { field: 'description', header: this.publicService?.translateTextFromJson('policesList.description'), title: this.publicService?.translateTextFromJson('policesList.description'), sort: true, showDefaultSort: true, showAscSort: false, type: 'text' },
     ];
   }
 
