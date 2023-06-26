@@ -247,10 +247,20 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="global-card">
-                  <h5 class="mb-3 fs-5">{{'form.passport_image'|translate}}</h5>
+                  <h5 class="mb-3 fs-5 required">{{'form.passport_image'|translate}}</h5>
                   <app-upload-file (uploadHandler)="uploadPassportImage($event)" [image]="imagePassportNameString"
                     (uploadFile)="uploadPassportFile($event)" [isEdit]="isEditPassportImage"
                     [showImage]="showPassportImage" [name]="imageName"></app-upload-file>
+                  <ng-container
+                    *ngIf="(policyFormControls?.['passport_image']?.touched || policyFormControls?.['passport_image']?.dirty) && policyFormControls?.['passport_image']?.invalid">
+                    <div class="mt-2">
+                      <ng-container *ngIf="policyFormControls?.['passport_image']?.errors?.['required']">
+                        <span class="text-danger fs-6">
+                          {{'validations.requiredField'|translate}}
+                        </span>
+                      </ng-container>
+                    </div>
+                  </ng-container>
                 </div>
                 <div class="global-card mt-4">
                   <div class="col-sm-12 col-12">
@@ -506,14 +516,26 @@
                     <label class="form-label mb-2 required">
                       {{'form.virus_c'|translate}}
                     </label>
-                    <mat-radio-group formControlName="virus_c">
-                      <mat-radio-button [value]="1" class="me-2">
-                        {{'general.yes' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button [value]="0">
-                        {{'general.no' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="1" id="virus_c"
+                          formControlName="virus_c">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_c">
+                          <span class="fs-7">
+                            {{'general.yes' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="0" id="virus_c"
+                          formControlName="virus_c">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_c">
+                          <span class="fs-7">
+                            {{'general.no' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                     <ng-container
                       *ngIf="(medicalFormControls?.virus_c?.touched ||medicalFormControls?.virus_c?.dirty) && medicalFormControls?.virus_c?.invalid ">
                       <div class="mt-2">
@@ -529,14 +551,26 @@
                     <label class="form-label mb-2 required">
                       {{'form.virus_corona'|translate}}
                     </label>
-                    <mat-radio-group formControlName="virus_corona">
-                      <mat-radio-button [value]="1" class="me-2">
-                        {{'general.yes' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button [value]="0">
-                        {{'general.no' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="1" id="virus_corona"
+                          formControlName="virus_corona">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_corona">
+                          <span class="fs-7">
+                            {{'general.yes' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="0" id="virus_corona"
+                          formControlName="virus_corona">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="virus_corona">
+                          <span class="fs-7">
+                            {{'general.no' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                     <ng-container
                       *ngIf="(medicalFormControls?.virus_corona?.touched ||medicalFormControls?.virus_corona?.dirty) && medicalFormControls?.virus_corona?.invalid ">
                       <div class="mt-2">
@@ -556,14 +590,26 @@
                     <label class="form-label mb-2 required">
                       {{'form.suffer'|translate}}
                     </label>
-                    <mat-radio-group formControlName="suffer">
-                      <mat-radio-button [value]="1" class="me-2">
-                        {{'general.yes' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button [value]="0">
-                        {{'general.no' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="1" id="suffer"
+                          formControlName="suffer">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="suffer">
+                          <span class="fs-7">
+                            {{'general.yes' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="0" id="suffer"
+                          formControlName="suffer">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="suffer">
+                          <span class="fs-7">
+                            {{'general.no' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                     <ng-container
                       *ngIf="(medicalFormControls?.suffer?.touched ||medicalFormControls?.suffer?.dirty) && medicalFormControls?.suffer?.invalid ">
                       <div class="mt-2">
@@ -579,14 +625,26 @@
                     <label class="form-label mb-2 required">
                       {{'form.poor_hearing'|translate}}
                     </label>
-                    <mat-radio-group formControlName="poor_hearing">
-                      <mat-radio-button [value]="1" class="me-2">
-                        {{'general.yes' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button [value]="0">
-                        {{'general.no' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="1" id="poor_hearing"
+                          formControlName="poor_hearing">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="poor_hearing">
+                          <span class="fs-7">
+                            {{'general.yes' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input pointer" type="radio" [value]="0" id="poor_hearing"
+                          formControlName="poor_hearing">
+                        <label class="form-check-label mt-1 pointer lh-sm" for="poor_hearing">
+                          <span class="fs-7">
+                            {{'general.no' | translate}}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                     <ng-container
                       *ngIf="(medicalFormControls?.poor_hearing?.touched ||medicalFormControls?.poor_hearing?.dirty) && medicalFormControls?.poor_hearing?.invalid ">
                       <div class="mt-2">

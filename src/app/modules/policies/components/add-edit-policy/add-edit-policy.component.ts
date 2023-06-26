@@ -68,7 +68,6 @@ export class AddEditPolicyComponent implements OnInit {
     private policyService: PolicyService,
     private alertsService: AlertsService,
     public publicService: PublicService,
-    private dialogService: DialogService,
     private cdr: ChangeDetectorRef,
     public datePipe: DatePipe,
     private fb: FormBuilder,
@@ -123,7 +122,7 @@ export class AddEditPolicyComponent implements OnInit {
     duration: ['', {
       validators: [Validators.required], updateOn: 'blur'
     }],
-    passport_image: [null, []],
+    passport_image: [null, [Validators.required]],
     pass_num: [null, {
       validators: [Validators.required, Validators.pattern(/[0-9]/), Validators.pattern(/[a-zA-Z]/), Validators.pattern(/^[a-zA-Z0-9]*$/)], updateOn: 'blur'
     }],
@@ -262,6 +261,7 @@ export class AddEditPolicyComponent implements OnInit {
             duration: this.policyData?.duration,
             duration_type: this.policyData?.duration_type,
             pass_num: this.policyData?.passport_number,
+            passport_image: this.policyData?.passport_photo
           });
           this.medicalForm?.patchValue({
             virus_c: this.policyData?.c_virus,
@@ -292,6 +292,9 @@ export class AddEditPolicyComponent implements OnInit {
   }
   uploadPassportFile(event: any): void {
     this.imagePassportFile = event;
+    this.policyForm?.patchValue({
+      passport_image: event
+    })
   }
   submit(stepper: MatStepper): void {
     if (this.medicalForm?.valid) {

@@ -42,33 +42,6 @@ export class UploadFileComponent implements OnInit {
     this.formatSizeUnits(file?.size);
     this.name = file?.name;
     this.uploadFile?.emit(file);
-    // this.isLoading = true;
-    // this.providersService?.uploadImages(formData).subscribe((res: any) => {
-    //   this.isLoading = false;
-    //   if (res?.success == true) {
-    //     this.uploadH andlerEmit(res?.result[0]);
-    //     this.isLoading = false;
-    //   } else {
-    //     res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-    //     this.isLoading = false;
-    //     this.showImage=false;
-    //   }
-    // },
-    //   (err: any) => {
-    //     err ? this.alertsService.openSweetAlert('error', err) : '';
-    //     // this.imageName='';
-    //     // this.name='';
-    //     // this.imageSize=null;
-    //     this.showImage=false;
-
-    //     if(this.isEdit==false){
-    //       this.imageName=this.image;
-    //       this.name=this.name;
-    //       // this.formatSizeUnits(file?.size);
-    //     }else{
-    //     }
-    //   }
-    // )
     var reader = new FileReader();
     if (!file.type.match(pattern)) {
       alert('invalid format');
@@ -119,6 +92,7 @@ export class UploadFileComponent implements OnInit {
   removeImg(): void {
     this.imageName = '';
     this.showImage = false;
+    this.uploadFile?.emit(null);
   }
 
   formatSizeUnits(size: any): void {

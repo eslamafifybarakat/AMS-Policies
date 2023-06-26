@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { StatisticsComponent } from './statistics.component';
 import { StatisticsPageComponent } from './components/statistics-page/statistics-page.component';
+import { AuthGuard } from '../shared/services/guards/auth.guard';
+import { StatisticsComponent } from './statistics.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [{
   path: '', component: StatisticsComponent, children: [
     {
       path: 'statistics',
+      canActivate: [AuthGuard],
       component: StatisticsPageComponent,
       data: {
         title: 'titles.statistics',

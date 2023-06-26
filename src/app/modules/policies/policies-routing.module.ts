@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PoliciesComponent } from './policies.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { AddEditPolicyComponent } from './components/add-edit-policy/add-edit-policy.component';
+import { AuthGuard } from '../shared/services/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,15 +20,8 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'dashboard',
-        component: PolicyDashboardComponent,
-        data: {
-          title: 'titles.dashboard',
-
-        }
-      },
-      {
         path: 'list',
+        canActivate: [AuthGuard],
         component: PoliciesListComponent,
         data: {
           title: 'titles.policies',
@@ -35,15 +29,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'policy-data',
-        component: PolicyDataComponent,
-        data: {
-          title: 'titles.policy_data',
-          type: 'policies'
-        }
-      },
-      {
         path: 'add-edit-policy',
+        canActivate: [AuthGuard],
         component: AddEditPolicyComponent,
         data: {
           title: 'titles.policy_data',
@@ -52,6 +39,7 @@ const routes: Routes = [
       },
       {
         path: 'checkout',
+        canActivate: [AuthGuard],
         component: CheckoutComponent,
         data: {
           title: 'titles.checkout',
@@ -59,12 +47,11 @@ const routes: Routes = [
         }
       },
       {
-        path: 'payments',
-        component: PaymentsComponent,
-        data: {
-          title: 'titles.payments'
-        }
-      }
+        path: 'error',
+        loadChildren: () => import('./../../modules/error/error.module')
+          .then(m => m.ErrorModule)
+      },
+      { path: "**", redirectTo: "error" }
     ]
   }
 ];
