@@ -13,49 +13,182 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
-        <div>
-          <div class="global-card p-4 mb-4">
-            <h5 class="mb-4 fs-5">{{'welcome.targets'|translate}}</h5>
-            <ng-container *ngFor="let item of targets">
-              <div class="mb-3">
-                <div class="d-flex justify-content-between mb-2">
-                  <p>{{item?.title}}</p>
-                  <p>{{item?.percentage}}%</p>
-                </div>
-                <div class="progress {{item?.color}}">
-                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                    [style.width.%]="item?.percentage" [attr.aria-valuenow]="item?.percentage" aria-valuemin="0"
-                    aria-valuemax="100">
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div>
-          <ng-container *ngFor="let item of cardsData">
+        <ng-container *ngIf="isFullLoading; else noTransactions">
+          <app-skeleton [type]="'transactions'"></app-skeleton>
+        </ng-container>
+        <ng-template #noTransactions>
+          <div>
+            <h5 class="fs-5 mb-4">
+              {{'policies.transactions' | translate}}
+            </h5>
             <div class="global-card p-4 mb-3">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-3">
                   <div
-                    class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle {{item?.color}}-bg">
-                    <i class="pi {{item?.icon}}"></i>
+                    class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle bg-main-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff"
+                      class="scaleX-rtl bi bi-people-fill" viewBox="0 0 16 16">
+                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                      <path fill-rule="evenodd"
+                        d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                      <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                    </svg>
                   </div>
                   <div>
-                    <h5>{{item?.number}}</h5>
-                    <p class="text-black-50">{{item?.type}}</p>
+                    <h5>{{yourTransactions?.purchased_policies || 0}}</h5>
+                    <p class="text-black-50">
+                      {{'policies.Purchase' | translate}}
+                    </p>
                   </div>
                 </div>
                 <div class="arrow">
-                  <i class="pi pi-angle-up {{item?.color}}-text"></i>
+                  <i class="pi pi-angle-up text-main-color"></i>
                 </div>
               </div>
             </div>
+            <div class="global-card p-4 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle warning-bg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff"
+                      class="scaleX-rtl bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                      <path
+                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5>{{yourTransactions?.bounce_rate || 0}}</h5>
+                    <p class="text-black-50">
+                      {{'policies.refunded' | translate}}
+                    </p>
+                  </div>
+                </div>
+                <div class="arrow">
+                  <i class="pi pi-angle-up warning-text"></i>
+                </div>
+              </div>
+            </div>
+            <div class="global-card p-4 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                  <div
+                    class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle primary-bg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffffff"
+                      class="scaleX-rtl bi bi-graph-up" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5>{{yourTransactions?.bounce_rate || 0}}%</h5>
+                    <p class="text-black-50">
+                      {{'policies.bounce_rate' | translate}}
+                    </p>
+                  </div>
+                </div>
+                <div class="arrow">
+                  <i class="pi pi-angle-up primary-text"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <div
+          class="bg-main-color p-4 global-card d-flex justify-content-center align-items-center flex-column text-white-color text-center mt-4">
+          <div class="star bg-white-color rounded-circle d-flex justify-content-center align-items-center">
+            <i class="pi pi-star-fill text-main-color"></i>
+          </div>
+          <h5 class="fs-5 mt-3 text-capitalize">{{'welcome.congratulations'|translate}} <span
+              class="px-1">{{userName}}</span>
+          </h5>
+          <p class="mt-1">{{'welcome.youHavePermission'|translate}}</p>
+
+          <button class="btn bg-white-color mt-4"
+            [routerLink]="['/profile']">{{'welcome.viewProfile'|translate}}</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div>
+          <ng-container *ngIf="isFullLoading; else noCategory">
+            <app-skeleton [type]="'categories'"></app-skeleton>
           </ng-container>
+          <ng-template #noCategory>
+            <h5 class="mb-4 fs-5"> {{'policies.policy_caregories' | translate}}</h5>
+            <div class="global-card p-4 mb-3">
+              <div>
+                <div class="d-flex justify-content-between mb-2">
+                  <p> {{'general.active' | translate}}</p>
+                  <p>{{policies?.active || 0}}</p>
+                </div>
+                <div class="progress active">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="policies?.active" [attr.aria-valuenow]="policies?.active" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="global-card p-4 mb-3">
+              <div>
+                <div class="d-flex justify-content-between mb-2">
+                  <p> {{'general.pending' | translate}}</p>
+                  <p>{{policies?.pending || 0}}</p>
+                </div>
+                <div class="progress pending">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="policies?.pending" [attr.aria-valuenow]="policies?.pending" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="global-card p-4 mb-3">
+              <div>
+                <div class="d-flex justify-content-between mb-2">
+                  <p> {{'general.pending' | translate}}</p>
+                  <p>{{policies?.cancelled || 0}}</p>
+                </div>
+                <div class="progress cancelled">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="policies?.cancelled" [attr.aria-valuenow]="policies?.cancelled" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="global-card p-4 mb-3">
+              <div>
+                <div class="d-flex justify-content-between mb-2">
+                  <p> {{'general.expired' | translate}}</p>
+                  <p>{{policies?.expired || 0}}</p>
+                </div>
+                <div class="progress expired">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="policies?.expired" [attr.aria-valuenow]="policies?.expired" aria-valuemin="0"
+                    aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="global-card p-4 mb-3">
+              <div class="">
+                <div class="d-flex justify-content-between mb-2">
+                  <p> {{'general.under_review' | translate}}</p>
+                  <p>{{policies?.under_review || 0}}</p>
+                </div>
+                <div class="progress underReview">
+                  <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                    [style.width.%]="policies?.under_review" [attr.aria-valuenow]="policies?.under_review"
+                    aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div>>

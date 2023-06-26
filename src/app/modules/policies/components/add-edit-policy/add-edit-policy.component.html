@@ -179,8 +179,8 @@
                           </label>
                           <div
                             [class.border-red]="formControls?.gender?.invalid && (formControls?.gender?.dirty || formControls?.gender?.touched)">
-                            <p-dropdown [options]="genders" formControlName="gender" optionLabel="value"
-                              [filter]="false" [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="value"
+                            <p-dropdown [options]="genders" formControlName="gender" optionLabel="title"
+                              [filter]="false" [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="title"
                               appendTo="body" scrollHeight="200px"
                               emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
                               filterPlaceholder="{{'general.search' | translate}}"

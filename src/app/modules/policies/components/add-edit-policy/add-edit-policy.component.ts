@@ -58,8 +58,8 @@ export class AddEditPolicyComponent implements OnInit {
   payNow: boolean = false;
 
   genders: any = [
-    { value: this.publicService?.translateTextFromJson('general.male') },
-    { value: this.publicService?.translateTextFromJson('general.female') },
+    { title: this.publicService?.translateTextFromJson('general.male'), value: 'male' },
+    { title: this.publicService?.translateTextFromJson('general.female'), value: 'female' },
   ];
 
   constructor(

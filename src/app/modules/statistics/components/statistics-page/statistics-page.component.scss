@@ -28,15 +28,37 @@
     border-radius: 8px;
     cursor: pointer;
   }
-  .courses {
+
+  .status-warning {
+    color: #f9bc61;
+    background-color: #f9bc6114;
+  }
+  .status-rejected {
+    color: #e55555;
+    background-color: #e5555514;
+  }
+  .status-bg-cancelled {
+    color: #8c95a3;
+    background-color: #8c95a314;
+  }
+  .status-bg-inReview {
+    color: #8c95a3;
+    background-color: #8c95a314;
+  }
+  .status-confirm {
+    color: #1071b8 !important;
+    background-color: #1071b814 !important;
+  }
+
+  .active {
     &.progress {
-      background-color: #3287f621 !important;
+      background-color: #32a07114 !important;
     }
     .progress-bar {
-      background-color: #3287f6 !important;
+      background-color: #32a071 !important;
     }
   }
-  .exams {
+  .pending {
     &.progress {
       background-color: #ffcf2621 !important;
     }
@@ -44,7 +66,7 @@
       background-color: #ffcf26 !important;
     }
   }
-  .articleNotes {
+  .expired {
     &.progress {
       background-color: #fb211921 !important;
     }
@@ -52,40 +74,20 @@
       background-color: #fb2119 !important;
     }
   }
-  .circle-wrap {
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    background: #3287f621;
-    border-radius: 50%;
+  .cancelled {
+    &.progress {
+      background-color: #8c95a314 !important;
+    }
+    .progress-bar {
+      background-color: #8c95a3 !important;
+    }
   }
-}
-
-.circle-wrap .inside-circle {
-  width: 122px;
-  height: 122px;
-  border-radius: 50%;
-  background: #fff;
-  line-height: 120px;
-  text-align: center;
-  margin-top: 14px;
-  margin-left: 14px;
-  // color: #1e51dc;
-  position: absolute;
-  z-index: 100;
-  font-weight: 700;
-  font-size: 2em;
-}
-
-.circle-wrap .circle .mask,
-.circle-wrap .circle .fill {
-  width: 150px;
-  height: 150px;
-  position: absolute;
-  border-radius: 50%;
-}
-
-.mask .fill {
-  clip: rect(0px, 75px, 150px, 0px);
-  background-color: #227ded;
+  .underReview {
+    &.progress {
+      background-color: #1071b814 !important;
+    }
+    .progress-bar {
+      background-color: #1071b8 !important;
+    }
+  }
 }

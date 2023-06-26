@@ -47,3 +47,44 @@
     </div>
   </div>
 </ng-container>
+
+<ng-container *ngIf="type=='transactions'">
+  <div>
+    <p-skeleton width="12rem" height="1rem" styleClass="mb-4"></p-skeleton>
+    <ng-container *ngFor="let item of [3,4,4]">
+      <div class="global-card p-4 mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon d-flex justify-content-center align-items-center  text-white-color rounded-circle">
+              <p-skeleton size="3rem" shape="circle"></p-skeleton>
+            </div>
+            <div>
+              <p-skeleton width="2rem" height="1rem"></p-skeleton>
+              <p-skeleton width="12rem" height="1rem" styleClass="mt-2"></p-skeleton>
+            </div>
+          </div>
+          <div class="arrow">
+            <p-skeleton width="1rem" height="1rem"></p-skeleton>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='categories'">
+  <p-skeleton width="10rem" height="1rem" styleClass="mb-4"></p-skeleton>
+  <ng-container *ngFor="let item of [3,4,9,9,4]">
+    <div class="global-card p-4 mb-3">
+      <div class="">
+        <div class="d-flex justify-content-between mb-2">
+          <p-skeleton width="10rem" height="1rem"></p-skeleton>
+          <p-skeleton width="1rem" height="1rem"></p-skeleton>
+        </div>
+        <div class="progress underReview">
+          <p-skeleton width="100%" height="1.5rem"></p-skeleton>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
