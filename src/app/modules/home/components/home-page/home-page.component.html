@@ -96,7 +96,8 @@
                 class="w-100 position-absolute policy-bg">
             </div>
             <img data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="8s00"
-              src="../../../../../assets/image/home/main-policy.png" alt="policy" class="w-100 shadow policy-img">
+              [src]="homeData?.news?.policy" onerror="src='../../../../../assets/image/home/main-policy.png'"
+              alt="policy" class="w-100 shadow policy-img">
           </div>
         </div>
         <div class="col-lg-5 col-md-6 mt-md-0 mt-5">
@@ -194,7 +195,8 @@
                     <div class="d-flex justify-content-md-end justify-content-center position-relative"
                       data-aos="fade-left" data-aos-easing="ease-in-out" data-aos-duration="900">
                       <div class="w-75  position-absolute service-layer h-100"></div>
-                      <img [src]="item?.service?.image" class="w-75 w-md-100 service-img shadow-sm" alt="">
+                      <img [src]="item?.service?.image" onerror="this.src='assets/image/not-found/no-img.svg'"
+                        class="w-75 w-md-100 service-img shadow-sm" alt="">
                     </div>
                   </div>
                 </div>

@@ -16,10 +16,12 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.carouselItems = JSON?.parse(localStorage?.getItem(keys?.homeData) || '')?.features;
+
     this.deviceLocationService?.getUserLocation();
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
 
-    this.carouselItems = this.currentLanguage == 'ar' ? authSliderAr?.sliderData : authSliderEn?.sliderData;
+    // this.carouselItems = this.currentLanguage == 'ar' ? authSliderAr?.sliderData : authSliderEn?.sliderData;
   }
 
 }

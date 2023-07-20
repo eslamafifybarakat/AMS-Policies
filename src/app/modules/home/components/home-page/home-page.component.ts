@@ -36,30 +36,35 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
     Aos.init();
-    this.getHomeData();
+    this.homeData = JSON?.parse(localStorage?.getItem(keys?.homeData) || '');
+    this.publicService?.loadingHomeData?.subscribe((res: any) => {
+      if (res == true) {
+        this.publicService?.show_loader?.next(true);
+      }
+    })
   }
 
-  getHomeData(): void {
-    // this.publicService?.show_loader?.next(true);
-    // this.homeService?.getHomeData()?.subscribe(
-    //   (res: any) => {
-    //     if (res?.success == true) {
-    //       this.homeData = res;
-    //       this.publicService?.show_loader?.next(false);
-    //     } else {
-    //       res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-    //       this.publicService?.show_loader?.next(false);
-    //     }
-    //   },
-    //   (err: any) => {
-    //     err ? this.alertsService?.openSweetAlert('error', err) : '';
-    //     this.publicService?.show_loader?.next(false);
-    //   }
-    // )
-    this.homeData = this.currentLanguage == 'ar' ? homeDataAr : homeDataEn;
+  // getHomeData(): void {
+  //   this.publicService?.show_loader?.next(true);
+  //   this.homeService?.getHomeData()?.subscribe(
+  //     (res: any) => {
+  //       if (res?.code == "200") {
+  //         this.homeData = res?.data;
+  //         this.publicService?.show_loader?.next(false);
+  //       } else {
+  //         res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+  //         this.publicService?.show_loader?.next(false);
+  //       }
+  //     },
+  //     (err: any) => {
+  //       err ? this.alertsService?.openSweetAlert('error', err) : '';
+  //       this.publicService?.show_loader?.next(false);
+  //     }
+  //   )
+  //   // this.homeData = this.currentLanguage == 'ar' ? homeDataAr : homeDataEn;
 
 
-  }
+  // }
 
   openVideo(): void {
     this.dialog.open(VideoModalComponent, {

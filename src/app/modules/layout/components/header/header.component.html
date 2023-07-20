@@ -24,35 +24,41 @@
         </li>
         <ng-container *ngIf="isLoggedIn; else noLogged">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/statistics']" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/statistics']" routerLinkActive="active"
+              (click)="collapsedMenu == true ? collapsedMenu = false :''">
               {{'nav.statistic'|translate}}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/policies']" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/policies']" routerLinkActive="active"
+              (click)="collapsedMenu == true ? collapsedMenu = false :''">
               {{'nav.policies'|translate}}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/payments']" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/payments']" routerLinkActive="active"
+              (click)="collapsedMenu == true ? collapsedMenu = false :''">
               {{'nav.payments'|translate}}
             </a>
           </li>
         </ng-container>
         <ng-template #noLogged>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/pricing']" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/pricing']" routerLinkActive="active"
+              (click)="collapsedMenu == true ? collapsedMenu = false :''">
               {{'nav.pricing'|translate}}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/about-us']" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/about-us']" routerLinkActive="active"
+              (click)="collapsedMenu == true ? collapsedMenu = false :''">
               {{'nav.about'|translate}}
             </a>
           </li>
         </ng-template>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact-us']" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/contact-us']" routerLinkActive="active"
+            (click)="collapsedMenu == true ? collapsedMenu = false :''">
             {{'nav.contactUs'|translate}}
           </a>
         </li>

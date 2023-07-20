@@ -1,3 +1,4 @@
+import { HomeService } from './services/home.service';
 import { TranslationService } from './modules/shared/services/i18n/translation.service';
 import { ThemeService } from './modules/shared/services/themes/theme.service';
 import { DeviceLocationService } from './services/device-location.service';
@@ -10,6 +11,7 @@ import { Component } from '@angular/core';
 import { filter, map } from 'rxjs';
 import * as AOS from 'aos';
 import { PrimeNGConfig } from 'primeng/api';
+import { AlertsService } from './modules/shared/services/alerts/alerts.service';
 
 
 @Component({
@@ -32,7 +34,9 @@ export class AppComponent {
     private publicService: PublicService,
     private primengConfig: PrimeNGConfig,
     private translate: TranslateService,
+    private alertsService: AlertsService,
     public _ThemeService: ThemeService,
+    private homeService: HomeService,
     private titleService: Title,
     private router: Router,
   ) {
@@ -121,6 +125,30 @@ export class AppComponent {
     setTimeout(() => {
       this.showSpinner = false;
     }, 1000);
+    this.getHomeData();
+  }
+
+  getHomeData(): void {
+    this.publicService?.loadingHomeData?.next(true);
+    this.publicService?.show_loader?.next(true);
+    this.homeService?.getHomeData()?.subscribe(
+      (res: any) => {
+        if (res?.code == "200") {
+          localStorage?.setItem(keys?.homeData, JSON?.stringify(res?.data));
+          this.publicService?.show_loader?.next(false);
+          this.publicService?.loadingHomeData?.next(false);
+        } else {
+          res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+          this.publicService?.show_loader?.next(false);
+          this.publicService?.loadingHomeData?.next(false);
+        }
+      },
+      (err: any) => {
+        err ? this.alertsService?.openSweetAlert('error', err) : '';
+        this.publicService?.show_loader?.next(false);
+        this.publicService?.loadingHomeData?.next(false);
+      }
+    )
   }
 }
 

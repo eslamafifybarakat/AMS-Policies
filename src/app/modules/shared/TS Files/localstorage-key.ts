@@ -8,5 +8,6 @@ export const keys = {
   policyPayId: 'AMSPoliciePolicyPayId',
   token: 'AMSPolicieToken',
   deviceLocation: 'amsdeviceLocation',
-  forgetPassoedToken: 'AMSPolicieForgetPasswordToken'
+  forgetPassoedToken: 'AMSPolicieForgetPasswordToken',
+  homeData: 'homeData'
 };

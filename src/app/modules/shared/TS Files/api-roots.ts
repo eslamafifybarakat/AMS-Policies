@@ -1,5 +1,6 @@
 export const roots = {
-  homeData: '../data/data.json',
+  homeData: '/api/EnSetting',
+  homeDataAr: '/api/ArSetting',
   home: {
     getHomeData: '/api/site/get-home-data',
     exportFile: 'export_policies',
