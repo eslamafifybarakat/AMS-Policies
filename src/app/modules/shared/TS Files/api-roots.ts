@@ -3,8 +3,10 @@ export const roots = {
   homeDataAr: '/api/ArSetting',
   home: {
     getHomeData: '/api/site/get-home-data',
-    exportFile: 'export_policies',
-    getNotifications: '/all-notifications'
+    exportFile: 'api/site/export_policies',
+    getNotifications: '/api/all-notifications',
+    markNotification: '/api/markNotification',
+    markAllNotifications: '/api/markAllNotifications'
   },
   payments: {
     getPayments: '/api/site/payments',

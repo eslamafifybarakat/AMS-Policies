@@ -1,11 +1,34 @@
 <div class="uploader row w-100 d-flex justify-content-center align-items-center m-auto"
-  [class.justify-content-between]="showImage">
+  [class.justify-content-between]="showImage" (dragover)="handleDragOver($event)" (dragenter)="handleDragEnter()"
+  (dragleave)="handleDragLeave()" (drop)="handleDrop($event)">
 
   <ng-container *ngIf="showImage && !isLoading">
     <div class="col-sm-6 p-0">
       <div class="d-flex align-items-center gap-3 p-2">
-        <img class="fit-object-cover loaded" [src]="isEdit?image:imageName" (load)="handleImageLoad()"
-          onerror="src='assets/image/not-found/no-user.svg'" alt="provider image" />
+        <ng-container *ngIf="isEdit; else notEdit">
+          <img class="fit-object-cover loaded" [src]="isEdit?image:imageName" (load)="handleImageLoad()"
+            onerror="src='assets/image/not-found/no-user.svg'" alt="image" />
+        </ng-container>
+        <ng-template #notEdit>
+          <ng-container *ngIf="file?.type?.includes('image')">
+            <img class="fit-object-cover loaded" [src]="isEdit?image:imageName" (load)="handleImageLoad()"
+              onerror="src='assets/image/not-found/no-user.svg'" alt="image" />
+          </ng-container>
+          <ng-container *ngIf="file?.type?.includes('pdf')||image?.includes('pdf')">
+            <img class="fit-object-cover loaded" [src]="'../../../../../assets/image/icons/pdf.svg'" alt="pdf" />
+          </ng-container>
+          <ng-container *ngIf="file?.type?.includes('doc')||image?.includes('doc')">
+            <img class="fit-object-cover loaded" [src]="'../../../../../assets/image/icons/word.png'" alt="word" />
+          </ng-container>
+        </ng-template>
+
+
+
+        <!-- <ng-template #img>
+          <img class="fit-object-cover loaded" [src]="isEdit?image:imageName" (load)="handleImageLoad()"
+            onerror="src='assets/image/not-found/no-user.svg'" alt="image" />
+        </ng-template> -->
+
         <div class="text-truncate">
           <p class="fw-500 mb-2">{{name}}</p>
           <p class="mb-0 text-desc-color">{{imageSize}}</p>
@@ -18,8 +41,7 @@
       <label class="w-100 d-flex align-items-center justify-content-center" ondragover="return false;"
         [class.loaded]="loaded" (dragenter)="handleDragEnter()" (dragleave)="handleDragLeave()"
         (drop)="handleDrop($event)">
-        <input #inputFile type="file" name="file" accept="image/png, image/jpg, image/jpeg"
-          (change)="handleInputChange($event)" hidden />
+        <input #inputFile type="file" name="file" [accept]="pattern" (change)="handleInputChange($event)" hidden />
 
         <div class="d-flex justify-content-center text-center py-3">
           <a class="fw-bold text-dark-color d-flex flex-column align-items-center">
@@ -35,8 +57,7 @@
     <div class="col-sm-6">
       <div class="d-flex flex-wrap gap-2 justify-content-end py-3">
         <label class="d-flex align-items-center gap-2 pointer btn-card badge-info" [class.loaded]="loaded">
-          <input #inputFile type="file" name="file" accept="image/png, image/jpg, image/jpeg"
-            (change)="handleInputChange($event)" hidden />
+          <input #inputFile type="file" name="file" [accept]="pattern" (change)="handleInputChange($event)" hidden />
           <i class="pi pi-refresh"></i>
           <span class="fw-500">{{'general.replace'|translate}}</span>
         </label>

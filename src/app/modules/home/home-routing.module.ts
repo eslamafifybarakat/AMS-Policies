@@ -5,6 +5,8 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
+import { PaymentResultComponent } from '../policies/components/policies/new-policy/checkout/payment-result/payment-result.component';
+import { AuthGuard } from '../shared/services/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -53,6 +55,14 @@ const routes: Routes = [
           .then(m => m.PoliciesModule)
       },
       { path: 'statistics', loadChildren: () => import('../statistics/statistics.module').then(m => m.StatisticsModule) },
+      {
+        path: 'payment-result',
+        canActivate: [AuthGuard],
+        component: PaymentResultComponent,
+        data: {
+          title: 'titles.payments'
+        }
+      },
       {
         path: "",
         redirectTo: "home",

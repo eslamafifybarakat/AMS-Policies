@@ -53,9 +53,7 @@ export class PublicService {
     control.markAsPending();
   }
 
-  getAllNotifications(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + roots?.home?.getNotifications);
-  }
+
 
   validateAllFormFields(form: any): void {
     Object.keys(form.controls).forEach(field => {

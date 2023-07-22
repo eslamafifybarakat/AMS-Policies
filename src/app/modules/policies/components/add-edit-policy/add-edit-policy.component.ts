@@ -220,7 +220,13 @@ export class AddEditPolicyComponent implements OnInit {
             this.policyData?.start_date,
             "yyyy-MM-dd"
           ).toDate();
-          let gender: any = { value: this.policyData?.gender };
+
+          let gender: any = null;
+          this.genders?.forEach((item: any) => {
+            if (item?.value == this.policyData?.gender) {
+              gender = item;
+            }
+          });
           this.personalInfoForm?.patchValue({
             policy_id: this.policyData?.id,
             name: this.policyData?.name,

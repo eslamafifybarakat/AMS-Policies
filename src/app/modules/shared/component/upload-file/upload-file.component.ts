@@ -12,6 +12,7 @@ export class UploadFileComponent implements OnInit {
   @Input() showImage: boolean = false;
   @Input() isEdit: boolean = false;
   @Input() name: string = '';
+  @Input() pattern: string = 'image/*';
 
   @Output() uploadHandler: EventEmitter<any> = new EventEmitter();
   @Output() uploadFile: EventEmitter<any> = new EventEmitter();
@@ -22,6 +23,8 @@ export class UploadFileComponent implements OnInit {
   imageName: string = '';
   isLoading: boolean = false;
   imageSize: any;
+  file: any;
+
   constructor(
     private alertsService: AlertsService
   ) { }
@@ -36,21 +39,27 @@ export class UploadFileComponent implements OnInit {
 
   handleInputChange(e: any): void {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
+    // var pattern = /image-*/;
     let formData = new FormData();
+    console.log(file);
+    this.file = file;
     formData.append('files', file);
     this.formatSizeUnits(file?.size);
     this.name = file?.name;
     this.uploadFile?.emit(file);
     var reader = new FileReader();
-    if (!file.type.match(pattern)) {
-      alert('invalid format');
-      return;
-    }
+    // if (!file.type.match(pattern)) {
+    //   alert('invalid format');
+    //   return;
+    // }
     this.loaded = false;
     this.showImage = true;
     reader.onload = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
+  }
+
+  handleDragOver(event: DragEvent): void {
+    event.preventDefault();
   }
 
   handleDragEnter(): void {
@@ -63,10 +72,10 @@ export class UploadFileComponent implements OnInit {
     this.showImage = false;
   }
 
-  handleDrop(e: any): void {
-    e.preventDefault();
+  handleDrop(event: DragEvent): void {
+    event.preventDefault();
     this.dragging = false;
-    this.handleInputChange(e);
+    this.handleInputChange(event);
     this.showImage = true;
   }
 

@@ -23,5 +23,13 @@ export class HomeService {
       return this.http?.get(this.apiUrl + roots?.homeData);
     }
   }
-
+  getAllNotifications(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.home?.getNotifications);
+  }
+  markNotification(id: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.home?.markNotification + '/' + id);
+  }
+  markAllNotifications(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.home?.markAllNotifications);
+  }
 }

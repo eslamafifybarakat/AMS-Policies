@@ -59,3 +59,15 @@
     height: 25px;
   }
 }
+.read {
+  background-color: #fb21190a;
+}
+.make-read:hover {
+  color: var(--text-main-color);
+}
+.bell-icon {
+  background-color: var(--bg-main-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

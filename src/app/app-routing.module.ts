@@ -17,14 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/layout/layout.module')
       .then(m => m.LayoutModule)
   },
-  {
-    path: 'payment-result',
-    canActivate: [AuthGuard],
-    component: PaymentResultComponent,
-    data: {
-      title: 'titles.payments'
-    }
-  },
+
   {
     path: "",
     redirectTo: "",

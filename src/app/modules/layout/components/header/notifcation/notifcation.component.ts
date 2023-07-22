@@ -1,3 +1,4 @@
+import { HomeService } from './../../../../../services/home.service';
 import { AlertsService } from './../../../../shared/services/alerts/alerts.service';
 import { PublicService } from './../../../../../services/public.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -15,10 +16,12 @@ export class NotifcationComponent implements OnInit {
   notificationsList: any = [];
   time: any = moment('2022-10-13:16:30:00');
   totalCount: any = 0;
+  notReadCount: number = 0;
 
   constructor(
     private publicService: PublicService,
     private alertsService: AlertsService,
+    private homeService: HomeService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -29,15 +32,64 @@ export class NotifcationComponent implements OnInit {
   toggleCollapse() {
     this.collapse = !this.collapse;
   }
-  getAllNotifications(): void {
-    this.isLoading = true;
-    this.publicService?.getAllNotifications()?.subscribe(
-      (res) => {
+  getAllNotifications(hideLoading?: any): void {
+    hideLoading ? '' : this.isLoading = true;
+    this.homeService?.getAllNotifications()?.subscribe(
+      (res: any) => {
         if (res?.code == '200') {
-          this.notificationsList = res?.data;
+          this.notificationsList = res?.data?.notification;
           this.totalCount = res?.total;
-          console.log(res?.data);
+          this.notReadCount = res?.data?.NotReadCount;
           this.isLoading = false;
+          // this.notificationsList = [
+          //   { id: 1, title: 'Title', description: 'description', status: 1 },
+          //   { id: 1, title: 'Title', description: 'description', status: 0 },
+          //   { id: 1, title: 'Title', description: 'description', status: 1 },
+          //   { id: 1, title: 'Title', description: 'description', status: 0 },
+          // ];
+        } else {
+          if (res?.message) {
+            this.alertsService?.openSweetAlert("info", res?.message);
+          }
+          this.isLoading = false;
+        }
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetAlert("error", err?.message);
+        }
+        this.isLoading = false;
+      }
+    );
+    this.cdr?.detectChanges();
+
+  }
+  markNotification(id: any): void {
+    this.homeService?.markNotification(id)?.subscribe(
+      (res: any) => {
+        if (res?.code == '200') {
+          this.getAllNotifications(true);
+        } else {
+          if (res?.message) {
+            this.alertsService?.openSweetAlert("info", res?.message);
+          }
+          this.isLoading = false;
+        }
+      },
+      (err) => {
+        if (err?.message) {
+          this.alertsService?.openSweetAlert("error", err?.message);
+        }
+        this.isLoading = false;
+      }
+    );
+    this.cdr?.detectChanges();
+  }
+  markAllNotifications(): void {
+    this.homeService?.markAllNotifications()?.subscribe(
+      (res: any) => {
+        if (res?.code == '200') {
+          this.getAllNotifications(true);
         } else {
           if (res?.message) {
             this.alertsService?.openSweetAlert("info", res?.message);
