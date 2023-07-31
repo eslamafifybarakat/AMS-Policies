@@ -39,3 +39,13 @@
   border-radius: 7px;
   padding: 0.5rem 1rem !important;
 }
+.bg-logo {
+  background-image: url(../image/logo/logo3.png);
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: 100% 0;
+}
+.bg-logo2 {
+  background-size: contain !important;
+  background-position: center !important;
+}

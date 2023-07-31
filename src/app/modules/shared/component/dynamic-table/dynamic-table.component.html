@@ -1,5 +1,5 @@
 <div id="dynamic-global-data-table">
-  <div class="table-content">
+  <div class="table-content bg-logo bg-logo2">
     <p-table #dt1 [value]="tableData" (onFilter)="customFilter($event,dt1)" [(selection)]="selectedItems"
       responsiveLayout="scroll" [rowHover]="false" [resizableColumns]="true" [columns]="tableHeaders"
       [customSort]="true" (onSort)="customSort($event)" dataKey="id">

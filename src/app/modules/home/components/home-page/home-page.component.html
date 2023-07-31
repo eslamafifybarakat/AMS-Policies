@@ -101,7 +101,7 @@
           </div>
         </div>
         <div class="col-lg-5 col-md-6 mt-md-0 mt-5">
-          <div>
+          <div class="bg-logo">
             <h2 class="fs-2 pt-md-0 pt-4" data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="800">
               {{homeData?.news?.title||''}}</h2>
             <p class="fs-5-1 mt-1 text-black-50" data-aos="fade-down" data-aos-easing="ease-in-out"
@@ -163,13 +163,13 @@
             </p-button>
           </ng-container>
         </div>
-        <div class="global-card mt-4 p-5" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="900">
+        <div class="global-card mt-4 p-5 " data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="900">
           <p-tabView [(activeIndex)]="activeIndex1">
             <ng-container *ngFor="let item of homeData?.services?.content;let i=index">
               <p-tabPanel>
                 <div class="row align-items-center">
                   <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-4">
-                    <div>
+                    <div class="bg-logo">
                       <h2 class="fs-4" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="900">
                         {{item?.service?.title}}
                       </h2>
@@ -221,8 +221,8 @@
   <section id="subscription" class="mt-5">
     <div class="container">
       <div class="p-4 content">
-        <div class="row d-flex align-items-center">
-          <div class="col-lg-6 col-md-8">
+        <div class="row d-flex align-items-center bg-logo bg-logo2">
+          <div class=" col-lg-6 col-md-8">
             <div class="mx-4">
               <h5 class="fs-4 fw-bold text-white-color d-flex justify-content-md-start justify-content-center mb-2"
                 data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="800">

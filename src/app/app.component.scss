@@ -45,10 +45,10 @@ section {
     object-fit: cover;
     width: 8rem !important;
     height: 8rem;
-    animation-name: scale;
-    animation-duration: 1000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    // animation-name: scale;
+    // animation-duration: 1000ms;
+    // animation-iteration-count: infinite;
+    // animation-timing-function: linear;
   }
 
   @keyframes scale {
