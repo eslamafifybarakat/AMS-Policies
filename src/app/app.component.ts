@@ -64,10 +64,10 @@ export class AppComponent {
       this.browserLang = this.translate.getBrowserLang();
       localStorage.setItem(
         keys.language,
-        this.browserLang
+        'ar'
       );
-      this.translate.use(this.browserLang);
-      this.translate.setDefaultLang(this.browserLang);
+      this.translate.use('ar');
+      this.translate.setDefaultLang('ar');
       window.location.reload();
     }
 

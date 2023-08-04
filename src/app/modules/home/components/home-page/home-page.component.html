@@ -12,8 +12,10 @@
               {{homeData?.description}}
             </p>
             <div class="d-flex align-items-center flex-wrap gap-sm-5 gap-3 mt-5">
-              <a [routerLink]="'/auth/register'" class="btn btn-solid-main" data-aos="fade-up"
-                data-aos-easing="ease-in-out" data-aos-duration="1200">{{'home.tryFreeTrial'|translate}}</a>
+              <a [routerLink]="'/auth/register'" class="btn btn-solid-main d-flex align-items-center gap-2"
+                data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="1200">
+                <i class="pi pi-dollar"></i>
+                {{'general.buyPolicy'|translate}}</a>
               <div class="d-flex align-items-center gap-2  text-main-color " data-aos="fade-up"
                 data-aos-easing="ease-in-out" data-aos-duration="1300" (click)="openVideo()">
                 <div class="play-icon rounded-circle d-flex justify-content-center align-items-center">
@@ -62,7 +64,7 @@
           </h2>
           <div class="row">
             <ng-container *ngFor="let item of homeData?.features;let i=index">
-              <div class="col-md-4 mb-md-0 mb-3">
+              <div class="col-md-4 mb-4">
                 <div class="global-card feature-content position-relative h-100" data-aos="fade-up"
                   data-aos-easing="ease-in-out" [attr.data-aos-duration]="((i+1)*200)+500">
                   <div class="position-absolute number-bg"></div>

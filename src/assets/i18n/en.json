@@ -1,5 +1,6 @@
 {
   "general": {
+    "buyPolicy":"Buy policy",
     "success":"Success!",
     "clickToUpload":"Click to upload or drag and drop",
     "supports":"Supports",

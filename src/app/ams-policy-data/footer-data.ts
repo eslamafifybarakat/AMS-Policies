@@ -19,10 +19,13 @@ export const footerDataEn = {
     { name: 'Contact Us', link: '/contact-us' }
   ],
   contact: [
-    '15 Sphinx square, El Mohandseen, 12411 - Giza, Egypt.',
-    '(+202)33011410',
-    '(+202)01000048393',
-    'info@euro - assist.com'
+    'Zawia Street - Tripoli, Misurata, Benghazi',
+    '+218 92 142 90 09',
+    'info@alatahadiya.ly'
+    // '15 Sphinx square, El Mohandseen, 12411 - Giza, Egypt.',
+    // '(+202)33011410',
+    // '(+202)01000048393',
+    // 'info@euro - assist.com'
   ]
 }
 export const footerDataAr = {
@@ -46,9 +49,12 @@ export const footerDataAr = {
     { name: 'اتصل بنا', link: '/contact-us' }
   ],
   contact: [
-    '15 ميدان سفنكس ، المهندسين ، 12411 - الجيزة ، مصر.',
-    '(+202)33011410',
-    '(+202)01000048393',
-    'info@euro - assist.com'
+    'شارع الزاوية - طرابلس مصراته بنغازي',
+    '+218 92 142 90 09',
+    'info@alatahadiya.ly'
+    // '15 ميدان سفنكس ، المهندسين ، 12411 - الجيزة ، مصر.',
+    // '(+202)33011410',
+    // '(+202)01000048393',
+    // 'info@euro - assist.com'
   ]
 }

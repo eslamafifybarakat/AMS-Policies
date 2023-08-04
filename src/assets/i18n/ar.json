@@ -1,5 +1,6 @@
 {
   "general": {
+    "buyPolicy":"شراء وثيقة",
     "success":"نجاح!",
     "clickToUpload":"انقر للتحميل أو السحب والإفلات",
     "supports":"يدعم",
