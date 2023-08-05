@@ -1,3 +1,4 @@
+import { AuthUserService } from './../../../auth/services/auth-user.service';
 import { patterns } from './../../../shared/TS Files/patternValidation';
 import { homeDataAr, homeDataEn } from './../../../../ams-policy-data/home-data';
 import { AlertsService } from './../../../../modules/shared/services/alerts/alerts.service';
@@ -20,8 +21,10 @@ export class HomePageComponent implements OnInit {
   homeData: any;
   currentLanguage: any;
   activeIndex1: any = 0;
+  isLoggedIn: boolean = false;
 
   constructor(
+    private authUserService: AuthUserService,
     private alertsService: AlertsService,
     private publicService: PublicService,
     private homeService: HomeService,
@@ -34,6 +37,7 @@ export class HomePageComponent implements OnInit {
       Validators.pattern(patterns?.email)]]
   })
   ngOnInit(): void {
+    this.isLoggedIn = this.authUserService?.isLoggedIn();
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
     Aos.init();
     this.homeData = JSON?.parse(localStorage?.getItem(keys?.homeData) || '');
